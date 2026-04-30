@@ -307,7 +307,7 @@ export default function BacktestPage() {
                   <YAxis tick={{ fontSize: 11, fill: "#64748b" }} />
                   <Tooltip
                     contentStyle={{ borderRadius: 8, border: "1px solid #e2e8f0", fontSize: 13 }}
-                    formatter={(v: number) => v.toFixed(2)}
+                    formatter={(v) => (typeof v === "number" ? v.toFixed(2) : String(v))}
                   />
                   <Legend wrapperStyle={{ fontSize: 13 }} />
                   <ReferenceLine y={100} stroke="#cbd5e1" strokeDasharray="2 2" />
@@ -327,7 +327,7 @@ export default function BacktestPage() {
                   <YAxis tick={{ fontSize: 11, fill: "#64748b" }} unit="%" />
                   <Tooltip
                     contentStyle={{ borderRadius: 8, border: "1px solid #e2e8f0", fontSize: 13 }}
-                    formatter={(v: number) => `${v}%`}
+                    formatter={(v) => (typeof v === "number" ? `${v}%` : String(v))}
                   />
                   <Legend wrapperStyle={{ fontSize: 13 }} />
                   <ReferenceLine y={0} stroke="#94a3b8" />
