@@ -1,0 +1,339 @@
+{
+  "ticker": "0183J0",
+  "stockName": "TIGER 미국우주테크",
+  "stockEndType": "etf",
+  "description": "- 이 ETF는 미국 주식을 주된 투자대상으로 하며, “Akros U.S. Space Tech Index(Price Return)(원화환산)”의 수익률 추종을 목적으로 하는 ETF입니다.  - 본 지수는 미국 상장 기업 중 ‘우주 산업’에 특화된 아래 두 키워드와 연관성이 높은 10종목으로 구성됩니다. ①발사 등 우주 인프라 구축 산업 (Upstream) ②통신 등 우주 인프라 활용 산업 (Downstream)  - 키워드 ①에 해당하는 상위 4개 종목에 70% 비중을 집중 적용합니다. 1위 25%, 2~4위 각 15%",
+  "issuerName": "미래에셋자산운용",
+  "marketValue": "4,982억",
+  "totalNav": "5,128억",
+  "nav": "9,881.42",
+  "totalFee": 0.49,
+  "dividendYieldTtm": 0.0,
+  "deviationSign": "+",
+  "deviationRate": 0.69,
+  "returnRate1m": null,
+  "returnRate3m": null,
+  "returnRate1y": null,
+  "totalInfos": [
+    {
+      "code": "lastClosePrice",
+      "key": "전일",
+      "value": "9,950"
+    },
+    {
+      "code": "openPrice",
+      "key": "시가",
+      "value": "9,820",
+      "compareToPreviousPrice": {
+        "code": "5",
+        "text": "하락",
+        "name": "FALLING"
+      }
+    },
+    {
+      "code": "highPrice",
+      "key": "고가",
+      "value": "9,840",
+      "compareToPreviousPrice": {
+        "code": "5",
+        "text": "하락",
+        "name": "FALLING"
+      }
+    },
+    {
+      "code": "lowPrice",
+      "key": "저가",
+      "value": "9,560",
+      "compareToPreviousPrice": {
+        "code": "5",
+        "text": "하락",
+        "name": "FALLING"
+      }
+    },
+    {
+      "code": "accumulatedTradingVolume",
+      "key": "거래량",
+      "value": "5,848,690"
+    },
+    {
+      "code": "accumulatedTradingValue",
+      "key": "대금",
+      "value": "56,941백만"
+    },
+    {
+      "code": "highPriceOf52Weeks",
+      "key": "52주 최고",
+      "value": "11,525"
+    },
+    {
+      "code": "lowPriceOf52Weeks",
+      "key": "52주 최저",
+      "value": "9,560"
+    },
+    {
+      "code": "oneMonthEarnRate",
+      "key": "최근 1개월 수익률",
+      "value": "N/A"
+    },
+    {
+      "code": "threeMonthEarnRate",
+      "key": "최근 3개월 수익률",
+      "value": "N/A"
+    },
+    {
+      "code": "sixMonthEarnRate",
+      "key": "최근 6개월 수익률",
+      "value": "N/A"
+    },
+    {
+      "code": "oneYearEarnRate",
+      "key": "최근 1년 수익률",
+      "value": "N/A"
+    },
+    {
+      "code": "nav",
+      "key": "NAV",
+      "value": "9,717.82"
+    },
+    {
+      "code": "fundPay",
+      "key": "펀드보수",
+      "value": "0.49%"
+    },
+    {
+      "code": "etfBaseIdx",
+      "key": "기초지수",
+      "value": "Akros U.S. Space Tech 지수(PR)"
+    },
+    {
+      "code": "issueName",
+      "key": "운용사",
+      "value": "미래에셋자산운용"
+    }
+  ],
+  "industryCompareInfo": [
+    {
+      "stockType": "domestic",
+      "stockEndType": "stock",
+      "itemCode": "069500",
+      "reutersCode": "069500",
+      "stockName": "KODEX 200",
+      "sosok": "0",
+      "closePrice": "99,905",
+      "compareToPreviousClosePrice": "-1,140",
+      "compareToPreviousPrice": {
+        "code": "5",
+        "text": "하락",
+        "name": "FALLING"
+      },
+      "fluctuationsRatio": "-1.13",
+      "accumulatedTradingVolume": "-",
+      "accumulatedTradingValue": "-",
+      "marketValue": "21,904,171",
+      "nav": "0",
+      "threeMonthEarningRate": "0",
+      "stockExchangeType": {
+        "code": "KS",
+        "zoneId": "Asia/Seoul",
+        "nationType": "KOR",
+        "delayTime": 0,
+        "startTime": "0900",
+        "endTime": "1530",
+        "closePriceSendTime": "1630",
+        "nameKor": "코스피",
+        "nameEng": "KOSPI",
+        "stockType": "domestic",
+        "nationCode": "KOR",
+        "nationName": "대한민국",
+        "name": "KOSPI"
+      },
+      "endUrl": "https://m.stock.naver.com/domestic/stock/069500"
+    },
+    {
+      "stockType": "domestic",
+      "stockEndType": "stock",
+      "itemCode": "360750",
+      "reutersCode": "360750",
+      "stockName": "TIGER 미국S&P500",
+      "sosok": "0",
+      "closePrice": "26,160",
+      "compareToPreviousClosePrice": "-55",
+      "compareToPreviousPrice": {
+        "code": "5",
+        "text": "하락",
+        "name": "FALLING"
+      },
+      "fluctuationsRatio": "-0.21",
+      "accumulatedTradingVolume": "-",
+      "accumulatedTradingValue": "-",
+      "marketValue": "16,547,508",
+      "nav": "0",
+      "threeMonthEarningRate": "0",
+      "stockExchangeType": {
+        "code": "KS",
+        "zoneId": "Asia/Seoul",
+        "nationType": "KOR",
+        "delayTime": 0,
+        "startTime": "0900",
+        "endTime": "1530",
+        "closePriceSendTime": "1630",
+        "nameKor": "코스피",
+        "nameEng": "KOSPI",
+        "stockType": "domestic",
+        "nationCode": "KOR",
+        "nationName": "대한민국",
+        "name": "KOSPI"
+      },
+      "endUrl": "https://m.stock.naver.com/domestic/stock/360750"
+    },
+    {
+      "stockType": "domestic",
+      "stockEndType": "stock",
+      "itemCode": "396500",
+      "reutersCode": "396500",
+      "stockName": "TIGER 반도체TOP10",
+      "sosok": "0",
+      "closePrice": "40,115",
+      "compareToPreviousClosePrice": "-240",
+      "compareToPreviousPrice": {
+        "code": "5",
+        "text": "하락",
+        "name": "FALLING"
+      },
+      "fluctuationsRatio": "-0.59",
+      "accumulatedTradingVolume": "-",
+      "accumulatedTradingValue": "-",
+      "marketValue": "10,365,716",
+      "nav": "0",
+      "threeMonthEarningRate": "0",
+      "stockExchangeType": {
+        "code": "KS",
+        "zoneId": "Asia/Seoul",
+        "nationType": "KOR",
+        "delayTime": 0,
+        "startTime": "0900",
+        "endTime": "1530",
+        "closePriceSendTime": "1630",
+        "nameKor": "코스피",
+        "nameEng": "KOSPI",
+        "stockType": "domestic",
+        "nationCode": "KOR",
+        "nationName": "대한민국",
+        "name": "KOSPI"
+      },
+      "endUrl": "https://m.stock.naver.com/domestic/stock/396500"
+    },
+    {
+      "stockType": "domestic",
+      "stockEndType": "stock",
+      "itemCode": "133690",
+      "reutersCode": "133690",
+      "stockName": "TIGER 미국나스닥100",
+      "sosok": "0",
+      "closePrice": "177,990",
+      "compareToPreviousClosePrice": "285",
+      "compareToPreviousPrice": {
+        "code": "2",
+        "text": "상승",
+        "name": "RISING"
+      },
+      "fluctuationsRatio": "0.16",
+      "accumulatedTradingVolume": "-",
+      "accumulatedTradingValue": "-",
+      "marketValue": "9,223,441",
+      "nav": "0",
+      "threeMonthEarningRate": "0",
+      "stockExchangeType": {
+        "code": "KS",
+        "zoneId": "Asia/Seoul",
+        "nationType": "KOR",
+        "delayTime": 0,
+        "startTime": "0900",
+        "endTime": "1530",
+        "closePriceSendTime": "1630",
+        "nameKor": "코스피",
+        "nameEng": "KOSPI",
+        "stockType": "domestic",
+        "nationCode": "KOR",
+        "nationName": "대한민국",
+        "name": "KOSPI"
+      },
+      "endUrl": "https://m.stock.naver.com/domestic/stock/133690"
+    },
+    {
+      "stockType": "domestic",
+      "stockEndType": "stock",
+      "itemCode": "102110",
+      "reutersCode": "102110",
+      "stockName": "TIGER 200",
+      "sosok": "0",
+      "closePrice": "99,970",
+      "compareToPreviousClosePrice": "-1,005",
+      "compareToPreviousPrice": {
+        "code": "5",
+        "text": "하락",
+        "name": "FALLING"
+      },
+      "fluctuationsRatio": "-1.00",
+      "accumulatedTradingVolume": "-",
+      "accumulatedTradingValue": "-",
+      "marketValue": "8,777,366",
+      "nav": "0",
+      "threeMonthEarningRate": "0",
+      "stockExchangeType": {
+        "code": "KS",
+        "zoneId": "Asia/Seoul",
+        "nationType": "KOR",
+        "delayTime": 0,
+        "startTime": "0900",
+        "endTime": "1530",
+        "closePriceSendTime": "1630",
+        "nameKor": "코스피",
+        "nameEng": "KOSPI",
+        "stockType": "domestic",
+        "nationCode": "KOR",
+        "nationName": "대한민국",
+        "name": "KOSPI"
+      },
+      "endUrl": "https://m.stock.naver.com/domestic/stock/102110"
+    },
+    {
+      "stockType": "domestic",
+      "stockEndType": "stock",
+      "itemCode": "379800",
+      "reutersCode": "379800",
+      "stockName": "KODEX 미국S&P500",
+      "sosok": "0",
+      "closePrice": "23,870",
+      "compareToPreviousClosePrice": "-15",
+      "compareToPreviousPrice": {
+        "code": "5",
+        "text": "하락",
+        "name": "FALLING"
+      },
+      "fluctuationsRatio": "-0.06",
+      "accumulatedTradingVolume": "-",
+      "accumulatedTradingValue": "-",
+      "marketValue": "8,686,293",
+      "nav": "0",
+      "threeMonthEarningRate": "0",
+      "stockExchangeType": {
+        "code": "KS",
+        "zoneId": "Asia/Seoul",
+        "nationType": "KOR",
+        "delayTime": 0,
+        "startTime": "0900",
+        "endTime": "1530",
+        "closePriceSendTime": "1630",
+        "nameKor": "코스피",
+        "nameEng": "KOSPI",
+        "stockType": "domestic",
+        "nationCode": "KOR",
+        "nationName": "대한민국",
+        "name": "KOSPI"
+      },
+      "endUrl": "https://m.stock.naver.com/domestic/stock/379800"
+    }
+  ],
+  "fetchedAt": "2026-05-01T17:43:39.047203"
+}

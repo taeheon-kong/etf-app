@@ -13,7 +13,7 @@ type NavItem = {
 const NAV_ITEMS: NavItem[] = [
   { href: "/backtest", label: "백테스트", icon: "📊" },
   { href: "/etfs/us", label: "해외 ETF", icon: "🇺🇸" },
-  { href: "/etfs/kr", label: "국내 ETF", icon: "🇰🇷", badge: "준비중" },
+  { href: "/etfs/kr", label: "국내 ETF", icon: "🇰🇷" },
 ];
 
 export default function Sidebar() {

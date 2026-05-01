@@ -1,7 +1,9 @@
 /**
  * CSV 가격 데이터 로더
  *
- * data/raw/{TICKER}.csv 파일을 읽어 PriceSeries 객체로 변환한다.
+ * 미국 ETF: data/raw/{TICKER}.csv
+ * 한국 ETF: data/raw_kr/{TICKER}.csv (loaderKr.ts 위임)
+ *
  * 서버 사이드에서만 동작 (Node.js의 fs 모듈 사용).
  */
 
@@ -9,6 +11,7 @@ import { readFileSync, existsSync } from "node:fs";
 import { join } from "node:path";
 
 import type { PriceRow, PriceSeries } from "./types";
+import { loadKrPrices } from "./loaderKr";
 
 // ──────────────────────────────────────────────────────────────
 // 경로 헬퍼
@@ -25,27 +28,28 @@ function tickerToFilename(ticker: string): string {
   return ticker.replace(/\^/g, "_").replace(/\//g, "_") + ".csv";
 }
 
+/**
+ * 한국 티커 판별: 6자리 숫자 또는 영문/숫자 섞인 6자리 (예: 0043B0)
+ * 미국 티커는 보통 1~5자리 영문이고 ^IRX 같은 특수문자 포함.
+ */
+function isKoreanTicker(ticker: string): boolean {
+  return /^[0-9A-Z]{6}$/.test(ticker) && /[0-9]/.test(ticker);
+}
+
 // ──────────────────────────────────────────────────────────────
 // CSV 파싱
 // ──────────────────────────────────────────────────────────────
 
-/**
- * CSV 텍스트를 PriceRow 배열로 변환.
- *
- * 첫 줄은 헤더라 건너뛰고, 나머지 줄을 콤마로 잘라 객체로 만든다.
- * 빈 줄이나 잘못된 줄은 무시.
- */
 function parseCsv(text: string): PriceRow[] {
   const lines = text.trim().split("\n");
   const rows: PriceRow[] = [];
 
-  // 첫 줄(헤더) 건너뛰고 1번 인덱스부터
   for (let i = 1; i < lines.length; i++) {
     const line = lines[i].trim();
-    if (!line) continue;  // 빈 줄 스킵
+    if (!line) continue;
 
     const cols = line.split(",");
-    if (cols.length < 8) continue;  // 컬럼 부족하면 스킵
+    if (cols.length < 8) continue;
 
     rows.push({
       date: cols[0],
@@ -68,12 +72,14 @@ function parseCsv(text: string): PriceRow[] {
 
 /**
  * 단일 티커의 가격 시계열 로드.
- *
- * @param ticker 티커 심볼 ("SPY", "QQQ", "^IRX" 등)
- * @returns 날짜 오름차순으로 정렬된 PriceSeries
- * @throws 파일이 없거나 비어있으면 에러
+ * 한국 티커(6자리 숫자/영숫자)면 loaderKr.loadKrPrices로 위임.
  */
 export function loadPrices(ticker: string): PriceSeries {
+  // 한국 티커 자동 분기
+  if (isKoreanTicker(ticker)) {
+    return loadKrPrices(ticker);
+  }
+
   const filename = tickerToFilename(ticker);
   const filepath = join(DATA_DIR, filename);
 
@@ -94,23 +100,10 @@ export function loadPrices(ticker: string): PriceSeries {
   return { ticker, rows };
 }
 
-/**
- * 여러 티커를 한 번에 로드.
- *
- * @param tickers 티커 배열
- * @returns 티커별 PriceSeries 배열 (입력 순서 유지)
- */
 export function loadMultiple(tickers: string[]): PriceSeries[] {
   return tickers.map((t) => loadPrices(t));
 }
 
-/**
- * 특정 날짜 범위로 자른 PriceSeries 반환.
- *
- * @param series 원본 시계열
- * @param startDate "YYYY-MM-DD" (포함)
- * @param endDate "YYYY-MM-DD" (포함)
- */
 export function sliceByDate(
   series: PriceSeries,
   startDate: string,

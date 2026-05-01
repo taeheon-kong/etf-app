@@ -27,8 +27,28 @@ import {
   groupByCategory,
   findByTicker,
 } from "@/lib/finance/catalog";
+import {
+  KR_ETF_CATALOG,
+  KR_CATEGORY_LABELS,
+  KR_CATEGORY_ORDER,
+  krGroupByCategory,
+  krFindByTicker,
+} from "@/lib/finance/catalogKr";
 
 type Holding = { ticker: string; weight: number };
+type Market = "us" | "kr";
+
+/** 티커로 ETF 정보를 양쪽 카탈로그에서 찾음. */
+function findAnyTicker(ticker: string):
+  | { market: "us"; name: string }
+  | { market: "kr"; name: string }
+  | null {
+  const us = findByTicker(ticker);
+  if (us) return { market: "us", name: us.name };
+  const kr = krFindByTicker(ticker);
+  if (kr) return { market: "kr", name: kr.name };
+  return null;
+}
 
 export default function BacktestPage() {
   const [holdings, setHoldings] = useState<Holding[]>([
@@ -51,7 +71,8 @@ export default function BacktestPage() {
   const totalWeight = holdings.reduce((s, h) => s + h.weight, 0);
   const weightOK = Math.abs(totalWeight - 100) < 0.1;
 
-  const grouped = useMemo(() => groupByCategory(), []);
+  const groupedUs = useMemo(() => groupByCategory(), []);
+  const groupedKr = useMemo(() => krGroupByCategory(), []);
 
   const updateHolding = (i: number, key: keyof Holding, value: string | number) => {
     const next = [...holdings];
@@ -135,7 +156,6 @@ export default function BacktestPage() {
 
   return (
     <div className="px-8 py-8 space-y-6 max-w-7xl">
-      {/* 헤더 */}
       <div>
         <h1 className="text-3xl font-bold text-slate-900">ETF 백테스트</h1>
         <p className="text-sm text-slate-500 mt-1">
@@ -143,10 +163,8 @@ export default function BacktestPage() {
         </p>
       </div>
 
-      {/* 입력 폼 */}
       <div className="bg-white border border-slate-200 rounded-xl p-6 shadow-sm">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-          {/* 좌: 종목 */}
           <div>
             <div className="flex items-center justify-between mb-3">
               <label className="text-sm font-semibold text-slate-700">
@@ -162,7 +180,7 @@ export default function BacktestPage() {
             </div>
             <div className="space-y-2">
               {holdings.map((h, i) => {
-                const meta = findByTicker(h.ticker);
+                const meta = findAnyTicker(h.ticker);
                 return (
                   <div key={i} className="flex gap-2 items-stretch">
                     <button
@@ -171,8 +189,14 @@ export default function BacktestPage() {
                       className="flex-1 border border-slate-300 rounded-lg px-3 py-2 text-sm bg-white hover:bg-slate-50 text-left flex items-center justify-between gap-2"
                     >
                       <span className="flex flex-col min-w-0">
-                        <span className="font-bold text-slate-900">
+                        <span className="font-bold text-slate-900 flex items-center gap-1.5">
                           {h.ticker}
+                          {meta?.market === "kr" && (
+                            <span className="text-[10px] px-1.5 py-0.5 bg-rose-50 text-rose-700 rounded">KR</span>
+                          )}
+                          {meta?.market === "us" && (
+                            <span className="text-[10px] px-1.5 py-0.5 bg-blue-50 text-blue-700 rounded">US</span>
+                          )}
                         </span>
                         <span className="text-xs text-slate-500 truncate">
                           {meta?.name ?? "—"}
@@ -206,7 +230,6 @@ export default function BacktestPage() {
             </button>
           </div>
 
-          {/* 우: 기간 + 옵션 */}
           <div className="space-y-3">
             <div className="grid grid-cols-2 gap-3">
               <div>
@@ -296,7 +319,6 @@ export default function BacktestPage() {
         )}
       </div>
 
-      {/* 종목 선택 모달 */}
       {pickerOpen !== null && (
         <TickerPicker
           selected={holdings[pickerOpen].ticker}
@@ -305,11 +327,11 @@ export default function BacktestPage() {
             setPickerOpen(null);
           }}
           onClose={() => setPickerOpen(null)}
-          grouped={grouped}
+          groupedUs={groupedUs}
+          groupedKr={groupedKr}
         />
       )}
 
-      {/* 결과 */}
       {result && (
         <>
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3">
@@ -388,33 +410,60 @@ export default function BacktestPage() {
 }
 
 // ──────────────────────────────────────────────────────────────
-// 종목 선택 모달
+// 종목 선택 모달 (미국 + 한국 탭)
 // ──────────────────────────────────────────────────────────────
 
 function TickerPicker({
   selected,
   onSelect,
   onClose,
-  grouped,
+  groupedUs,
+  groupedKr,
 }: {
   selected: string;
   onSelect: (ticker: string) => void;
   onClose: () => void;
-  grouped: ReturnType<typeof groupByCategory>;
+  groupedUs: ReturnType<typeof groupByCategory>;
+  groupedKr: ReturnType<typeof krGroupByCategory>;
 }) {
+  const [market, setMarket] = useState<Market>("us");
   const [query, setQuery] = useState("");
   const [activeCategory, setActiveCategory] = useState<string>("all");
 
   const filteredFlat = useMemo(() => {
     if (!query) return [];
     const q = query.toUpperCase();
-    return ETF_CATALOG.filter(
-      (e) =>
-        e.ticker.includes(q) ||
-        e.name.toUpperCase().includes(q) ||
-        e.tags.some((t) => CATEGORY_LABELS[t].includes(query))
-    );
-  }, [query]);
+    if (market === "us") {
+      return ETF_CATALOG.filter(
+        (e) =>
+          e.ticker.includes(q) ||
+          e.name.toUpperCase().includes(q) ||
+          e.tags.some((t) => CATEGORY_LABELS[t].includes(query))
+      ).map((e) => ({
+        ticker: e.ticker,
+        name: e.name,
+        category: CATEGORY_LABELS[e.category],
+        size: e.aum,
+        sizeLabel: `$${e.aum}B`,
+      }));
+    } else {
+      return KR_ETF_CATALOG.filter(
+        (e) =>
+          e.ticker.includes(q) ||
+          e.name.toUpperCase().includes(q) ||
+          e.tags.some((t) => KR_CATEGORY_LABELS[t].includes(query))
+      ).map((e) => ({
+        ticker: e.ticker,
+        name: e.name,
+        category: KR_CATEGORY_LABELS[e.category],
+        size: e.marCap,
+        sizeLabel: `${(e.marCap / 10000).toFixed(1)}조`,
+      }));
+    }
+  }, [query, market]);
+
+  const categoryOrder = market === "us" ? CATEGORY_ORDER : KR_CATEGORY_ORDER;
+  const categoryLabels = market === "us" ? CATEGORY_LABELS : KR_CATEGORY_LABELS;
 
   return (
     <div
@@ -425,7 +474,30 @@ function TickerPicker({
         className="bg-white rounded-xl shadow-2xl w-full max-w-2xl max-h-[70vh] flex flex-col"
         onClick={(e) => e.stopPropagation()}
       >
-        {/* 검색바 */}
+        {/* 시장 탭 */}
+        <div className="flex border-b border-slate-200">
+          <button
+            onClick={() => { setMarket("us"); setQuery(""); setActiveCategory("all"); }}
+            className={`flex-1 py-3 text-sm font-semibold transition-colors ${
+              market === "us"
+                ? "text-blue-600 border-b-2 border-blue-600"
+                : "text-slate-500 hover:text-slate-700"
+            }`}
+          >
+            미국 ETF ({ETF_CATALOG.length})
+          </button>
+          <button
+            onClick={() => { setMarket("kr"); setQuery(""); setActiveCategory("all"); }}
+            className={`flex-1 py-3 text-sm font-semibold transition-colors ${
+              market === "kr"
+                ? "text-rose-600 border-b-2 border-rose-600"
+                : "text-slate-500 hover:text-slate-700"
+            }`}
+          >
+            국내 ETF ({KR_ETF_CATALOG.length})
+          </button>
+        </div>
+
         <div className="p-4 border-b border-slate-200">
           <input
             autoFocus
@@ -435,7 +507,6 @@ function TickerPicker({
             value={query}
             onChange={(e) => setQuery(e.target.value)}
           />
-          {/* 카테고리 칩 */}
           {!query && (
             <div className="flex gap-1.5 mt-3 overflow-x-auto pb-1">
               <CategoryChip
@@ -443,10 +514,10 @@ function TickerPicker({
                 active={activeCategory === "all"}
                 onClick={() => setActiveCategory("all")}
               />
-              {CATEGORY_ORDER.map((cat) => (
+              {categoryOrder.map((cat) => (
                 <CategoryChip
                   key={cat}
-                  label={CATEGORY_LABELS[cat]}
+                  label={categoryLabels[cat as keyof typeof categoryLabels]}
                   active={activeCategory === cat}
                   onClick={() => setActiveCategory(cat)}
                 />
@@ -455,10 +526,8 @@ function TickerPicker({
           )}
         </div>
 
-        {/* 리스트 */}
         <div className="flex-1 overflow-y-auto p-3">
           {query ? (
-            // 검색 결과 (플랫)
             filteredFlat.length === 0 ? (
               <div className="text-center text-sm text-slate-500 py-8">
                 일치하는 ETF가 없습니다.
@@ -470,20 +539,18 @@ function TickerPicker({
                     key={e.ticker}
                     ticker={e.ticker}
                     name={e.name}
-                    category={CATEGORY_LABELS[e.category]}
-                    aum={e.aum}
+                    sizeLabel={e.sizeLabel}
                     selected={e.ticker === selected}
                     onClick={() => onSelect(e.ticker)}
                   />
                 ))}
               </div>
             )
-          ) : (
-            // 카테고리 보기
+          ) : market === "us" ? (
             CATEGORY_ORDER.filter(
               (c) => activeCategory === "all" || activeCategory === c
             ).map((cat) => {
-              const items = grouped.get(cat) ?? [];
+              const items = groupedUs.get(cat) ?? [];
               if (items.length === 0) return null;
               return (
                 <div key={cat} className="mb-4">
@@ -499,8 +566,36 @@ function TickerPicker({
                         key={e.ticker}
                         ticker={e.ticker}
                         name={e.name}
-                        category={CATEGORY_LABELS[e.category]}
-                        aum={e.aum}
+                        sizeLabel={`$${e.aum}B`}
+                        selected={e.ticker === selected}
+                        onClick={() => onSelect(e.ticker)}
+                      />
+                    ))}
+                  </div>
+                </div>
+              );
+            })
+          ) : (
+            KR_CATEGORY_ORDER.filter(
+              (c) => activeCategory === "all" || activeCategory === c
+            ).map((cat) => {
+              const items = groupedKr.get(cat) ?? [];
+              if (items.length === 0) return null;
+              return (
+                <div key={cat} className="mb-4">
+                  <div className="text-xs font-semibold text-slate-500 uppercase tracking-wide px-2 py-1">
+                    {KR_CATEGORY_LABELS[cat]}{" "}
+                    <span className="text-slate-400 normal-case">
+                      ({items.length})
+                    </span>
+                  </div>
+                  <div className="space-y-1">
+                    {items.map((e) => (
+                      <TickerRow
+                        key={e.ticker}
+                        ticker={e.ticker}
+                        name={e.name}
+                        sizeLabel={`${(e.marCap / 10000).toFixed(1)}조`}
                         selected={e.ticker === selected}
                         onClick={() => onSelect(e.ticker)}
                       />
@@ -551,15 +646,13 @@ function CategoryChip({
 function TickerRow({
   ticker,
   name,
-  category,
-  aum,
+  sizeLabel,
   selected,
   onClick,
 }: {
   ticker: string;
   name: string;
-  category: string;
-  aum: number;
+  sizeLabel: string;
   selected: boolean;
   onClick: () => void;
 }) {
@@ -571,12 +664,10 @@ function TickerRow({
       }`}
     >
       <div className="flex items-center gap-3 min-w-0">
-        <span className="font-bold text-slate-900 w-16 shrink-0">{ticker}</span>
+        <span className="font-bold text-slate-900 w-20 shrink-0 text-sm">{ticker}</span>
         <span className="text-sm text-slate-600 truncate">{name}</span>
       </div>
-      <div className="text-xs text-slate-400 shrink-0">
-        ${aum >= 100 ? `${(aum / 1).toFixed(0)}B` : `${aum}B`}
-      </div>
+      <div className="text-xs text-slate-400 shrink-0">{sizeLabel}</div>
     </button>
   );
 }
