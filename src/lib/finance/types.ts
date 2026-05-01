@@ -99,3 +99,26 @@ export type BacktestResult = {
     tradingDays: number;
   };
 };
+
+// ──────────────────────────────────────────────────────────────
+// 적립식 시뮬레이션 (Phase 2)
+// ──────────────────────────────────────────────────────────────
+
+export type AmountBasis = "start" | "now";
+
+export type DcaOptions = {
+  enabled: boolean;
+  initialCapital: number;
+  monthlyDeposit: number;
+  basis: AmountBasis;
+  feeRate: number;
+};
+
+export type DcaResult = {
+  finalBalance: number;
+  totalDeposit: number;
+  netProfit: number;
+  realFinalBalance: number;
+  totalFee: number;
+  series: { date: string; balance: number; deposit: number }[];
+};
