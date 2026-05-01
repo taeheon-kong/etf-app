@@ -1,0 +1,18 @@
+{
+  "ticker": "DRAM",
+  "longName": "Roundhill Memory ETF",
+  "summary": "The fund will generally seek to invest primarily in the equity securities of “Memory Companies,” but may also seek exposure to Memory Companies through derivative instruments, such as swap agreements and forward contracts. Under normal circumstances, it invests at least 80% of its net assets (plus borrowings for investment purposes) in equity securities or instruments (i.e., swap agreements or forward contracts) that provide exposure to Memory Companies. The fund is non-diversified.",
+  "category": "Technology",
+  "fundFamily": "Roundhill Investments",
+  "totalAssets": null,
+  "expenseRatio": 0.65,
+  "yield": null,
+  "fundInceptionDate": 1775001600,
+  "navPrice": 38.5482,
+  "previousClose": 38.23,
+  "fiftyTwoWeekHigh": 39.43,
+  "fiftyTwoWeekLow": 26.14,
+  "beta3Year": null,
+  "topHoldings": [],
+  "fetchedAt": "2026-05-01T12:01:34.394987"
+}

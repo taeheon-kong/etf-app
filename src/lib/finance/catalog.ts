@@ -1,6 +1,7 @@
 /**
  * ETF 카탈로그.
- * AUM은 2025년 말 기준 대략값(10억 달러 단위). 정렬 기준용.
+ * 각 ETF는 primary 카테고리 1개 (카드 진열) + tags 다중 (모든 관련 분류).
+ * AUM은 2025년 말~2026년 초 기준 대략값(10억 달러 단위). 정렬용.
  */
 
 export type EtfCategory =
@@ -23,7 +24,8 @@ export type EtfCategory =
 export type EtfMeta = {
   ticker: string;
   name: string;
-  category: EtfCategory;
+  category: EtfCategory;     // 카드 진열 위치 (단일)
+  tags: EtfCategory[];        // 모든 관련 분류 (복수, category 포함)
   aum: number;
 };
 
@@ -64,127 +66,131 @@ export const CATEGORY_ORDER: EtfCategory[] = [
 ];
 
 export const ETF_CATALOG: EtfMeta[] = [
-  // S&P 500
-  { ticker: "VOO", name: "Vanguard S&P 500", category: "sp500", aum: 700 },
-  { ticker: "SPY", name: "SPDR S&P 500", category: "sp500", aum: 690 },
-  { ticker: "IVV", name: "iShares Core S&P 500", category: "sp500", aum: 660 },
-  { ticker: "VTI", name: "Vanguard Total Stock Market", category: "sp500", aum: 510 },
-  { ticker: "SPLG", name: "SPDR Portfolio S&P 500", category: "sp500", aum: 70 },
-  { ticker: "JEPI", name: "JPMorgan Equity Premium Income", category: "sp500", aum: 45 },
-  { ticker: "SCHB", name: "Schwab US Broad Market", category: "sp500", aum: 35 },
-  { ticker: "SPMO", name: "Invesco S&P 500 Momentum", category: "sp500", aum: 8 },
-  { ticker: "SPYI", name: "NEOS S&P 500 High Income", category: "sp500", aum: 4 },
-  { ticker: "XYLD", name: "Global X S&P 500 Covered Call", category: "sp500", aum: 3 },
+  // ─── S&P 500 ───
+  { ticker: "VOO", name: "Vanguard S&P 500", category: "sp500", tags: ["sp500"], aum: 700 },
+  { ticker: "SPY", name: "SPDR S&P 500", category: "sp500", tags: ["sp500"], aum: 690 },
+  { ticker: "IVV", name: "iShares Core S&P 500", category: "sp500", tags: ["sp500"], aum: 660 },
+  { ticker: "VTI", name: "Vanguard Total Stock Market", category: "sp500", tags: ["sp500"], aum: 510 },
+  { ticker: "SPLG", name: "SPDR Portfolio S&P 500", category: "sp500", tags: ["sp500"], aum: 70 },
+  { ticker: "SCHB", name: "Schwab US Broad Market", category: "sp500", tags: ["sp500"], aum: 35 },
+  { ticker: "SPMO", name: "Invesco S&P 500 Momentum", category: "sp500", tags: ["sp500", "growth"], aum: 8 },
 
-  // 나스닥
-  { ticker: "QQQ", name: "Invesco QQQ Trust", category: "nasdaq", aum: 360 },
-  { ticker: "QQQM", name: "Invesco NASDAQ 100", category: "nasdaq", aum: 50 },
-  { ticker: "JEPQ", name: "JPMorgan Nasdaq Equity Premium", category: "nasdaq", aum: 30 },
-  { ticker: "QYLD", name: "Global X Nasdaq 100 Covered Call", category: "nasdaq", aum: 8 },
-  { ticker: "QQQI", name: "NEOS Nasdaq-100 High Income", category: "nasdaq", aum: 3 },
-  { ticker: "QQA", name: "Invesco QQQ Income Advantage", category: "nasdaq", aum: 1 },
+  // ─── 나스닥 ───
+  { ticker: "QQQ", name: "Invesco QQQ Trust", category: "nasdaq", tags: ["nasdaq"], aum: 360 },
+  { ticker: "QQQM", name: "Invesco NASDAQ 100", category: "nasdaq", tags: ["nasdaq"], aum: 50 },
 
-  // 기술주
-  { ticker: "VGT", name: "Vanguard Information Technology", category: "tech", aum: 90 },
-  { ticker: "XLK", name: "Technology Select Sector SPDR", category: "tech", aum: 75 },
-  { ticker: "SMH", name: "VanEck Semiconductor", category: "tech", aum: 25 },
-  { ticker: "SOXX", name: "iShares Semiconductor", category: "tech", aum: 13 },
+  // ─── 기술주 ───
+  { ticker: "VGT", name: "Vanguard Information Technology", category: "tech", tags: ["tech"], aum: 90 },
+  { ticker: "XLK", name: "Technology Select Sector SPDR", category: "tech", tags: ["tech", "sector"], aum: 75 },
+  { ticker: "SMH", name: "VanEck Semiconductor", category: "tech", tags: ["tech"], aum: 25 },
+  { ticker: "SOXX", name: "iShares Semiconductor", category: "tech", tags: ["tech"], aum: 13 },
+  { ticker: "DRAM", name: "Roundhill Memory & Storage", category: "tech", tags: ["tech", "sector", "leveraged"], aum: 0.05 },
 
-  // 성장주
-  { ticker: "VUG", name: "Vanguard Growth", category: "growth", aum: 170 },
-  { ticker: "IWF", name: "iShares Russell 1000 Growth", category: "growth", aum: 110 },
-  { ticker: "SCHG", name: "Schwab US Large-Cap Growth", category: "growth", aum: 40 },
-  { ticker: "MGK", name: "Vanguard Mega Cap Growth", category: "growth", aum: 25 },
+  // ─── 성장주 ───
+  { ticker: "VUG", name: "Vanguard Growth", category: "growth", tags: ["growth"], aum: 170 },
+  { ticker: "IWF", name: "iShares Russell 1000 Growth", category: "growth", tags: ["growth"], aum: 110 },
+  { ticker: "SCHG", name: "Schwab US Large-Cap Growth", category: "growth", tags: ["growth"], aum: 40 },
+  { ticker: "MGK", name: "Vanguard Mega Cap Growth", category: "growth", tags: ["growth"], aum: 25 },
 
-  // 소형주
-  { ticker: "IJR", name: "iShares Core S&P Small-Cap", category: "smallcap", aum: 90 },
-  { ticker: "IWM", name: "iShares Russell 2000", category: "smallcap", aum: 70 },
-  { ticker: "VB", name: "Vanguard Small-Cap", category: "smallcap", aum: 65 },
-  { ticker: "VBR", name: "Vanguard Small-Cap Value", category: "smallcap", aum: 32 },
+  // ─── 소형주 ───
+  { ticker: "IJR", name: "iShares Core S&P Small-Cap", category: "smallcap", tags: ["smallcap"], aum: 90 },
+  { ticker: "IWM", name: "iShares Russell 2000", category: "smallcap", tags: ["smallcap"], aum: 70 },
+  { ticker: "VB", name: "Vanguard Small-Cap", category: "smallcap", tags: ["smallcap"], aum: 65 },
+  { ticker: "VBR", name: "Vanguard Small-Cap Value", category: "smallcap", tags: ["smallcap"], aum: 32 },
 
-  // 배당
-  { ticker: "VIG", name: "Vanguard Dividend Appreciation", category: "dividend", aum: 92 },
-  { ticker: "SCHD", name: "Schwab US Dividend Equity", category: "dividend", aum: 67 },
-  { ticker: "VYM", name: "Vanguard High Dividend Yield", category: "dividend", aum: 60 },
-  { ticker: "DGRO", name: "iShares Core Dividend Growth", category: "dividend", aum: 32 },
-  { ticker: "COWZ", name: "Pacer US Cash Cows 100", category: "dividend", aum: 25 },
-  { ticker: "DVY", name: "iShares Select Dividend", category: "dividend", aum: 20 },
-  { ticker: "NOBL", name: "ProShares S&P 500 Dividend Aristocrats", category: "dividend", aum: 11 },
-  { ticker: "HDV", name: "iShares Core High Dividend", category: "dividend", aum: 11 },
-  { ticker: "SPYD", name: "SPDR S&P 500 High Dividend", category: "dividend", aum: 6 },
-  { ticker: "DIVO", name: "Amplify CWP Enhanced Dividend Income", category: "dividend", aum: 4 },
-  { ticker: "SPHD", name: "Invesco S&P 500 High Div Low Vol", category: "dividend", aum: 3 },
+  // ─── 배당 ───
+  { ticker: "VIG", name: "Vanguard Dividend Appreciation", category: "dividend", tags: ["dividend"], aum: 92 },
+  { ticker: "SCHD", name: "Schwab US Dividend Equity", category: "dividend", tags: ["dividend"], aum: 67 },
+  { ticker: "VYM", name: "Vanguard High Dividend Yield", category: "dividend", tags: ["dividend"], aum: 60 },
+  { ticker: "DGRO", name: "iShares Core Dividend Growth", category: "dividend", tags: ["dividend"], aum: 32 },
+  { ticker: "COWZ", name: "Pacer US Cash Cows 100", category: "dividend", tags: ["dividend"], aum: 25 },
+  { ticker: "DVY", name: "iShares Select Dividend", category: "dividend", tags: ["dividend"], aum: 20 },
+  { ticker: "NOBL", name: "ProShares S&P 500 Dividend Aristocrats", category: "dividend", tags: ["dividend"], aum: 11 },
+  { ticker: "HDV", name: "iShares Core High Dividend", category: "dividend", tags: ["dividend"], aum: 11 },
+  { ticker: "SPYD", name: "SPDR S&P 500 High Dividend", category: "dividend", tags: ["dividend"], aum: 6 },
+  { ticker: "SPHD", name: "Invesco S&P 500 High Div Low Vol", category: "dividend", tags: ["dividend"], aum: 3 },
 
-  // 채권
-  { ticker: "AGG", name: "iShares Core US Aggregate Bond", category: "bond", aum: 130 },
-  { ticker: "BND", name: "Vanguard Total Bond Market", category: "bond", aum: 130 },
-  { ticker: "TLT", name: "iShares 20+ Year Treasury", category: "bond", aum: 60 },
-  { ticker: "SGOV", name: "iShares 0-3 Month Treasury", category: "bond", aum: 50 },
-  { ticker: "BIL", name: "SPDR 1-3 Month T-Bill", category: "bond", aum: 35 },
-  { ticker: "IEF", name: "iShares 7-10 Year Treasury", category: "bond", aum: 35 },
-  { ticker: "LQD", name: "iShares iBoxx Investment Grade Corp", category: "bond", aum: 32 },
-  { ticker: "SHY", name: "iShares 1-3 Year Treasury", category: "bond", aum: 25 },
-  { ticker: "HYG", name: "iShares iBoxx High Yield Corp", category: "bond", aum: 17 },
-  { ticker: "SCHP", name: "Schwab US TIPS", category: "bond", aum: 16 },
-  { ticker: "BOXX", name: "Alpha Architect 1-3 Month Box", category: "bond", aum: 8 },
-  { ticker: "JFLI", name: "JPMorgan Flexible Income", category: "bond", aum: 1 },
+  // ─── 커버드콜 ───
+  { ticker: "JEPI", name: "JPMorgan Equity Premium Income", category: "coveredCall", tags: ["coveredCall", "sp500"], aum: 45 },
+  { ticker: "JEPQ", name: "JPMorgan Nasdaq Equity Premium", category: "coveredCall", tags: ["coveredCall", "nasdaq"], aum: 30 },
+  { ticker: "QYLD", name: "Global X Nasdaq 100 Covered Call", category: "coveredCall", tags: ["coveredCall", "nasdaq"], aum: 8 },
+  { ticker: "DIVO", name: "Amplify CWP Enhanced Dividend Income", category: "coveredCall", tags: ["coveredCall", "dividend"], aum: 4 },
+  { ticker: "SPYI", name: "NEOS S&P 500 High Income", category: "coveredCall", tags: ["coveredCall", "sp500"], aum: 4 },
+  { ticker: "XYLD", name: "Global X S&P 500 Covered Call", category: "coveredCall", tags: ["coveredCall", "sp500"], aum: 3 },
+  { ticker: "QQQI", name: "NEOS Nasdaq-100 High Income", category: "coveredCall", tags: ["coveredCall", "nasdaq"], aum: 3 },
+  { ticker: "QQA", name: "Invesco QQQ Income Advantage", category: "coveredCall", tags: ["coveredCall", "nasdaq"], aum: 1 },
 
-  // 원자재
-  { ticker: "GLD", name: "SPDR Gold Shares", category: "commodity", aum: 100 },
-  { ticker: "IAU", name: "iShares Gold Trust", category: "commodity", aum: 40 },
-  { ticker: "SLV", name: "iShares Silver Trust", category: "commodity", aum: 20 },
-  { ticker: "PDBC", name: "Invesco Optimum Yield Diversified Commodity", category: "commodity", aum: 4 },
-  { ticker: "USO", name: "United States Oil Fund", category: "commodity", aum: 1.5 },
+  // ─── 채권 ───
+  { ticker: "AGG", name: "iShares Core US Aggregate Bond", category: "bond", tags: ["bond"], aum: 130 },
+  { ticker: "BND", name: "Vanguard Total Bond Market", category: "bond", tags: ["bond"], aum: 130 },
+  { ticker: "TLT", name: "iShares 20+ Year Treasury", category: "bond", tags: ["bond"], aum: 60 },
+  { ticker: "SGOV", name: "iShares 0-3 Month Treasury", category: "bond", tags: ["bond"], aum: 50 },
+  { ticker: "BIL", name: "SPDR 1-3 Month T-Bill", category: "bond", tags: ["bond"], aum: 35 },
+  { ticker: "IEF", name: "iShares 7-10 Year Treasury", category: "bond", tags: ["bond"], aum: 35 },
+  { ticker: "LQD", name: "iShares iBoxx Investment Grade Corp", category: "bond", tags: ["bond"], aum: 32 },
+  { ticker: "SHY", name: "iShares 1-3 Year Treasury", category: "bond", tags: ["bond"], aum: 25 },
+  { ticker: "HYG", name: "iShares iBoxx High Yield Corp", category: "bond", tags: ["bond"], aum: 17 },
+  { ticker: "SCHP", name: "Schwab US TIPS", category: "bond", tags: ["bond"], aum: 16 },
 
-  // 리츠
-  { ticker: "VNQ", name: "Vanguard Real Estate", category: "reit", aum: 38 },
-  { ticker: "SCHH", name: "Schwab US REIT", category: "reit", aum: 8 },
+  // ─── 원자재 ───
+  { ticker: "GLD", name: "SPDR Gold Shares", category: "commodity", tags: ["commodity"], aum: 100 },
+  { ticker: "IAU", name: "iShares Gold Trust", category: "commodity", tags: ["commodity"], aum: 40 },
+  { ticker: "SLV", name: "iShares Silver Trust", category: "commodity", tags: ["commodity"], aum: 20 },
+  { ticker: "PDBC", name: "Invesco Optimum Yield Diversified Commodity", category: "commodity", tags: ["commodity"], aum: 4 },
+  { ticker: "USO", name: "United States Oil Fund", category: "commodity", tags: ["commodity", "thematic"], aum: 1.5 },
 
-  // 섹터
-  { ticker: "XLF", name: "Financial Select Sector SPDR", category: "sector", aum: 55 },
-  { ticker: "XLV", name: "Health Care Select Sector SPDR", category: "sector", aum: 35 },
-  { ticker: "XLE", name: "Energy Select Sector SPDR", category: "sector", aum: 30 },
-  { ticker: "XLY", name: "Consumer Discretionary Select Sector", category: "sector", aum: 22 },
-  { ticker: "XLU", name: "Utilities Select Sector SPDR", category: "sector", aum: 18 },
-  { ticker: "XLRE", name: "Real Estate Select Sector SPDR", category: "sector", aum: 7 },
-  { ticker: "XBI", name: "SPDR S&P Biotech", category: "sector", aum: 6 },
+  // ─── 리츠 ───
+  { ticker: "VNQ", name: "Vanguard Real Estate", category: "reit", tags: ["reit"], aum: 38 },
+  { ticker: "SCHH", name: "Schwab US REIT", category: "reit", tags: ["reit"], aum: 8 },
 
-  // 글로벌
-  { ticker: "VEA", name: "Vanguard FTSE Developed Markets", category: "global", aum: 150 },
-  { ticker: "VWO", name: "Vanguard FTSE Emerging Markets", category: "global", aum: 90 },
-  { ticker: "EFA", name: "iShares MSCI EAFE", category: "global", aum: 60 },
-  { ticker: "VT", name: "Vanguard Total World Stock", category: "global", aum: 45 },
-  { ticker: "ACWI", name: "iShares MSCI ACWI", category: "global", aum: 25 },
-  { ticker: "EWJ", name: "iShares MSCI Japan", category: "global", aum: 17 },
-  { ticker: "INDA", name: "iShares MSCI India", category: "global", aum: 11 },
-  { ticker: "EWZ", name: "iShares MSCI Brazil", category: "global", aum: 5 },
-  { ticker: "MCHI", name: "iShares MSCI China", category: "global", aum: 5 },
-  { ticker: "EWY", name: "iShares MSCI South Korea", category: "global", aum: 3 },
+  // ─── 섹터 ───
+  { ticker: "XLF", name: "Financial Select Sector SPDR", category: "sector", tags: ["sector"], aum: 55 },
+  { ticker: "XLV", name: "Health Care Select Sector SPDR", category: "sector", tags: ["sector"], aum: 35 },
+  { ticker: "XLE", name: "Energy Select Sector SPDR", category: "sector", tags: ["sector"], aum: 30 },
+  { ticker: "XLY", name: "Consumer Discretionary Select Sector", category: "sector", tags: ["sector"], aum: 22 },
+  { ticker: "XLU", name: "Utilities Select Sector SPDR", category: "sector", tags: ["sector"], aum: 18 },
+  { ticker: "XLRE", name: "Real Estate Select Sector SPDR", category: "sector", tags: ["sector", "reit"], aum: 7 },
+  { ticker: "XBI", name: "SPDR S&P Biotech", category: "sector", tags: ["sector"], aum: 6 },
 
-  // 테마/대안
-  { ticker: "QUAL", name: "iShares MSCI USA Quality Factor", category: "thematic", aum: 60 },
-  { ticker: "GDX", name: "VanEck Gold Miners", category: "thematic", aum: 17 },
-  { ticker: "PAVE", name: "Global X US Infrastructure Development", category: "thematic", aum: 11 },
-  { ticker: "ARKK", name: "ARK Innovation", category: "thematic", aum: 6 },
-  { ticker: "ICLN", name: "iShares Global Clean Energy", category: "thematic", aum: 1.5 },
-  { ticker: "QGRO", name: "American Century STOXX US Quality Growth", category: "thematic", aum: 1.5 },
-  { ticker: "LIT", name: "Global X Lithium & Battery Tech", category: "thematic", aum: 1.2 },
+  // ─── 글로벌 ───
+  { ticker: "VEA", name: "Vanguard FTSE Developed Markets", category: "global", tags: ["global"], aum: 150 },
+  { ticker: "VWO", name: "Vanguard FTSE Emerging Markets", category: "global", tags: ["global"], aum: 90 },
+  { ticker: "EFA", name: "iShares MSCI EAFE", category: "global", tags: ["global"], aum: 60 },
+  { ticker: "VT", name: "Vanguard Total World Stock", category: "global", tags: ["global"], aum: 45 },
+  { ticker: "ACWI", name: "iShares MSCI ACWI", category: "global", tags: ["global"], aum: 25 },
+  { ticker: "EWJ", name: "iShares MSCI Japan", category: "global", tags: ["global"], aum: 17 },
+  { ticker: "INDA", name: "iShares MSCI India", category: "global", tags: ["global"], aum: 11 },
+  { ticker: "EWZ", name: "iShares MSCI Brazil", category: "global", tags: ["global"], aum: 5 },
+  { ticker: "MCHI", name: "iShares MSCI China", category: "global", tags: ["global"], aum: 5 },
+  { ticker: "EWY", name: "iShares MSCI South Korea", category: "global", tags: ["global"], aum: 3 },
 
-  // 레버리지
-  { ticker: "TQQQ", name: "ProShares UltraPro QQQ (3x)", category: "leveraged", aum: 23 },
-  { ticker: "SOXL", name: "Direxion Daily Semiconductor Bull 3X", category: "leveraged", aum: 11 },
-  { ticker: "QLD", name: "ProShares Ultra QQQ (2x)", category: "leveraged", aum: 9 },
-  { ticker: "SSO", name: "ProShares Ultra S&P500 (2x)", category: "leveraged", aum: 5 },
-  { ticker: "UPRO", name: "ProShares UltraPro S&P 500 (3x)", category: "leveraged", aum: 4 },
-  { ticker: "SPXL", name: "Direxion Daily S&P 500 Bull 3X", category: "leveraged", aum: 4 },
-  { ticker: "USD", name: "ProShares Ultra Semiconductors (2x)", category: "leveraged", aum: 1 },
+  // ─── 테마/대안 ───
+  { ticker: "QUAL", name: "iShares MSCI USA Quality Factor", category: "thematic", tags: ["thematic"], aum: 60 },
+  { ticker: "GDX", name: "VanEck Gold Miners", category: "thematic", tags: ["thematic", "commodity"], aum: 17 },
+  { ticker: "PAVE", name: "Global X US Infrastructure Development", category: "thematic", tags: ["thematic"], aum: 11 },
+  { ticker: "BOXX", name: "Alpha Architect 1-3 Month Box", category: "thematic", tags: ["thematic", "bond"], aum: 8 },
+  { ticker: "ARKK", name: "ARK Innovation", category: "thematic", tags: ["thematic"], aum: 6 },
+  { ticker: "ICLN", name: "iShares Global Clean Energy", category: "thematic", tags: ["thematic"], aum: 1.5 },
+  { ticker: "QGRO", name: "American Century STOXX US Quality Growth", category: "thematic", tags: ["thematic", "growth"], aum: 1.5 },
+  { ticker: "LIT", name: "Global X Lithium & Battery Tech", category: "thematic", tags: ["thematic"], aum: 1.2 },
+  { ticker: "JFLI", name: "JPMorgan Flexible Income", category: "thematic", tags: ["thematic", "bond"], aum: 1 },
 
-  // 가상자산
-  { ticker: "IBIT", name: "iShares Bitcoin Trust", category: "crypto", aum: 80 },
-  { ticker: "ETHA", name: "iShares Ethereum Trust", category: "crypto", aum: 12 },
-  { ticker: "BITO", name: "ProShares Bitcoin Strategy", category: "crypto", aum: 3 },
-  { ticker: "BITX", name: "Volatility Shares 2x Bitcoin (2x)", category: "crypto", aum: 2 },
-  { ticker: "BITU", name: "ProShares Ultra Bitcoin (2x)", category: "crypto", aum: 1 },
+  // ─── 레버리지 ───
+  { ticker: "TQQQ", name: "ProShares UltraPro QQQ (3x)", category: "leveraged", tags: ["leveraged", "nasdaq"], aum: 23 },
+  { ticker: "SOXL", name: "Direxion Daily Semiconductor Bull 3X", category: "leveraged", tags: ["leveraged", "tech"], aum: 11 },
+  { ticker: "QLD", name: "ProShares Ultra QQQ (2x)", category: "leveraged", tags: ["leveraged", "nasdaq"], aum: 9 },
+  { ticker: "SSO", name: "ProShares Ultra S&P500 (2x)", category: "leveraged", tags: ["leveraged", "sp500"], aum: 5 },
+  { ticker: "UPRO", name: "ProShares UltraPro S&P 500 (3x)", category: "leveraged", tags: ["leveraged", "sp500"], aum: 4 },
+  { ticker: "SPXL", name: "Direxion Daily S&P 500 Bull 3X", category: "leveraged", tags: ["leveraged", "sp500"], aum: 4 },
+  { ticker: "USD", name: "ProShares Ultra Semiconductors (2x)", category: "leveraged", tags: ["leveraged", "tech"], aum: 1 },
+
+  // ─── 가상자산 ───
+  { ticker: "IBIT", name: "iShares Bitcoin Trust", category: "crypto", tags: ["crypto"], aum: 80 },
+  { ticker: "ETHA", name: "iShares Ethereum Trust", category: "crypto", tags: ["crypto"], aum: 12 },
+  { ticker: "BITO", name: "ProShares Bitcoin Strategy", category: "crypto", tags: ["crypto"], aum: 3 },
+  { ticker: "BITX", name: "Volatility Shares 2x Bitcoin (2x)", category: "crypto", tags: ["crypto", "leveraged"], aum: 2 },
+  { ticker: "ETHU", name: "Volatility Shares 2x Ether (2x)", category: "crypto", tags: ["crypto", "leveraged"], aum: 0.5 },
+  { ticker: "BITU", name: "ProShares Ultra Bitcoin (2x)", category: "crypto", tags: ["crypto", "leveraged"], aum: 1 },
 ];
 
 export const ALL_TICKERS = ETF_CATALOG.map((e) => e.ticker);
@@ -202,6 +208,11 @@ export function groupByCategory(): Map<EtfCategory, EtfMeta[]> {
     arr.sort((a, b) => b.aum - a.aum);
   }
   return map;
+}
+
+/** 태그 기준 필터: 어떤 태그라도 매치되면 포함. */
+export function filterByTag(tag: EtfCategory): EtfMeta[] {
+  return ETF_CATALOG.filter((e) => e.tags.includes(tag));
 }
 
 export function findByTicker(ticker: string): EtfMeta | undefined {

@@ -24,6 +24,19 @@ export default async function EtfDetailPage({
   const meta = loadMeta(ticker);
   const perf = loadPerformance(ticker);
 
+  // 1년 미만 데이터면 CAGR 0으로 고정 (왜곡 방지)
+  if (perf.recentDate) {
+    try {
+      const { loadPrices } = await import("@/lib/finance/loader");
+      const prices = loadPrices(ticker);
+      if (prices.rows.length < 252) {
+        perf.cagr = 0;
+      }
+    } catch {
+      // 무시
+    }
+  }
+
   // 8칸 데이터
   const navPrice = meta?.navPrice ?? meta?.previousClose ?? perf.recentClose;
   const cells = [
@@ -56,9 +69,16 @@ export default async function EtfDetailPage({
       {/* 헤더 */}
       <div className="flex items-baseline gap-3 mb-1 mt-2">
         <h1 className="text-4xl font-bold text-slate-900">{ticker}</h1>
-        <span className="text-sm px-2 py-0.5 bg-blue-50 text-blue-700 rounded-md font-medium">
-          {CATEGORY_LABELS[catalog.category]}
-        </span>
+        <div className="flex gap-1.5 flex-wrap">
+          {catalog.tags.map((t) => (
+            <span
+              key={t}
+              className="text-sm px-2 py-0.5 bg-blue-50 text-blue-700 rounded-md font-medium"
+            >
+              {CATEGORY_LABELS[t]}
+            </span>
+          ))}
+        </div>
       </div>
       <p className="text-slate-600">{meta?.longName ?? catalog.name}</p>
 

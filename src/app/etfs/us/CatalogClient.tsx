@@ -7,7 +7,8 @@ type Item = {
   ticker: string;
   name: string;
   category: string;
-  categoryLabel: string;
+  tags: string[];
+  tagLabels: string[];
   aum: number | null;
   cagr: number | null;
   cagrText: string;
@@ -24,12 +25,13 @@ export default function CatalogClient({
   categoryLabels: Record<string, string>;
 }) {
   const [query, setQuery] = useState("");
-  const [activeCategory, setActiveCategory] = useState<string>("all");
+  const [activeTag, setActiveTag] = useState<string>("all");
 
+  // 부문 칩: 태그 기준. JEPI는 sp500 칩 누를 때도 등장.
   const filtered = useMemo(() => {
     let arr = items;
-    if (activeCategory !== "all") {
-      arr = arr.filter((i) => i.category === activeCategory);
+    if (activeTag !== "all") {
+      arr = arr.filter((i) => i.tags.includes(activeTag));
     }
     if (query.trim()) {
       const q = query.toUpperCase();
@@ -37,13 +39,13 @@ export default function CatalogClient({
         (i) =>
           i.ticker.includes(q) ||
           i.name.toUpperCase().includes(q) ||
-          i.categoryLabel.includes(query)
+          i.tagLabels.some((l) => l.includes(query))
       );
     }
     return arr;
-  }, [items, activeCategory, query]);
+  }, [items, activeTag, query]);
 
-  // 그룹핑 (현재 필터 결과 안에서)
+  // 카드 진열 그룹: 카테고리(단일) 기준 — 한 카드는 한 자리에만 등장
   const groupedDisplay = useMemo(() => {
     const map = new Map<string, Item[]>();
     for (const cat of categoryOrder) map.set(cat, []);
@@ -64,7 +66,6 @@ export default function CatalogClient({
         </p>
       </div>
 
-      {/* 검색바 */}
       <div className="bg-white border border-slate-200 rounded-xl p-4 mb-5 shadow-sm">
         <input
           type="text"
@@ -74,59 +75,55 @@ export default function CatalogClient({
           onChange={(e) => setQuery(e.target.value)}
         />
 
-        {/* 카테고리 칩 */}
         <div className="flex gap-1.5 mt-3 flex-wrap">
           <CategoryChip
             label="전체"
             count={items.length}
-            active={activeCategory === "all"}
-            onClick={() => setActiveCategory("all")}
+            active={activeTag === "all"}
+            onClick={() => setActiveTag("all")}
           />
           {categoryOrder.map((cat) => {
-            const count = items.filter((i) => i.category === cat).length;
+            const count = items.filter((i) => i.tags.includes(cat)).length;
             if (count === 0) return null;
             return (
               <CategoryChip
                 key={cat}
                 label={categoryLabels[cat]}
                 count={count}
-                active={activeCategory === cat}
-                onClick={() => setActiveCategory(cat)}
+                active={activeTag === cat}
+                onClick={() => setActiveTag(cat)}
               />
             );
           })}
         </div>
       </div>
 
-      {/* 결과 */}
       {filtered.length === 0 ? (
         <div className="text-center text-sm text-slate-500 py-16 bg-white border border-slate-200 rounded-xl">
           일치하는 ETF가 없습니다.
         </div>
       ) : query.trim() ? (
-        // 검색 시: 부문 헤더 없이 평탄하게
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
           {filtered.map((item) => (
             <EtfCard key={item.ticker} item={item} />
           ))}
         </div>
       ) : (
-        // 부문별 헤더 + 그리드
         <div className="space-y-6">
           {categoryOrder.map((cat) => {
-            const items = groupedDisplay.get(cat) ?? [];
-            if (items.length === 0) return null;
+            const group = groupedDisplay.get(cat) ?? [];
+            if (group.length === 0) return null;
             return (
               <section key={cat}>
                 <h2 className="text-base font-bold text-slate-900 mb-3 flex items-center gap-2">
                   <span className="w-1 h-4 bg-blue-600 rounded-full"></span>
                   {categoryLabels[cat]}
                   <span className="text-xs text-slate-400 font-normal">
-                    {items.length}개
+                    {group.length}개
                   </span>
                 </h2>
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
-                  {items.map((item) => (
+                  {group.map((item) => (
                     <EtfCard key={item.ticker} item={item} />
                   ))}
                 </div>
@@ -172,16 +169,19 @@ function EtfCard({ item }: { item: Item }) {
       className="block bg-white border border-slate-200 rounded-xl p-4 hover:border-blue-300 hover:shadow-md transition-all"
     >
       <div className="flex items-start justify-between gap-2 mb-2">
-        <div className="min-w-0">
-          <div className="flex items-center gap-2">
+        <div className="min-w-0 flex-1">
+          <div className="flex items-center gap-2 flex-wrap">
             <span className="text-lg font-bold text-slate-900">{item.ticker}</span>
-            <span className="text-[10px] px-1.5 py-0.5 bg-slate-100 text-slate-600 rounded">
-              {item.categoryLabel}
-            </span>
+            {item.tagLabels.map((label) => (
+              <span
+                key={label}
+                className="text-[10px] px-1.5 py-0.5 bg-slate-100 text-slate-600 rounded"
+              >
+                {label}
+              </span>
+            ))}
           </div>
-          <div className="text-xs text-slate-500 mt-0.5 truncate">
-            {item.name}
-          </div>
+          <div className="text-xs text-slate-500 mt-1 truncate">{item.name}</div>
         </div>
       </div>
       <div className="flex items-center justify-between mt-3">
@@ -196,9 +196,7 @@ function EtfCard({ item }: { item: Item }) {
           }`}
         >
           {item.cagrText}
-          <span className="text-[10px] text-slate-400 font-normal ml-1">
-            연평균
-          </span>
+          <span className="text-[10px] text-slate-400 font-normal ml-1">연평균</span>
         </div>
       </div>
     </Link>

@@ -1,0 +1,18 @@
+{
+  "ticker": "ETHU",
+  "longName": "2x Ether ETF",
+  "summary": "The fund is an ETF that seeks to achieve its investment objective by investing its assets principally in cash-settled ether futures contracts that trade only on an exchange registered with the Commodity Futures Trading Commission, which currently is the Chicago Mercantile Exchange, and cash, cash-like instruments or high-quality securities that serve as collateral to the fund’s investments in Ether Futures Contracts. The fund is non-diversified.",
+  "category": "Digital Assets",
+  "fundFamily": "Volatility Shares Trust",
+  "totalAssets": 867332672,
+  "expenseRatio": 2.67,
+  "yield": 0.035,
+  "fundInceptionDate": 1717372800,
+  "navPrice": 24.6665,
+  "previousClose": 24.71,
+  "fiftyTwoWeekHigh": 188.73,
+  "fiftyTwoWeekLow": 17.68,
+  "beta3Year": 0.0,
+  "topHoldings": [],
+  "fetchedAt": "2026-05-01T12:01:35.385560"
+}

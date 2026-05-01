@@ -412,7 +412,7 @@ function TickerPicker({
       (e) =>
         e.ticker.includes(q) ||
         e.name.toUpperCase().includes(q) ||
-        CATEGORY_LABELS[e.category].includes(query)
+        e.tags.some((t) => CATEGORY_LABELS[t].includes(query))
     );
   }, [query]);
 
