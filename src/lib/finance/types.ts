@@ -122,3 +122,70 @@ export type DcaResult = {
   totalFee: number;
   series: { date: string; balance: number; deposit: number }[];
 };
+
+// ──────────────────────────────────────────────────────────────
+// 절세 시뮬레이션 (Phase 3)
+// ──────────────────────────────────────────────────────────────
+
+/** 계좌 종류. */
+export type AccountType = "isa" | "pension" | "irp" | "general";
+
+/** 종합소득세율 구간 (지방세 포함). */
+export type TaxBracket = 0.066 | 0.165 | 0.264 | 0.385 | 0.418 | 0.44 | 0.462 | 0.495;
+
+/** 계좌 설정 (활성/우선순위). */
+export type AccountConfig = {
+  type: AccountType;
+  enabled: boolean;
+  priority: number;        // 작을수록 우선 (1, 2, 3, 4)
+};
+
+/** 절세 시뮬레이션 옵션. */
+export type TaxOptions = {
+  enabled: boolean;
+  accounts: AccountConfig[];
+
+  // 사용자 정보
+  highIncome: boolean;          // 연봉 5500만 초과 → 세액공제 13.2%, 아니면 16.5%
+  applyComprehensiveTax: boolean; // 금융소득종합과세 적용 (연 2천만 초과 시)
+  taxBracket: TaxBracket;        // 종합과세 시 사용
+
+  // ISA 옵션
+  isaServingType: "general" | "preferred"; // 일반(200만 비과세) / 서민형(400만)
+
+  // 풍차돌리기
+  windmillEnabled: boolean;
+  windmillTransferRatio: number; // 0~1, ISA 만기 시 연금이전 비율 (기본 0.6)
+};
+
+/** 계좌별 세금 + 잔액 결과. */
+export type AccountResult = {
+  type: AccountType;
+  finalBalance: number;        // 명목 KRW
+  totalDeposit: number;
+  totalDividend: number;       // 누적 배당금 (세전)
+  totalTax: number;            // 누적 세금
+  totalTaxCredit: number;      // 세액공제 환급액 누적
+  warnings: string[];
+};
+
+/** 풍차돌리기 사이클 한 회. */
+export type WindmillCycle = {
+  cycleNumber: number;         // 1, 2, 3...
+  endYear: number;             // 만기 연도
+  isaBalance: number;          // 만기 시점 ISA 잔액
+  transferToPension: number;   // 연금저축 이전액
+  reopenIsa: number;           // 새 ISA 재가입 금액
+  taxCreditFromTransfer: number; // 추가 세액공제 (10%, 최대 300만)
+};
+
+/** 절세 시뮬레이션 결과. */
+export type TaxResult = {
+  accounts: AccountResult[];
+  totalFinalBalance: number;       // 절세 후 합계
+  generalCaseBalance: number;      // 비교용: 일반계좌만 사용 시
+  totalSavings: number;            // 절감액 (절세 - 일반)
+  totalTaxCredit: number;          // 누적 환급액
+  windmillCycles: WindmillCycle[]; // 풍차돌리기 켜졌으면
+  unallocated: { ticker: string; reason: string }[]; // 어느 계좌에도 못 들어간 종목
+};
