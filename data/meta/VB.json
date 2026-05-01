@@ -1,0 +1,82 @@
+{
+  "ticker": "VB",
+  "longName": "Vanguard Small-Cap Index Fund ETF Shares",
+  "summary": "The fund advisor employs an indexing investment approach designed to track the performance of the CRSP U.S. Small Cap Index, a broadly diversified index of stocks of small U.S. companies. The advisor attempts to replicate the target index by investing all, or substantially all, of its assets in the stocks that make up the index, holding each stock in approximately the same proportion as its weighting in the index.",
+  "category": "Small Blend",
+  "fundFamily": "Vanguard",
+  "totalAssets": 164569923584,
+  "expenseRatio": 0.03,
+  "yield": 0.0134000005,
+  "fundInceptionDate": 974073600,
+  "navPrice": 279.17,
+  "previousClose": 280.63,
+  "fiftyTwoWeekHigh": 288.8,
+  "fiftyTwoWeekLow": 215.63,
+  "beta3Year": 1.23,
+  "topHoldings": [
+    {
+      "symbol": "EME",
+      "name": "EMCOR Group Inc",
+      "weight": 0.0045689
+    },
+    {
+      "symbol": "NRG",
+      "name": "NRG Energy Inc",
+      "weight": 0.0043131
+    },
+    {
+      "symbol": "ATO",
+      "name": "Atmos Energy Corp",
+      "weight": 0.0042463
+    },
+    {
+      "symbol": "TPR",
+      "name": "Tapestry Inc",
+      "weight": 0.00397
+    },
+    {
+      "symbol": "FTI",
+      "name": "TechnipFMC PLC",
+      "weight": 0.0038424998
+    },
+    {
+      "symbol": "CIEN",
+      "name": "Ciena Corp",
+      "weight": 0.003816
+    },
+    {
+      "symbol": "CASY",
+      "name": "Casey's General Stores Inc",
+      "weight": 0.0037494001
+    },
+    {
+      "symbol": "JBL",
+      "name": "Jabil Inc",
+      "weight": 0.003703
+    },
+    {
+      "symbol": "NTRA",
+      "name": "Natera Inc",
+      "weight": 0.0036818
+    },
+    {
+      "symbol": "EXE",
+      "name": "Expand Energy Corp Ordinary Shares - New",
+      "weight": 0.0036671
+    }
+  ],
+  "sectorWeightings": {
+    "realestate": 0.076799996,
+    "consumer_cyclical": 0.1161,
+    "basic_materials": 0.0493,
+    "consumer_defensive": 0.0365,
+    "technology": 0.16,
+    "communication_services": 0.0307,
+    "financial_services": 0.12529999,
+    "utilities": 0.034,
+    "industrials": 0.201,
+    "energy": 0.0505,
+    "healthcare": 0.1197
+  },
+  "fetchedAt": "2026-04-30T21:06:45.570538"
+}

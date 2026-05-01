@@ -1,0 +1,18 @@
+{
+  "ticker": "IAU",
+  "longName": "iShares Gold Trust",
+  "summary": "The Trust seeks to reflect such performance before payment of the Trust’s expenses and liabilities. It is not actively managed. The Trust does not engage in any activities designed to obtain a profit from, or to ameliorate losses caused by, changes in the price of gold. The advisor intends to constitute a simple and cost-effective means of making an investment similar to an investment in gold. An investment in physical gold requires expensive and sometimes complicated arrangements in connection with the assay, transportation, warehousing and insurance of the metal.",
+  "category": "Commodities Focused",
+  "fundFamily": "iShares",
+  "totalAssets": 70519357440,
+  "expenseRatio": 0.25,
+  "yield": 0.0,
+  "fundInceptionDate": 1106265600,
+  "navPrice": 85.08865,
+  "previousClose": 86.46,
+  "fiftyTwoWeekHigh": 104.4,
+  "fiftyTwoWeekLow": 59.71,
+  "beta3Year": 0.19,
+  "topHoldings": [],
+  "fetchedAt": "2026-04-30T21:07:09.697766"
+}

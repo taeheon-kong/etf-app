@@ -1,0 +1,82 @@
+{
+  "ticker": "PAVE",
+  "longName": "Global X U.S. Infrastructure Development ETF",
+  "summary": "The fund invests at least 80% of its total assets in the securities of the underlying index. The underlying index is designed to measure the performance of U.S. listed companies that provide exposure to domestic infrastructure development, including companies involved in construction and engineering; production of infrastructure raw materials, composites and products; industrial transportation; and producers/distributors of heavy construction equipment.",
+  "category": "Infrastructure",
+  "fundFamily": "Global X Funds",
+  "totalAssets": 11634412544,
+  "expenseRatio": 0.47,
+  "yield": 0.0086,
+  "fundInceptionDate": 1488758400,
+  "navPrice": 55.13,
+  "previousClose": 55.73,
+  "fiftyTwoWeekHigh": 56.74,
+  "fiftyTwoWeekLow": 38.56,
+  "beta3Year": 1.45,
+  "topHoldings": [
+    {
+      "symbol": "PWR",
+      "name": "Quanta Services Inc",
+      "weight": 0.035712
+    },
+    {
+      "symbol": "CSX",
+      "name": "CSX Corp",
+      "weight": 0.0349463
+    },
+    {
+      "symbol": "SRE",
+      "name": "Sempra",
+      "weight": 0.0345189
+    },
+    {
+      "symbol": "DE",
+      "name": "Deere & Co",
+      "weight": 0.032867998
+    },
+    {
+      "symbol": "ETN",
+      "name": "Eaton Corp PLC",
+      "weight": 0.0326491
+    },
+    {
+      "symbol": "TT",
+      "name": "Trane Technologies PLC Class A",
+      "weight": 0.0325471
+    },
+    {
+      "symbol": "HWM",
+      "name": "Howmet Aerospace Inc",
+      "weight": 0.0322798
+    },
+    {
+      "symbol": "UNP",
+      "name": "Union Pacific Corp",
+      "weight": 0.0319372
+    },
+    {
+      "symbol": "FAST",
+      "name": "Fastenal Co",
+      "weight": 0.0315662
+    },
+    {
+      "symbol": "NSC",
+      "name": "Norfolk Southern Corp",
+      "weight": 0.030255599
+    }
+  ],
+  "sectorWeightings": {
+    "realestate": 0.0,
+    "consumer_cyclical": 0.0,
+    "basic_materials": 0.19389999,
+    "consumer_defensive": 0.0,
+    "technology": 0.0252,
+    "communication_services": 0.0,
+    "financial_services": 0.0,
+    "utilities": 0.040700004,
+    "industrials": 0.7402,
+    "energy": 0.0,
+    "healthcare": 0.0
+  },
+  "fetchedAt": "2026-04-30T21:07:32.044887"
+}

@@ -1,0 +1,82 @@
+{
+  "ticker": "XLU",
+  "longName": "State Street Utilities Select Sector SPDR ETF",
+  "summary": "In seeking to track the performance of the index, the fund employs a replication strategy. It generally invests substantially all, but at least 95%, of its total assets in the securities comprising the index. The index includes securities of companies from the following industries: electric utilities; water utilities; multi-utilities; independent power and renewable electricity producers; and gas utilities. The fund is non-diversified.",
+  "category": "Utilities",
+  "fundFamily": "State Street Investment Management",
+  "totalAssets": 24418902016,
+  "expenseRatio": 0.08,
+  "yield": 0.025899999,
+  "fundInceptionDate": 913766400,
+  "navPrice": 45.66556,
+  "previousClose": 46.25,
+  "fiftyTwoWeekHigh": 47.8,
+  "fiftyTwoWeekLow": 39.055,
+  "beta3Year": 0.67,
+  "topHoldings": [
+    {
+      "symbol": "NEE",
+      "name": "NextEra Energy Inc",
+      "weight": 0.1356827
+    },
+    {
+      "symbol": "SO",
+      "name": "Southern Co",
+      "weight": 0.0745488
+    },
+    {
+      "symbol": "DUK",
+      "name": "Duke Energy Corp",
+      "weight": 0.0714263
+    },
+    {
+      "symbol": "CEG",
+      "name": "Constellation Energy Corp",
+      "weight": 0.061040703
+    },
+    {
+      "symbol": "AEP",
+      "name": "American Electric Power Co Inc",
+      "weight": 0.0497298
+    },
+    {
+      "symbol": "SRE",
+      "name": "Sempra",
+      "weight": 0.0444868
+    },
+    {
+      "symbol": "D",
+      "name": "Dominion Energy Inc",
+      "weight": 0.0370286
+    },
+    {
+      "symbol": "ETR",
+      "name": "Entergy Corp",
+      "weight": 0.0356508
+    },
+    {
+      "symbol": "EXC",
+      "name": "Exelon Corp",
+      "weight": 0.0351722
+    },
+    {
+      "symbol": "VST",
+      "name": "Vistra Corp",
+      "weight": 0.0335847
+    }
+  ],
+  "sectorWeightings": {
+    "realestate": 0.0,
+    "consumer_cyclical": 0.0,
+    "basic_materials": 0.0,
+    "consumer_defensive": 0.0,
+    "technology": 0.0,
+    "communication_services": 0.0,
+    "financial_services": 0.0,
+    "utilities": 1.0,
+    "industrials": 0.0,
+    "energy": 0.0,
+    "healthcare": 0.0
+  },
+  "fetchedAt": "2026-04-30T21:07:18.284635"
+}

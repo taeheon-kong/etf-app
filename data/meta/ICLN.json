@@ -1,0 +1,82 @@
+{
+  "ticker": "ICLN",
+  "longName": "iShares Global Clean Energy ETF",
+  "summary": "The index is designed to track the performance of approximately 100 clean energy-related companies. The fund generally invests at least 80% of its assets in the component securities of the index and in investments that have economic characteristics that are substantially identical to the component securities of the index and may invest up to 20% of its assets in certain futures, options and swap contracts, cash and cash equivalents, as well as in securities not included in the index. It is non-diversified.",
+  "category": "Miscellaneous Sector",
+  "fundFamily": "iShares",
+  "totalAssets": 2155547392,
+  "expenseRatio": 0.39,
+  "yield": 0.0147,
+  "fundInceptionDate": 1214265600,
+  "navPrice": 20.31098,
+  "previousClose": 19.84,
+  "fiftyTwoWeekHigh": 20.49,
+  "fiftyTwoWeekLow": 11.74,
+  "beta3Year": 1.21,
+  "topHoldings": [
+    {
+      "symbol": "NXT",
+      "name": "Nextpower Inc Class A",
+      "weight": 0.1016579
+    },
+    {
+      "symbol": "BE",
+      "name": "Bloom Energy Corp Class A",
+      "weight": 0.093955696
+    },
+    {
+      "symbol": "FSLR",
+      "name": "First Solar Inc",
+      "weight": 0.061272703
+    },
+    {
+      "symbol": "IBE.MC",
+      "name": "Iberdrola SA",
+      "weight": 0.0575593
+    },
+    {
+      "symbol": "600900.SS",
+      "name": "China Yangtze Power Co Ltd Class A",
+      "weight": 0.0470291
+    },
+    {
+      "symbol": "ORA",
+      "name": "Ormat Technologies Inc",
+      "weight": 0.0319355
+    },
+    {
+      "symbol": "ENPH",
+      "name": "Enphase Energy Inc",
+      "weight": 0.0303632
+    },
+    {
+      "symbol": "EQTL3.SA",
+      "name": "Equatorial SA",
+      "weight": 0.029048
+    },
+    {
+      "symbol": "VWS.CO",
+      "name": "Vestas Wind Systems AS",
+      "weight": 0.026868898
+    },
+    {
+      "symbol": "EDP.LS",
+      "name": "EDP-Energias De Portugal SA",
+      "weight": 0.022374202
+    }
+  ],
+  "sectorWeightings": {
+    "realestate": 0.0,
+    "consumer_cyclical": 0.0,
+    "basic_materials": 0.0121,
+    "consumer_defensive": 0.0,
+    "technology": 0.3067,
+    "communication_services": 0.0,
+    "financial_services": 0.0,
+    "utilities": 0.4518,
+    "industrials": 0.22940001,
+    "energy": 0.0,
+    "healthcare": 0.0
+  },
+  "fetchedAt": "2026-04-30T21:07:33.811784"
+}

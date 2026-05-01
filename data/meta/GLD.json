@@ -1,0 +1,18 @@
+{
+  "ticker": "GLD",
+  "longName": "SPDR Gold Shares",
+  "summary": "The Trust holds gold bars and from time to time, issues Baskets in exchange for deposits of gold and distributes gold in connection with redemptions of Baskets. The investment objective of the Trust is for the Shares to reflect the performance of the price of gold bullion, less the Trust’s expenses. The Sponsor believes that, for many investors, the Shares represent a cost-effective investment in gold.",
+  "category": "Commodities Focused",
+  "fundFamily": "State Street Investment Management",
+  "totalAssets": 155110817792,
+  "expenseRatio": 0.4,
+  "yield": 0.0,
+  "fundInceptionDate": 1100736000,
+  "navPrice": 415.2814,
+  "previousClose": 421.91,
+  "fiftyTwoWeekHigh": 509.7,
+  "fiftyTwoWeekLow": 291.78,
+  "beta3Year": 0.19,
+  "topHoldings": [],
+  "fetchedAt": "2026-04-30T21:07:08.864037"
+}

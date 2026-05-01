@@ -1,0 +1,82 @@
+{
+  "ticker": "QQQ",
+  "longName": "Invesco QQQ Trust",
+  "summary": "To maintain the correspondence between the composition and weights of the securities in the trust (the \"securities\") and the stocks in the NASDAQ-100 Index®, the adviser adjusts the securities from time to time to conform to periodic changes in the identity and/or relative weights of index securities. The composition and weighting of the securities portion of a portfolio deposit are also adjusted to conform to changes in the index.",
+  "category": "Large Growth",
+  "fundFamily": "Invesco",
+  "totalAssets": 372507312128,
+  "expenseRatio": 0.18,
+  "yield": 0.0049,
+  "fundInceptionDate": 921024000,
+  "navPrice": 661.32,
+  "previousClose": 657.55,
+  "fiftyTwoWeekHigh": 664.51,
+  "fiftyTwoWeekLow": 476.78,
+  "beta3Year": 1.11,
+  "topHoldings": [
+    {
+      "symbol": "NVDA",
+      "name": "NVIDIA Corp",
+      "weight": 0.086822204
+    },
+    {
+      "symbol": "AAPL",
+      "name": "Apple Inc",
+      "weight": 0.076333
+    },
+    {
+      "symbol": "MSFT",
+      "name": "Microsoft Corp",
+      "weight": 0.0563135
+    },
+    {
+      "symbol": "AMZN",
+      "name": "Amazon.com Inc",
+      "weight": 0.045804
+    },
+    {
+      "symbol": "TSLA",
+      "name": "Tesla Inc",
+      "weight": 0.0380123
+    },
+    {
+      "symbol": "META",
+      "name": "Meta Platforms Inc Class A",
+      "weight": 0.034570202
+    },
+    {
+      "symbol": "WMT",
+      "name": "Walmart Inc",
+      "weight": 0.0343526
+    },
+    {
+      "symbol": "GOOGL",
+      "name": "Alphabet Inc Class A",
+      "weight": 0.0342988
+    },
+    {
+      "symbol": "GOOG",
+      "name": "Alphabet Inc Class C",
+      "weight": 0.0319586
+    },
+    {
+      "symbol": "AVGO",
+      "name": "Broadcom Inc",
+      "weight": 0.030064099
+    }
+  ],
+  "sectorWeightings": {
+    "realestate": 0.001,
+    "consumer_cyclical": 0.1262,
+    "basic_materials": 0.012999999,
+    "consumer_defensive": 0.0858,
+    "technology": 0.5054,
+    "communication_services": 0.16059999,
+    "financial_services": 0.0023999999,
+    "utilities": 0.0154,
+    "industrials": 0.0326,
+    "energy": 0.0066000004,
+    "healthcare": 0.0511
+  },
+  "fetchedAt": "2026-04-30T21:06:31.164642"
+}

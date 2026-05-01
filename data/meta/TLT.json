@@ -1,0 +1,18 @@
+{
+  "ticker": "TLT",
+  "longName": "iShares 20+ Year Treasury Bond ETF",
+  "summary": "The fund will invest at least 80% of its assets in the component securities of the underlying index, and it will invest at least 90% of its assets in U.S. Treasury securities that the advisor believes will help the fund track the underlying index. The underlying index measures the performance of public obligations of the U.S. Treasury that have a remaining maturity greater than or equal to twenty years.",
+  "category": "Long Government",
+  "fundFamily": "iShares",
+  "totalAssets": 42618560512,
+  "expenseRatio": 0.15,
+  "yield": 0.044899996,
+  "fundInceptionDate": 1027296000,
+  "navPrice": 85.64821,
+  "previousClose": 86.37,
+  "fiftyTwoWeekHigh": 92.19,
+  "fiftyTwoWeekLow": 83.3,
+  "beta3Year": 2.37,
+  "topHoldings": [],
+  "fetchedAt": "2026-04-30T21:06:59.696165"
+}

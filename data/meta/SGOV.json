@@ -1,0 +1,18 @@
+{
+  "ticker": "SGOV",
+  "longName": "iShares 0-3 Month Treasury Bond ETF",
+  "summary": "The fund will invest at least 80% of its assets in the component securities of the underlying index and it will invest at least 90% of its assets in U.S. Treasury securities that BFA believes will help the fund track the underlying index. The index measures the performance of public obligations of the U.S. Treasury that have a remaining maturity of less than or equal to three months.",
+  "category": "Ultrashort Bond",
+  "fundFamily": "iShares",
+  "totalAssets": 83568402432,
+  "expenseRatio": 0.09,
+  "yield": 0.0399,
+  "fundInceptionDate": 1590451200,
+  "navPrice": 100.66238,
+  "previousClose": 100.66,
+  "fiftyTwoWeekHigh": 100.74,
+  "fiftyTwoWeekLow": 100.27,
+  "beta3Year": 0.0,
+  "topHoldings": [],
+  "fetchedAt": "2026-04-30T21:07:00.527041"
+}

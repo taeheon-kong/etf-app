@@ -1,0 +1,82 @@
+{
+  "ticker": "VBR",
+  "longName": "Vanguard Small-Cap Value Index Fund ETF Shares",
+  "summary": "The fund advisor employs an indexing investment approach designed to track the performance of the CRSP U.S. Small Cap Value Index, a broadly diversified index of value stocks of small U.S. companies. The advisor attempts to replicate the target index by investing all, or substantially all, of its assets in the stocks that make up the index, holding each stock in approximately the same proportion as its weighting in the index.",
+  "category": "Small Value",
+  "fundFamily": "Vanguard",
+  "totalAssets": 60633391104,
+  "expenseRatio": 0.05,
+  "yield": 0.0191,
+  "fundInceptionDate": 1317081600,
+  "navPrice": 228.92,
+  "previousClose": 230.65,
+  "fiftyTwoWeekHigh": 235.48,
+  "fiftyTwoWeekLow": 178.98,
+  "beta3Year": 1.13,
+  "topHoldings": [
+    {
+      "symbol": "NRG",
+      "name": "NRG Energy Inc",
+      "weight": 0.0075076004
+    },
+    {
+      "symbol": "ATO",
+      "name": "Atmos Energy Corp",
+      "weight": 0.0073923
+    },
+    {
+      "symbol": "TPR",
+      "name": "Tapestry Inc",
+      "weight": 0.0069107995
+    },
+    {
+      "symbol": "JBL",
+      "name": "Jabil Inc",
+      "weight": 0.0064457
+    },
+    {
+      "symbol": "UTHR",
+      "name": "United Therapeutics Corp",
+      "weight": 0.0062866
+    },
+    {
+      "symbol": "FLEX",
+      "name": "Flex Ltd",
+      "weight": 0.0058219
+    },
+    {
+      "symbol": "OMC",
+      "name": "Omnicom Group Inc",
+      "weight": 0.0056534
+    },
+    {
+      "symbol": "WSM",
+      "name": "Williams-Sonoma Inc",
+      "weight": 0.0052652
+    },
+    {
+      "symbol": "SW",
+      "name": "Smurfit WestRock PLC",
+      "weight": 0.0050348
+    },
+    {
+      "symbol": "USFD",
+      "name": "US Foods Holding Corp",
+      "weight": 0.0049191997
+    }
+  ],
+  "sectorWeightings": {
+    "realestate": 0.103599995,
+    "consumer_cyclical": 0.1266,
+    "basic_materials": 0.060599998,
+    "consumer_defensive": 0.0442,
+    "technology": 0.0991,
+    "communication_services": 0.028399998,
+    "financial_services": 0.17639999,
+    "utilities": 0.050300002,
+    "industrials": 0.1748,
+    "energy": 0.0498,
+    "healthcare": 0.0862
+  },
+  "fetchedAt": "2026-04-30T21:06:46.519185"
+}

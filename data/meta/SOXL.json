@@ -1,0 +1,62 @@
+{
+  "ticker": "SOXL",
+  "longName": "Direxion Daily Semiconductor Bull 3X Shares",
+  "summary": "The fund invests at least 80% of its net assets in financial instruments, such as swap agreements, securities of the index, and ETFs that track the index, that, in combination, provide 3X daily leveraged exposure to the index, consistent with the fund's investment objective. The index is a rules-based, modified float-adjusted market capitalization-weighted index that tracks the performance of the thirty largest U.S. listed semiconductor companies. The fund is non-diversified.",
+  "category": "Trading--Leveraged Equity",
+  "fundFamily": "Direxion Funds",
+  "totalAssets": 12233684992,
+  "expenseRatio": 0.75,
+  "yield": 0.0016,
+  "fundInceptionDate": 1268265600,
+  "navPrice": 118.104,
+  "previousClose": 109.56,
+  "fiftyTwoWeekHigh": 130.12,
+  "fiftyTwoWeekLow": 12.05,
+  "beta3Year": 5.13,
+  "topHoldings": [
+    {
+      "symbol": "NVDA",
+      "name": "NVIDIA Corp",
+      "weight": 0.062124
+    },
+    {
+      "symbol": "AVGO",
+      "name": "Broadcom Inc",
+      "weight": 0.0618259
+    },
+    {
+      "symbol": "MU",
+      "name": "Micron Technology Inc",
+      "weight": 0.056928903
+    },
+    {
+      "symbol": "AMD",
+      "name": "Advanced Micro Devices Inc",
+      "weight": 0.049425904
+    },
+    {
+      "symbol": "AMAT",
+      "name": "Applied Materials Inc",
+      "weight": 0.044375703
+    },
+    {
+      "symbol": "MRVL",
+      "name": "Marvell Technology Inc",
+      "weight": 0.0381549
+    }
+  ],
+  "sectorWeightings": {
+    "realestate": 0.0,
+    "consumer_cyclical": 0.0,
+    "basic_materials": 0.0,
+    "consumer_defensive": 0.0,
+    "technology": 1.0,
+    "communication_services": 0.0,
+    "financial_services": 0.0,
+    "utilities": 0.0,
+    "industrials": 0.0,
+    "energy": 0.0,
+    "healthcare": 0.0
+  },
+  "fetchedAt": "2026-04-30T21:07:37.190856"
+}

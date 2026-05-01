@@ -1,0 +1,82 @@
+{
+  "ticker": "IWM",
+  "longName": "iShares Russell 2000 ETF",
+  "summary": "The fund generally invests at least 80% of its assets in the component securities of its underlying index and in investments that have economic characteristics that are substantially identical to the component securities of its underlying index (i.e., depositary receipts representing securities of the underlying index) and may invest up to 20% of its assets in certain futures, options and swap contracts, cash and cash equivalents.",
+  "category": "Small Blend",
+  "fundFamily": "iShares",
+  "totalAssets": 71915577344,
+  "expenseRatio": 0.19,
+  "yield": 0.010199999,
+  "fundInceptionDate": 958953600,
+  "navPrice": 272.11533,
+  "previousClose": 273.91,
+  "fiftyTwoWeekHigh": 279.79,
+  "fiftyTwoWeekLow": 193.74,
+  "beta3Year": 1.32,
+  "topHoldings": [
+    {
+      "symbol": "BE",
+      "name": "Bloom Energy Corp Class A",
+      "weight": 0.0100675
+    },
+    {
+      "symbol": "CDE",
+      "name": "Coeur Mining Inc",
+      "weight": 0.0064812
+    },
+    {
+      "symbol": "FN",
+      "name": "Fabrinet",
+      "weight": 0.0064064995
+    },
+    {
+      "symbol": "NXT",
+      "name": "Nextpower Inc Class A",
+      "weight": 0.0059796
+    },
+    {
+      "symbol": "SATS",
+      "name": "EchoStar Corp Class A",
+      "weight": 0.005395
+    },
+    {
+      "symbol": "CRDO",
+      "name": "Credo Technology Group Holding Ltd",
+      "weight": 0.0051496
+    },
+    {
+      "symbol": "KTOS",
+      "name": "Kratos Defense & Security Solutions Inc",
+      "weight": 0.0043353997
+    },
+    {
+      "symbol": "AEIS",
+      "name": "Advanced Energy Industries Inc",
+      "weight": 0.0041381
+    },
+    {
+      "symbol": "STRL",
+      "name": "Sterling Infrastructure Inc",
+      "weight": 0.004132
+    },
+    {
+      "symbol": "HL",
+      "name": "Hecla Mining Co",
+      "weight": 0.004025
+    }
+  ],
+  "sectorWeightings": {
+    "realestate": 0.0627,
+    "consumer_cyclical": 0.087299995,
+    "basic_materials": 0.0504,
+    "consumer_defensive": 0.0256,
+    "technology": 0.1512,
+    "communication_services": 0.0235,
+    "financial_services": 0.1594,
+    "utilities": 0.0305,
+    "industrials": 0.1659,
+    "energy": 0.0648,
+    "healthcare": 0.17870001
+  },
+  "fetchedAt": "2026-04-30T21:06:44.671692"
+}

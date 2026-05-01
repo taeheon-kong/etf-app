@@ -1,0 +1,82 @@
+{
+  "ticker": "VYM",
+  "longName": "Vanguard High Dividend Yield Index Fund ETF Shares",
+  "summary": "The fund employs an indexing investment approach designed to track the performance of the the Target Index, which consists of common stocks of companies that pay dividends that generally are higher than average (excluding real estate investment trusts (“REITs”)). Under normal circumstances, it invests at least 80% of its net assets, plus the amount of any borrowings for investment purposes, in the stocks that make up the Target Index.",
+  "category": "Large Value",
+  "fundFamily": "Vanguard",
+  "totalAssets": 88722817024,
+  "expenseRatio": 0.04,
+  "yield": 0.023699999,
+  "fundInceptionDate": 1163116800,
+  "navPrice": 154.51,
+  "previousClose": 154.29,
+  "fiftyTwoWeekHigh": 157.29,
+  "fiftyTwoWeekLow": 123.54,
+  "beta3Year": 0.77,
+  "topHoldings": [
+    {
+      "symbol": "AVGO",
+      "name": "Broadcom Inc",
+      "weight": 0.0627964
+    },
+    {
+      "symbol": "JPM",
+      "name": "JPMorgan Chase & Co",
+      "weight": 0.0326957
+    },
+    {
+      "symbol": "XOM",
+      "name": "Exxon Mobil Corp",
+      "weight": 0.0314892
+    },
+    {
+      "symbol": "JNJ",
+      "name": "Johnson & Johnson",
+      "weight": 0.0258423
+    },
+    {
+      "symbol": "CVX",
+      "name": "Chevron Corp",
+      "weight": 0.017029
+    },
+    {
+      "symbol": "ABBV",
+      "name": "AbbVie Inc",
+      "weight": 0.0169268
+    },
+    {
+      "symbol": "PG",
+      "name": "Procter & Gamble Co",
+      "weight": 0.0149059
+    },
+    {
+      "symbol": "CAT",
+      "name": "Caterpillar Inc",
+      "weight": 0.0144115
+    },
+    {
+      "symbol": "HD",
+      "name": "The Home Depot Inc",
+      "weight": 0.014385999
+    },
+    {
+      "symbol": "CSCO",
+      "name": "Cisco Systems Inc",
+      "weight": 0.0135672
+    }
+  ],
+  "sectorWeightings": {
+    "realestate": 0.0002,
+    "consumer_cyclical": 0.0708,
+    "basic_materials": 0.0354,
+    "consumer_defensive": 0.0844,
+    "technology": 0.1521,
+    "communication_services": 0.0382,
+    "financial_services": 0.2011,
+    "utilities": 0.059899997,
+    "industrials": 0.12149999,
+    "energy": 0.1071,
+    "healthcare": 0.1293
+  },
+  "fetchedAt": "2026-04-30T21:06:49.537109"
+}

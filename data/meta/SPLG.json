@@ -1,0 +1,82 @@
+{
+  "ticker": "SPLG",
+  "longName": "State Street SPDR Portfolio S&P 500 ETF",
+  "summary": "Under normal market conditions, the fund generally invests substantially all, but at least 80%, of its total assets in the securities comprising the index. The index is designed to measure the performance of the large-capitalization segment of the U.S. equity market.",
+  "category": "Large Blend",
+  "fundFamily": "State Street Investment Management",
+  "totalAssets": 97328324608,
+  "expenseRatio": 0.02,
+  "yield": 0.0113,
+  "fundInceptionDate": 1131408000,
+  "navPrice": 80.19937,
+  "previousClose": 80.86,
+  "fiftyTwoWeekHigh": 81.135,
+  "fiftyTwoWeekLow": 56.6699,
+  "beta3Year": 1.0,
+  "topHoldings": [
+    {
+      "symbol": "NVDA",
+      "name": "NVIDIA Corp",
+      "weight": 0.073789805
+    },
+    {
+      "symbol": "AAPL",
+      "name": "Apple Inc",
+      "weight": 0.070704795
+    },
+    {
+      "symbol": "MSFT",
+      "name": "Microsoft Corp",
+      "weight": 0.0624858
+    },
+    {
+      "symbol": "AMZN",
+      "name": "Amazon.com Inc",
+      "weight": 0.0386719
+    },
+    {
+      "symbol": "AVGO",
+      "name": "Broadcom Inc",
+      "weight": 0.0323825
+    },
+    {
+      "symbol": "GOOGL",
+      "name": "Alphabet Inc Class A",
+      "weight": 0.031821597
+    },
+    {
+      "symbol": "GOOG",
+      "name": "Alphabet Inc Class C",
+      "weight": 0.025541
+    },
+    {
+      "symbol": "META",
+      "name": "Meta Platforms Inc Class A",
+      "weight": 0.0240115
+    },
+    {
+      "symbol": "TSLA",
+      "name": "Tesla Inc",
+      "weight": 0.020624101
+    },
+    {
+      "symbol": "BRK-B",
+      "name": "Berkshire Hathaway Inc Class B",
+      "weight": 0.0160976
+    }
+  ],
+  "sectorWeightings": {
+    "realestate": 0.0187,
+    "consumer_cyclical": 0.103999995,
+    "basic_materials": 0.015,
+    "consumer_defensive": 0.048499998,
+    "technology": 0.3529,
+    "communication_services": 0.109799996,
+    "financial_services": 0.1279,
+    "utilities": 0.023699999,
+    "industrials": 0.0734,
+    "energy": 0.028299998,
+    "healthcare": 0.09770001
+  },
+  "fetchedAt": "2026-04-30T21:06:25.913093"
+}

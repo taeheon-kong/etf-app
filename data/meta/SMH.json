@@ -1,0 +1,82 @@
+{
+  "ticker": "SMH",
+  "longName": "VanEck Semiconductor ETF",
+  "summary": "The fund normally invests at least 80% of its total assets in securities that comprise the fund's benchmark index. The index includes common stocks and depositary receipts of U.S. exchange-listed companies in the semiconductor industry. Such companies may include medium-capitalization companies and foreign companies that are listed on a U.S. exchange. The fund is non-diversified.",
+  "category": "Technology",
+  "fundFamily": "VanEck",
+  "totalAssets": 40983896064,
+  "expenseRatio": 0.35,
+  "yield": 0.0029,
+  "fundInceptionDate": 1324339200,
+  "navPrice": 499.42,
+  "previousClose": 491.21,
+  "fiftyTwoWeekHigh": 510.1,
+  "fiftyTwoWeekLow": 212.11,
+  "beta3Year": 1.54,
+  "topHoldings": [
+    {
+      "symbol": "NVDA",
+      "name": "NVIDIA Corp",
+      "weight": 0.1967377
+    },
+    {
+      "symbol": "TSM",
+      "name": "Taiwan Semiconductor Manufacturing Co Ltd ADR",
+      "weight": 0.1172678
+    },
+    {
+      "symbol": "AVGO",
+      "name": "Broadcom Inc",
+      "weight": 0.0781417
+    },
+    {
+      "symbol": "ASML",
+      "name": "ASML Holding NV ADR",
+      "weight": 0.050095
+    },
+    {
+      "symbol": "AMD",
+      "name": "Advanced Micro Devices Inc",
+      "weight": 0.0477172
+    },
+    {
+      "symbol": "ADI",
+      "name": "Analog Devices Inc",
+      "weight": 0.0473392
+    },
+    {
+      "symbol": "KLAC",
+      "name": "KLA Corp",
+      "weight": 0.0470508
+    },
+    {
+      "symbol": "TXN",
+      "name": "Texas Instruments Inc",
+      "weight": 0.046782598
+    },
+    {
+      "symbol": "AMAT",
+      "name": "Applied Materials Inc",
+      "weight": 0.0458873
+    },
+    {
+      "symbol": "LRCX",
+      "name": "Lam Research Corp",
+      "weight": 0.045542203
+    }
+  ],
+  "sectorWeightings": {
+    "realestate": 0.0,
+    "consumer_cyclical": 0.0,
+    "basic_materials": 0.0,
+    "consumer_defensive": 0.0,
+    "technology": 1.0,
+    "communication_services": 0.0,
+    "financial_services": 0.0,
+    "utilities": 0.0,
+    "industrials": 0.0,
+    "energy": 0.0,
+    "healthcare": 0.0
+  },
+  "fetchedAt": "2026-04-30T21:06:38.165741"
+}

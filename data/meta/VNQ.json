@@ -1,0 +1,82 @@
+{
+  "ticker": "VNQ",
+  "longName": "Vanguard Real Estate Index Fund ETF Shares",
+  "summary": "The advisor attempts to track the index by investing all, or substantially all, of its assets-either directly or indirectly through a wholly owned subsidiary, which is itself a registered investment company-in the stocks that make up the index, holding each stock in approximately the same proportion as its weighting in the index. The fund is non-diversified.",
+  "category": "Real Estate",
+  "fundFamily": "Vanguard",
+  "totalAssets": 64663887872,
+  "expenseRatio": 0.13,
+  "yield": 0.039300002,
+  "fundInceptionDate": 1095897600,
+  "navPrice": 94.87,
+  "previousClose": 95.65,
+  "fiftyTwoWeekHigh": 97.06,
+  "fiftyTwoWeekLow": 86.36,
+  "beta3Year": 1.1,
+  "topHoldings": [
+    {
+      "symbol": "VRTPX",
+      "name": "Vanguard Real Estate II Index",
+      "weight": 0.1450272
+    },
+    {
+      "symbol": "WELL",
+      "name": "Welltower Inc",
+      "weight": 0.076926395
+    },
+    {
+      "symbol": "PLD",
+      "name": "Prologis Inc",
+      "weight": 0.0703253
+    },
+    {
+      "symbol": "EQIX",
+      "name": "Equinix Inc",
+      "weight": 0.0551284
+    },
+    {
+      "symbol": "AMT",
+      "name": "American Tower Corp",
+      "weight": 0.0462771
+    },
+    {
+      "symbol": "DLR",
+      "name": "Digital Realty Trust Inc",
+      "weight": 0.0354569
+    },
+    {
+      "symbol": "SPG",
+      "name": "Simon Property Group Inc",
+      "weight": 0.0348797
+    },
+    {
+      "symbol": "O",
+      "name": "Realty Income Corp",
+      "weight": 0.031982
+    },
+    {
+      "symbol": "PSA",
+      "name": "Public Storage",
+      "weight": 0.0245018
+    },
+    {
+      "symbol": "CBRE",
+      "name": "CBRE Group Inc Class A",
+      "weight": 0.02309
+    }
+  ],
+  "sectorWeightings": {
+    "realestate": 0.9924,
+    "consumer_cyclical": 0.0,
+    "basic_materials": 0.0,
+    "consumer_defensive": 0.0,
+    "technology": 0.0,
+    "communication_services": 0.006,
+    "financial_services": 0.0,
+    "utilities": 0.0,
+    "industrials": 0.00029999999,
+    "energy": 0.0013,
+    "healthcare": 0.0
+  },
+  "fetchedAt": "2026-04-30T21:07:13.101477"
+}

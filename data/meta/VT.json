@@ -1,0 +1,82 @@
+{
+  "ticker": "VT",
+  "longName": "Vanguard Total World Stock Index Fund ETF Shares",
+  "summary": "The fund employs an indexing investment approach designed to track the performance of the FTSE Global All Cap Index. It invests by sampling the target index, meaning that it holds a range of securities that, in the aggregate, approximates the full target index in terms of key risk factors and other characteristics.",
+  "category": "Global Large-Stock Blend",
+  "fundFamily": "Vanguard",
+  "totalAssets": 79217811456,
+  "expenseRatio": 0.06,
+  "yield": 0.0182,
+  "fundInceptionDate": 1214265600,
+  "navPrice": 149.02,
+  "previousClose": 149.46,
+  "fiftyTwoWeekHigh": 151.44,
+  "fiftyTwoWeekLow": 116.87,
+  "beta3Year": 0.99,
+  "topHoldings": [
+    {
+      "symbol": "NVDA",
+      "name": "NVIDIA Corp",
+      "weight": 0.0397439
+    },
+    {
+      "symbol": "AAPL",
+      "name": "Apple Inc",
+      "weight": 0.0355996
+    },
+    {
+      "symbol": "MSFT",
+      "name": "Microsoft Corp",
+      "weight": 0.0267288
+    },
+    {
+      "symbol": "AMZN",
+      "name": "Amazon.com Inc",
+      "weight": 0.0194523
+    },
+    {
+      "symbol": "GOOGL",
+      "name": "Alphabet Inc Class A",
+      "weight": 0.0162947
+    },
+    {
+      "symbol": "AVGO",
+      "name": "Broadcom Inc",
+      "weight": 0.0139185
+    },
+    {
+      "symbol": "2330.TW",
+      "name": "Taiwan Semiconductor Manufacturing Co Ltd",
+      "weight": 0.013699301
+    },
+    {
+      "symbol": "GOOG",
+      "name": "Alphabet Inc Class C",
+      "weight": 0.0131991
+    },
+    {
+      "symbol": "META",
+      "name": "Meta Platforms Inc Class A",
+      "weight": 0.012162301
+    },
+    {
+      "symbol": "TSLA",
+      "name": "Tesla Inc",
+      "weight": 0.0102133
+    }
+  ],
+  "sectorWeightings": {
+    "realestate": 0.0247,
+    "consumer_cyclical": 0.0968,
+    "basic_materials": 0.043899998,
+    "consumer_defensive": 0.051599998,
+    "technology": 0.256,
+    "communication_services": 0.0791,
+    "financial_services": 0.16409999,
+    "utilities": 0.028199999,
+    "industrials": 0.1195,
+    "energy": 0.0466,
+    "healthcare": 0.089499995
+  },
+  "fetchedAt": "2026-04-30T21:07:23.918051"
+}

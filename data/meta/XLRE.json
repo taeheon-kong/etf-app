@@ -1,0 +1,82 @@
+{
+  "ticker": "XLRE",
+  "longName": "State Street Real Estate Select Sector SPDR ETF",
+  "summary": "Under normal market conditions, the fund generally invests substantially all, but at least 95%, of its total assets in the securities comprising the index. The index includes companies that have been identified as Real Estate companies by the Global Industry Classification Standard (GICS®). The fund is non-diversified.",
+  "category": "Real Estate",
+  "fundFamily": "State Street Investment Management",
+  "totalAssets": 7306239488,
+  "expenseRatio": 0.08,
+  "yield": 0.0343,
+  "fundInceptionDate": 1444176000,
+  "navPrice": 43.63105,
+  "previousClose": 43.91,
+  "fiftyTwoWeekHigh": 44.65,
+  "fiftyTwoWeekLow": 39.725,
+  "beta3Year": 1.09,
+  "topHoldings": [
+    {
+      "symbol": "WELL",
+      "name": "Welltower Inc",
+      "weight": 0.1016448
+    },
+    {
+      "symbol": "PLD",
+      "name": "Prologis Inc",
+      "weight": 0.090532504
+    },
+    {
+      "symbol": "EQIX",
+      "name": "Equinix Inc",
+      "weight": 0.0709663
+    },
+    {
+      "symbol": "AMT",
+      "name": "American Tower Corp",
+      "weight": 0.059531897
+    },
+    {
+      "symbol": "DLR",
+      "name": "Digital Realty Trust Inc",
+      "weight": 0.0462474
+    },
+    {
+      "symbol": "SPG",
+      "name": "Simon Property Group Inc",
+      "weight": 0.0456028
+    },
+    {
+      "symbol": "CBRE",
+      "name": "CBRE Group Inc Class A",
+      "weight": 0.0445213
+    },
+    {
+      "symbol": "VTR",
+      "name": "Ventas Inc",
+      "weight": 0.0439361
+    },
+    {
+      "symbol": "O",
+      "name": "Realty Income Corp",
+      "weight": 0.0438159
+    },
+    {
+      "symbol": "PSA",
+      "name": "Public Storage",
+      "weight": 0.0418582
+    }
+  ],
+  "sectorWeightings": {
+    "realestate": 1.0,
+    "consumer_cyclical": 0.0,
+    "basic_materials": 0.0,
+    "consumer_defensive": 0.0,
+    "technology": 0.0,
+    "communication_services": 0.0,
+    "financial_services": 0.0,
+    "utilities": 0.0,
+    "industrials": 0.0,
+    "energy": 0.0,
+    "healthcare": 0.0
+  },
+  "fetchedAt": "2026-04-30T21:07:19.214876"
+}

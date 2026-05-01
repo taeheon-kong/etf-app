@@ -1,0 +1,82 @@
+{
+  "ticker": "QYLD",
+  "longName": "Global X NASDAQ 100 Covered Call ETF",
+  "summary": "The fund will invest at least 80% of its total assets in the securities of the underlying index. The CBOE NASDAQ-100® BuyWrite Index is a benchmark index that measures the performance of a theoretical portfolio that holds a portfolio of the stocks included in the NASDAQ-100® Index, and \"writes\" (or sells) a succession of one-month at-the-money NASDAQ-100® Index covered call options. It is non-diversified.",
+  "category": "Derivative Income",
+  "fundFamily": "Global X Funds",
+  "totalAssets": 8078984704,
+  "expenseRatio": 0.6,
+  "yield": 0.1193,
+  "fundInceptionDate": 1386720000,
+  "navPrice": 17.89,
+  "previousClose": 17.85,
+  "fiftyTwoWeekHigh": 18.0,
+  "fiftyTwoWeekLow": 16.02,
+  "beta3Year": 0.48,
+  "topHoldings": [
+    {
+      "symbol": "NVDA",
+      "name": "NVIDIA Corp",
+      "weight": 0.0880733
+    },
+    {
+      "symbol": "AAPL",
+      "name": "Apple Inc",
+      "weight": 0.0774285
+    },
+    {
+      "symbol": "MSFT",
+      "name": "Microsoft Corp",
+      "weight": 0.0571215
+    },
+    {
+      "symbol": "AMZN",
+      "name": "Amazon.com Inc",
+      "weight": 0.0464646
+    },
+    {
+      "symbol": "TSLA",
+      "name": "Tesla Inc",
+      "weight": 0.0385571
+    },
+    {
+      "symbol": "META",
+      "name": "Meta Platforms Inc Class A",
+      "weight": 0.0350686
+    },
+    {
+      "symbol": "WMT",
+      "name": "Walmart Inc",
+      "weight": 0.0348465
+    },
+    {
+      "symbol": "GOOGL",
+      "name": "Alphabet Inc Class A",
+      "weight": 0.0347915
+    },
+    {
+      "symbol": "GOOG",
+      "name": "Alphabet Inc Class C",
+      "weight": 0.0324166
+    },
+    {
+      "symbol": "AVGO",
+      "name": "Broadcom Inc",
+      "weight": 0.0305003
+    }
+  ],
+  "sectorWeightings": {
+    "realestate": 0.00090000004,
+    "consumer_cyclical": 0.126,
+    "basic_materials": 0.013099999,
+    "consumer_defensive": 0.0858,
+    "technology": 0.5057,
+    "communication_services": 0.1607,
+    "financial_services": 0.0023,
+    "utilities": 0.0155,
+    "industrials": 0.0325,
+    "energy": 0.0066000004,
+    "healthcare": 0.0511
+  },
+  "fetchedAt": "2026-04-30T21:06:33.801898"
+}

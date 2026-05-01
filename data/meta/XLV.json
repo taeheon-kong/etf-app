@@ -1,0 +1,82 @@
+{
+  "ticker": "XLV",
+  "longName": "State Street Health Care Select Sector SPDR ETF",
+  "summary": "In seeking to track the performance of the index, the fund employs a replication strategy. It generally invests substantially all, but at least 95%, of its total assets in the securities comprising the index. The index includes companies from the following industries: pharmaceuticals; health care equipment & supplies; health care providers & services; biotechnology; life sciences tools & services; and health care technology. The fund is non-diversified.",
+  "category": "Health",
+  "fundFamily": "State Street Investment Management",
+  "totalAssets": 38603882496,
+  "expenseRatio": 0.08,
+  "yield": 0.0171,
+  "fundInceptionDate": 913766400,
+  "navPrice": 142.79053,
+  "previousClose": 143.84,
+  "fiftyTwoWeekHigh": 160.59,
+  "fiftyTwoWeekLow": 127.35,
+  "beta3Year": 0.71,
+  "topHoldings": [
+    {
+      "symbol": "LLY",
+      "name": "Eli Lilly and Co",
+      "weight": 0.1371724
+    },
+    {
+      "symbol": "JNJ",
+      "name": "Johnson & Johnson",
+      "weight": 0.1108675
+    },
+    {
+      "symbol": "ABBV",
+      "name": "AbbVie Inc",
+      "weight": 0.072344296
+    },
+    {
+      "symbol": "MRK",
+      "name": "Merck & Co Inc",
+      "weight": 0.056191202
+    },
+    {
+      "symbol": "UNH",
+      "name": "UnitedHealth Group Inc",
+      "weight": 0.046131402
+    },
+    {
+      "symbol": "AMGN",
+      "name": "Amgen Inc",
+      "weight": 0.0356584
+    },
+    {
+      "symbol": "TMO",
+      "name": "Thermo Fisher Scientific Inc",
+      "weight": 0.0347562
+    },
+    {
+      "symbol": "ABT",
+      "name": "Abbott Laboratories",
+      "weight": 0.0336004
+    },
+    {
+      "symbol": "GILD",
+      "name": "Gilead Sciences Inc",
+      "weight": 0.032543298
+    },
+    {
+      "symbol": "ISRG",
+      "name": "Intuitive Surgical Inc",
+      "weight": 0.0308115
+    }
+  ],
+  "sectorWeightings": {
+    "realestate": 0.0,
+    "consumer_cyclical": 0.0,
+    "basic_materials": 0.0,
+    "consumer_defensive": 0.0,
+    "technology": 0.0,
+    "communication_services": 0.0,
+    "financial_services": 0.0,
+    "utilities": 0.0,
+    "industrials": 0.0,
+    "energy": 0.0,
+    "healthcare": 1.0
+  },
+  "fetchedAt": "2026-04-30T21:07:15.697265"
+}

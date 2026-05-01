@@ -1,0 +1,82 @@
+{
+  "ticker": "DGRO",
+  "longName": "iShares Core Dividend Growth ETF",
+  "summary": "The fund generally will invest at least 80% of its assets in the component securities of its underlying index and in investments that have economic characteristics that are substantially identical to the component securities of its underlying index. The underlying index is a subset of the Morningstar® U.S. Market IndexSM, which is a broad market index that represents approximately 97% of the market capitalization of publicly-traded U.S. stocks.",
+  "category": "Large Value",
+  "fundFamily": "iShares",
+  "totalAssets": 37549682688,
+  "expenseRatio": 0.08,
+  "yield": 0.021,
+  "fundInceptionDate": 1402358400,
+  "navPrice": 72.70767,
+  "previousClose": 72.66,
+  "fiftyTwoWeekHigh": 74.28,
+  "fiftyTwoWeekLow": 59.8,
+  "beta3Year": 0.78,
+  "topHoldings": [
+    {
+      "symbol": "XOM",
+      "name": "Exxon Mobil Corp",
+      "weight": 0.0334361
+    },
+    {
+      "symbol": "JPM",
+      "name": "JPMorgan Chase & Co",
+      "weight": 0.0299837
+    },
+    {
+      "symbol": "JNJ",
+      "name": "Johnson & Johnson",
+      "weight": 0.029415801
+    },
+    {
+      "symbol": "AAPL",
+      "name": "Apple Inc",
+      "weight": 0.028771501
+    },
+    {
+      "symbol": "MSFT",
+      "name": "Microsoft Corp",
+      "weight": 0.0276841
+    },
+    {
+      "symbol": "ABBV",
+      "name": "AbbVie Inc",
+      "weight": 0.027245099
+    },
+    {
+      "symbol": "AVGO",
+      "name": "Broadcom Inc",
+      "weight": 0.025246501
+    },
+    {
+      "symbol": "PG",
+      "name": "Procter & Gamble Co",
+      "weight": 0.021319699
+    },
+    {
+      "symbol": "PM",
+      "name": "Philip Morris International Inc",
+      "weight": 0.020350398
+    },
+    {
+      "symbol": "MRK",
+      "name": "Merck & Co Inc",
+      "weight": 0.0202149
+    }
+  ],
+  "sectorWeightings": {
+    "realestate": 0.0,
+    "consumer_cyclical": 0.0596,
+    "basic_materials": 0.0247,
+    "consumer_defensive": 0.1176,
+    "technology": 0.17860001,
+    "communication_services": 0.0013,
+    "financial_services": 0.20629999,
+    "utilities": 0.0709,
+    "industrials": 0.107700005,
+    "energy": 0.062,
+    "healthcare": 0.1713
+  },
+  "fetchedAt": "2026-04-30T21:06:50.854390"
+}

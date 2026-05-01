@@ -1,0 +1,82 @@
+{
+  "ticker": "XLK",
+  "longName": "State Street Technology Select Sector SPDR ETF",
+  "summary": "In seeking to track the performance of the index, the fund employs a replication strategy, which means that the fund typically invests in substantially all of the securities represented in the index in approximately the same proportions as the index. It generally invests substantially all, but at least 95%, of its total assets in the securities comprising the index. The fund is non-diversified.",
+  "category": "Technology",
+  "fundFamily": "State Street Investment Management",
+  "totalAssets": 84198424576,
+  "expenseRatio": 0.08,
+  "yield": 0.0057,
+  "fundInceptionDate": 913766400,
+  "navPrice": 159.07864,
+  "previousClose": 157.85,
+  "fiftyTwoWeekHigh": 160.62,
+  "fiftyTwoWeekLow": 105.805,
+  "beta3Year": 1.11,
+  "topHoldings": [
+    {
+      "symbol": "NVDA",
+      "name": "NVIDIA Corp",
+      "weight": 0.1548409
+    },
+    {
+      "symbol": "AAPL",
+      "name": "Apple Inc",
+      "weight": 0.136134
+    },
+    {
+      "symbol": "MSFT",
+      "name": "Microsoft Corp",
+      "weight": 0.1004308
+    },
+    {
+      "symbol": "AVGO",
+      "name": "Broadcom Inc",
+      "weight": 0.053617
+    },
+    {
+      "symbol": "MU",
+      "name": "Micron Technology Inc",
+      "weight": 0.0338377
+    },
+    {
+      "symbol": "PLTR",
+      "name": "Palantir Technologies Inc Ordinary Shares - Class A",
+      "weight": 0.029736198
+    },
+    {
+      "symbol": "AMD",
+      "name": "Advanced Micro Devices Inc",
+      "weight": 0.0295157
+    },
+    {
+      "symbol": "CSCO",
+      "name": "Cisco Systems Inc",
+      "weight": 0.0272812
+    },
+    {
+      "symbol": "AMAT",
+      "name": "Applied Materials Inc",
+      "weight": 0.0241419
+    },
+    {
+      "symbol": "LRCX",
+      "name": "Lam Research Corp",
+      "weight": 0.0237437
+    }
+  ],
+  "sectorWeightings": {
+    "realestate": 0.0,
+    "consumer_cyclical": 0.0,
+    "basic_materials": 0.0,
+    "consumer_defensive": 0.0,
+    "technology": 0.9904,
+    "communication_services": 0.0095999995,
+    "financial_services": 0.0,
+    "utilities": 0.0,
+    "industrials": 0.0,
+    "energy": 0.0,
+    "healthcare": 0.0
+  },
+  "fetchedAt": "2026-04-30T21:06:37.318740"
+}

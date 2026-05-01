@@ -1,0 +1,82 @@
+{
+  "ticker": "DVY",
+  "longName": "iShares Select Dividend ETF",
+  "summary": "The fund generally will invest at least 80% of its assets in the component securities of its underlying index and in investments that have economic characteristics that are substantially identical to the component securities of its underlying index. The underlying index measures the performance of the U.S.'s leading stocks by dividend yield.",
+  "category": "Mid-Cap Value",
+  "fundFamily": "iShares",
+  "totalAssets": 22291916800,
+  "expenseRatio": 0.38,
+  "yield": 0.0346,
+  "fundInceptionDate": 1067817600,
+  "navPrice": 152.96815,
+  "previousClose": 153.37,
+  "fiftyTwoWeekHigh": 160.38,
+  "fiftyTwoWeekLow": 127.7,
+  "beta3Year": 0.73,
+  "topHoldings": [
+    {
+      "symbol": "PFE",
+      "name": "Pfizer Inc",
+      "weight": 0.0238584
+    },
+    {
+      "symbol": "MO",
+      "name": "Altria Group Inc",
+      "weight": 0.021321299
+    },
+    {
+      "symbol": "VZ",
+      "name": "Verizon Communications Inc",
+      "weight": 0.0197878
+    },
+    {
+      "symbol": "PRU",
+      "name": "Prudential Financial Inc",
+      "weight": 0.018725099
+    },
+    {
+      "symbol": "OKE",
+      "name": "ONEOK Inc",
+      "weight": 0.0182996
+    },
+    {
+      "symbol": "TROW",
+      "name": "T. Rowe Price Group Inc",
+      "weight": 0.0181242
+    },
+    {
+      "symbol": "LYB",
+      "name": "LyondellBasell Industries NV Class A",
+      "weight": 0.016841
+    },
+    {
+      "symbol": "EIX",
+      "name": "Edison International",
+      "weight": 0.016506
+    },
+    {
+      "symbol": "GIS",
+      "name": "General Mills Inc",
+      "weight": 0.016359901
+    },
+    {
+      "symbol": "HPQ",
+      "name": "HP Inc",
+      "weight": 0.0151616
+    }
+  ],
+  "sectorWeightings": {
+    "realestate": 0.0,
+    "consumer_cyclical": 0.098500006,
+    "basic_materials": 0.0253,
+    "consumer_defensive": 0.1355,
+    "technology": 0.0319,
+    "communication_services": 0.0631,
+    "financial_services": 0.2338,
+    "utilities": 0.2458,
+    "industrials": 0.02,
+    "energy": 0.0943,
+    "healthcare": 0.051799998
+  },
+  "fetchedAt": "2026-04-30T21:06:52.539263"
+}

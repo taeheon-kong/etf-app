@@ -1,0 +1,82 @@
+{
+  "ticker": "XLE",
+  "longName": "State Street Energy Select Sector SPDR ETF",
+  "summary": "In seeking to track the performance of the index, the fund employs a replication strategy. It generally invests substantially all, but at least 95%, of its total assets in the securities comprising the index. The index includes companies that have been identified as Energy companies by the GICS®, including securities of companies from the following industries: oil, gas and consumable fuels; and energy equipment and services. It is non-diversified.",
+  "category": "Equity Energy",
+  "fundFamily": "State Street Investment Management",
+  "totalAssets": 43603132416,
+  "expenseRatio": 0.08,
+  "yield": 0.024400001,
+  "fundInceptionDate": 913766400,
+  "navPrice": 59.05089,
+  "previousClose": 57.71,
+  "fiftyTwoWeekHigh": 63.46,
+  "fiftyTwoWeekLow": 39.92,
+  "beta3Year": 0.23,
+  "topHoldings": [
+    {
+      "symbol": "XOM",
+      "name": "Exxon Mobil Corp",
+      "weight": 0.23742211
+    },
+    {
+      "symbol": "CVX",
+      "name": "Chevron Corp",
+      "weight": 0.17302771
+    },
+    {
+      "symbol": "COP",
+      "name": "ConocoPhillips",
+      "weight": 0.0721499
+    },
+    {
+      "symbol": "EOG",
+      "name": "EOG Resources Inc",
+      "weight": 0.0414882
+    },
+    {
+      "symbol": "SLB",
+      "name": "SLB Ltd",
+      "weight": 0.0406428
+    },
+    {
+      "symbol": "WMB",
+      "name": "Williams Companies Inc",
+      "weight": 0.040598202
+    },
+    {
+      "symbol": "VLO",
+      "name": "Valero Energy Corp",
+      "weight": 0.0398584
+    },
+    {
+      "symbol": "PSX",
+      "name": "Phillips 66",
+      "weight": 0.038822997
+    },
+    {
+      "symbol": "MPC",
+      "name": "Marathon Petroleum Corp",
+      "weight": 0.0380973
+    },
+    {
+      "symbol": "KMI",
+      "name": "Kinder Morgan Inc Class P",
+      "weight": 0.034719
+    }
+  ],
+  "sectorWeightings": {
+    "realestate": 0.0,
+    "consumer_cyclical": 0.0,
+    "basic_materials": 0.0,
+    "consumer_defensive": 0.0,
+    "technology": 0.0,
+    "communication_services": 0.0,
+    "financial_services": 0.0,
+    "utilities": 0.0,
+    "industrials": 0.0,
+    "energy": 1.0,
+    "healthcare": 0.0
+  },
+  "fetchedAt": "2026-04-30T21:07:16.538631"
+}

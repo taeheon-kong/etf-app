@@ -1,0 +1,82 @@
+{
+  "ticker": "ACWI",
+  "longName": "iShares MSCI ACWI ETF",
+  "summary": "The fund generally will invest at least 80% of its assets in the component securities of its underlying index and in investments that have economic characteristics that are substantially identical to the component securities of its underlying index. The index is a free float-adjusted market capitalization weighted index designed to measure the combined equity market performance of developed and emerging markets countries.",
+  "category": "Global Large-Stock Blend",
+  "fundFamily": "iShares",
+  "totalAssets": 28206403584,
+  "expenseRatio": 0.32,
+  "yield": 0.0159,
+  "fundInceptionDate": 1206489600,
+  "navPrice": 149.37752,
+  "previousClose": 149.62,
+  "fiftyTwoWeekHigh": 151.47,
+  "fiftyTwoWeekLow": 117.35,
+  "beta3Year": 0.98,
+  "topHoldings": [
+    {
+      "symbol": "NVDA",
+      "name": "NVIDIA Corp",
+      "weight": 0.0469983
+    },
+    {
+      "symbol": "AAPL",
+      "name": "Apple Inc",
+      "weight": 0.0413472
+    },
+    {
+      "symbol": "MSFT",
+      "name": "Microsoft Corp",
+      "weight": 0.028959898
+    },
+    {
+      "symbol": "AMZN",
+      "name": "Amazon.com Inc",
+      "weight": 0.022216402
+    },
+    {
+      "symbol": "GOOGL",
+      "name": "Alphabet Inc Class A",
+      "weight": 0.0185626
+    },
+    {
+      "symbol": "GOOG",
+      "name": "Alphabet Inc Class C",
+      "weight": 0.0154706
+    },
+    {
+      "symbol": "AVGO",
+      "name": "Broadcom Inc",
+      "weight": 0.015462
+    },
+    {
+      "symbol": "2330.TW",
+      "name": "Taiwan Semiconductor Manufacturing Co Ltd",
+      "weight": 0.0150241
+    },
+    {
+      "symbol": "META",
+      "name": "Meta Platforms Inc Class A",
+      "weight": 0.0138147
+    },
+    {
+      "symbol": "TSLA",
+      "name": "Tesla Inc",
+      "weight": 0.011637799
+    }
+  ],
+  "sectorWeightings": {
+    "realestate": 0.0179,
+    "consumer_cyclical": 0.0939,
+    "basic_materials": 0.0387,
+    "consumer_defensive": 0.053000003,
+    "technology": 0.2709,
+    "communication_services": 0.0862,
+    "financial_services": 0.1663,
+    "utilities": 0.0278,
+    "industrials": 0.109,
+    "energy": 0.0468,
+    "healthcare": 0.08939999
+  },
+  "fetchedAt": "2026-04-30T21:07:24.748595"
+}

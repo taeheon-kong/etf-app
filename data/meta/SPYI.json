@@ -1,0 +1,82 @@
+{
+  "ticker": "SPYI",
+  "longName": "Neos S&P 500(R) High Income ETF",
+  "summary": "The fund is an actively-managed ETF that seeks to achieve its investment objective by investing in a portfolio of stocks that make up the S&P 500® Index and a call options strategy, which consists of a mix of written (sold) call options and long (bought) call options on the S&P 500® Index. Under certain circumstances, the call options strategy may include transactions with covered call options.",
+  "category": "Derivative Income",
+  "fundFamily": "Neos Funds",
+  "totalAssets": 8121667584,
+  "expenseRatio": 0.68,
+  "yield": 0.125,
+  "fundInceptionDate": 1661731200,
+  "navPrice": 52.1166,
+  "previousClose": 52.15,
+  "fiftyTwoWeekHigh": 53.38,
+  "fiftyTwoWeekLow": 47.4,
+  "beta3Year": 0.69,
+  "topHoldings": [
+    {
+      "symbol": "NVDA",
+      "name": "NVIDIA Corp",
+      "weight": 0.0758939
+    },
+    {
+      "symbol": "AAPL",
+      "name": "Apple Inc",
+      "weight": 0.0674043
+    },
+    {
+      "symbol": "MSFT",
+      "name": "Microsoft Corp",
+      "weight": 0.049356498
+    },
+    {
+      "symbol": "AMZN",
+      "name": "Amazon.com Inc",
+      "weight": 0.036468502
+    },
+    {
+      "symbol": "GOOGL",
+      "name": "Alphabet Inc Class A",
+      "weight": 0.0299834
+    },
+    {
+      "symbol": "AVGO",
+      "name": "Broadcom Inc",
+      "weight": 0.0261326
+    },
+    {
+      "symbol": "GOOG",
+      "name": "Alphabet Inc Class C",
+      "weight": 0.023907298
+    },
+    {
+      "symbol": "META",
+      "name": "Meta Platforms Inc Class A",
+      "weight": 0.022354
+    },
+    {
+      "symbol": "TSLA",
+      "name": "Tesla Inc",
+      "weight": 0.0187079
+    },
+    {
+      "symbol": "BRK-B",
+      "name": "Berkshire Hathaway Inc Class B",
+      "weight": 0.0158402
+    }
+  ],
+  "sectorWeightings": {
+    "realestate": 0.0195,
+    "consumer_cyclical": 0.1003,
+    "basic_materials": 0.0188,
+    "consumer_defensive": 0.052600004,
+    "technology": 0.33580002,
+    "communication_services": 0.105100006,
+    "financial_services": 0.1242,
+    "utilities": 0.0256,
+    "industrials": 0.0828,
+    "energy": 0.0405,
+    "healthcare": 0.0947
+  },
+  "fetchedAt": "2026-04-30T21:06:29.476111"
+}

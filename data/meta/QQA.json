@@ -1,0 +1,82 @@
+{
+  "ticker": "QQA",
+  "longName": "Invesco QQQ Income Advantage ETF",
+  "summary": "The fund seeks to achieve its investment objective by: (1) investing in a portfolio of U.S. equity securities designed to track the performance, before fees and expenses, of the NASDAQ-100 Index® or U.S.-listed exchange-traded funds (ETFs) that seek to track the performance of the index, or both, and (2) utilizing an options-based income strategy implemented through equity-linked notes (ELNs) with exposure to either the index or ETFs tracking the index. The fund is non-diversified.",
+  "category": "Derivative Income",
+  "fundFamily": "Invesco",
+  "totalAssets": 549788096,
+  "expenseRatio": 0.29,
+  "yield": 0.105399996,
+  "fundInceptionDate": 1721174400,
+  "navPrice": 54.17,
+  "previousClose": 53.98,
+  "fiftyTwoWeekHigh": 54.87,
+  "fiftyTwoWeekLow": 45.84,
+  "beta3Year": 0.0,
+  "topHoldings": [
+    {
+      "symbol": "IUGXX",
+      "name": "Invesco Premier US Government Money Inst",
+      "weight": 0.1812459
+    },
+    {
+      "symbol": "NVDA",
+      "name": "NVIDIA Corp",
+      "weight": 0.06631
+    },
+    {
+      "symbol": "AAPL",
+      "name": "Apple Inc",
+      "weight": 0.058299497
+    },
+    {
+      "symbol": "MSFT",
+      "name": "Microsoft Corp",
+      "weight": 0.0430101
+    },
+    {
+      "symbol": "AMZN",
+      "name": "Amazon.com Inc",
+      "weight": 0.0349833
+    },
+    {
+      "symbol": "TSLA",
+      "name": "Tesla Inc",
+      "weight": 0.029031701
+    },
+    {
+      "symbol": "META",
+      "name": "Meta Platforms Inc Class A",
+      "weight": 0.0264049
+    },
+    {
+      "symbol": "WMT",
+      "name": "Walmart Inc",
+      "weight": 0.0262369
+    },
+    {
+      "symbol": "GOOGL",
+      "name": "Alphabet Inc Class A",
+      "weight": 0.026196402
+    },
+    {
+      "symbol": "GOOG",
+      "name": "Alphabet Inc Class C",
+      "weight": 0.0244088
+    }
+  ],
+  "sectorWeightings": {
+    "realestate": 0.001,
+    "consumer_cyclical": 0.1261,
+    "basic_materials": 0.012999999,
+    "consumer_defensive": 0.0858,
+    "technology": 0.5054,
+    "communication_services": 0.16059999,
+    "financial_services": 0.0023999999,
+    "utilities": 0.0154,
+    "industrials": 0.0326,
+    "energy": 0.0066000004,
+    "healthcare": 0.0511
+  },
+  "fetchedAt": "2026-04-30T21:06:35.600915"
+}

@@ -1,0 +1,72 @@
+{
+  "ticker": "SSO",
+  "longName": "ProShares Ultra S&P500",
+  "summary": "The fund invests in financial instruments that the advisors believe, in combination, should produce daily returns consistent with the Daily Target. The index is designed to measure the performance of 500 of the largest companies listed and domiciled in the U.S. Under normal circumstances, the fund will obtain leveraged exposure to at least 80% of its total assets in components of the index or in instruments with similar economic characteristics. The fund is non-diversified.",
+  "category": "Trading--Leveraged Equity",
+  "fundFamily": "ProShares",
+  "totalAssets": 5412687360,
+  "expenseRatio": 0.87,
+  "yield": 0.0082,
+  "fundInceptionDate": 1150675200,
+  "navPrice": 61.734,
+  "previousClose": 61.8,
+  "fiftyTwoWeekHigh": 62.49,
+  "fiftyTwoWeekLow": 39.89,
+  "beta3Year": 2.03,
+  "topHoldings": [
+    {
+      "symbol": "IQMM",
+      "name": "ProShares GENIUS Money Market ETF",
+      "weight": 0.2310366
+    },
+    {
+      "symbol": "NVDA",
+      "name": "NVIDIA Corp",
+      "weight": 0.052300703
+    },
+    {
+      "symbol": "AAPL",
+      "name": "Apple Inc",
+      "weight": 0.0459781
+    },
+    {
+      "symbol": "MSFT",
+      "name": "Microsoft Corp",
+      "weight": 0.0339269
+    },
+    {
+      "symbol": "AMZN",
+      "name": "Amazon.com Inc",
+      "weight": 0.025110299
+    },
+    {
+      "symbol": "GOOGL",
+      "name": "Alphabet Inc Class A",
+      "weight": 0.0206612
+    },
+    {
+      "symbol": "AVGO",
+      "name": "Broadcom Inc",
+      "weight": 0.0181178
+    },
+    {
+      "symbol": "GOOG",
+      "name": "Alphabet Inc Class C",
+      "weight": 0.016563099
+    }
+  ],
+  "sectorWeightings": {
+    "realestate": 0.0195,
+    "consumer_cyclical": 0.100200005,
+    "basic_materials": 0.019,
+    "consumer_defensive": 0.0525,
+    "technology": 0.33560002,
+    "communication_services": 0.10479999,
+    "financial_services": 0.1236,
+    "utilities": 0.0254,
+    "industrials": 0.0846,
+    "energy": 0.0401,
+    "healthcare": 0.0946
+  },
+  "fetchedAt": "2026-04-30T21:07:38.852684"
+}

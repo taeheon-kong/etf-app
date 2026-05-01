@@ -1,0 +1,82 @@
+{
+  "ticker": "MGK",
+  "longName": "Vanguard Mega Cap Growth Index Fund",
+  "summary": "The fund employs an indexing investment approach designed to track the performance of the index. The index is a float-adjusted, market-capitalization-weighted index designed to measure equity market performance of mega-capitalization growth stocks in the United States. The Advisor attempts to replicate the target index by investing all, or substantially all, of its assets in the stocks that make up the index, holding each stock in approximately the same proportion as its weighting in the index. The fund is non-diversified.",
+  "category": "Large Growth",
+  "fundFamily": "Vanguard",
+  "totalAssets": 27851730944,
+  "expenseRatio": 0.05,
+  "yield": 0.0039,
+  "fundInceptionDate": 1197849600,
+  "navPrice": 83.58,
+  "previousClose": 83.72,
+  "fiftyTwoWeekHigh": 85.36,
+  "fiftyTwoWeekLow": 63.362,
+  "beta3Year": 1.17,
+  "topHoldings": [
+    {
+      "symbol": "NVDA",
+      "name": "NVIDIA Corp",
+      "weight": 0.1372717
+    },
+    {
+      "symbol": "AAPL",
+      "name": "Apple Inc",
+      "weight": 0.12580949
+    },
+    {
+      "symbol": "MSFT",
+      "name": "Microsoft Corp",
+      "weight": 0.090015
+    },
+    {
+      "symbol": "GOOGL",
+      "name": "Alphabet Inc Class A",
+      "weight": 0.055048898
+    },
+    {
+      "symbol": "AMZN",
+      "name": "Amazon.com Inc",
+      "weight": 0.0458641
+    },
+    {
+      "symbol": "AVGO",
+      "name": "Broadcom Inc",
+      "weight": 0.0439775
+    },
+    {
+      "symbol": "GOOG",
+      "name": "Alphabet Inc Class C",
+      "weight": 0.0435993
+    },
+    {
+      "symbol": "TSLA",
+      "name": "Tesla Inc",
+      "weight": 0.0417615
+    },
+    {
+      "symbol": "META",
+      "name": "Meta Platforms Inc Class A",
+      "weight": 0.041655
+    },
+    {
+      "symbol": "LLY",
+      "name": "Eli Lilly and Co",
+      "weight": 0.031677
+    }
+  ],
+  "sectorWeightings": {
+    "realestate": 0.0134000005,
+    "consumer_cyclical": 0.131,
+    "basic_materials": 0.0083,
+    "consumer_defensive": 0.004,
+    "technology": 0.5524,
+    "communication_services": 0.16780001,
+    "financial_services": 0.048800003,
+    "utilities": 0.0,
+    "industrials": 0.0222,
+    "energy": 0.0,
+    "healthcare": 0.0521
+  },
+  "fetchedAt": "2026-04-30T21:06:42.979495"
+}

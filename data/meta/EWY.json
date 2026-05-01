@@ -1,0 +1,82 @@
+{
+  "ticker": "EWY",
+  "longName": "iShares MSCI South Korea ETF",
+  "summary": "The fund generally will invest at least 80% of its assets in the component securities of its underlying index and in investments that have economic characteristics that are substantially identical to the component securities of its underlying index. The index is a free float-adjusted market capitalization-weighted index that is designed to measure the performance of the large- and mid-capitalization segments of the equity market in Korea. The fund is non-diversified.",
+  "category": "Miscellaneous Region",
+  "fundFamily": "iShares",
+  "totalAssets": 15736128512,
+  "expenseRatio": 0.59,
+  "yield": 0.016900001,
+  "fundInceptionDate": 957830400,
+  "navPrice": 158.46707,
+  "previousClose": 154.37,
+  "fiftyTwoWeekHigh": 158.1,
+  "fiftyTwoWeekLow": 55.58,
+  "beta3Year": 1.95,
+  "topHoldings": [
+    {
+      "symbol": "005930.KS",
+      "name": "Samsung Electronics Co Ltd",
+      "weight": 0.2234713
+    },
+    {
+      "symbol": "000660.KS",
+      "name": "SK Hynix Inc",
+      "weight": 0.1878104
+    },
+    {
+      "symbol": "005380.KS",
+      "name": "Hyundai Motor Co",
+      "weight": 0.026607001
+    },
+    {
+      "symbol": "105560.KS",
+      "name": "KB Financial Group Inc",
+      "weight": 0.0232045
+    },
+    {
+      "symbol": "402340.KS",
+      "name": "SK Square",
+      "weight": 0.0203365
+    },
+    {
+      "symbol": "012450.KS",
+      "name": "Hanwha Aerospace Co Ltd",
+      "weight": 0.019073
+    },
+    {
+      "symbol": "034020.KS",
+      "name": "Doosan Enerbility Co Ltd",
+      "weight": 0.0185751
+    },
+    {
+      "symbol": "055550.KS",
+      "name": "Shinhan Financial Group Co Ltd",
+      "weight": 0.0171077
+    },
+    {
+      "symbol": "000270.KS",
+      "name": "Kia Corp",
+      "weight": 0.015408699
+    },
+    {
+      "symbol": "068270.KS",
+      "name": "Celltrion Inc",
+      "weight": 0.0141651
+    }
+  ],
+  "sectorWeightings": {
+    "realestate": 0.0,
+    "consumer_cyclical": 0.0672,
+    "basic_materials": 0.019299999,
+    "consumer_defensive": 0.020299999,
+    "technology": 0.4739,
+    "communication_services": 0.0365,
+    "financial_services": 0.114300005,
+    "utilities": 0.0057,
+    "industrials": 0.20459999,
+    "energy": 0.0143,
+    "healthcare": 0.043899998
+  },
+  "fetchedAt": "2026-04-30T21:07:29.549675"
+}

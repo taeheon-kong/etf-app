@@ -1,0 +1,82 @@
+{
+  "ticker": "SCHH",
+  "longName": "Schwab U.S. REIT ETF",
+  "summary": "The index excludes mortgage REITs, defined as REITs that lend money directly to real estate owners and/or operators or indirectly through the purchase of mortgages or mortgage-backed securities, and hybrid REITs, defined as REITs that participate both in equity and mortgage investing. It is the fund’s policy that under normal circumstances it will invest at least 90% of its net assets in securities included in the index.",
+  "category": "Real Estate",
+  "fundFamily": "Schwab ETFs",
+  "totalAssets": 9150117888,
+  "expenseRatio": 0.07,
+  "yield": 0.030299999,
+  "fundInceptionDate": 1294876800,
+  "navPrice": 23.04,
+  "previousClose": 23.21,
+  "fiftyTwoWeekHigh": 23.5,
+  "fiftyTwoWeekLow": 20.56,
+  "beta3Year": 1.07,
+  "topHoldings": [
+    {
+      "symbol": "WELL",
+      "name": "Welltower Inc",
+      "weight": 0.1003779
+    },
+    {
+      "symbol": "PLD",
+      "name": "Prologis Inc",
+      "weight": 0.0881777
+    },
+    {
+      "symbol": "EQIX",
+      "name": "Equinix Inc",
+      "weight": 0.0483705
+    },
+    {
+      "symbol": "DLR",
+      "name": "Digital Realty Trust Inc",
+      "weight": 0.0439958
+    },
+    {
+      "symbol": "O",
+      "name": "Realty Income Corp",
+      "weight": 0.0437468
+    },
+    {
+      "symbol": "SPG",
+      "name": "Simon Property Group Inc",
+      "weight": 0.043654397
+    },
+    {
+      "symbol": "AMT",
+      "name": "American Tower Corp",
+      "weight": 0.0434131
+    },
+    {
+      "symbol": "PSA",
+      "name": "Public Storage",
+      "weight": 0.032568
+    },
+    {
+      "symbol": "VTR",
+      "name": "Ventas Inc",
+      "weight": 0.0301482
+    },
+    {
+      "symbol": "CCI",
+      "name": "Crown Castle Inc",
+      "weight": 0.026984701
+    }
+  ],
+  "sectorWeightings": {
+    "realestate": 1.0,
+    "consumer_cyclical": 0.0,
+    "basic_materials": 0.0,
+    "consumer_defensive": 0.0,
+    "technology": 0.0,
+    "communication_services": 0.0,
+    "financial_services": 0.0,
+    "utilities": 0.0,
+    "industrials": 0.0,
+    "energy": 0.0,
+    "healthcare": 0.0
+  },
+  "fetchedAt": "2026-04-30T21:07:13.943484"
+}

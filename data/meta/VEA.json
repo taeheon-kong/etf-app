@@ -1,0 +1,82 @@
+{
+  "ticker": "VEA",
+  "longName": "Vanguard FTSE Developed Markets Index Fund ETF Shares",
+  "summary": "The fund employs an indexing investment approach designed to track the performance of the FTSE Developed All Cap ex U.S. Index, a market-capitalization-weighted index that is made up of approximately 3,957 common stocks of large-, mid-, and small-cap companies located in Canada and the major markets of Europe and the Pacific region. The Advisor attempts to replicate the target index by investing all, or substantially all, of its assets in the stocks that make up the index, holding each stock in approximately the same proportion as its weighting in the index.",
+  "category": "Foreign Large Blend",
+  "fundFamily": "Vanguard",
+  "totalAssets": 282201522176,
+  "expenseRatio": 0.03,
+  "yield": 0.0294,
+  "fundInceptionDate": 934848000,
+  "navPrice": 67.3,
+  "previousClose": 67.73,
+  "fiftyTwoWeekHigh": 70.55,
+  "fiftyTwoWeekLow": 52.58,
+  "beta3Year": 1.0,
+  "topHoldings": [
+    {
+      "symbol": "005930.KS",
+      "name": "Samsung Electronics Co Ltd",
+      "weight": 0.0187421
+    },
+    {
+      "symbol": "ASML.AS",
+      "name": "ASML Holding NV",
+      "weight": 0.0175941
+    },
+    {
+      "symbol": "000660.KS",
+      "name": "SK Hynix Inc",
+      "weight": 0.010469399
+    },
+    {
+      "symbol": "NOVN.SW",
+      "name": "Novartis AG Registered Shares",
+      "weight": 0.0100487005
+    },
+    {
+      "symbol": "AZN.L",
+      "name": "AstraZeneca PLC",
+      "weight": 0.0099963
+    },
+    {
+      "symbol": "HSBA.L",
+      "name": "HSBC Holdings PLC",
+      "weight": 0.009618
+    },
+    {
+      "symbol": "ROP.SW",
+      "name": "Roche Holding AG Ordinary Shares new",
+      "weight": 0.0095708
+    },
+    {
+      "symbol": "SHEL.L",
+      "name": "Shell PLC",
+      "weight": 0.008989899
+    },
+    {
+      "symbol": "NESN.SW",
+      "name": "Nestle SA",
+      "weight": 0.0086094
+    },
+    {
+      "symbol": "RY",
+      "name": "Royal Bank of Canada",
+      "weight": 0.0077121
+    }
+  ],
+  "sectorWeightings": {
+    "realestate": 0.0275,
+    "consumer_cyclical": 0.0793,
+    "basic_materials": 0.0773,
+    "consumer_defensive": 0.0587,
+    "technology": 0.1204,
+    "communication_services": 0.0357,
+    "financial_services": 0.2321,
+    "utilities": 0.0343,
+    "industrials": 0.1887,
+    "energy": 0.056700002,
+    "healthcare": 0.08930001
+  },
+  "fetchedAt": "2026-04-30T21:07:21.310236"
+}

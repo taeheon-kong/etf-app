@@ -1,0 +1,82 @@
+{
+  "ticker": "LIT",
+  "longName": "Global X Lithium & Battery Tech ETF",
+  "summary": "The fund invests at least 80% of its total assets in the securities of the underlying index and in American Depositary Receipts (\"ADRs\") and Global Depositary Receipts (\"GDRs\") based on the securities in the underlying index. The underlying index is designed to measure broad-based equity market performance of global companies involved in the lithium industry. The fund is non-diversified.",
+  "category": "Natural Resources",
+  "fundFamily": "Global X Funds",
+  "totalAssets": 1695132544,
+  "expenseRatio": 0.75,
+  "yield": 0.0043,
+  "fundInceptionDate": 1279756800,
+  "navPrice": 85.58,
+  "previousClose": 83.77,
+  "fiftyTwoWeekHigh": 85.54,
+  "fiftyTwoWeekLow": 35.62,
+  "beta3Year": 1.2,
+  "topHoldings": [
+    {
+      "symbol": "RIO",
+      "name": "Rio Tinto PLC ADR",
+      "weight": 0.2169819
+    },
+    {
+      "symbol": "ALB",
+      "name": "Albemarle Corp",
+      "weight": 0.0755782
+    },
+    {
+      "symbol": "006400.KS",
+      "name": "Samsung SDI Co Ltd",
+      "weight": 0.0468411
+    },
+    {
+      "symbol": "6752.T",
+      "name": "Panasonic Holdings Corp",
+      "weight": 0.0429001
+    },
+    {
+      "symbol": "002460.SZ",
+      "name": "Ganfeng Lithium Group Co Ltd Class A",
+      "weight": 0.041946996
+    },
+    {
+      "symbol": "SQM",
+      "name": "Sociedad Quimica Y Minera De Chile SA ADR",
+      "weight": 0.041209
+    },
+    {
+      "symbol": "PLS.AX",
+      "name": "PLS Group Ltd",
+      "weight": 0.0389102
+    },
+    {
+      "symbol": "002371.SZ",
+      "name": "NAURA Technology Group Co Ltd Class A",
+      "weight": 0.0365395
+    },
+    {
+      "symbol": "300750.SZ",
+      "name": "Contemporary Amperex Technology Co Ltd Class A",
+      "weight": 0.0364918
+    },
+    {
+      "symbol": "01211",
+      "name": "BYD Co Ltd Class H",
+      "weight": 0.0321129
+    }
+  ],
+  "sectorWeightings": {
+    "realestate": 0.0,
+    "consumer_cyclical": 0.08140001,
+    "basic_materials": 0.5729,
+    "consumer_defensive": 0.0,
+    "technology": 0.106000006,
+    "communication_services": 0.0,
+    "financial_services": 0.0,
+    "utilities": 0.0,
+    "industrials": 0.23979999,
+    "energy": 0.0,
+    "healthcare": 0.0
+  },
+  "fetchedAt": "2026-04-30T21:07:35.525702"
+}

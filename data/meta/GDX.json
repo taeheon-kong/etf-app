@@ -1,0 +1,82 @@
+{
+  "ticker": "GDX",
+  "longName": "VanEck Gold Miners ETF",
+  "summary": "The fund normally invests at least 80% of its total assets in securities that comprise the fund’s benchmark index. The index is a modified capitalization weighted, float-adjusted index comprised of publicly traded companies primarily involved in the gold and silver mining industry. The fund is non-diversified.",
+  "category": "Equity Precious Metals",
+  "fundFamily": "VanEck",
+  "totalAssets": 28155811840,
+  "expenseRatio": 0.51,
+  "yield": 0.0069,
+  "fundInceptionDate": 1147737600,
+  "navPrice": 86.56,
+  "previousClose": 88.54,
+  "fiftyTwoWeekHigh": 117.18,
+  "fiftyTwoWeekLow": 45.1,
+  "beta3Year": 1.03,
+  "topHoldings": [
+    {
+      "symbol": "AEM.TO",
+      "name": "Agnico Eagle Mines Ltd",
+      "weight": 0.1215936
+    },
+    {
+      "symbol": "NEM",
+      "name": "Newmont Corp",
+      "weight": 0.109263495
+    },
+    {
+      "symbol": "ABX.TO",
+      "name": "Barrick Mining Corp",
+      "weight": 0.0765941
+    },
+    {
+      "symbol": "FNV.TO",
+      "name": "Franco-Nevada Corp",
+      "weight": 0.0519942
+    },
+    {
+      "symbol": "AU",
+      "name": "Anglogold Ashanti PLC",
+      "weight": 0.0504002
+    },
+    {
+      "symbol": "WPM.TO",
+      "name": "Wheaton Precious Metals Corp",
+      "weight": 0.0492099
+    },
+    {
+      "symbol": "K.TO",
+      "name": "Kinross Gold Corp",
+      "weight": 0.0467552
+    },
+    {
+      "symbol": "GFI",
+      "name": "Gold Fields Ltd ADR",
+      "weight": 0.044506602
+    },
+    {
+      "symbol": "PAAS.TO",
+      "name": "Pan American Silver Corp",
+      "weight": 0.0318644
+    },
+    {
+      "symbol": "NST.AX",
+      "name": "Northern Star Resources Ltd",
+      "weight": 0.025652101
+    }
+  ],
+  "sectorWeightings": {
+    "realestate": 0.0,
+    "consumer_cyclical": 0.0,
+    "basic_materials": 1.0,
+    "consumer_defensive": 0.0,
+    "technology": 0.0,
+    "communication_services": 0.0,
+    "financial_services": 0.0,
+    "utilities": 0.0,
+    "industrials": 0.0,
+    "energy": 0.0,
+    "healthcare": 0.0
+  },
+  "fetchedAt": "2026-04-30T21:07:31.213459"
+}

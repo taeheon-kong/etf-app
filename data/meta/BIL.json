@@ -1,0 +1,18 @@
+{
+  "ticker": "BIL",
+  "longName": "State Street SPDR Bloomberg 1-3 Month T-Bill ETF",
+  "summary": "The fund invests substantially all, but at least 80%, of its total assets in the securities comprising the index and in securities that the Adviser determines have economic characteristics that are substantially identical to the economic characteristics of the securities that comprise the index. The index measures the performance of public obligations of the U.S. Treasury that have a remaining maturity of greater than or equal to 1 month and less than 3 months.",
+  "category": "Ultrashort Bond",
+  "fundFamily": "State Street Investment Management",
+  "totalAssets": 50000146432,
+  "expenseRatio": 0.1353,
+  "yield": 0.0401,
+  "fundInceptionDate": 1180051200,
+  "navPrice": 91.63795,
+  "previousClose": 91.63,
+  "fiftyTwoWeekHigh": 91.78,
+  "fiftyTwoWeekLow": 91.26,
+  "beta3Year": 0.0,
+  "topHoldings": [],
+  "fetchedAt": "2026-04-30T21:07:01.455581"
+}

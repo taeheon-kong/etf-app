@@ -1,0 +1,82 @@
+{
+  "ticker": "IVV",
+  "longName": "iShares Core S&P 500 ETF",
+  "summary": "The index measures the performance of the large-capitalization sector of the U.S. equity market, as determined by SPDJI. The fund generally will invest at least 80% of its assets in the component securities of its index and in investments that have economic characteristics that are substantially identical to the component securities of its index and may invest up to 20% of its assets in certain futures, options and swap contracts, cash and cash equivalents.",
+  "category": "Large Blend",
+  "fundFamily": "iShares",
+  "totalAssets": 720543350784,
+  "expenseRatio": 0.03,
+  "yield": 0.0123000005,
+  "fundInceptionDate": 958348800,
+  "navPrice": 714.5416,
+  "previousClose": 714.96,
+  "fiftyTwoWeekHigh": 718.95,
+  "fiftyTwoWeekLow": 558.69,
+  "beta3Year": 1.0,
+  "topHoldings": [
+    {
+      "symbol": "NVDA",
+      "name": "NVIDIA Corp",
+      "weight": 0.0756455
+    },
+    {
+      "symbol": "AAPL",
+      "name": "Apple Inc",
+      "weight": 0.0665064
+    },
+    {
+      "symbol": "MSFT",
+      "name": "Microsoft Corp",
+      "weight": 0.049064398
+    },
+    {
+      "symbol": "AMZN",
+      "name": "Amazon.com Inc",
+      "weight": 0.0363159
+    },
+    {
+      "symbol": "GOOGL",
+      "name": "Alphabet Inc Class A",
+      "weight": 0.029883599
+    },
+    {
+      "symbol": "AVGO",
+      "name": "Broadcom Inc",
+      "weight": 0.026194101
+    },
+    {
+      "symbol": "GOOG",
+      "name": "Alphabet Inc Class C",
+      "weight": 0.0239463
+    },
+    {
+      "symbol": "META",
+      "name": "Meta Platforms Inc Class A",
+      "weight": 0.022335898
+    },
+    {
+      "symbol": "TSLA",
+      "name": "Tesla Inc",
+      "weight": 0.0186623
+    },
+    {
+      "symbol": "BRK-B",
+      "name": "Berkshire Hathaway Inc Class B",
+      "weight": 0.0156848
+    }
+  ],
+  "sectorWeightings": {
+    "realestate": 0.0195,
+    "consumer_cyclical": 0.1,
+    "basic_materials": 0.019,
+    "consumer_defensive": 0.0525,
+    "technology": 0.33560002,
+    "communication_services": 0.10479999,
+    "financial_services": 0.123500004,
+    "utilities": 0.0254,
+    "industrials": 0.0847,
+    "energy": 0.0402,
+    "healthcare": 0.0947
+  },
+  "fetchedAt": "2026-04-30T21:06:24.254906"
+}

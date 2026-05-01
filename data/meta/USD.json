@@ -1,0 +1,62 @@
+{
+  "ticker": "USD",
+  "longName": "ProShares Ultra Semiconductors",
+  "summary": "The fund invests in financial instruments that ProShare Advisors believes, in combination, should produce daily returns consistent with the Daily Target. The index is designed to measure the stock performance of U.S. companies in the semiconductors sub-sector. Under normal circumstances, the fund will obtain leveraged exposure to at least 80% of its total assets in components of the index or in instruments with similar economic characteristics. The fund is non-diversified.",
+  "category": "Trading--Leveraged Equity",
+  "fundFamily": "ProShares",
+  "totalAssets": 1484950528,
+  "expenseRatio": 0.95,
+  "yield": 0.005,
+  "fundInceptionDate": 1170115200,
+  "navPrice": 78.7248,
+  "previousClose": 78.02,
+  "fiftyTwoWeekHigh": 82.52,
+  "fiftyTwoWeekLow": 19.77,
+  "beta3Year": 3.7,
+  "topHoldings": [
+    {
+      "symbol": "IQMM",
+      "name": "ProShares GENIUS Money Market ETF",
+      "weight": 0.5388324
+    },
+    {
+      "symbol": "NVDA",
+      "name": "NVIDIA Corp",
+      "weight": 0.257667
+    },
+    {
+      "symbol": "AVGO",
+      "name": "Broadcom Inc",
+      "weight": 0.089205
+    },
+    {
+      "symbol": "MU",
+      "name": "Micron Technology Inc",
+      "weight": 0.023131499
+    },
+    {
+      "symbol": "AMD",
+      "name": "Advanced Micro Devices Inc",
+      "weight": 0.0201512
+    },
+    {
+      "symbol": "AMAT",
+      "name": "Applied Materials Inc",
+      "weight": 0.016453499
+    }
+  ],
+  "sectorWeightings": {
+    "realestate": 0.0,
+    "consumer_cyclical": 0.0,
+    "basic_materials": 0.0,
+    "consumer_defensive": 0.0,
+    "technology": 1.0,
+    "communication_services": 0.0,
+    "financial_services": 0.0,
+    "utilities": 0.0,
+    "industrials": 0.0,
+    "energy": 0.0,
+    "healthcare": 0.0
+  },
+  "fetchedAt": "2026-04-30T21:07:41.347663"
+}

@@ -1,0 +1,82 @@
+{
+  "ticker": "ARKK",
+  "longName": "ARK Innovation ETF",
+  "summary": "The fund is an actively-managed exchange-traded fund (\"ETF\") that will invest under normal circumstances primarily (at least 65% of its assets) in domestic and foreign equity securities of companies that are relevant to the fund's investment theme of disruptive innovation. Its investments in foreign equity securities will be in both developed and emerging markets. The fund may invest in foreign securities listed on foreign exchanges as well as American Depositary Receipts (“ADRs”) and Global Depositary Receipts (“GDRs”). The fund is non-diversified.",
+  "category": "Mid-Cap Growth",
+  "fundFamily": "ARK ETF Trust",
+  "totalAssets": 5980084736,
+  "expenseRatio": 0.75,
+  "yield": 0.0,
+  "fundInceptionDate": 1414713600,
+  "navPrice": 73.553,
+  "previousClose": 75.45,
+  "fiftyTwoWeekHigh": 92.65,
+  "fiftyTwoWeekLow": 48.53,
+  "beta3Year": 2.64,
+  "topHoldings": [
+    {
+      "symbol": "TSLA",
+      "name": "Tesla Inc",
+      "weight": 0.1072027
+    },
+    {
+      "symbol": "CRSP",
+      "name": "CRISPR Therapeutics AG",
+      "weight": 0.0639926
+    },
+    {
+      "symbol": "TEM",
+      "name": "Tempus AI Inc Class A common stock",
+      "weight": 0.0503793
+    },
+    {
+      "symbol": "SHOP",
+      "name": "Shopify Inc Registered Shs -A- Subord Vtg",
+      "weight": 0.049439203
+    },
+    {
+      "symbol": "CRCL",
+      "name": "Circle Internet Group Inc Ordinary Shares - Class A",
+      "weight": 0.046556503
+    },
+    {
+      "symbol": "COIN",
+      "name": "Coinbase Global Inc Ordinary Shares - Class A",
+      "weight": 0.0454176
+    },
+    {
+      "symbol": "HOOD",
+      "name": "Robinhood Markets Inc Class A",
+      "weight": 0.0439884
+    },
+    {
+      "symbol": "ROKU",
+      "name": "Roku Inc Class A",
+      "weight": 0.041069496
+    },
+    {
+      "symbol": "AMD",
+      "name": "Advanced Micro Devices Inc",
+      "weight": 0.0408543
+    },
+    {
+      "symbol": "PLTR",
+      "name": "Palantir Technologies Inc Ordinary Shares - Class A",
+      "weight": 0.0368223
+    }
+  ],
+  "sectorWeightings": {
+    "realestate": 0.0,
+    "consumer_cyclical": 0.1389,
+    "basic_materials": 0.0,
+    "consumer_defensive": 0.0,
+    "technology": 0.25280002,
+    "communication_services": 0.1015,
+    "financial_services": 0.16420001,
+    "utilities": 0.0,
+    "industrials": 0.0517,
+    "energy": 0.0,
+    "healthcare": 0.291
+  },
+  "fetchedAt": "2026-04-30T21:07:32.971220"
+}

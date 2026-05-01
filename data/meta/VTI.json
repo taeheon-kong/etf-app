@@ -1,0 +1,82 @@
+{
+  "ticker": "VTI",
+  "longName": "Vanguard Total Stock Market Index Fund ETF Shares",
+  "summary": "The fund employs an indexing investment approach designed to track the performance of the index, which represents approximately 100% of the investable U.S. stock market and includes large-, mid-, small-, and micro-cap stocks. It invests by sampling the index, meaning that it holds a broadly diversified collection of securities that, in the aggregate, approximates the full index in terms of key characteristics. The fund is non-diversified.",
+  "category": "Large Blend",
+  "fundFamily": "Vanguard",
+  "totalAssets": 1991753859072,
+  "expenseRatio": 0.03,
+  "yield": 0.0117,
+  "fundInceptionDate": 974073600,
+  "navPrice": 350.12,
+  "previousClose": 350.63,
+  "fiftyTwoWeekHigh": 352.81,
+  "fiftyTwoWeekLow": 273.58,
+  "beta3Year": 1.04,
+  "topHoldings": [
+    {
+      "symbol": "NVDA",
+      "name": "NVIDIA Corp",
+      "weight": 0.064054295
+    },
+    {
+      "symbol": "AAPL",
+      "name": "Apple Inc",
+      "weight": 0.0592798
+    },
+    {
+      "symbol": "MSFT",
+      "name": "Microsoft Corp",
+      "weight": 0.0437325
+    },
+    {
+      "symbol": "AMZN",
+      "name": "Amazon.com Inc",
+      "weight": 0.032014
+    },
+    {
+      "symbol": "GOOGL",
+      "name": "Alphabet Inc Class A",
+      "weight": 0.0266378
+    },
+    {
+      "symbol": "AVGO",
+      "name": "Broadcom Inc",
+      "weight": 0.0233476
+    },
+    {
+      "symbol": "GOOG",
+      "name": "Alphabet Inc Class C",
+      "weight": 0.0210938
+    },
+    {
+      "symbol": "META",
+      "name": "Meta Platforms Inc Class A",
+      "weight": 0.0199091
+    },
+    {
+      "symbol": "TSLA",
+      "name": "Tesla Inc",
+      "weight": 0.0166468
+    },
+    {
+      "symbol": "BRK-B",
+      "name": "Berkshire Hathaway Inc Class B",
+      "weight": 0.0136377
+    }
+  ],
+  "sectorWeightings": {
+    "realestate": 0.0247,
+    "consumer_cyclical": 0.0995,
+    "basic_materials": 0.0215,
+    "consumer_defensive": 0.0498,
+    "technology": 0.3154,
+    "communication_services": 0.096499994,
+    "financial_services": 0.1249,
+    "utilities": 0.0251,
+    "industrials": 0.098900005,
+    "energy": 0.042,
+    "healthcare": 0.1017
+  },
+  "fetchedAt": "2026-04-30T21:06:25.081732"
+}

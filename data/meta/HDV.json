@@ -1,0 +1,82 @@
+{
+  "ticker": "HDV",
+  "longName": "iShares Core High Dividend ETF",
+  "summary": "The fund generally will invest at least 80% of its assets in the component securities of its underlying index and in investments that have economic characteristics that are substantially identical to the component securities of its underlying index. The underlying index is comprised of qualified income paying securities that are screened for superior company quality and financial health as determined by Morningstar, Inc.'s proprietary index methodology. The fund is non-diversified.",
+  "category": "Large Value",
+  "fundFamily": "iShares",
+  "totalAssets": 13547995136,
+  "expenseRatio": 0.08,
+  "yield": 0.0292,
+  "fundInceptionDate": 1301356800,
+  "navPrice": 27.02434,
+  "previousClose": 26.898,
+  "fiftyTwoWeekHigh": 28.178,
+  "fiftyTwoWeekLow": 22.654,
+  "beta3Year": 0.44,
+  "topHoldings": [
+    {
+      "symbol": "XOM",
+      "name": "Exxon Mobil Corp",
+      "weight": 0.0934768
+    },
+    {
+      "symbol": "CVX",
+      "name": "Chevron Corp",
+      "weight": 0.0694064
+    },
+    {
+      "symbol": "JNJ",
+      "name": "Johnson & Johnson",
+      "weight": 0.0609927
+    },
+    {
+      "symbol": "ABBV",
+      "name": "AbbVie Inc",
+      "weight": 0.056512497
+    },
+    {
+      "symbol": "PG",
+      "name": "Procter & Gamble Co",
+      "weight": 0.04422
+    },
+    {
+      "symbol": "PM",
+      "name": "Philip Morris International Inc",
+      "weight": 0.0422168
+    },
+    {
+      "symbol": "MRK",
+      "name": "Merck & Co Inc",
+      "weight": 0.0419232
+    },
+    {
+      "symbol": "HD",
+      "name": "The Home Depot Inc",
+      "weight": 0.041111004
+    },
+    {
+      "symbol": "PGR",
+      "name": "Progressive Corp",
+      "weight": 0.0376834
+    },
+    {
+      "symbol": "KO",
+      "name": "Coca-Cola Co",
+      "weight": 0.0376582
+    }
+  ],
+  "sectorWeightings": {
+    "realestate": 0.0,
+    "consumer_cyclical": 0.0594,
+    "basic_materials": 0.0112,
+    "consumer_defensive": 0.2366,
+    "technology": 0.0669,
+    "communication_services": 0.0,
+    "financial_services": 0.105,
+    "utilities": 0.0923,
+    "industrials": 0.0135,
+    "energy": 0.2384,
+    "healthcare": 0.1768
+  },
+  "fetchedAt": "2026-04-30T21:06:54.293628"
+}

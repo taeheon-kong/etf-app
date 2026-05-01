@@ -1,0 +1,82 @@
+{
+  "ticker": "VUG",
+  "longName": "Vanguard Growth Index Fund ETF Shares",
+  "summary": "The fund employs an indexing investment approach designed to track the performance of the index, a broadly diversified index predominantly made up of growth stocks of large U.S. companies. The advisor attempts to replicate the target index by investing all, or substantially all, of its assets in the stocks that make up the index, holding each stock in approximately the same proportion as its weighting in the index.",
+  "category": "Large Growth",
+  "fundFamily": "Vanguard",
+  "totalAssets": 317921722368,
+  "expenseRatio": 0.03,
+  "yield": 0.0046,
+  "fundInceptionDate": 974073600,
+  "navPrice": 82.62,
+  "previousClose": 82.77,
+  "fiftyTwoWeekHigh": 84.23,
+  "fiftyTwoWeekLow": 63.308334,
+  "beta3Year": 1.18,
+  "topHoldings": [
+    {
+      "symbol": "NVDA",
+      "name": "NVIDIA Corp",
+      "weight": 0.1331514
+    },
+    {
+      "symbol": "AAPL",
+      "name": "Apple Inc",
+      "weight": 0.1232399
+    },
+    {
+      "symbol": "MSFT",
+      "name": "Microsoft Corp",
+      "weight": 0.0909495
+    },
+    {
+      "symbol": "GOOGL",
+      "name": "Alphabet Inc Class A",
+      "weight": 0.055402003
+    },
+    {
+      "symbol": "AMZN",
+      "name": "Amazon.com Inc",
+      "weight": 0.045924403
+    },
+    {
+      "symbol": "AVGO",
+      "name": "Broadcom Inc",
+      "weight": 0.0440311
+    },
+    {
+      "symbol": "GOOG",
+      "name": "Alphabet Inc Class C",
+      "weight": 0.0438601
+    },
+    {
+      "symbol": "META",
+      "name": "Meta Platforms Inc Class A",
+      "weight": 0.041487
+    },
+    {
+      "symbol": "TSLA",
+      "name": "Tesla Inc",
+      "weight": 0.034723
+    },
+    {
+      "symbol": "LLY",
+      "name": "Eli Lilly and Co",
+      "weight": 0.0259552
+    }
+  ],
+  "sectorWeightings": {
+    "realestate": 0.0107,
+    "consumer_cyclical": 0.1257,
+    "basic_materials": 0.0072000003,
+    "consumer_defensive": 0.0166,
+    "technology": 0.5259,
+    "communication_services": 0.1649,
+    "financial_services": 0.0458,
+    "utilities": 0.0,
+    "industrials": 0.045900002,
+    "energy": 0.0037,
+    "healthcare": 0.053600002
+  },
+  "fetchedAt": "2026-04-30T21:06:40.301613"
+}

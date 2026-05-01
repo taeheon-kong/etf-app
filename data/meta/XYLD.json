@@ -1,0 +1,77 @@
+{
+  "ticker": "XYLD",
+  "longName": "Global X S&P 500 Covered Call ETF",
+  "summary": "The fund invests at least 80% of its total assets in the securities of the Cboe S&P 500 BuyWrite Index (the “underlying index”) or in investments that have economic characteristics that are similar to the economic characteristics of the component securities of the underlying index, either individually or in the aggregate.",
+  "category": "Derivative Income",
+  "fundFamily": "Global X Funds",
+  "totalAssets": 3018989056,
+  "expenseRatio": 0.6,
+  "yield": 0.109799996,
+  "fundInceptionDate": 1371772800,
+  "navPrice": 40.05,
+  "previousClose": 40.08,
+  "fiftyTwoWeekHigh": 41.1,
+  "fiftyTwoWeekLow": 37.57,
+  "beta3Year": 0.42,
+  "topHoldings": [
+    {
+      "symbol": "NVDA",
+      "name": "NVIDIA Corp",
+      "weight": 0.0770856
+    },
+    {
+      "symbol": "AAPL",
+      "name": "Apple Inc",
+      "weight": 0.0677727
+    },
+    {
+      "symbol": "MSFT",
+      "name": "Microsoft Corp",
+      "weight": 0.0499982
+    },
+    {
+      "symbol": "AMZN",
+      "name": "Amazon.com Inc",
+      "weight": 0.037007302
+    },
+    {
+      "symbol": "GOOGL",
+      "name": "Alphabet Inc Class A",
+      "weight": 0.030452399
+    },
+    {
+      "symbol": "AVGO",
+      "name": "Broadcom Inc",
+      "weight": 0.0266926
+    },
+    {
+      "symbol": "GOOG",
+      "name": "Alphabet Inc Class C",
+      "weight": 0.024402201
+    },
+    {
+      "symbol": "META",
+      "name": "Meta Platforms Inc Class A",
+      "weight": 0.022761399
+    },
+    {
+      "symbol": "TSLA",
+      "name": "Tesla Inc",
+      "weight": 0.0190176
+    }
+  ],
+  "sectorWeightings": {
+    "realestate": 0.0195,
+    "consumer_cyclical": 0.1,
+    "basic_materials": 0.019,
+    "consumer_defensive": 0.052600004,
+    "technology": 0.33580002,
+    "communication_services": 0.104899995,
+    "financial_services": 0.1236,
+    "utilities": 0.0254,
+    "industrials": 0.0845,
+    "energy": 0.0401,
+    "healthcare": 0.0946
+  },
+  "fetchedAt": "2026-04-30T21:06:30.314755"
+}

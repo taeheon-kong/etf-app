@@ -1,0 +1,82 @@
+{
+  "ticker": "JEPQ",
+  "longName": "JPMorgan Nasdaq Equity Premium Income ETF",
+  "summary": "The fund seeks to achieve this objective by (1) creating an actively managed portfolio of equity securities comprised significantly of those included in the fund’s primary benchmark, the Nasdaq-100 Index® (the Benchmark), and (2) through equity-linked notes (ELNs), selling call options with exposure to the Benchmark. It is non-diversified.",
+  "category": "Derivative Income",
+  "fundFamily": "JPMorgan",
+  "totalAssets": 34272116736,
+  "expenseRatio": 0.35,
+  "yield": 0.111099996,
+  "fundInceptionDate": 1651536000,
+  "navPrice": 58.9749,
+  "previousClose": 58.93,
+  "fiftyTwoWeekHigh": 60.14,
+  "fiftyTwoWeekLow": 51.02,
+  "beta3Year": 0.78,
+  "topHoldings": [
+    {
+      "symbol": "NVDA",
+      "name": "NVIDIA Corp",
+      "weight": 0.073779605
+    },
+    {
+      "symbol": "AAPL",
+      "name": "Apple Inc",
+      "weight": 0.064068496
+    },
+    {
+      "symbol": "GOOG",
+      "name": "Alphabet Inc Class C",
+      "weight": 0.051130198
+    },
+    {
+      "symbol": "MSFT",
+      "name": "Microsoft Corp",
+      "weight": 0.0483279
+    },
+    {
+      "symbol": "AMZN",
+      "name": "Amazon.com Inc",
+      "weight": 0.0403525
+    },
+    {
+      "symbol": "META",
+      "name": "Meta Platforms Inc Class A",
+      "weight": 0.0303112
+    },
+    {
+      "symbol": "TSLA",
+      "name": "Tesla Inc",
+      "weight": 0.0260912
+    },
+    {
+      "symbol": "WMT",
+      "name": "Walmart Inc",
+      "weight": 0.0248227
+    },
+    {
+      "symbol": "AVGO",
+      "name": "Broadcom Inc",
+      "weight": 0.022421801
+    },
+    {
+      "symbol": "NFLX",
+      "name": "Netflix Inc",
+      "weight": 0.020759499
+    }
+  ],
+  "sectorWeightings": {
+    "realestate": 0.0023999999,
+    "consumer_cyclical": 0.131,
+    "basic_materials": 0.011,
+    "consumer_defensive": 0.0794,
+    "technology": 0.5092,
+    "communication_services": 0.1571,
+    "financial_services": 0.0046,
+    "utilities": 0.0139,
+    "industrials": 0.034,
+    "energy": 0.0046,
+    "healthcare": 0.052800003
+  },
+  "fetchedAt": "2026-04-30T21:06:32.940393"
+}

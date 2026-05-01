@@ -1,0 +1,82 @@
+{
+  "ticker": "SPHD",
+  "longName": "Invesco S&P 500 High Dividend Low Volatility ETF",
+  "summary": "The fund generally will invest at least 90% of its total assets in the securities that comprise the underlying index. Strictly in accordance with its guidelines and mandated procedures, S&P Dow Jones Indices LLC (the “index Provider”) compiles, maintains and calculates the underlying index, which is designed to measure the performance of 50 least volatile high yielding constituents of the S&P 500 ® Index in the past year.",
+  "category": "Large Value",
+  "fundFamily": "Invesco",
+  "totalAssets": 3287407616,
+  "expenseRatio": 0.3,
+  "yield": 0.0431,
+  "fundInceptionDate": 1350518400,
+  "navPrice": 49.45,
+  "previousClose": 49.69,
+  "fiftyTwoWeekHigh": 53.07,
+  "fiftyTwoWeekLow": 46.385,
+  "beta3Year": 0.63,
+  "topHoldings": [
+    {
+      "symbol": "VZ",
+      "name": "Verizon Communications Inc",
+      "weight": 0.0360686
+    },
+    {
+      "symbol": "MO",
+      "name": "Altria Group Inc",
+      "weight": 0.0322247
+    },
+    {
+      "symbol": "PFE",
+      "name": "Pfizer Inc",
+      "weight": 0.031601
+    },
+    {
+      "symbol": "OKE",
+      "name": "ONEOK Inc",
+      "weight": 0.0281887
+    },
+    {
+      "symbol": "KHC",
+      "name": "The Kraft Heinz Co",
+      "weight": 0.0279419
+    },
+    {
+      "symbol": "DOC",
+      "name": "Healthpeak Properties Inc",
+      "weight": 0.027362
+    },
+    {
+      "symbol": "CAG",
+      "name": "Conagra Brands Inc",
+      "weight": 0.0271033
+    },
+    {
+      "symbol": "VICI",
+      "name": "VICI Properties Inc Ordinary Shares",
+      "weight": 0.0254954
+    },
+    {
+      "symbol": "AMCR",
+      "name": "Amcor PLC Ordinary Shares",
+      "weight": 0.0242998
+    },
+    {
+      "symbol": "O",
+      "name": "Realty Income Corp",
+      "weight": 0.023877399
+    }
+  ],
+  "sectorWeightings": {
+    "realestate": 0.1919,
+    "consumer_cyclical": 0.0353,
+    "basic_materials": 0.0,
+    "consumer_defensive": 0.1848,
+    "technology": 0.0138,
+    "communication_services": 0.0922,
+    "financial_services": 0.1425,
+    "utilities": 0.1398,
+    "industrials": 0.0,
+    "energy": 0.1464,
+    "healthcare": 0.0533
+  },
+  "fetchedAt": "2026-04-30T21:06:57.073029"
+}

@@ -1,0 +1,82 @@
+{
+  "ticker": "QGRO",
+  "longName": "American Century U.S. Quality Growth ETF",
+  "summary": "Under normal market conditions, the fund invests at least 80% of its assets, exclusive of collateral held from securities lending, in the component securities of the underlying index. The index is designed to select securities of large- and mid-capitalization U.S. companies with attractive growth and quality fundamentals.",
+  "category": "Large Growth",
+  "fundFamily": "American Century Investments",
+  "totalAssets": 2023687808,
+  "expenseRatio": 0.29,
+  "yield": 0.0021,
+  "fundInceptionDate": 1536537600,
+  "navPrice": 111.0977,
+  "previousClose": 111.46,
+  "fiftyTwoWeekHigh": 117.81,
+  "fiftyTwoWeekLow": 97.58,
+  "beta3Year": 1.17,
+  "topHoldings": [
+    {
+      "symbol": "NFLX",
+      "name": "Netflix Inc",
+      "weight": 0.038290802
+    },
+    {
+      "symbol": "TJX",
+      "name": "TJX Companies Inc",
+      "weight": 0.037218202
+    },
+    {
+      "symbol": "MA",
+      "name": "Mastercard Inc Class A",
+      "weight": 0.035474
+    },
+    {
+      "symbol": "AAPL",
+      "name": "Apple Inc",
+      "weight": 0.035234798
+    },
+    {
+      "symbol": "MCK",
+      "name": "McKesson Corp",
+      "weight": 0.029414302
+    },
+    {
+      "symbol": "NVDA",
+      "name": "NVIDIA Corp",
+      "weight": 0.0281933
+    },
+    {
+      "symbol": "PLTR",
+      "name": "Palantir Technologies Inc Ordinary Shares - Class A",
+      "weight": 0.0274621
+    },
+    {
+      "symbol": "KLAC",
+      "name": "KLA Corp",
+      "weight": 0.024951
+    },
+    {
+      "symbol": "COST",
+      "name": "Costco Wholesale Corp",
+      "weight": 0.0248525
+    },
+    {
+      "symbol": "LLY",
+      "name": "Eli Lilly and Co",
+      "weight": 0.023647299
+    }
+  ],
+  "sectorWeightings": {
+    "realestate": 0.0087,
+    "consumer_cyclical": 0.1237,
+    "basic_materials": 0.0036000002,
+    "consumer_defensive": 0.0404,
+    "technology": 0.3447,
+    "communication_services": 0.115100004,
+    "financial_services": 0.06,
+    "utilities": 0.01,
+    "industrials": 0.1293,
+    "energy": 0.02,
+    "healthcare": 0.1446
+  },
+  "fetchedAt": "2026-04-30T21:07:34.641431"
+}

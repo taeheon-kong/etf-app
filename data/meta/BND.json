@@ -1,0 +1,18 @@
+{
+  "ticker": "BND",
+  "longName": "Vanguard Total Bond Market Index Fund",
+  "summary": "This index measures the performance of a wide spectrum of public, investment-grade, taxable, fixed income securities in the United States-including government, corporate, and international dollar-denominated bonds, as well as mortgage-backed and asset-backed securities-all with maturities of more than 1 year. All of the fund's investments will be selected through the sampling process, and at least 80% of its assets will be invested in bonds held in the index.",
+  "category": "Intermediate Core Bond",
+  "fundFamily": "Vanguard",
+  "totalAssets": 387461611520,
+  "expenseRatio": 0.03,
+  "yield": 0.039100002,
+  "fundInceptionDate": 534643200,
+  "navPrice": 73.39,
+  "previousClose": 73.72,
+  "fiftyTwoWeekHigh": 75.23,
+  "fiftyTwoWeekLow": 71.76,
+  "beta3Year": 0.98,
+  "topHoldings": [],
+  "fetchedAt": "2026-04-30T21:06:58.759275"
+}

@@ -1,0 +1,82 @@
+{
+  "ticker": "XBI",
+  "longName": "State Street SPDR S&P Biotech ETF",
+  "summary": "In seeking to track the performance of the S&P Biotechnology Select Industry Index (the \"index\"), the fund employs a sampling strategy. It generally invests substantially all, but at least 80%, of its total assets in the securities comprising the index. The index represents the biotechnology segment of the S&P Total Market Index (\"S&P TMI\").",
+  "category": "Health",
+  "fundFamily": "State Street Investment Management",
+  "totalAssets": 7434448896,
+  "expenseRatio": 0.35,
+  "yield": 0.0034999999,
+  "fundInceptionDate": 1138665600,
+  "navPrice": 128.88943,
+  "previousClose": 131.16,
+  "fiftyTwoWeekHigh": 139.19,
+  "fiftyTwoWeekLow": 75.68,
+  "beta3Year": 1.28,
+  "topHoldings": [
+    {
+      "symbol": "APLS",
+      "name": "Apellis Pharmaceuticals Inc",
+      "weight": 0.018345
+    },
+    {
+      "symbol": "ALKS",
+      "name": "Alkermes PLC",
+      "weight": 0.0145091
+    },
+    {
+      "symbol": "MDGL",
+      "name": "Madrigal Pharmaceuticals Inc",
+      "weight": 0.0138247
+    },
+    {
+      "symbol": "TGTX",
+      "name": "TG Therapeutics Inc",
+      "weight": 0.0134947
+    },
+    {
+      "symbol": "INSM",
+      "name": "Insmed Inc",
+      "weight": 0.0133673
+    },
+    {
+      "symbol": "SRRK",
+      "name": "Scholar Rock Holding Corp",
+      "weight": 0.0129724005
+    },
+    {
+      "symbol": "APGE",
+      "name": "Apogee Therapeutics Inc",
+      "weight": 0.0128422
+    },
+    {
+      "symbol": "PTGX",
+      "name": "Protagonist Therapeutics Inc",
+      "weight": 0.012448
+    },
+    {
+      "symbol": "SMMT",
+      "name": "Summit Therapeutics Inc Ordinary Shares",
+      "weight": 0.0124097
+    },
+    {
+      "symbol": "UTHR",
+      "name": "United Therapeutics Corp",
+      "weight": 0.012405
+    }
+  ],
+  "sectorWeightings": {
+    "realestate": 0.0,
+    "consumer_cyclical": 0.0,
+    "basic_materials": 0.0,
+    "consumer_defensive": 0.0,
+    "technology": 0.0,
+    "communication_services": 0.0,
+    "financial_services": 0.0017,
+    "utilities": 0.0,
+    "industrials": 0.0,
+    "energy": 0.0,
+    "healthcare": 0.9983
+  },
+  "fetchedAt": "2026-04-30T21:07:20.141044"
+}

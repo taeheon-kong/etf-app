@@ -1,0 +1,82 @@
+{
+  "ticker": "EFA",
+  "longName": "iShares MSCI EAFE ETF",
+  "summary": "The fund generally will invest at least 80% of its assets in the component securities of its underlying index and in investments that have economic characteristics that are substantially identical to the component securities of its underlying index. The index is a free float-adjusted, market capitalization-weighted index designed to measure large- and mid-capitalization equity market performance of developed markets outside of the U.S. and Canada.",
+  "category": "Foreign Large Blend",
+  "fundFamily": "iShares",
+  "totalAssets": 71451205632,
+  "expenseRatio": 0.32,
+  "yield": 0.0335,
+  "fundInceptionDate": 997747200,
+  "navPrice": 99.99213,
+  "previousClose": 100.96,
+  "fiftyTwoWeekHigh": 105.94,
+  "fiftyTwoWeekLow": 84.37,
+  "beta3Year": 0.94,
+  "topHoldings": [
+    {
+      "symbol": "ASML.AS",
+      "name": "ASML Holding NV",
+      "weight": 0.0247486
+    },
+    {
+      "symbol": "AZN.L",
+      "name": "AstraZeneca PLC",
+      "weight": 0.014855
+    },
+    {
+      "symbol": "NOVN.SW",
+      "name": "Novartis AG Registered Shares",
+      "weight": 0.0141388
+    },
+    {
+      "symbol": "HSBA.L",
+      "name": "HSBC Holdings PLC",
+      "weight": 0.0136803
+    },
+    {
+      "symbol": "ROP.SW",
+      "name": "Roche Holding AG Ordinary Shares new",
+      "weight": 0.013604701
+    },
+    {
+      "symbol": "SHEL.L",
+      "name": "Shell PLC",
+      "weight": 0.013315099
+    },
+    {
+      "symbol": "NESN.SW",
+      "name": "Nestle SA",
+      "weight": 0.0124327
+    },
+    {
+      "symbol": "CBA.AX",
+      "name": "Commonwealth Bank of Australia",
+      "weight": 0.0095038
+    },
+    {
+      "symbol": "7203.T",
+      "name": "Toyota Motor Corp",
+      "weight": 0.0093168
+    },
+    {
+      "symbol": "TTE.PA",
+      "name": "TotalEnergies SE",
+      "weight": 0.0091473
+    }
+  ],
+  "sectorWeightings": {
+    "realestate": 0.019,
+    "consumer_cyclical": 0.0788,
+    "basic_materials": 0.0586,
+    "consumer_defensive": 0.0694,
+    "technology": 0.0933,
+    "communication_services": 0.0464,
+    "financial_services": 0.24260001,
+    "utilities": 0.0404,
+    "industrials": 0.19440001,
+    "energy": 0.044299997,
+    "healthcare": 0.112799995
+  },
+  "fetchedAt": "2026-04-30T21:07:23.083501"
+}

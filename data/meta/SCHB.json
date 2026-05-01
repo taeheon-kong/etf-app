@@ -1,0 +1,82 @@
+{
+  "ticker": "SCHB",
+  "longName": "Schwab U.S. Broad Market ETF",
+  "summary": "To pursue its goal, the fund generally invests in stocks that are included in the index. The index includes the largest 2,500 publicly traded U.S. companies for which pricing information is readily available. The fund will invest at least 90% of its net assets in these stocks. It may invest up to 10% of its net assets in securities not included in the index.",
+  "category": "Large Blend",
+  "fundFamily": "Schwab ETFs",
+  "totalAssets": 36927254528,
+  "expenseRatio": 0.03,
+  "yield": 0.0117999995,
+  "fundInceptionDate": 1257206400,
+  "navPrice": 27.42,
+  "previousClose": 27.46,
+  "fiftyTwoWeekHigh": 27.63,
+  "fiftyTwoWeekLow": 21.43,
+  "beta3Year": 1.04,
+  "topHoldings": [
+    {
+      "symbol": "NVDA",
+      "name": "NVIDIA Corp",
+      "weight": 0.0654175
+    },
+    {
+      "symbol": "AAPL",
+      "name": "Apple Inc",
+      "weight": 0.0590118
+    },
+    {
+      "symbol": "MSFT",
+      "name": "Microsoft Corp",
+      "weight": 0.043439496
+    },
+    {
+      "symbol": "AMZN",
+      "name": "Amazon.com Inc",
+      "weight": 0.0319939
+    },
+    {
+      "symbol": "GOOGL",
+      "name": "Alphabet Inc Class A",
+      "weight": 0.0259525
+    },
+    {
+      "symbol": "AVGO",
+      "name": "Broadcom Inc",
+      "weight": 0.022673199
+    },
+    {
+      "symbol": "GOOG",
+      "name": "Alphabet Inc Class C",
+      "weight": 0.0208201
+    },
+    {
+      "symbol": "META",
+      "name": "Meta Platforms Inc Class A",
+      "weight": 0.019120801
+    },
+    {
+      "symbol": "TSLA",
+      "name": "Tesla Inc",
+      "weight": 0.0162906
+    },
+    {
+      "symbol": "BRK-B",
+      "name": "Berkshire Hathaway Inc Class B",
+      "weight": 0.0141843
+    }
+  ],
+  "sectorWeightings": {
+    "realestate": 0.024600001,
+    "consumer_cyclical": 0.1001,
+    "basic_materials": 0.022,
+    "consumer_defensive": 0.0513,
+    "technology": 0.3146,
+    "communication_services": 0.0953,
+    "financial_services": 0.127,
+    "utilities": 0.0256,
+    "industrials": 0.095699996,
+    "energy": 0.0436,
+    "healthcare": 0.100200005
+  },
+  "fetchedAt": "2026-04-30T21:06:27.696655"
+}

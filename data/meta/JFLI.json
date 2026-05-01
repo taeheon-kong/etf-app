@@ -1,0 +1,77 @@
+{
+  "ticker": "JFLI",
+  "longName": "JPMorgan Flexible Income ETF",
+  "summary": "The fund has significant flexibility to achieve its investment objective and invests in a broad range of income-producing securities, including debt and equity securities in the U.S. and other markets throughout the world, both developed and emerging. The manager currently intends to gain exposure to debt securities principally through investments in underlying funds, including mutual funds and/or ETFs within the same group of investment companies (i.e., J.P. Morgan Funds).",
+  "category": "Global Moderate Allocation",
+  "fundFamily": "JPMorgan",
+  "totalAssets": 42663200,
+  "expenseRatio": 0.35,
+  "yield": 0.0715,
+  "fundInceptionDate": 1739318400,
+  "navPrice": 52.2384,
+  "previousClose": 52.4474,
+  "fiftyTwoWeekHigh": 52.97,
+  "fiftyTwoWeekLow": 46.5,
+  "beta3Year": 0.0,
+  "topHoldings": [
+    {
+      "symbol": "BBHY",
+      "name": "JPMorgan BetaBuilders $ HY Corp Bnd ETF",
+      "weight": 0.3405729
+    },
+    {
+      "symbol": "JEPQ",
+      "name": "JPMorgan Nasdaq Equity Premium Inc ETF",
+      "weight": 0.2011107
+    },
+    {
+      "symbol": "JEPI",
+      "name": "JPMorgan Equity Premium Income ETF",
+      "weight": 0.0447589
+    },
+    {
+      "symbol": "JPIE",
+      "name": "JPMorgan Income ETF",
+      "weight": 0.0196639
+    },
+    {
+      "symbol": "JIMXX",
+      "name": "JPMorgan Prime Money Market IM",
+      "weight": 0.0063748
+    },
+    {
+      "symbol": "MSFT",
+      "name": "Microsoft Corp",
+      "weight": 0.0049432
+    },
+    {
+      "symbol": "AVGO",
+      "name": "Broadcom Inc",
+      "weight": 0.0043583
+    },
+    {
+      "symbol": "2330.TW",
+      "name": "Taiwan Semiconductor Manufacturing Co Ltd",
+      "weight": 0.0040719
+    },
+    {
+      "symbol": "ASML.AS",
+      "name": "ASML Holding NV",
+      "weight": 0.0031208
+    }
+  ],
+  "sectorWeightings": {
+    "realestate": 0.0394,
+    "consumer_cyclical": 0.0896,
+    "basic_materials": 0.0358,
+    "consumer_defensive": 0.0887,
+    "technology": 0.2474,
+    "communication_services": 0.0959,
+    "financial_services": 0.09689999,
+    "utilities": 0.0729,
+    "industrials": 0.0801,
+    "energy": 0.0744,
+    "healthcare": 0.0789
+  },
+  "fetchedAt": "2026-04-30T21:07:07.930333"
+}

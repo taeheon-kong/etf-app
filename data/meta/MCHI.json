@@ -1,0 +1,82 @@
+{
+  "ticker": "MCHI",
+  "longName": "iShares MSCI China ETF",
+  "summary": "The fund generally will invest at least 80% of its assets in the component securities of the underlying index and in investments that have economic characteristics that are substantially identical to the component securities of the underlying index. The index is a free float-adjusted market capitalization-weighted index that is designed to measure the performance of equity securities in the top 85% in market capitalization of the Chinese equity securities markets, as represented by the H-shares and B-shares markets. The fund is non-diversified.",
+  "category": "China Region",
+  "fundFamily": "iShares",
+  "totalAssets": 6613231616,
+  "expenseRatio": 0.59,
+  "yield": 0.0227,
+  "fundInceptionDate": 1301356800,
+  "navPrice": 57.21357,
+  "previousClose": 56.76,
+  "fiftyTwoWeekHigh": 67.37,
+  "fiftyTwoWeekLow": 51.48,
+  "beta3Year": 0.73,
+  "topHoldings": [
+    {
+      "symbol": "0700.HK",
+      "name": "Tencent Holdings Ltd",
+      "weight": 0.1512956
+    },
+    {
+      "symbol": "9988.HK",
+      "name": "Alibaba Group Holding Ltd Ordinary Shares",
+      "weight": 0.0999887
+    },
+    {
+      "symbol": "00939",
+      "name": "China Construction Bank Corp Class H",
+      "weight": 0.039384
+    },
+    {
+      "symbol": "PDD",
+      "name": "PDD Holdings Inc ADR",
+      "weight": 0.027780099
+    },
+    {
+      "symbol": "1810.HK",
+      "name": "Xiaomi Corp Class B",
+      "weight": 0.0267159
+    },
+    {
+      "symbol": "01398",
+      "name": "Industrial And Commercial Bank Of China Ltd Class H",
+      "weight": 0.0217804
+    },
+    {
+      "symbol": "3690.HK",
+      "name": "Meituan Class B",
+      "weight": 0.0201364
+    },
+    {
+      "symbol": "02318",
+      "name": "Ping An Insurance (Group) Co. of China Ltd Class H",
+      "weight": 0.0195008
+    },
+    {
+      "symbol": "01211",
+      "name": "BYD Co Ltd Class H",
+      "weight": 0.0190891
+    },
+    {
+      "symbol": "03988",
+      "name": "Bank Of China Ltd Class H",
+      "weight": 0.0172266
+    }
+  ],
+  "sectorWeightings": {
+    "realestate": 0.0143,
+    "consumer_cyclical": 0.26450002,
+    "basic_materials": 0.0552,
+    "consumer_defensive": 0.0335,
+    "technology": 0.088,
+    "communication_services": 0.198,
+    "financial_services": 0.1898,
+    "utilities": 0.0172,
+    "industrials": 0.0493,
+    "energy": 0.0357,
+    "healthcare": 0.0546
+  },
+  "fetchedAt": "2026-04-30T21:07:28.713904"
+}

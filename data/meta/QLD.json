@@ -1,0 +1,82 @@
+{
+  "ticker": "QLD",
+  "longName": "ProShares Ultra QQQ",
+  "summary": "The fund invests in financial instruments that ProShare Advisors believes, in combination, should produce daily returns consistent with the Daily Target. The index is designed to measure the performance of 100 of the largest Nasdaq-listed non-financial companies. Under normal circumstances, the fund will obtain leveraged exposure to at least 80% of its total assets in components of the index or in instruments with similar economic characteristics. The fund is non-diversified.",
+  "category": "Trading--Leveraged Equity",
+  "fundFamily": "ProShares",
+  "totalAssets": 8352047616,
+  "expenseRatio": 0.95,
+  "yield": 0.0019,
+  "fundInceptionDate": 1150675200,
+  "navPrice": 79.5691,
+  "previousClose": 78.67,
+  "fiftyTwoWeekHigh": 80.37,
+  "fiftyTwoWeekLow": 44.465,
+  "beta3Year": 2.26,
+  "topHoldings": [
+    {
+      "symbol": "IQMM",
+      "name": "ProShares GENIUS Money Market ETF",
+      "weight": 0.1412036
+    },
+    {
+      "symbol": "NVDA",
+      "name": "NVIDIA Corp",
+      "weight": 0.0696269
+    },
+    {
+      "symbol": "AAPL",
+      "name": "Apple Inc",
+      "weight": 0.0612109
+    },
+    {
+      "symbol": "MSFT",
+      "name": "Microsoft Corp",
+      "weight": 0.0451645
+    },
+    {
+      "symbol": "AMZN",
+      "name": "Amazon.com Inc",
+      "weight": 0.0367346
+    },
+    {
+      "symbol": "TSLA",
+      "name": "Tesla Inc",
+      "weight": 0.0304713
+    },
+    {
+      "symbol": "META",
+      "name": "Meta Platforms Inc Class A",
+      "weight": 0.0277195
+    },
+    {
+      "symbol": "WMT",
+      "name": "Walmart Inc",
+      "weight": 0.0275488
+    },
+    {
+      "symbol": "GOOGL",
+      "name": "Alphabet Inc Class A",
+      "weight": 0.0275072
+    },
+    {
+      "symbol": "GOOG",
+      "name": "Alphabet Inc Class C",
+      "weight": 0.0256297
+    }
+  ],
+  "sectorWeightings": {
+    "realestate": 0.001,
+    "consumer_cyclical": 0.1261,
+    "basic_materials": 0.012999999,
+    "consumer_defensive": 0.0857,
+    "technology": 0.5054,
+    "communication_services": 0.16059999,
+    "financial_services": 0.0023999999,
+    "utilities": 0.0154,
+    "industrials": 0.0326,
+    "energy": 0.0066000004,
+    "healthcare": 0.0511
+  },
+  "fetchedAt": "2026-04-30T21:07:38.019736"
+}

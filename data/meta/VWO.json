@@ -1,0 +1,82 @@
+{
+  "ticker": "VWO",
+  "longName": "Vanguard Emerging Markets Stock Index Fund",
+  "summary": "The index measures the investment return of stocks issued by companies located in emerging market countries. The fund employs an indexing investment approach designed to track the performance of the FTSE Emerging Markets All Cap China A Inclusion Index. It invests by sampling the index, meaning that it holds a broadly diversified collection of securities that, in the aggregate, approximates the index in terms of key characteristics.",
+  "category": "Diversified Emerging Mkts",
+  "fundFamily": "Vanguard",
+  "totalAssets": 146314903552,
+  "expenseRatio": 0.06,
+  "yield": 0.0271,
+  "fundInceptionDate": 1109894400,
+  "navPrice": 58.17,
+  "previousClose": 58.32,
+  "fiftyTwoWeekHigh": 59.62,
+  "fiftyTwoWeekLow": 45.21,
+  "beta3Year": 0.77,
+  "topHoldings": [
+    {
+      "symbol": "2330.TW",
+      "name": "Taiwan Semiconductor Manufacturing Co Ltd",
+      "weight": 0.1285065
+    },
+    {
+      "symbol": "0700.HK",
+      "name": "Tencent Holdings Ltd",
+      "weight": 0.0357022
+    },
+    {
+      "symbol": "9988.HK",
+      "name": "Alibaba Group Holding Ltd Ordinary Shares",
+      "weight": 0.025635099
+    },
+    {
+      "symbol": "RELIANCE.NS",
+      "name": "Reliance Industries Ltd",
+      "weight": 0.0089664
+    },
+    {
+      "symbol": "00939",
+      "name": "China Construction Bank Corp Class H",
+      "weight": 0.0086241
+    },
+    {
+      "symbol": "HDFCBANK.NS",
+      "name": "HDFC Bank Ltd",
+      "weight": 0.0081204
+    },
+    {
+      "symbol": "2308.TW",
+      "name": "Delta Electronics Inc",
+      "weight": 0.007938799
+    },
+    {
+      "symbol": "PDD",
+      "name": "PDD Holdings Inc ADR",
+      "weight": 0.0071043004
+    },
+    {
+      "symbol": "2317.TW",
+      "name": "Hon Hai Precision Industry Co Ltd",
+      "weight": 0.0067979004
+    },
+    {
+      "symbol": "1810.HK",
+      "name": "Xiaomi Corp Class B",
+      "weight": 0.0065160003
+    }
+  ],
+  "sectorWeightings": {
+    "realestate": 0.0227,
+    "consumer_cyclical": 0.112399995,
+    "basic_materials": 0.083900005,
+    "consumer_defensive": 0.0388,
+    "technology": 0.2625,
+    "communication_services": 0.0777,
+    "financial_services": 0.2051,
+    "utilities": 0.0296,
+    "industrials": 0.0788,
+    "energy": 0.047399998,
+    "healthcare": 0.041100003
+  },
+  "fetchedAt": "2026-04-30T21:07:22.237829"
+}

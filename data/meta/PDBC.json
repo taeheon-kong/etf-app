@@ -1,0 +1,24 @@
+{
+  "ticker": "PDBC",
+  "longName": "Invesco Optimum Yield Diversified Commodity Strategy No K-1 ETF",
+  "summary": "The fund is an actively managed exchange-traded fund (\"ETF\") that seeks to achieve its investment objective by investing in a combination of financial instruments that are economically linked to the world's most heavily traded commodities. Commodities are assets that have tangible properties, such as oil, agricultural produce or raw metals.",
+  "category": "Commodities Broad Basket",
+  "fundFamily": "Invesco",
+  "totalAssets": 6465692672,
+  "expenseRatio": 0.59,
+  "yield": 0.0295,
+  "fundInceptionDate": 1415318400,
+  "navPrice": 18.43,
+  "previousClose": 18.07,
+  "fiftyTwoWeekHigh": 18.535,
+  "fiftyTwoWeekLow": 12.355,
+  "beta3Year": 1.02,
+  "topHoldings": [
+    {
+      "symbol": "IUGXX",
+      "name": "Invesco Premier US Government Money Inst",
+      "weight": 0.7891604
+    }
+  ],
+  "fetchedAt": "2026-04-30T21:07:11.362235"
+}

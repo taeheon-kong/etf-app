@@ -1,0 +1,67 @@
+{
+  "ticker": "TQQQ",
+  "longName": "ProShares UltraPro QQQ",
+  "summary": "The fund invests in financial instruments that ProShare Advisors believes, in combination, should produce daily returns consistent with the Daily Target. The index is designed to measure the performance of 100 of the largest Nasdaq-listed non-financial companies. Under normal circumstances, the fund will obtain leveraged exposure to at least 80% of its total assets in components of the index or in instruments with similar economic characteristics. The fund is non-diversified.",
+  "category": "Trading--Leveraged Equity",
+  "fundFamily": "ProShares",
+  "totalAssets": 24591368192,
+  "expenseRatio": 0.82,
+  "yield": 0.0075,
+  "fundInceptionDate": 1265673600,
+  "navPrice": 61.7684,
+  "previousClose": 60.74,
+  "fiftyTwoWeekHigh": 62.74,
+  "fiftyTwoWeekLow": 27.545,
+  "beta3Year": 3.46,
+  "topHoldings": [
+    {
+      "symbol": "IQMM",
+      "name": "ProShares GENIUS Money Market ETF",
+      "weight": 0.3390406
+    },
+    {
+      "symbol": "NVDA",
+      "name": "NVIDIA Corp",
+      "weight": 0.054404303
+    },
+    {
+      "symbol": "AAPL",
+      "name": "Apple Inc",
+      "weight": 0.0478354
+    },
+    {
+      "symbol": "MSFT",
+      "name": "Microsoft Corp",
+      "weight": 0.0352875
+    },
+    {
+      "symbol": "AMZN",
+      "name": "Amazon.com Inc",
+      "weight": 0.0287023
+    },
+    {
+      "symbol": "TSLA",
+      "name": "Tesla Inc",
+      "weight": 0.0238187
+    },
+    {
+      "symbol": "META",
+      "name": "Meta Platforms Inc Class A",
+      "weight": 0.0216649
+    }
+  ],
+  "sectorWeightings": {
+    "realestate": 0.001,
+    "consumer_cyclical": 0.1262,
+    "basic_materials": 0.012999999,
+    "consumer_defensive": 0.0858,
+    "technology": 0.5054,
+    "communication_services": 0.16059999,
+    "financial_services": 0.0023999999,
+    "utilities": 0.0154,
+    "industrials": 0.0326,
+    "energy": 0.0066000004,
+    "healthcare": 0.0511
+  },
+  "fetchedAt": "2026-04-30T21:07:36.357083"
+}

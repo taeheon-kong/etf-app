@@ -1,0 +1,82 @@
+{
+  "ticker": "SPYD",
+  "longName": "State Street SPDR Portfolio S&P 500 High Dividend ETF",
+  "summary": "Under normal market conditions, the fund generally invests substantially all, but at least 80%, of its total assets in the securities comprising the index. The index is designed to measure the performance of 80 high dividend-yielding companies within the S&P 500® Index. The S&P 500 Index focuses on the large capitalization U.S. equity market, including common stock and real estate investment trusts (\"REITs\").",
+  "category": "Mid-Cap Value",
+  "fundFamily": "State Street Investment Management",
+  "totalAssets": 7048502272,
+  "expenseRatio": 0.07,
+  "yield": 0.0437,
+  "fundInceptionDate": 1445385600,
+  "navPrice": 46.27917,
+  "previousClose": 46.36,
+  "fiftyTwoWeekHigh": 48.53,
+  "fiftyTwoWeekLow": 41.435,
+  "beta3Year": 0.8,
+  "topHoldings": [
+    {
+      "symbol": "APA",
+      "name": "APA Corp",
+      "weight": 0.0195953
+    },
+    {
+      "symbol": "LYB",
+      "name": "LyondellBasell Industries NV Class A",
+      "weight": 0.0190503
+    },
+    {
+      "symbol": "DOW",
+      "name": "Dow Inc",
+      "weight": 0.017964799
+    },
+    {
+      "symbol": "EOG",
+      "name": "EOG Resources Inc",
+      "weight": 0.0163959
+    },
+    {
+      "symbol": "PSX",
+      "name": "Phillips 66",
+      "weight": 0.015761599
+    },
+    {
+      "symbol": "VZ",
+      "name": "Verizon Communications Inc",
+      "weight": 0.015676599
+    },
+    {
+      "symbol": "CVX",
+      "name": "Chevron Corp",
+      "weight": 0.015206
+    },
+    {
+      "symbol": "T",
+      "name": "AT&T Inc",
+      "weight": 0.0151167
+    },
+    {
+      "symbol": "EIX",
+      "name": "Edison International",
+      "weight": 0.0148419
+    },
+    {
+      "symbol": "OKE",
+      "name": "ONEOK Inc",
+      "weight": 0.0146087
+    }
+  ],
+  "sectorWeightings": {
+    "realestate": 0.2472,
+    "consumer_cyclical": 0.0691,
+    "basic_materials": 0.0373,
+    "consumer_defensive": 0.16790001,
+    "technology": 0.0235,
+    "communication_services": 0.0552,
+    "financial_services": 0.111999996,
+    "utilities": 0.1185,
+    "industrials": 0.0217,
+    "energy": 0.0968,
+    "healthcare": 0.0508
+  },
+  "fetchedAt": "2026-04-30T21:06:55.224650"
+}

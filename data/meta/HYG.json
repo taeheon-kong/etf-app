@@ -1,0 +1,37 @@
+{
+  "ticker": "HYG",
+  "longName": "iShares iBoxx $ High Yield Corporate Bond ETF",
+  "summary": "The underlying index is a rules-based index consisting of U.S. dollar-denominated, high yield corporate bonds for sale in the U.S. The fund will invest at least 80% of its assets in the component securities of the underlying index, and the fund will invest at least 90% of its assets in fixed income securities of the types included in the underlying index that the advisor believes will help the fund track the underlying index.",
+  "category": "High Yield Bond",
+  "fundFamily": "iShares",
+  "totalAssets": 16378809344,
+  "expenseRatio": 0.49,
+  "yield": 0.0588,
+  "fundInceptionDate": 1175644800,
+  "navPrice": 80.07145,
+  "previousClose": 80.4,
+  "fiftyTwoWeekHigh": 81.36,
+  "fiftyTwoWeekLow": 78.22,
+  "beta3Year": 0.67,
+  "topHoldings": [
+    {
+      "symbol": "XTSLA",
+      "name": "BlackRock Cash Funds Treasury SL Agency",
+      "weight": 0.0104704
+    }
+  ],
+  "sectorWeightings": {
+    "realestate": 0.0041,
+    "consumer_cyclical": 0.0,
+    "basic_materials": 0.0,
+    "consumer_defensive": 0.0,
+    "technology": 0.0,
+    "communication_services": 0.0,
+    "financial_services": 0.0,
+    "utilities": 0.9959,
+    "industrials": 0.0,
+    "energy": 0.0,
+    "healthcare": 0.0
+  },
+  "fetchedAt": "2026-04-30T21:07:05.093033"
+}

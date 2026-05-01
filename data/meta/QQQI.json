@@ -1,0 +1,82 @@
+{
+  "ticker": "QQQI",
+  "longName": "NEOS NASDAQ-100(R) High Income ETF",
+  "summary": "The fund is an actively-managed exchange-traded fund (“ETF”) that seeks to achieve its investment objective by investing in a portfolio of stocks that make up the Nasdaq-100® Index and a call options strategy, that consists of written (sold) call options on the Nasdaq-100® Index. Under normal circumstances, at least 80% of the fund’s net assets, plus borrowings for investment purposes, will be invested in securities, or derivative instruments linked to securities, of companies that are included in the reference index.",
+  "category": "Derivative Income",
+  "fundFamily": "Neos Funds",
+  "totalAssets": 9323737088,
+  "expenseRatio": 0.68,
+  "yield": 0.1504,
+  "fundInceptionDate": 1706486400,
+  "navPrice": 53.8897,
+  "previousClose": 53.7,
+  "fiftyTwoWeekHigh": 55.93,
+  "fiftyTwoWeekLow": 47.821,
+  "beta3Year": 0.0,
+  "topHoldings": [
+    {
+      "symbol": "NVDA",
+      "name": "NVIDIA Corp",
+      "weight": 0.0863736
+    },
+    {
+      "symbol": "AAPL",
+      "name": "Apple Inc",
+      "weight": 0.0766506
+    },
+    {
+      "symbol": "MSFT",
+      "name": "Microsoft Corp",
+      "weight": 0.056158
+    },
+    {
+      "symbol": "AMZN",
+      "name": "Amazon.com Inc",
+      "weight": 0.0454207
+    },
+    {
+      "symbol": "TSLA",
+      "name": "Tesla Inc",
+      "weight": 0.0380047
+    },
+    {
+      "symbol": "META",
+      "name": "Meta Platforms Inc Class A",
+      "weight": 0.0342433
+    },
+    {
+      "symbol": "WMT",
+      "name": "Walmart Inc",
+      "weight": 0.0342023
+    },
+    {
+      "symbol": "GOOGL",
+      "name": "Alphabet Inc Class A",
+      "weight": 0.034136
+    },
+    {
+      "symbol": "GOOG",
+      "name": "Alphabet Inc Class C",
+      "weight": 0.0316516
+    },
+    {
+      "symbol": "AVGO",
+      "name": "Broadcom Inc",
+      "weight": 0.0297678
+    }
+  ],
+  "sectorWeightings": {
+    "realestate": 0.00090000004,
+    "consumer_cyclical": 0.1261,
+    "basic_materials": 0.013099999,
+    "consumer_defensive": 0.0857,
+    "technology": 0.5042,
+    "communication_services": 0.1604,
+    "financial_services": 0.0023,
+    "utilities": 0.015,
+    "industrials": 0.035,
+    "energy": 0.0066000004,
+    "healthcare": 0.0506
+  },
+  "fetchedAt": "2026-04-30T21:06:34.759726"
+}

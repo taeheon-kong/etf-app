@@ -1,0 +1,82 @@
+{
+  "ticker": "SCHD",
+  "longName": "Schwab U.S. Dividend Equity ETF",
+  "summary": "To pursue its goal, the fund generally invests in stocks that are included in the index. The index is designed to measure the performance of high dividend yielding stocks issued by U.S. companies that have a record of consistently paying dividends, selected for fundamental strength relative to their peers, based on financial ratios. The fund will invest at least 90% of its net assets in these stocks.",
+  "category": "Large Value",
+  "fundFamily": "Schwab ETFs",
+  "totalAssets": 84820000768,
+  "expenseRatio": 0.06,
+  "yield": 0.0344,
+  "fundInceptionDate": 1319068800,
+  "navPrice": 31.43,
+  "previousClose": 31.31,
+  "fiftyTwoWeekHigh": 31.95,
+  "fiftyTwoWeekLow": 25.5,
+  "beta3Year": 0.66,
+  "topHoldings": [
+    {
+      "symbol": "CVX",
+      "name": "Chevron Corp",
+      "weight": 0.046819102
+    },
+    {
+      "symbol": "COP",
+      "name": "ConocoPhillips",
+      "weight": 0.043304
+    },
+    {
+      "symbol": "VZ",
+      "name": "Verizon Communications Inc",
+      "weight": 0.0406088
+    },
+    {
+      "symbol": "MRK",
+      "name": "Merck & Co Inc",
+      "weight": 0.040586
+    },
+    {
+      "symbol": "KO",
+      "name": "Coca-Cola Co",
+      "weight": 0.0403667
+    },
+    {
+      "symbol": "PEP",
+      "name": "PepsiCo Inc",
+      "weight": 0.039544698
+    },
+    {
+      "symbol": "TXN",
+      "name": "Texas Instruments Inc",
+      "weight": 0.0380735
+    },
+    {
+      "symbol": "AMGN",
+      "name": "Amgen Inc",
+      "weight": 0.0380362
+    },
+    {
+      "symbol": "PG",
+      "name": "Procter & Gamble Co",
+      "weight": 0.0377892
+    },
+    {
+      "symbol": "ABT",
+      "name": "Abbott Laboratories",
+      "weight": 0.0372346
+    }
+  ],
+  "sectorWeightings": {
+    "realestate": 0.0,
+    "consumer_cyclical": 0.0634,
+    "basic_materials": 0.0,
+    "consumer_defensive": 0.19590001,
+    "technology": 0.1443,
+    "communication_services": 0.0699,
+    "financial_services": 0.088599995,
+    "utilities": 0.0004,
+    "industrials": 0.0788,
+    "energy": 0.1726,
+    "healthcare": 0.1861
+  },
+  "fetchedAt": "2026-04-30T21:06:48.563417"
+}

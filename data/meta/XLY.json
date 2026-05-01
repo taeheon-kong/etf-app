@@ -1,0 +1,82 @@
+{
+  "ticker": "XLY",
+  "longName": "State Street Consumer Discretionary Select Sector SPDR ETF",
+  "summary": "The Advisor employs a replication strategy. The fund generally invests substantially all, but at least 95%, of its total assets in the securities comprising the index. The index includes companies that have been identified as Consumer Discretionary companies by the Global Industry Classification Standard (GICS®). It is non-diversified.",
+  "category": "Consumer Cyclical",
+  "fundFamily": "State Street Investment Management",
+  "totalAssets": 21445781504,
+  "expenseRatio": 0.08,
+  "yield": 0.0082,
+  "fundInceptionDate": 913766400,
+  "navPrice": 116.80323,
+  "previousClose": 117.01,
+  "fiftyTwoWeekHigh": 125.01,
+  "fiftyTwoWeekLow": 98.34,
+  "beta3Year": 1.25,
+  "topHoldings": [
+    {
+      "symbol": "AMZN",
+      "name": "Amazon.com Inc",
+      "weight": 0.2351404
+    },
+    {
+      "symbol": "TSLA",
+      "name": "Tesla Inc",
+      "weight": 0.189566
+    },
+    {
+      "symbol": "HD",
+      "name": "The Home Depot Inc",
+      "weight": 0.0593647
+    },
+    {
+      "symbol": "MCD",
+      "name": "McDonald's Corp",
+      "weight": 0.0448905
+    },
+    {
+      "symbol": "TJX",
+      "name": "TJX Companies Inc",
+      "weight": 0.0441082
+    },
+    {
+      "symbol": "BKNG",
+      "name": "Booking Holdings Inc",
+      "weight": 0.0337527
+    },
+    {
+      "symbol": "LOW",
+      "name": "Lowe's Companies Inc",
+      "weight": 0.0329656
+    },
+    {
+      "symbol": "SBUX",
+      "name": "Starbucks Corp",
+      "weight": 0.025387
+    },
+    {
+      "symbol": "ORLY",
+      "name": "O'Reilly Automotive Inc",
+      "weight": 0.0193299
+    },
+    {
+      "symbol": "MAR",
+      "name": "Marriott International Inc Class A",
+      "weight": 0.0178916
+    }
+  ],
+  "sectorWeightings": {
+    "realestate": 0.0,
+    "consumer_cyclical": 0.9889,
+    "basic_materials": 0.0,
+    "consumer_defensive": 0.0,
+    "technology": 0.0095,
+    "communication_services": 0.0,
+    "financial_services": 0.0,
+    "utilities": 0.0,
+    "industrials": 0.0017,
+    "energy": 0.0,
+    "healthcare": 0.0
+  },
+  "fetchedAt": "2026-04-30T21:07:17.463619"
+}

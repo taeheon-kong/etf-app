@@ -1,0 +1,82 @@
+{
+  "ticker": "IJR",
+  "longName": "iShares Core S&P Small-Cap ETF",
+  "summary": "The index measures the performance of the small-capitalization sector of the U.S. equity market, as determined by SPDJI. The fund generally will invest at least 80% of its assets in the component securities of its index and in investments that have economic characteristics that are substantially identical to the component securities of its index and may invest up to 20% of its assets in certain futures, options and swap contracts, cash and cash equivalents.",
+  "category": "Small Blend",
+  "fundFamily": "iShares",
+  "totalAssets": 91986935808,
+  "expenseRatio": 0.06,
+  "yield": 0.0128999995,
+  "fundInceptionDate": 958953600,
+  "navPrice": 134.73857,
+  "previousClose": 135.79,
+  "fiftyTwoWeekHigh": 137.34,
+  "fiftyTwoWeekLow": 99.65,
+  "beta3Year": 1.2,
+  "topHoldings": [
+    {
+      "symbol": "XTSLA",
+      "name": "BlackRock Cash Funds Treasury SL Agency",
+      "weight": 0.013840199
+    },
+    {
+      "symbol": "EMN",
+      "name": "Eastman Chemical Co",
+      "weight": 0.0056864
+    },
+    {
+      "symbol": "ESI",
+      "name": "Element Solutions Inc",
+      "weight": 0.0050712
+    },
+    {
+      "symbol": "PRIM",
+      "name": "Primoris Services Corp",
+      "weight": 0.0050468
+    },
+    {
+      "symbol": "VIAV",
+      "name": "Viavi Solutions Inc",
+      "weight": 0.0050284998
+    },
+    {
+      "symbol": "AGX",
+      "name": "Argan Inc",
+      "weight": 0.0049338997
+    },
+    {
+      "symbol": "FORM",
+      "name": "FormFactor Inc",
+      "weight": 0.0049095
+    },
+    {
+      "symbol": "LKQ",
+      "name": "LKQ Corp",
+      "weight": 0.004909
+    },
+    {
+      "symbol": "JXN",
+      "name": "Jackson Financial Inc",
+      "weight": 0.0048897997
+    },
+    {
+      "symbol": "ESE",
+      "name": "ESCO Technologies Inc",
+      "weight": 0.0047579
+    }
+  ],
+  "sectorWeightings": {
+    "realestate": 0.075100005,
+    "consumer_cyclical": 0.1369,
+    "basic_materials": 0.052399997,
+    "consumer_defensive": 0.0372,
+    "technology": 0.1436,
+    "communication_services": 0.0343,
+    "financial_services": 0.16870001,
+    "utilities": 0.021300001,
+    "industrials": 0.1568,
+    "energy": 0.0623,
+    "healthcare": 0.111499995
+  },
+  "fetchedAt": "2026-04-30T21:06:43.837654"
+}

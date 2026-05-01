@@ -1,0 +1,82 @@
+{
+  "ticker": "IWF",
+  "longName": "iShares Russell 1000 Growth ETF",
+  "summary": "The fund generally invests at least 80% of its assets in the component securities of its underlying index and may invest up to 20% of its assets in certain futures, options and swap contracts, cash and cash equivalents, including shares of money market funds advised by BFA or its affiliates, as well as in securities not included in the underlying index, but which BFA believes will help the fund track the underlying index. It is non-diversified.",
+  "category": "Large Growth",
+  "fundFamily": "iShares",
+  "totalAssets": 111773540352,
+  "expenseRatio": 0.18,
+  "yield": 0.004,
+  "fundInceptionDate": 958953600,
+  "navPrice": 118.7769,
+  "previousClose": 119.073,
+  "fiftyTwoWeekHigh": 123.25,
+  "fiftyTwoWeekLow": 91.895,
+  "beta3Year": 1.16,
+  "topHoldings": [
+    {
+      "symbol": "NVDA",
+      "name": "NVIDIA Corp",
+      "weight": 0.1292479
+    },
+    {
+      "symbol": "AAPL",
+      "name": "Apple Inc",
+      "weight": 0.1163825
+    },
+    {
+      "symbol": "MSFT",
+      "name": "Microsoft Corp",
+      "weight": 0.088224694
+    },
+    {
+      "symbol": "AVGO",
+      "name": "Broadcom Inc",
+      "weight": 0.047894903
+    },
+    {
+      "symbol": "AMZN",
+      "name": "Amazon.com Inc",
+      "weight": 0.046585396
+    },
+    {
+      "symbol": "TSLA",
+      "name": "Tesla Inc",
+      "weight": 0.035491
+    },
+    {
+      "symbol": "GOOGL",
+      "name": "Alphabet Inc Class A",
+      "weight": 0.0353541
+    },
+    {
+      "symbol": "META",
+      "name": "Meta Platforms Inc Class A",
+      "weight": 0.0345691
+    },
+    {
+      "symbol": "GOOG",
+      "name": "Alphabet Inc Class C",
+      "weight": 0.0287167
+    },
+    {
+      "symbol": "LLY",
+      "name": "Eli Lilly and Co",
+      "weight": 0.026583299
+    }
+  ],
+  "sectorWeightings": {
+    "realestate": 0.0045,
+    "consumer_cyclical": 0.1321,
+    "basic_materials": 0.0034,
+    "consumer_defensive": 0.0292,
+    "technology": 0.5047,
+    "communication_services": 0.124,
+    "financial_services": 0.0571,
+    "utilities": 0.0029,
+    "industrials": 0.056900002,
+    "energy": 0.0045,
+    "healthcare": 0.0805
+  },
+  "fetchedAt": "2026-04-30T21:06:41.170591"
+}

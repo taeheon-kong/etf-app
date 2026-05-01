@@ -1,0 +1,18 @@
+{
+  "ticker": "ETHA",
+  "longName": "iShares Ethereum Trust ETF",
+  "summary": "The shares are intended to constitute a simple means of making an investment similar to an investment in ether rather than by acquiring, holding and trading ether directly on a peer-to-peer or other basis or via a digital asset platform. The shares have been designed to remove the obstacles represented by the complexities and operational burdens involved in a direct investment in ether.",
+  "category": "Digital Assets",
+  "fundFamily": "iShares",
+  "totalAssets": 6339374592,
+  "expenseRatio": 0.25,
+  "yield": 0.0,
+  "fundInceptionDate": 1719187200,
+  "navPrice": 16.84388,
+  "previousClose": 17.37,
+  "fiftyTwoWeekHigh": 36.8,
+  "fiftyTwoWeekLow": 13.25,
+  "beta3Year": 0.0,
+  "topHoldings": [],
+  "fetchedAt": "2026-04-30T21:07:43.100693"
+}

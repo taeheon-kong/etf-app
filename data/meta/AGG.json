@@ -1,0 +1,24 @@
+{
+  "ticker": "AGG",
+  "longName": "iShares Core U.S. Aggregate Bond ETF",
+  "summary": "The index measures the performance of the total U.S. investment-grade bond market. The fund will invest at least 80% of its assets in the component securities of the underlying index and TBAs that have economic characteristics that are substantially identical to the economic characteristics of the component securities of the underlying index, and the fund will invest at least 90% of its assets in fixed income securities of the types included in the underlying index that the advisor believes will help the fund track the underlying index.",
+  "category": "Intermediate Core Bond",
+  "fundFamily": "iShares",
+  "totalAssets": 138698178560,
+  "expenseRatio": 0.03,
+  "yield": 0.039300002,
+  "fundInceptionDate": 1064188800,
+  "navPrice": 98.96375,
+  "previousClose": 99.4,
+  "fiftyTwoWeekHigh": 101.46,
+  "fiftyTwoWeekLow": 96.66,
+  "beta3Year": 0.99,
+  "topHoldings": [
+    {
+      "symbol": "BISXX",
+      "name": "BlackRock Cash Funds Instl SL Agency",
+      "weight": 0.0304788
+    }
+  ],
+  "fetchedAt": "2026-04-30T21:06:57.915061"
+}

@@ -1,0 +1,82 @@
+{
+  "ticker": "INDA",
+  "longName": "iShares MSCI India ETF",
+  "summary": "The fund generally will collectively invest at least 80% of the fund's assets in the component securities of the underlying index and in investments that have economic characteristics that are substantially identical to the component securities of the underlying index. The index measures the performance of equity securities of companies whose market capitalization, as calculated by the index provider, represents the large- and mid-capitalization segments of the Indian securities market. The fund is non-diversified.",
+  "category": "India Equity",
+  "fundFamily": "iShares",
+  "totalAssets": 6745649664,
+  "expenseRatio": 0.61,
+  "yield": 0.0,
+  "fundInceptionDate": 1328140800,
+  "navPrice": 49.09214,
+  "previousClose": 49.23,
+  "fiftyTwoWeekHigh": 56.01,
+  "fiftyTwoWeekLow": 45.21,
+  "beta3Year": 0.54,
+  "topHoldings": [
+    {
+      "symbol": "HDFCBANK.NS",
+      "name": "HDFC Bank Ltd",
+      "weight": 0.0692351
+    },
+    {
+      "symbol": "RELIANCE.NS",
+      "name": "Reliance Industries Ltd",
+      "weight": 0.0664938
+    },
+    {
+      "symbol": "ICICIBANK.NS",
+      "name": "ICICI Bank Ltd",
+      "weight": 0.0530486
+    },
+    {
+      "symbol": "BHARTIARTL.NS",
+      "name": "Bharti Airtel Ltd",
+      "weight": 0.037160203
+    },
+    {
+      "symbol": "INFY.NS",
+      "name": "Infosys Ltd",
+      "weight": 0.032960102
+    },
+    {
+      "symbol": "M&M.NS",
+      "name": "Mahindra & Mahindra Ltd",
+      "weight": 0.022390202
+    },
+    {
+      "symbol": "AXISBANK.BO",
+      "name": "Axis Bank Ltd",
+      "weight": 0.0221837
+    },
+    {
+      "symbol": "LT.NS",
+      "name": "Larsen & Toubro Ltd",
+      "weight": 0.0191907
+    },
+    {
+      "symbol": "XTSLA",
+      "name": "BlackRock Cash Funds Treasury SL Agency",
+      "weight": 0.0183156
+    },
+    {
+      "symbol": "500034",
+      "name": "Bajaj Finance Ltd",
+      "weight": 0.018236099
+    }
+  ],
+  "sectorWeightings": {
+    "realestate": 0.0121,
+    "consumer_cyclical": 0.1236,
+    "basic_materials": 0.0828,
+    "consumer_defensive": 0.0596,
+    "technology": 0.089499995,
+    "communication_services": 0.0479,
+    "financial_services": 0.2866,
+    "utilities": 0.0429,
+    "industrials": 0.0949,
+    "energy": 0.096099995,
+    "healthcare": 0.0639
+  },
+  "fetchedAt": "2026-04-30T21:07:26.746123"
+}

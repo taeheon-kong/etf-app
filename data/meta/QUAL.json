@@ -1,0 +1,82 @@
+{
+  "ticker": "QUAL",
+  "longName": "iShares MSCI USA Quality Factor ETF",
+  "summary": "The fund generally will invest at least 80% of its assets in the component securities of the underlying index and may invest up to 20% of its assets in certain futures, options and swap contracts, cash and cash equivalents. The index is based on a traditional market capitalization-weighted parent index, the MSCI USA Index.",
+  "category": "Large Blend",
+  "fundFamily": "iShares",
+  "totalAssets": 46515249152,
+  "expenseRatio": 0.15,
+  "yield": 0.0098,
+  "fundInceptionDate": 1373932800,
+  "navPrice": 205.67845,
+  "previousClose": 205.91,
+  "fiftyTwoWeekHigh": 207.72,
+  "fiftyTwoWeekLow": 169.23,
+  "beta3Year": 0.96,
+  "topHoldings": [
+    {
+      "symbol": "AAPL",
+      "name": "Apple Inc",
+      "weight": 0.0632565
+    },
+    {
+      "symbol": "NVDA",
+      "name": "NVIDIA Corp",
+      "weight": 0.0613385
+    },
+    {
+      "symbol": "MSFT",
+      "name": "Microsoft Corp",
+      "weight": 0.0493631
+    },
+    {
+      "symbol": "META",
+      "name": "Meta Platforms Inc Class A",
+      "weight": 0.0352504
+    },
+    {
+      "symbol": "TJX",
+      "name": "TJX Companies Inc",
+      "weight": 0.035055898
+    },
+    {
+      "symbol": "LLY",
+      "name": "Eli Lilly and Co",
+      "weight": 0.030977001
+    },
+    {
+      "symbol": "V",
+      "name": "Visa Inc Class A",
+      "weight": 0.030487001
+    },
+    {
+      "symbol": "LRCX",
+      "name": "Lam Research Corp",
+      "weight": 0.0288217
+    },
+    {
+      "symbol": "KLAC",
+      "name": "KLA Corp",
+      "weight": 0.0252715
+    },
+    {
+      "symbol": "MA",
+      "name": "Mastercard Inc Class A",
+      "weight": 0.0246171
+    }
+  ],
+  "sectorWeightings": {
+    "realestate": 0.0183,
+    "consumer_cyclical": 0.1022,
+    "basic_materials": 0.018,
+    "consumer_defensive": 0.0513,
+    "technology": 0.3487,
+    "communication_services": 0.1041,
+    "financial_services": 0.1204,
+    "utilities": 0.0179,
+    "industrials": 0.0801,
+    "energy": 0.0416,
+    "healthcare": 0.09729999
+  },
+  "fetchedAt": "2026-04-30T21:07:30.374933"
+}

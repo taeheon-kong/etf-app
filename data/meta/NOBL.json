@@ -1,0 +1,82 @@
+{
+  "ticker": "NOBL",
+  "longName": "ProShares S&P 500 Dividend Aristocrats ETF",
+  "summary": "The fund invests in financial instruments that ProShare Advisors believes, in combination, should track the performance of the index. The index is designed to measure the performance of companies in the S&P 500 Index that have consistently increased dividends each year for at least 25 years. Under normal circumstances, it will invest at least 80% of its total assets in components of the index or in instruments with similar economic characteristics.",
+  "category": "Large Value",
+  "fundFamily": "ProShares",
+  "totalAssets": 11058682880,
+  "expenseRatio": 0.35,
+  "yield": 0.0214,
+  "fundInceptionDate": 1381276800,
+  "navPrice": 107.2446,
+  "previousClose": 108.07,
+  "fiftyTwoWeekHigh": 115.31,
+  "fiftyTwoWeekLow": 97.13,
+  "beta3Year": 0.81,
+  "topHoldings": [
+    {
+      "symbol": "XOM",
+      "name": "Exxon Mobil Corp",
+      "weight": 0.019005701
+    },
+    {
+      "symbol": "CVX",
+      "name": "Chevron Corp",
+      "weight": 0.018575199
+    },
+    {
+      "symbol": "TGT",
+      "name": "Target Corp",
+      "weight": 0.017107101
+    },
+    {
+      "symbol": "LIN",
+      "name": "Linde PLC",
+      "weight": 0.016889
+    },
+    {
+      "symbol": "JNJ",
+      "name": "Johnson & Johnson",
+      "weight": 0.0167818
+    },
+    {
+      "symbol": "NEE",
+      "name": "NextEra Energy Inc",
+      "weight": 0.0165736
+    },
+    {
+      "symbol": "APD",
+      "name": "Air Products and Chemicals Inc",
+      "weight": 0.0165248
+    },
+    {
+      "symbol": "CAT",
+      "name": "Caterpillar Inc",
+      "weight": 0.0164265
+    },
+    {
+      "symbol": "ATO",
+      "name": "Atmos Energy Corp",
+      "weight": 0.0164207
+    },
+    {
+      "symbol": "ED",
+      "name": "Consolidated Edison Inc",
+      "weight": 0.0163076
+    }
+  ],
+  "sectorWeightings": {
+    "realestate": 0.044499997,
+    "consumer_cyclical": 0.0537,
+    "basic_materials": 0.104499996,
+    "consumer_defensive": 0.2366,
+    "technology": 0.0372,
+    "communication_services": 0.0,
+    "financial_services": 0.1221,
+    "utilities": 0.0639,
+    "industrials": 0.1981,
+    "energy": 0.0376,
+    "healthcare": 0.1018
+  },
+  "fetchedAt": "2026-04-30T21:06:53.436907"
+}

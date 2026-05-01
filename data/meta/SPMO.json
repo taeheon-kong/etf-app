@@ -1,0 +1,82 @@
+{
+  "ticker": "SPMO",
+  "longName": "Invesco S&P 500 Momentum ETF",
+  "summary": "The fund generally will invest at least 90% of its total assets in the securities that comprise the underlying index. The underlying index is designed to measure the performance of approximately 100 stocks in the S&P 500® Index that have the highest \"momentum score.\" In general, momentum is the tendency of an investment to exhibit persistence in its relative performance; a \"momentum style\" of investing emphasizes investing in securities that have had better recent performance compared to other securities. It is non-diversified.",
+  "category": "Large Blend",
+  "fundFamily": "Invesco",
+  "totalAssets": 12323705856,
+  "expenseRatio": 0.13,
+  "yield": 0.0091,
+  "fundInceptionDate": 1444348800,
+  "navPrice": 130.76,
+  "previousClose": 129.96,
+  "fiftyTwoWeekHigh": 132.29,
+  "fiftyTwoWeekLow": 95.455,
+  "beta3Year": 1.16,
+  "topHoldings": [
+    {
+      "symbol": "NVDA",
+      "name": "NVIDIA Corp",
+      "weight": 0.093730405
+    },
+    {
+      "symbol": "AVGO",
+      "name": "Broadcom Inc",
+      "weight": 0.0704349
+    },
+    {
+      "symbol": "JNJ",
+      "name": "Johnson & Johnson",
+      "weight": 0.0560536
+    },
+    {
+      "symbol": "MU",
+      "name": "Micron Technology Inc",
+      "weight": 0.050068203
+    },
+    {
+      "symbol": "GOOGL",
+      "name": "Alphabet Inc Class A",
+      "weight": 0.0487811
+    },
+    {
+      "symbol": "XOM",
+      "name": "Exxon Mobil Corp",
+      "weight": 0.0435316
+    },
+    {
+      "symbol": "GOOG",
+      "name": "Alphabet Inc Class C",
+      "weight": 0.0390026
+    },
+    {
+      "symbol": "LRCX",
+      "name": "Lam Research Corp",
+      "weight": 0.0318649
+    },
+    {
+      "symbol": "CAT",
+      "name": "Caterpillar Inc",
+      "weight": 0.0282037
+    },
+    {
+      "symbol": "AMD",
+      "name": "Advanced Micro Devices Inc",
+      "weight": 0.021884
+    }
+  ],
+  "sectorWeightings": {
+    "realestate": 0.012200001,
+    "consumer_cyclical": 0.0153,
+    "basic_materials": 0.0208,
+    "consumer_defensive": 0.051,
+    "technology": 0.4373,
+    "communication_services": 0.089499995,
+    "financial_services": 0.0668,
+    "utilities": 0.0168,
+    "industrials": 0.1513,
+    "energy": 0.0478,
+    "healthcare": 0.0913
+  },
+  "fetchedAt": "2026-04-30T21:06:28.631498"
+}

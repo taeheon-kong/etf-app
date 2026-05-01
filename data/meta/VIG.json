@@ -1,0 +1,82 @@
+{
+  "ticker": "VIG",
+  "longName": "Vanguard Dividend Appreciation Index Fund ETF Shares",
+  "summary": "The adviser employs an indexing investment approach designed to track the performance of the index, which consists of common stocks of companies that have a record of increasing dividends over time. The adviser attempts to replicate the target index by investing all, or substantially all, of its assets in the stocks that make up the index, holding each stock in approximately the same proportion as its weighting in the index.",
+  "category": "Large Blend",
+  "fundFamily": "Vanguard",
+  "totalAssets": 117045436416,
+  "expenseRatio": 0.04,
+  "yield": 0.0161,
+  "fundInceptionDate": 1145577600,
+  "navPrice": 225.61,
+  "previousClose": 225.35,
+  "fiftyTwoWeekHigh": 230.53,
+  "fiftyTwoWeekLow": 190.11,
+  "beta3Year": 0.83,
+  "topHoldings": [
+    {
+      "symbol": "AVGO",
+      "name": "Broadcom Inc",
+      "weight": 0.040676598
+    },
+    {
+      "symbol": "AAPL",
+      "name": "Apple Inc",
+      "weight": 0.040342897
+    },
+    {
+      "symbol": "MSFT",
+      "name": "Microsoft Corp",
+      "weight": 0.038123
+    },
+    {
+      "symbol": "JPM",
+      "name": "JPMorgan Chase & Co",
+      "weight": 0.0353386
+    },
+    {
+      "symbol": "LLY",
+      "name": "Eli Lilly and Co",
+      "weight": 0.0347667
+    },
+    {
+      "symbol": "XOM",
+      "name": "Exxon Mobil Corp",
+      "weight": 0.0338205
+    },
+    {
+      "symbol": "JNJ",
+      "name": "Johnson & Johnson",
+      "weight": 0.028099502
+    },
+    {
+      "symbol": "WMT",
+      "name": "Walmart Inc",
+      "weight": 0.0259872
+    },
+    {
+      "symbol": "V",
+      "name": "Visa Inc Class A",
+      "weight": 0.022575801
+    },
+    {
+      "symbol": "COST",
+      "name": "Costco Wholesale Corp",
+      "weight": 0.0210974
+    }
+  ],
+  "sectorWeightings": {
+    "realestate": 0.0,
+    "consumer_cyclical": 0.0498,
+    "basic_materials": 0.035,
+    "consumer_defensive": 0.104399994,
+    "technology": 0.23979999,
+    "communication_services": 0.0,
+    "financial_services": 0.205,
+    "utilities": 0.0332,
+    "industrials": 0.1164,
+    "energy": 0.0401,
+    "healthcare": 0.17639999
+  },
+  "fetchedAt": "2026-04-30T21:06:47.604141"
+}

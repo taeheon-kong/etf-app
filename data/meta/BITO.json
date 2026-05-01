@@ -1,0 +1,24 @@
+{
+  "ticker": "BITO",
+  "longName": "ProShares Bitcoin ETF",
+  "summary": "The fund adviser seeks to achieve its investment objective primarily through managed exposure to bitcoin futures contracts. The fund does not invest directly in bitcoin. The fund adviser will generally hold its bitcoin futures contracts during periods in which the value of bitcoin and bitcoin futures are flat or declining as well as during periods in which the value of bitcoin or bitcoin futures is rising. It is non-diversified.",
+  "category": "Digital Assets",
+  "fundFamily": "ProShares",
+  "totalAssets": 1742492928,
+  "expenseRatio": 0.95,
+  "yield": 0.84599996,
+  "fundInceptionDate": 1634515200,
+  "navPrice": 10.3408,
+  "previousClose": 10.46,
+  "fiftyTwoWeekHigh": 23.63,
+  "fiftyTwoWeekLow": 8.61,
+  "beta3Year": 0.0,
+  "topHoldings": [
+    {
+      "symbol": "IQMM",
+      "name": "ProShares GENIUS Money Market ETF",
+      "weight": 0.6602349
+    }
+  ],
+  "fetchedAt": "2026-04-30T21:07:43.938837"
+}

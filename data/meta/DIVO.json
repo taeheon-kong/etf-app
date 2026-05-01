@@ -1,0 +1,82 @@
+{
+  "ticker": "DIVO",
+  "longName": "Amplify CWP Enhanced Dividend Income ETF",
+  "summary": "Under normal circumstances, the fund invests at least 80% of its net assets in dividend-paying U.S. exchange-traded equity securities (\"Equity Securities\") and will opportunistically utilize an \"option strategy\" consisting of writing (selling) U.S. exchange-traded covered call options on such Equity Securities. The fund is non-diversified.",
+  "category": "Derivative Income",
+  "fundFamily": "Amplify ETFs",
+  "totalAssets": 6605265920,
+  "expenseRatio": 0.56,
+  "yield": 0.0512,
+  "fundInceptionDate": 1481587200,
+  "navPrice": 45.1364,
+  "previousClose": 45.2388,
+  "fiftyTwoWeekHigh": 47.3,
+  "fiftyTwoWeekLow": 40.0,
+  "beta3Year": 0.66,
+  "topHoldings": [
+    {
+      "symbol": "RTX",
+      "name": "RTX Corp",
+      "weight": 0.052877598
+    },
+    {
+      "symbol": "GS",
+      "name": "The Goldman Sachs Group Inc",
+      "weight": 0.0509751
+    },
+    {
+      "symbol": "MSFT",
+      "name": "Microsoft Corp",
+      "weight": 0.050939597
+    },
+    {
+      "symbol": "CAT",
+      "name": "Caterpillar Inc",
+      "weight": 0.050415803
+    },
+    {
+      "symbol": "JPM",
+      "name": "JPMorgan Chase & Co",
+      "weight": 0.0501009
+    },
+    {
+      "symbol": "AAPL",
+      "name": "Apple Inc",
+      "weight": 0.0485544
+    },
+    {
+      "symbol": "AXP",
+      "name": "American Express Co",
+      "weight": 0.0485321
+    },
+    {
+      "symbol": "CVX",
+      "name": "Chevron Corp",
+      "weight": 0.0480822
+    },
+    {
+      "symbol": "TJX",
+      "name": "TJX Companies Inc",
+      "weight": 0.046747
+    },
+    {
+      "symbol": "SOFR",
+      "name": "Amplify Samsung SOFR ETF",
+      "weight": 0.0439081
+    }
+  ],
+  "sectorWeightings": {
+    "realestate": 0.0,
+    "consumer_cyclical": 0.1387,
+    "basic_materials": 0.0321,
+    "consumer_defensive": 0.0639,
+    "technology": 0.14930001,
+    "communication_services": 0.0119,
+    "financial_services": 0.2507,
+    "utilities": 0.0226,
+    "industrials": 0.1516,
+    "energy": 0.0845,
+    "healthcare": 0.094799995
+  },
+  "fetchedAt": "2026-04-30T21:06:56.173086"
+}

@@ -1,0 +1,24 @@
+{
+  "ticker": "BITU",
+  "longName": "Proshares Ultra Bitcoin ETF",
+  "summary": "The index is designed to measure the performance of a single bitcoin traded in USD and seeks to provide a proxy for the bitcoin market. Under normal circumstances, the fund will invest at least 80% of the fund’s assets in, or provide exposure to, financial instruments that ProShare Advisors believes, in combination, should produce daily returns consistent with the daily target. The fund is non-diversified.",
+  "category": "Digital Assets",
+  "fundFamily": "ProShares",
+  "totalAssets": 387191296,
+  "expenseRatio": 0.98,
+  "yield": 0.22950001,
+  "fundInceptionDate": 1711929600,
+  "navPrice": 14.1287,
+  "previousClose": 14.46,
+  "fiftyTwoWeekHigh": 65.77,
+  "fiftyTwoWeekLow": 10.41,
+  "beta3Year": 0.0,
+  "topHoldings": [
+    {
+      "symbol": "IQMM",
+      "name": "ProShares GENIUS Money Market ETF",
+      "weight": 0.0515965
+    }
+  ],
+  "fetchedAt": "2026-04-30T21:07:45.597076"
+}
