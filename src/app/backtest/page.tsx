@@ -201,7 +201,7 @@ export default function BacktestPage() {
 
       {/* ─── 섹션 1: 기본 설정 ─── */}
       <SectionCard
-        icon="⚙"
+        icon={<IconSettings />}
         title="기본 설정"
         subtitle="자산·비중·리밸런싱·기간"
         open={openSection === "basic"}
@@ -322,7 +322,7 @@ export default function BacktestPage() {
 
       {/* ─── 섹션 2: 적립식 시뮬레이션 ─── */}
       <SectionCard
-        icon="🐷"
+        icon={<IconPiggy />}
         title="적립식 시뮬레이션"
         subtitle="초기자본·월 적립·인플레·수수료"
         badge={dcaEnabled ? null : "비활성"}
@@ -393,7 +393,7 @@ export default function BacktestPage() {
 
       {/* ─── 섹션 3: 절세 시뮬레이션 (Phase 3, placeholder) ─── */}
       <SectionCard
-        icon="🏛"
+        icon={<IconBank />}
         title="절세 시뮬레이션"
         subtitle="ISA·연금·IRP 계좌 우선순위"
         badge="비활성"
@@ -549,7 +549,7 @@ export default function BacktestPage() {
 function SectionCard({
   icon, title, subtitle, badge, checkbox, open, onToggle, children,
 }: {
-  icon: string;
+  icon: React.ReactNode;
   title: string;
   subtitle: string;
   badge?: string | null;
@@ -574,7 +574,7 @@ function SectionCard({
             className="w-5 h-5 rounded border-slate-300 text-blue-600 focus:ring-blue-500"
           />
         )}
-        <span className="text-2xl">{icon}</span>
+        <span className="text-slate-600">{icon}</span>
         <div className="flex-1">
           <div className="flex items-center gap-2">
             <h3 className="font-bold text-slate-900">{title}</h3>
@@ -750,5 +750,32 @@ function TickerRow({ ticker, name, sizeLabel, selected, onClick }: {
       </div>
       <div className="text-xs text-slate-400 shrink-0">{sizeLabel}</div>
     </button>
+  );
+}
+
+function IconSettings() {
+  return (
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M4 6h12M16 6a2 2 0 1 0 4 0a2 2 0 1 0-4 0M4 12h4M8 12a2 2 0 1 0 4 0a2 2 0 1 0-4 0M12 12h8M4 18h12M16 18a2 2 0 1 0 4 0a2 2 0 1 0-4 0" />
+    </svg>
+  );
+}
+
+function IconPiggy() {
+  return (
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M11 17h3m-9-7c0-1.1.9-2 2-2h7c2.5 0 5 2 5 5c0 1.5-1 3-2.5 4l-.5 3h-3l-.5-2H10l-.5 2h-3l-.5-3c-1.5-1-2.5-2.5-2.5-4z" />
+      <circle cx="9" cy="11" r="0.5" fill="currentColor" />
+    </svg>
+  );
+}
+
+function IconBank() {
+  return (
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M3 10l9-6 9 6" />
+      <path d="M5 10v8M9 10v8M15 10v8M19 10v8" />
+      <path d="M3 20h18" />
+    </svg>
   );
 }
