@@ -6,6 +6,7 @@ import type {
   DcaOptions,
   DcaResult,
   TaxOptions,
+  MergedSimResult,
 } from "@/lib/finance/types";
 import { loadPrices, sliceByDate } from "@/lib/finance/loader";
 import {
@@ -14,19 +15,23 @@ import {
   weightedReturns,
   buildEquityCurve,
 } from "@/lib/finance/returns";
-// ✅ Phase 4에서 새로 만든 고급 메트릭 함수들 임포트
-import { 
-  calcAllMetrics, 
+import {
+  calcAllMetrics,
   calcYearlyReturns,
   dailyRiskFreeSeries,
   calcRollingReturns,
   calcRegressionMetrics,
   calcCaptureRatios,
-  calcTailRisk 
+  calcTailRisk,
+  calcDrawdowns,
+  calcExtendedPerformanceMetrics,
+  calcPeriodReturns,
+  calcAssetContributions,
+  calcTopDrawdowns,
 } from "@/lib/finance/metrics";
 import { simulatePortfolio, validateWeights } from "@/lib/finance/portfolio";
 import { simulateDca } from "@/lib/finance/dca";
-import { simulateDcaWithTax } from "@/lib/finance/dca_tax_merged";
+import { simulateDcaWithTax, simulateGeneralOnly } from "@/lib/finance/dca_tax_merged";
 import { ETF_CATALOG } from "@/lib/finance/catalog";
 import { KR_ETF_CATALOG } from "@/lib/finance/catalogKr";
 
@@ -34,10 +39,11 @@ type ExtendedRequest = BacktestRequest & {
   dca?: DcaOptions;
   tax?: TaxOptions;
 };
+
 type ExtendedResult = BacktestResult & {
   dca?: DcaResult;
-  merged?: any; 
-  advancedMetrics?: any; // ✅ 프론트엔드로 보낼 고급 지표 데이터 타입 추가
+  merged?: MergedSimResult;
+  advancedMetrics?: any;
   benchmarkInfo?: { ticker: string; name: string; reason: string };
   dateAdjustments?: { ticker: string; firstAvailable: string }[];
 };
@@ -54,12 +60,6 @@ function isKoreanTicker(ticker: string): boolean {
   return /^[0-9A-Z]{6}$/.test(ticker) && /[0-9]/.test(ticker);
 }
 
-/**
- * 벤치마크 자동 선택.
- *  - 한국 비중 ≥ 50% → KODEX 200 (069500)
- *  - 미국 비중 ≥ 50% → SPY
- *  - 그 외(혼합) → 사용자 지정 또는 SPY 기본
- */
 function pickBenchmark(
   holdings: { ticker: string; weight: number }[],
   userBenchmark?: string,
@@ -67,16 +67,82 @@ function pickBenchmark(
   if (userBenchmark && userBenchmark !== "auto") {
     return { ticker: userBenchmark, reason: "사용자 지정" };
   }
-
   let krWeight = 0;
   for (const h of holdings) {
     if (isKoreanTicker(h.ticker)) krWeight += h.weight;
   }
-
   if (krWeight >= 0.5) {
     return { ticker: "069500", reason: `한국 비중 ${(krWeight * 100).toFixed(0)}% → KODEX 200` };
   }
   return { ticker: "SPY", reason: `미국 비중 ${((1 - krWeight) * 100).toFixed(0)}% → SPY` };
+}
+
+function calcAssetDrift(
+  matrix: number[][],
+  dates: string[],
+  initialWeights: number[],
+  rebalance: string,
+  tickers: string[],
+) {
+  const numAssets = initialWeights.length;
+  const currentShares = [...initialWeights];
+  const driftSeries: any[] = [];
+  let rebalanceCount = 0;
+
+  if (dates.length === 0) return { driftSeries, rebalanceCount };
+
+  let prevYear = dates[0].slice(0, 4);
+  let prevMonth = dates[0].slice(0, 7);
+
+  const initial: any = { date: dates[0] };
+  for (let j = 0; j < numAssets; j++) {
+    initial[tickers[j]] = Number((initialWeights[j] * 100).toFixed(2));
+  }
+  driftSeries.push(initial);
+
+  for (let i = 1; i < dates.length; i++) {
+    const date = dates[i];
+    const year = date.slice(0, 4);
+    const month = date.slice(0, 7);
+
+    let doRebalance = false;
+    if (rebalance === "annual" && year !== prevYear) doRebalance = true;
+    if (rebalance === "semiannual" && month !== prevMonth && (month.endsWith("01") || month.endsWith("07"))) doRebalance = true;
+    if (rebalance === "quarterly" && month !== prevMonth && ["01", "04", "07", "10"].some((m) => month.endsWith(m))) doRebalance = true;
+
+    let portValue = 0;
+    for (let j = 0; j < numAssets; j++) {
+      currentShares[j] *= 1 + (matrix[i]?.[j] ?? 0);
+      portValue += currentShares[j];
+    }
+
+    if (doRebalance) {
+      rebalanceCount++;
+      const pre: any = { date };
+      for (let j = 0; j < numAssets; j++) {
+        pre[tickers[j]] = portValue > 0 ? Number(((currentShares[j] / portValue) * 100).toFixed(2)) : 0;
+      }
+      driftSeries.push(pre);
+
+      for (let j = 0; j < numAssets; j++) currentShares[j] = portValue * initialWeights[j];
+
+      const post: any = { date };
+      for (let j = 0; j < numAssets; j++) {
+        post[tickers[j]] = Number((initialWeights[j] * 100).toFixed(2));
+      }
+      driftSeries.push(post);
+    } else if (i === dates.length - 1 || month !== dates[i + 1]?.slice(0, 7)) {
+      const pt: any = { date };
+      for (let j = 0; j < numAssets; j++) {
+        pt[tickers[j]] = portValue > 0 ? Number(((currentShares[j] / portValue) * 100).toFixed(2)) : 0;
+      }
+      driftSeries.push(pt);
+    }
+    prevYear = year;
+    prevMonth = month;
+  }
+
+  return { driftSeries, rebalanceCount };
 }
 
 export async function POST(req: Request) {
@@ -86,15 +152,14 @@ export async function POST(req: Request) {
     if (!body.holdings || body.holdings.length === 0) {
       return NextResponse.json({ error: "종목이 비어있습니다." }, { status: 400 });
     }
+
     const weights = body.holdings.map((h) => h.weight);
     validateWeights(weights);
     const tickers = body.holdings.map((h) => h.ticker);
 
-    // 벤치마크 자동 선택
     const benchmarkPick = pickBenchmark(body.holdings, body.benchmark);
     const benchmark = benchmarkPick.ticker;
 
-    // 한국 비중 (무위험수익률 분기용)
     let krWeight = 0;
     for (const h of body.holdings) {
       if (isKoreanTicker(h.ticker)) krWeight += h.weight;
@@ -103,60 +168,37 @@ export async function POST(req: Request) {
     let priceSeries: PriceSeries[];
     let benchSeries: PriceSeries;
     try {
-      priceSeries = tickers.map((t) =>
-        sliceByDate(loadPrices(t), body.startDate, body.endDate)
-      );
-      benchSeries = sliceByDate(
-        loadPrices(benchmark),
-        body.startDate,
-        body.endDate
-      );
+      priceSeries = tickers.map((t) => sliceByDate(loadPrices(t), body.startDate, body.endDate));
+      benchSeries = sliceByDate(loadPrices(benchmark), body.startDate, body.endDate);
     } catch (e) {
-      return NextResponse.json(
-        { error: (e as Error).message },
-        { status: 400 }
-      );
+      return NextResponse.json({ error: (e as Error).message }, { status: 400 });
     }
 
-    const allReturns = priceSeries.map((s) => ({
-      ticker: s.ticker,
-      rows: dailyReturns(s),
-    }));
+    const allReturns = priceSeries.map((s) => ({ ticker: s.ticker, rows: dailyReturns(s) }));
     const { dates, matrix } = alignReturns(allReturns);
     if (dates.length < 2) {
-      return NextResponse.json(
-        { error: "공통 거래일이 부족합니다. 기간 또는 종목을 조정하세요." },
-        { status: 400 }
-      );
+      return NextResponse.json({ error: "공통 거래일이 부족합니다." }, { status: 400 });
     }
+
     const actualStart = dates[0];
     const actualEnd = dates[dates.length - 1];
 
-    // 상장일 검증: 사용자 요청 시작일과 실제 사용 시작일 비교
     const dateAdjustments: { ticker: string; firstAvailable: string }[] = [];
     for (let i = 0; i < tickers.length; i++) {
       const series = priceSeries[i];
       if (series.rows.length === 0) continue;
-      const firstAvailable = series.rows[0].date;
-      if (firstAvailable > body.startDate) {
-        dateAdjustments.push({ ticker: tickers[i], firstAvailable });
+      if (series.rows[0].date > body.startDate) {
+        dateAdjustments.push({ ticker: tickers[i], firstAvailable: series.rows[0].date });
       }
     }
 
-    // 리밸런싱 거래비용
     const rebalanceFeeRate = body.dca?.feeRate ?? 0;
     const portCurve = simulatePortfolio(matrix, dates, weights, actualStart, body.rebalance, rebalanceFeeRate);
     const portRets = weightedReturns(matrix, weights);
 
     const benchDailyAll = dailyReturns(benchSeries);
-    const benchDaily = benchDailyAll.filter(
-      (r) => r.date >= actualStart && r.date <= actualEnd
-    );
-    const benchCurve = buildEquityCurve(
-      benchDaily.map((r) => r.ret),
-      benchDaily.map((r) => r.date),
-      actualStart
-    );
+    const benchDaily = benchDailyAll.filter((r) => r.date >= actualStart && r.date <= actualEnd);
+    const benchCurve = buildEquityCurve(benchDaily.map((r) => r.ret), benchDaily.map((r) => r.date), actualStart);
 
     let irxSeries: { date: string; rate: number }[] | undefined;
     if (body.riskFree?.type === "dynamic") {
@@ -170,52 +212,55 @@ export async function POST(req: Request) {
 
     const benchKrWeight = isKoreanTicker(benchmark) ? 1 : 0;
 
-    const metrics = calcAllMetrics(
-      portCurve,
-      portRets,
-      body.riskFree ?? { type: "none" },
-      irxSeries,
-      krWeight,
-    );
-    const benchmarkMetrics = calcAllMetrics(
-      benchCurve,
-      benchDaily.map((r) => r.ret),
-      body.riskFree ?? { type: "none" },
-      irxSeries,
-      benchKrWeight,
-    );
-
+    const metrics = calcAllMetrics(portCurve, portRets, body.riskFree ?? { type: "none" }, irxSeries, krWeight);
+    const benchmarkMetrics = calcAllMetrics(benchCurve, benchDaily.map((r) => r.ret), body.riskFree ?? { type: "none" }, irxSeries, benchKrWeight);
     const yearlyReturns = calcYearlyReturns(portCurve, benchCurve);
 
-    // ── ✅ Phase 4: Advanced Metrics 계산 및 추가 ──
     const retDates = portCurve.slice(1).map((p) => p.date);
     const rfSeriesArray = dailyRiskFreeSeries(retDates, body.riskFree ?? { type: "none" }, irxSeries, krWeight);
-    const benchDailyRets = benchDaily.map(r => r.ret);
+    const alignedBenchRets = retDates.map((d) => {
+      const m = benchDaily.find((b) => b.date === d);
+      return m ? m.ret : 0;
+    });
+
+    const driftData = calcAssetDrift(matrix, dates, weights, body.rebalance, tickers);
+    const extendedMetrics = calcExtendedPerformanceMetrics(portCurve, portRets, metrics.cagr, metrics.mdd, yearlyReturns);
 
     const advancedMetrics = {
       rollingReturns: calcRollingReturns(portCurve),
-      regression: calcRegressionMetrics(portRets, benchDailyRets, rfSeriesArray),
-      captureRatios: calcCaptureRatios(portRets, benchDailyRets),
-      tailRisk: calcTailRisk(portCurve, portRets)
+      regression: calcRegressionMetrics(portRets, alignedBenchRets, rfSeriesArray),
+      captureRatios: calcCaptureRatios(portRets, alignedBenchRets),
+      tailRisk: calcTailRisk(portCurve, portRets),
+      drawdowns: calcDrawdowns(portCurve),
+      topDrawdowns: calcTopDrawdowns(portCurve, 5),
+      periodReturns: calcPeriodReturns(portCurve),
+      contributions: calcAssetContributions(
+        priceSeries.map((p) => ({
+          ticker: p.ticker,
+          rows: p.rows.map((r) => ({ date: r.date, adjClose: r.adjClose, dividends: r.dividends })),
+        })),
+        weights,
+        actualStart,
+        actualEnd,
+      ),
+      drift: driftData.driftSeries,
+      extended: { ...extendedMetrics, rebalanceCount: driftData.rebalanceCount },
     };
 
-    // ── 적립식 (DCA) ──
     let dcaResult: DcaResult | undefined;
     if (body.dca && body.dca.enabled) {
       try {
         dcaResult = simulateDca(priceSeries, tickers, weights, dates, body.dca);
       } catch (e) {
-        console.error("DCA error:", e);
+        console.error(e);
       }
     }
 
-    // ── 절세 (Merged) ──
-    let mergedResult: any = undefined;
+    let mergedResult: MergedSimResult | undefined;
     if (body.tax && body.tax.enabled && body.dca && body.dca.enabled) {
       try {
         const holdingNames: Record<string, string> = {};
         for (const t of tickers) holdingNames[t] = findName(t);
-
         mergedResult = simulateDcaWithTax({
           prices: priceSeries,
           tickers,
@@ -225,18 +270,28 @@ export async function POST(req: Request) {
           dcaOptions: body.dca,
           taxOptions: body.tax,
         });
-
-        const generalCaseBalance = dcaResult?.finalBalance ?? 0;
-        const totalDeposit = dcaResult?.totalDeposit ?? 0;
+        const generalSim = simulateGeneralOnly({
+          prices: priceSeries,
+          tickers,
+          weights,
+          dates,
+          holdingNames,
+          dcaOptions: body.dca,
+          taxOptions: body.tax,
+        });
         const totalYears = Math.max(1, dates.length / 252);
-        
-        mergedResult.generalCaseBalance = generalCaseBalance;
-        mergedResult.totalSavings = mergedResult.totalFinalBalance - generalCaseBalance;
-        mergedResult.afterTaxCagr = totalDeposit > 0 ? Math.pow(mergedResult.totalFinalBalance / totalDeposit, 1 / totalYears) - 1 : 0;
-        mergedResult.generalCaseCagr = totalDeposit > 0 ? Math.pow(generalCaseBalance / totalDeposit, 1 / totalYears) - 1 : 0;
-
+        mergedResult.generalCaseBalance = generalSim.finalBalance;
+        mergedResult.totalSavings = mergedResult.totalFinalBalance - generalSim.finalBalance;
+        mergedResult.afterTaxCagr =
+          generalSim.totalDeposit > 0
+            ? Math.pow(mergedResult.totalFinalBalance / generalSim.totalDeposit, 1 / totalYears) - 1
+            : 0;
+        mergedResult.generalCaseCagr =
+          generalSim.totalDeposit > 0
+            ? Math.pow(generalSim.finalBalance / generalSim.totalDeposit, 1 / totalYears) - 1
+            : 0;
       } catch (e) {
-        console.error("Merged Tax error:", e);
+        console.error(e);
       }
     }
 
@@ -246,23 +301,16 @@ export async function POST(req: Request) {
       metrics,
       benchmarkMetrics,
       yearlyReturns,
-      advancedMetrics, // ✅ 프론트엔드로 내보낼 객체에 탑재
+      advancedMetrics,
       meta: { actualStart, actualEnd, tradingDays: dates.length },
       dca: dcaResult,
       merged: mergedResult,
-      benchmarkInfo: {
-        ticker: benchmark,
-        name: findName(benchmark),
-        reason: benchmarkPick.reason,
-      },
+      benchmarkInfo: { ticker: benchmark, name: findName(benchmark), reason: benchmarkPick.reason },
       dateAdjustments,
     };
 
     return NextResponse.json(result);
   } catch (e) {
-    return NextResponse.json(
-      { error: (e as Error).message ?? "Unknown error" },
-      { status: 500 }
-    );
+    return NextResponse.json({ error: (e as Error).message ?? "Unknown error" }, { status: 500 });
   }
 }

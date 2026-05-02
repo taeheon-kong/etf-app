@@ -1,33 +1,19 @@
 "use client";
 
 import { useState, useMemo } from "react";
-import {
-  LineChart,
-  Line,
-  XAxis,
-  YAxis,
-  Tooltip,
-  Legend,
-  ResponsiveContainer,
-  CartesianGrid,
-  BarChart,
-  Bar,
-  ReferenceLine,
-} from "recharts";
+import { useRouter } from "next/navigation";
 import type {
   BacktestRequest,
-  BacktestResult,
   RebalanceFrequency,
   RiskFreeMode,
   DcaOptions,
-  DcaResult,
   AmountBasis,
   TaxOptions,
-  TaxResult,
   AccountConfig,
   AccountType,
   TaxBracket,
 } from "@/lib/finance/types";
+import { saveBacktestInput } from "@/lib/finance/useBacktestData";
 import {
   ETF_CATALOG,
   CATEGORY_LABELS,
@@ -45,14 +31,6 @@ import {
 
 type Holding = { ticker: string; weight: number };
 type Market = "us" | "kr";
-type ExtendedResult = BacktestResult & {
-  dca?: DcaResult;
-  tax?: TaxResult;
-  merged?: any; 
-  advancedMetrics?: any;
-  benchmarkInfo?: { ticker: string; name: string; reason: string };
-  dateAdjustments?: { ticker: string; firstAvailable: string }[];
-};
 
 function findAnyTicker(ticker: string):
   | { market: "us"; name: string }
@@ -64,12 +42,6 @@ function findAnyTicker(ticker: string):
   if (kr) return { market: "kr", name: kr.name };
   return null;
 }
-
-const fmtKrw = (v: number) => {
-  if (Math.abs(v) >= 1e8) return `${(v / 1e8).toFixed(2)}억`;
-  if (Math.abs(v) >= 1e4) return `${(v / 1e4).toFixed(0)}만`;
-  return `${Math.round(v).toLocaleString()}`;
-};
 
 const ACCOUNT_LABELS: Record<AccountType, string> = {
   isa: "ISA",
@@ -95,6 +67,8 @@ const TAX_BRACKETS: { value: TaxBracket; label: string }[] = [
 ];
 
 export default function BacktestPage() {
+  const router = useRouter();
+
   const [holdings, setHoldings] = useState<Holding[]>([
     { ticker: "SPY", weight: 60 },
     { ticker: "QQQ", weight: 30 },
@@ -130,8 +104,6 @@ export default function BacktestPage() {
   const [pensionAnnualWithdrawal, setPensionAnnualWithdrawal] = useState(15_000_000);
 
   const [pickerOpen, setPickerOpen] = useState<number | null>(null);
-  const [loading, setLoading] = useState(false);
-  const [result, setResult] = useState<ExtendedResult | null>(null);
   const [error, setError] = useState<string | null>(null);
 
   const totalWeight = holdings.reduce((s, h) => s + h.weight, 0);
@@ -169,14 +141,11 @@ export default function BacktestPage() {
     setAccounts(accounts.map((a) => a.type === type ? { ...a, enabled: !a.enabled } : a));
   };
 
-  const runBacktest = async () => {
+  const runBacktest = () => {
     setError(null);
-    setLoading(true);
-    setResult(null);
 
     if (!weightOK) {
       setError(`비중 합이 100%가 아닙니다: ${totalWeight}%`);
-      setLoading(false);
       return;
     }
 
@@ -204,7 +173,7 @@ export default function BacktestPage() {
       pensionAnnualWithdrawal,
     };
 
-    const req: BacktestRequest & { dca: DcaOptions; tax: TaxOptions } = {
+    const input: BacktestRequest & { dca: DcaOptions; tax: TaxOptions } = {
       holdings: holdings.map((h) => ({ ticker: h.ticker, weight: h.weight / 100 })),
       startDate,
       endDate,
@@ -215,53 +184,9 @@ export default function BacktestPage() {
       tax: taxOptions,
     };
 
-    try {
-      const res = await fetch("/api/backtest", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(req),
-      });
-      const data = await res.json();
-      if (!res.ok) setError(data.error ?? "에러");
-      else setResult(data);
-    } catch (e) {
-      setError((e as Error).message);
-    } finally {
-      setLoading(false);
-    }
+    saveBacktestInput(input);
+    router.push("/backtest/result");
   };
-
-  const chartData = result
-    ? result.portfolio.map((p, i) => ({
-        date: p.date,
-        portfolio: +p.value.toFixed(2),
-        benchmark: result.benchmark[i]?.value !== undefined ? +result.benchmark[i].value.toFixed(2) : null,
-      }))
-    : [];
-
-  const benchLabel = (() => {
-    const info = result?.benchmarkInfo;
-    if (!info) return "SPY";
-    return /^[0-9A-Z]{6}$/.test(info.ticker) && /[0-9]/.test(info.ticker)
-      ? info.name
-      : info.ticker;
-  })();
-
-  const yearlyData = result
-    ? result.yearlyReturns.map((y) => ({
-        year: y.year.toString(),
-        포트폴리오: +(y.portfolio * 100).toFixed(2),
-        [benchLabel]: +(y.benchmark * 100).toFixed(2),
-      }))
-    : [];
-
-  const dcaChartData = result?.dca
-    ? result.dca.series
-        .filter((_, i, arr) => i % Math.max(1, Math.floor(arr.length / 200)) === 0)
-        .map((s) => ({ date: s.date, 평가액: Math.round(s.balance), 납입누적: Math.round(s.deposit) }))
-    : [];
-
-  const fmt = (v: number, pct: boolean) => (pct ? `${(v * 100).toFixed(2)}%` : v.toFixed(3));
 
   const sortedAccounts = [...accounts].sort((a, b) => a.priority - b.priority);
   const enabledCount = accounts.filter((a) => a.enabled).length;
@@ -588,347 +513,11 @@ export default function BacktestPage() {
           onClose={() => setPickerOpen(null)} groupedUs={groupedUs} groupedKr={groupedKr} />
       )}
 
-      {result && (
-        <div className="mt-8 space-y-5">
-          <div className="border-t-2 border-slate-200 pt-6">
-            <h2 className="text-2xl font-bold text-slate-900 mb-4">결과</h2>
-          </div>
-
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3">
-            {[
-              { label: "총수익률", port: result.metrics.totalReturn, bench: result.benchmarkMetrics.totalReturn, pct: true, accent: "text-blue-600" },
-              { label: "CAGR", port: result.metrics.cagr, bench: result.benchmarkMetrics.cagr, pct: true, accent: "text-blue-600" },
-              { label: "MDD", port: result.metrics.mdd, bench: result.benchmarkMetrics.mdd, pct: true, accent: "text-rose-600" },
-              { label: "Sharpe", port: result.metrics.sharpe, bench: result.benchmarkMetrics.sharpe, pct: false, accent: "text-slate-900" },
-              { label: "Sortino", port: result.metrics.sortino, bench: result.benchmarkMetrics.sortino, pct: false, accent: "text-slate-900" },
-              { label: "변동성", port: result.metrics.volatility, bench: result.benchmarkMetrics.volatility, pct: true, accent: "text-amber-600" },
-            ].map((m) => (
-              <div key={m.label} className="bg-white border border-slate-200 rounded-xl p-4 shadow-sm">
-                <div className="text-xs font-medium text-slate-500 uppercase tracking-wide">{m.label}</div>
-                <div className={`text-2xl font-bold mt-1 ${m.accent}`}>{fmt(m.port, m.pct)}</div>
-                <div className="text-xs text-slate-400 mt-1">{benchLabel} {fmt(m.bench, m.pct)}</div>
-              </div>
-            ))}
-          </div>
-
-          {result.dca && (
-            <>
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
-                <div className="bg-white border border-slate-200 rounded-xl p-4 shadow-sm">
-                  <div className="text-xs font-medium text-slate-500 uppercase tracking-wide">최종 잔액</div>
-                  <div className="text-2xl font-bold mt-1 text-blue-600">{fmtKrw(result.dca.finalBalance)}원</div>
-                </div>
-                <div className="bg-white border border-slate-200 rounded-xl p-4 shadow-sm">
-                  <div className="text-xs font-medium text-slate-500 uppercase tracking-wide">총 납입</div>
-                  <div className="text-2xl font-bold mt-1 text-slate-900">{fmtKrw(result.dca.totalDeposit)}원</div>
-                </div>
-                <div className="bg-white border border-slate-200 rounded-xl p-4 shadow-sm">
-                  <div className="text-xs font-medium text-slate-500 uppercase tracking-wide">순수익</div>
-                  <div className={`text-2xl font-bold mt-1 ${result.dca.netProfit >= 0 ? "text-rose-600" : "text-blue-600"}`}>
-                    {result.dca.netProfit >= 0 ? "+" : ""}{fmtKrw(result.dca.netProfit)}원
-                  </div>
-                </div>
-                <div className="bg-white border border-slate-200 rounded-xl p-4 shadow-sm">
-                  <div className="text-xs font-medium text-slate-500 uppercase tracking-wide">실질 구매력</div>
-                  <div className="text-2xl font-bold mt-1 text-emerald-600">{fmtKrw(result.dca.realFinalBalance)}원</div>
-                  <div className="text-xs text-slate-400 mt-1">시작일 화폐가치 기준</div>
-                </div>
-              </div>
-
-              <div className="bg-white border border-slate-200 rounded-xl p-5 shadow-sm">
-                <h3 className="font-bold text-slate-900 mb-3">적립식 자산 추이</h3>
-                <ResponsiveContainer width="100%" height={300}>
-                  <LineChart data={dcaChartData} margin={{ top: 10, right: 20, bottom: 10, left: 30 }}>
-                    <CartesianGrid strokeDasharray="3 3" stroke="#e2e8f0" />
-                    <XAxis dataKey="date" tick={{ fontSize: 11, fill: "#64748b" }} interval={Math.floor(dcaChartData.length / 8)} />
-                    <YAxis tick={{ fontSize: 11, fill: "#64748b" }} tickFormatter={(v) => fmtKrw(v)} />
-                    <Tooltip contentStyle={{ borderRadius: 8, border: "1px solid #e2e8f0", fontSize: 13 }}
-                      formatter={(v) => (typeof v === "number" ? `${fmtKrw(v)}원` : String(v))} />
-                    <Legend wrapperStyle={{ fontSize: 13 }} />
-                    <Line type="monotone" dataKey="평가액" stroke="#2563eb" dot={false} strokeWidth={2} />
-                    <Line type="monotone" dataKey="납입누적" stroke="#94a3b8" dot={false} strokeWidth={1.5} strokeDasharray="4 4" />
-                  </LineChart>
-                </ResponsiveContainer>
-              </div>
-            </>
-          )}
-
-          {result.merged && (
-            <>
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
-                <div className="bg-white border border-emerald-200 rounded-xl p-4 shadow-sm">
-                  <div className="text-xs font-medium text-emerald-600 uppercase tracking-wide">절세 후 잔액</div>
-                  <div className="text-2xl font-bold mt-1 text-emerald-600">{fmtKrw(result.merged.totalFinalBalance)}원</div>
-                </div>
-                <div className="bg-white border border-slate-200 rounded-xl p-4 shadow-sm">
-                  <div className="text-xs font-medium text-slate-500 uppercase tracking-wide">일반계좌 시</div>
-                  <div className="text-2xl font-bold mt-1 text-slate-700">{fmtKrw(result.merged.generalCaseBalance ?? result.dca?.finalBalance ?? 0)}원</div>
-                </div>
-                <div className="bg-white border border-rose-200 rounded-xl p-4 shadow-sm">
-                  <div className="text-xs font-medium text-rose-600 uppercase tracking-wide">절감액</div>
-                  <div className={`text-2xl font-bold mt-1 ${(result.merged.totalSavings ?? 0) >= 0 ? "text-rose-600" : "text-blue-600"}`}>
-                    {(result.merged.totalSavings ?? 0) >= 0 ? "+" : ""}{fmtKrw(result.merged.totalSavings ?? 0)}원
-                  </div>
-                </div>
-                <div className="bg-white border border-slate-200 rounded-xl p-4 shadow-sm">
-                  <div className="text-xs font-medium text-slate-500 uppercase tracking-wide">누적 환급액</div>
-                  <div className="text-2xl font-bold mt-1 text-blue-600">{fmtKrw(result.merged.totalTaxCredit)}원</div>
-                  <div className="text-xs text-slate-400 mt-1">연말정산 세액공제</div>
-                </div>
-              </div>
-
-              {result.merged.afterTaxCagr !== undefined && (
-                <div className="grid grid-cols-2 gap-3">
-                  <div className="bg-emerald-50/50 border border-emerald-200 rounded-xl p-4 shadow-sm">
-                    <div className="text-xs font-medium text-emerald-700 uppercase tracking-wide">세후 CAGR (절세)</div>
-                    <div className="text-2xl font-bold mt-1 text-emerald-600">{(result.merged.afterTaxCagr * 100).toFixed(2)}%</div>
-                  </div>
-                  <div className="bg-white border border-slate-200 rounded-xl p-4 shadow-sm">
-                    <div className="text-xs font-medium text-slate-500 uppercase tracking-wide">세후 CAGR (일반)</div>
-                    <div className="text-2xl font-bold mt-1 text-slate-700">{(result.merged.generalCaseCagr * 100).toFixed(2)}%</div>
-                  </div>
-                </div>
-              )}
-
-              <div className="bg-white border border-slate-200 rounded-xl p-5 shadow-sm">
-                <h3 className="font-bold text-slate-900 mb-4">계좌별 자금 분포</h3>
-                <div className="space-y-3">
-                  {result.merged.accounts?.map((a: any) => (
-                    <div key={a.type} className="flex items-center gap-3">
-                      <div className="w-20 text-sm font-semibold text-slate-700">{ACCOUNT_LABELS[a.type as AccountType]}</div>
-                      <div className="flex-1 bg-slate-100 rounded-full h-7 overflow-hidden relative">
-                        <div className="h-full bg-blue-500 rounded-full transition-all"
-                          style={{ width: `${(a.finalBalance / result.merged.totalFinalBalance) * 100}%` }} />
-                      </div>
-                      <div className="w-32 text-right text-sm font-semibold text-slate-900">{fmtKrw(a.finalBalance)}원</div>
-                    </div>
-                  ))}
-                </div>
-              </div>
-
-              {result.merged.windmillCycles?.length > 0 && (
-                <div className="bg-gradient-to-br from-emerald-50 to-blue-50 border border-emerald-200 rounded-xl p-5 shadow-sm">
-                  <h3 className="font-bold text-slate-900 mb-3 flex items-center gap-2">
-                    <IconWindmill />
-                    <span>풍차돌리기 사이클 ({result.merged.windmillCycles.length}회)</span>
-                  </h3>
-                  <div className="space-y-2">
-                    {result.merged.windmillCycles.map((c: any, index: number) => (
-                      <div key={index} className="bg-white rounded-lg p-3 border border-slate-200">
-                        <div className="flex items-center justify-between mb-2">
-                          <div className="font-semibold text-slate-900">사이클 {c.cycleNumber || index + 1}</div>
-                          <div className="text-xs text-slate-500">{c.endYear}년차</div>
-                        </div>
-                        <div className="grid grid-cols-3 gap-2 text-sm">
-                          <div>
-                            <div className="text-xs text-slate-500">ISA 잔액</div>
-                            <div className="font-semibold">{fmtKrw(c.isaBalance)}</div>
-                          </div>
-                          <div>
-                            <div className="text-xs text-slate-500 flex items-center gap-1"><IconArrowRight />연금이전</div>
-                            <div className="font-semibold text-emerald-600">{fmtKrw(c.transferToPension)}</div>
-                          </div>
-                          <div>
-                            <div className="text-xs text-slate-500 flex items-center gap-1"><IconArrowRight />추가 환급</div>
-                            <div className="font-semibold text-blue-600">+{fmtKrw(c.taxCreditFromTransfer)}</div>
-                          </div>
-                        </div>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              )}
-
-              {result.merged.unallocated?.length > 0 && (
-                <div className="bg-amber-50 border border-amber-200 rounded-xl p-4">
-                  <div className="font-semibold text-amber-900 mb-2 text-sm flex items-center gap-1.5">
-                    <IconAlert /><span>절세계좌 입금 제한</span>
-                  </div>
-                  <ul className="space-y-1">
-                    {result.merged.unallocated.map((u: any, i: number) => (
-                      <li key={i} className="text-xs text-amber-800">• {u.reason}</li>
-                    ))}
-                  </ul>
-                </div>
-              )}
-            </>
-          )}
-
-          <div className="bg-white border border-slate-200 rounded-xl p-5 shadow-sm">
-            <div className="mb-3">
-              <h3 className="font-bold text-slate-900">포트폴리오 가치 곡선</h3>
-              <p className="text-xs text-slate-500">시작값 100 기준 · {result.meta.actualStart} ~ {result.meta.actualEnd} ({result.meta.tradingDays} 거래일)</p>
-              {result.benchmarkInfo && (
-                <p className="text-xs text-slate-400 mt-1">
-                  벤치마크: <span className="font-semibold text-slate-600">{benchLabel}</span> — {result.benchmarkInfo.reason}
-                </p>
-              )}
-              {result.dateAdjustments && result.dateAdjustments.length > 0 && (
-                <div className="text-xs text-amber-700 bg-amber-50 border border-amber-200 px-3 py-2 rounded-lg mt-2">
-                  <div className="font-semibold mb-1">상장일이 늦어 시작일 자동 조정됨</div>
-                  <ul>
-                    {result.dateAdjustments.map((d, i) => (
-                      <li key={i}>• {d.ticker}: {d.firstAvailable} 이후 데이터만 사용</li>
-                    ))}
-                  </ul>
-                </div>
-              )}
-            </div>
-            <ResponsiveContainer width="100%" height={380}>
-              <LineChart data={chartData} margin={{ top: 10, right: 20, bottom: 10, left: 0 }}>
-                <CartesianGrid strokeDasharray="3 3" stroke="#e2e8f0" />
-                <XAxis dataKey="date" tick={{ fontSize: 11, fill: "#64748b" }} interval={Math.floor(chartData.length / 8)} />
-                <YAxis tick={{ fontSize: 11, fill: "#64748b" }} />
-                <Tooltip contentStyle={{ borderRadius: 8, border: "1px solid #e2e8f0", fontSize: 13 }}
-                  formatter={(v) => (typeof v === "number" ? v.toFixed(2) : String(v))} />
-                <Legend wrapperStyle={{ fontSize: 13 }} />
-                <ReferenceLine y={100} stroke="#cbd5e1" strokeDasharray="2 2" />
-                <Line type="monotone" dataKey="portfolio" stroke="#2563eb" name="포트폴리오" dot={false} strokeWidth={2} />
-                <Line type="monotone" dataKey="benchmark" stroke="#94a3b8" name={`${benchLabel} 벤치마크`} dot={false} strokeWidth={1.5} />
-              </LineChart>
-            </ResponsiveContainer>
-          </div>
-
-          <div className="bg-white border border-slate-200 rounded-xl p-5 shadow-sm">
-            <h3 className="font-bold text-slate-900 mb-3">연도별 수익률</h3>
-            <ResponsiveContainer width="100%" height={300}>
-              <BarChart data={yearlyData} margin={{ top: 10, right: 20, bottom: 10, left: 0 }}>
-                <CartesianGrid strokeDasharray="3 3" stroke="#e2e8f0" />
-                <XAxis dataKey="year" tick={{ fontSize: 12, fill: "#64748b" }} />
-                <YAxis tick={{ fontSize: 11, fill: "#64748b" }} unit="%" />
-                <Tooltip contentStyle={{ borderRadius: 8, border: "1px solid #e2e8f0", fontSize: 13 }}
-                  formatter={(v) => (typeof v === "number" ? `${v}%` : String(v))} />
-                <Legend wrapperStyle={{ fontSize: 13 }} />
-                <ReferenceLine y={0} stroke="#94a3b8" />
-                <Bar dataKey="포트폴리오" fill="#2563eb" radius={[4, 4, 0, 0]} />
-                <Bar dataKey={benchLabel} fill="#cbd5e1" radius={[4, 4, 0, 0]} />
-              </BarChart>
-            </ResponsiveContainer>
-          </div>
-
-          {/* ─── 추가 지표 (타이틀 없이 기존 영역과 자연스럽게 연결) ─── */}
-          {result.advancedMetrics && (
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-5 mt-5">
-              
-              {/* 1. 롤링 수익률 (Rolling Returns) */}
-              <div className="bg-white border border-slate-200 rounded-xl p-5 shadow-sm">
-                <h3 className="font-bold text-slate-900 mb-4">기간별 롤링 수익률</h3>
-                <div className="space-y-3">
-                  {[
-                    { key: 252, label: "1년 (252일)" },
-                    { key: 756, label: "3년 (756일)" },
-                    { key: 1260, label: "5년 (1260일)" }
-                  ].map((period) => {
-                    const data = result.advancedMetrics.rollingReturns[period.key];
-                    if (!data) return null;
-                    return (
-                      <div key={period.key} className="bg-slate-50 rounded-lg p-3 border border-slate-100">
-                        <div className="text-sm font-semibold text-slate-700 mb-2">{period.label}</div>
-                        <div className="grid grid-cols-4 gap-2 text-center text-xs">
-                          <div>
-                            <div className="text-slate-500">최악</div>
-                            <div className={`font-bold mt-0.5 ${data.min < 0 ? 'text-rose-600' : 'text-emerald-600'}`}>{(data.min * 100).toFixed(2)}%</div>
-                          </div>
-                          <div>
-                            <div className="text-slate-500">평균</div>
-                            <div className="font-bold mt-0.5 text-slate-700">{(data.avg * 100).toFixed(2)}%</div>
-                          </div>
-                          <div>
-                            <div className="text-slate-500">최고</div>
-                            <div className="font-bold mt-0.5 text-emerald-600">{(data.max * 100).toFixed(2)}%</div>
-                          </div>
-                          <div className="border-l border-slate-200 pl-2">
-                            <div className="text-slate-500">최근</div>
-                            <div className={`font-bold mt-0.5 ${data.current < 0 ? 'text-rose-600' : 'text-blue-600'}`}>{(data.current * 100).toFixed(2)}%</div>
-                          </div>
-                        </div>
-                      </div>
-                    );
-                  })}
-                </div>
-              </div>
-
-              {/* 2. 회귀 분석 및 캡처 비율 */}
-              <div className="space-y-5">
-                {result.advancedMetrics.regression && (
-                  <div className="bg-white border border-slate-200 rounded-xl p-5 shadow-sm">
-                    <h3 className="font-bold text-slate-900 mb-4">벤치마크 상대 지표</h3>
-                    <div className="grid grid-cols-3 gap-4">
-                      <div>
-                        <div className="text-xs text-slate-500">Alpha (연)</div>
-                        <div className="text-lg font-bold text-slate-800">{(result.advancedMetrics.regression.alpha * 100).toFixed(2)}%</div>
-                      </div>
-                      <div>
-                        <div className="text-xs text-slate-500">Beta</div>
-                        <div className="text-lg font-bold text-slate-800">{result.advancedMetrics.regression.beta.toFixed(2)}</div>
-                      </div>
-                      <div>
-                        <div className="text-xs text-slate-500">R-Squared</div>
-                        <div className="text-lg font-bold text-slate-800">{(result.advancedMetrics.regression.rSquared * 100).toFixed(1)}%</div>
-                      </div>
-                      <div>
-                        <div className="text-xs text-slate-500">Tracking Error</div>
-                        <div className="text-lg font-bold text-slate-800">{(result.advancedMetrics.regression.trackingError * 100).toFixed(2)}%</div>
-                      </div>
-                      <div>
-                        <div className="text-xs text-slate-500">Info Ratio</div>
-                        <div className="text-lg font-bold text-slate-800">{result.advancedMetrics.regression.infoRatio.toFixed(2)}</div>
-                      </div>
-                    </div>
-                  </div>
-                )}
-
-                {result.advancedMetrics.captureRatios && (
-                  <div className="bg-white border border-slate-200 rounded-xl p-5 shadow-sm flex gap-4">
-                    <div className="flex-1">
-                      <h3 className="font-bold text-slate-900 mb-1">상승장 캡처 (Up)</h3>
-                      <div className="text-2xl font-bold text-emerald-600">{(result.advancedMetrics.captureRatios.upCapture * 100).toFixed(1)}%</div>
-                      <p className="text-[10px] text-slate-500 mt-1">벤치마크 상승 시 따라가는 비율</p>
-                    </div>
-                    <div className="w-px bg-slate-200"></div>
-                    <div className="flex-1">
-                      <h3 className="font-bold text-slate-900 mb-1">하락장 캡처 (Down)</h3>
-                      <div className="text-2xl font-bold text-rose-600">{(result.advancedMetrics.captureRatios.downCapture * 100).toFixed(1)}%</div>
-                      <p className="text-[10px] text-slate-500 mt-1">벤치마크 하락 시 방어하는 비율 (낮을수록 좋음)</p>
-                    </div>
-                  </div>
-                )}
-              </div>
-
-              {/* 3. 테일 리스크 (Tail Risk) */}
-              {result.advancedMetrics.tailRisk && (
-                <div className="bg-white border border-slate-200 rounded-xl p-5 shadow-sm md:col-span-2 flex justify-between items-center">
-                  <div>
-                    <h3 className="font-bold text-slate-900 mb-1">테일 리스크 (Tail Risk)</h3>
-                    <p className="text-xs text-slate-500">극단적인 하락장에 대한 위험 지표</p>
-                  </div>
-                  <div className="flex gap-8 text-right">
-                    <div>
-                      <div className="text-xs text-slate-500">Ulcer Index</div>
-                      <div className="text-xl font-bold text-amber-600">{result.advancedMetrics.tailRisk.ulcerIndex.toFixed(2)}</div>
-                    </div>
-                    <div>
-                      <div className="text-xs text-slate-500">VaR (95%)</div>
-                      <div className="text-xl font-bold text-rose-600">{(result.advancedMetrics.tailRisk.var95 * 100).toFixed(2)}%</div>
-                    </div>
-                    <div>
-                      <div className="text-xs text-slate-500">CVaR (95%)</div>
-                      <div className="text-xl font-bold text-rose-700">{(result.advancedMetrics.tailRisk.cvar95 * 100).toFixed(2)}%</div>
-                    </div>
-                  </div>
-                </div>
-              )}
-            </div>
-          )}
-
-        </div>
-      )}
-
       <div className="fixed bottom-0 left-0 right-0 lg:left-60 bg-white/90 backdrop-blur-md border-t border-slate-200 px-6 py-4 z-40">
         <div className="max-w-[1400px] mx-auto">
-          <button onClick={runBacktest} disabled={loading || !weightOK}
+          <button onClick={runBacktest} disabled={!weightOK}
             className="w-full py-3.5 bg-blue-600 hover:bg-blue-700 text-white rounded-xl font-semibold disabled:opacity-50 disabled:cursor-not-allowed transition-colors text-base shadow-lg shadow-blue-600/20">
-            {loading ? "계산 중..." : "백테스트 실행"}
+            백테스트 실행
           </button>
           {error && (
             <div className="mt-2 text-sm text-rose-700 bg-rose-50 border border-rose-200 px-4 py-2 rounded-lg">{error}</div>
@@ -979,9 +568,6 @@ function TickerPicker({ selected, onSelect, onClose, groupedUs, groupedKr }: {
     }
   }, [query, market]);
 
-  const categoryOrder = market === "us" ? CATEGORY_ORDER : KR_CATEGORY_ORDER;
-  const categoryLabels = market === "us" ? CATEGORY_LABELS : KR_CATEGORY_LABELS;
-
   return (
     <div className="fixed inset-0 bg-black/30 z-50 flex items-start justify-center pt-20" onClick={onClose}>
       <div className="bg-white rounded-xl shadow-2xl w-full max-w-2xl max-h-[70vh] flex flex-col mx-4" onClick={(e) => e.stopPropagation()}>
@@ -1002,8 +588,8 @@ function TickerPicker({ selected, onSelect, onClose, groupedUs, groupedKr }: {
           {!query && (
             <div className="flex gap-1.5 mt-3 overflow-x-auto pb-1">
               <CategoryChip label="전체" active={activeCategory === "all"} onClick={() => setActiveCategory("all")} />
-              {categoryOrder.map((cat) => (
-                <CategoryChip key={cat} label={categoryLabels[cat as keyof typeof categoryLabels]}
+              {(market === "us" ? CATEGORY_ORDER : KR_CATEGORY_ORDER).map((cat) => (
+                <CategoryChip key={cat} label={market === "us" ? CATEGORY_LABELS[cat as keyof typeof CATEGORY_LABELS] : KR_CATEGORY_LABELS[cat as keyof typeof KR_CATEGORY_LABELS]}
                   active={activeCategory === cat} onClick={() => setActiveCategory(cat)} />
               ))}
             </div>
@@ -1164,14 +750,6 @@ function IconX() {
   return (
     <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
       <path d="M18 6L6 18M6 6l12 12" />
-    </svg>
-  );
-}
-
-function IconArrowRight() {
-  return (
-    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="inline-block">
-      <path d="M5 12h14M12 5l7 7-7 7" />
     </svg>
   );
 }
