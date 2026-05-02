@@ -72,16 +72,30 @@ export function simulateDca(
       const allocKrw = net * weights[i];
       const m = priceMap.get(tickers[i]);
       if (!m) continue;
-      const px = m.get(date);
-      if (px === undefined || px <= 0) continue;
+
+      // 그날 가격이 없으면 가장 가까운 직전 거래일 가격 사용 (forward fill)
+      let px = m.get(date);
+      if (px === undefined || px <= 0) {
+        // 가까운 이전 거래일 찾기
+        const allDates = Array.from(m.keys()).sort();
+        for (let j = allDates.length - 1; j >= 0; j--) {
+          if (allDates[j] <= date) {
+            const candidate = m.get(allDates[j]);
+            if (candidate !== undefined && candidate > 0) {
+              px = candidate;
+              break;
+            }
+          }
+        }
+        if (px === undefined || px <= 0) continue;
+      }
 
       if (isKor[i]) {
-        // 한국 ETF: KRW 그대로 매수
         shares[i] += allocKrw / px;
       } else {
-        // 미국 ETF: KRW → USD 환전 후 매수
-        if (fxRate === null || fxRate <= 0) continue;
-        const allocUsd = allocKrw / fxRate;
+        // 미국 ETF: 환율 없으면 1300원 가정 (한국에서 미국 ETF 사는 평균치)
+        const rate = (fxRate !== null && fxRate > 0) ? fxRate : 1300;
+        const allocUsd = allocKrw / rate;
         shares[i] += allocUsd / px;
       }
     }
@@ -111,7 +125,13 @@ export function simulateDca(
   buy(startDate, initialNominal);
   totalDeposit += initialNominal;
 
-  // 일별 루프
+  // 첫 달도 월 적립 발생 (시작일 다음 거래일에 매수)
+  // → 시작일 그 자체에 같이 적립
+  const firstMonthDeposit = nominalDeposit(startDate, monthlyDepositInput);
+  buy(startDate, firstMonthDeposit);
+  totalDeposit += firstMonthDeposit;
+
+  // 일별 루프 (다음 달부터)
   let prevMonth = startDate.substring(0, 7);
   for (let di = 0; di < dates.length; di++) {
     const date = dates[di];
