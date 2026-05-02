@@ -27,10 +27,14 @@ import {
   PENSION_INCOME_TAX_RATE,
   OVERSEAS_CAPITAL_GAIN_TAX_RATE,
   OVERSEAS_CAPITAL_GAIN_DEDUCTION,
+  DIVIDEND_TAX_RATE,
   generalDividendTax,
   windmillTaxCredit,
   isKoreanTicker,
+  isOverseasUnderlying,
+  isDomesticEquity,
 } from "./taxHelpers";
+import { KR_ETF_CATALOG } from "./catalogKr";
 
 // ──────────────────────────────────────────────────────────────
 // 입력 + 출력
@@ -226,37 +230,140 @@ export function simulateTax(input: TaxSimInput): TaxResult {
 
   // 최종 정산
   // ISA: 잔존 만기 정산
+  //  - 국내주식형 비중만큼은 ISA 안에서도 비과세 (만기 정산 면제)
+  //  - 그 외 자산만 ISA 비과세 한도 적용 후 9.9% 분리과세
   if (states.isa.balance > 0) {
+    let domesticEqWeight = 0;
+    for (const h of holdings) {
+      const name = holdingNames[h.ticker] ?? h.ticker;
+      const meta = KR_ETF_CATALOG.find((e) => e.ticker === h.ticker);
+      const cat = meta?.category;
+      if (isKoreanTicker(h.ticker) && isDomesticEquity(h.ticker, cat, name)) {
+        domesticEqWeight += h.weight;
+      }
+    }
+    const taxableWeight = 1 - domesticEqWeight;
     const profit = states.isa.balance - states.isa.deposit;
-    const tax = profit > 0 ? Math.max(0, profit - isaTaxFreeLimit(options.isaServingType)) * ISA_OVER_LIMIT_TAX_RATE : 0;
+    const taxableProfit = profit * taxableWeight;
+    const tax = taxableProfit > 0
+      ? Math.max(0, taxableProfit - isaTaxFreeLimit(options.isaServingType)) * ISA_OVER_LIMIT_TAX_RATE
+      : 0;
     states.isa.tax += tax;
     states.isa.balance -= tax;
   }
 
-  // 연금/IRP: 인출 시 연금소득세
+  // 연금/IRP: 인출 패턴별 세금 처리
+  //  - lump: 일시금 인출 → 16.5% 기타소득세 (5년 이내) 또는 5.5%
+  //  - annual: 연 1500만 이내 → 5.5% 분리과세, 초과 시 사용자 종합세율 적용
   for (const acct of ["pension", "irp"] as AccountType[]) {
-    const tax = states[acct].balance * PENSION_INCOME_TAX_RATE;
+    const balance = states[acct].balance;
+    if (balance <= 0) continue;
+
+    let tax = 0;
+    if (options.pensionWithdrawalMode === "lump") {
+      // 일시금 = 연금소득세 5.5% (가입 5년 이상 가정 시)
+      tax = balance * PENSION_INCOME_TAX_RATE;
+    } else {
+      // 연 분할 인출
+      const annual = options.pensionAnnualWithdrawal > 0 ? options.pensionAnnualWithdrawal : 15_000_000;
+      const yearsToWithdraw = Math.max(1, balance / annual);
+      // 1500만 이하 부분은 5.5%, 초과 부분은 사용자 종합세율
+      let totalTax = 0;
+      let remaining = balance;
+      while (remaining > 0) {
+        const thisYear = Math.min(remaining, annual);
+        if (thisYear <= 15_000_000) {
+          totalTax += thisYear * PENSION_INCOME_TAX_RATE;
+        } else {
+          totalTax += 15_000_000 * PENSION_INCOME_TAX_RATE;
+          totalTax += (thisYear - 15_000_000) * options.taxBracket;
+        }
+        remaining -= thisYear;
+      }
+      tax = totalTax;
+      // yearsToWithdraw는 안내용으로만 (현가 할인 미반영)
+      void yearsToWithdraw;
+    }
     states[acct].tax += tax;
     states[acct].balance -= tax;
   }
 
-  // 일반계좌: 해외 비중 있으면 양도세
-  let overseasWeight = 0;
-  for (const h of holdings) {
-    if (!isKoreanTicker(h.ticker)) overseasWeight += h.weight;
-  }
-  if (overseasWeight > 0 && states.general.balance > 0) {
-    const profit = (states.general.balance - states.general.deposit) * overseasWeight;
-    if (profit > OVERSEAS_CAPITAL_GAIN_DEDUCTION) {
-      const tax = (profit - OVERSEAS_CAPITAL_GAIN_DEDUCTION) * OVERSEAS_CAPITAL_GAIN_TAX_RATE;
-      states.general.tax += tax;
-      states.general.balance -= tax;
+  // 일반계좌: 종목별로 자산 유형에 따라 세금 분리 적용
+  //  - 미국 직상장: 매매차익 22% 양도세 (250만 공제)
+  //  - 국내상장 해외ETF: 매매차익 15.4% 배당세 (공제 없음)
+  //  - 국내주식형 ETF: 매매차익 비과세
+  //  - 채권/원자재 등 그 외: 매매차익 15.4% 배당세
+  if (states.general.balance > 0) {
+    const totalProfit = states.general.balance - states.general.deposit;
+    if (totalProfit > 0) {
+      let usDirectWeight = 0;
+      let krOverseasWeight = 0;
+      let krDomesticWeight = 0;
+      let krOtherWeight = 0;
+
+      for (const h of holdings) {
+        const name = holdingNames[h.ticker] ?? h.ticker;
+        const meta = KR_ETF_CATALOG.find((e) => e.ticker === h.ticker);
+        const cat = meta?.category;
+
+        if (!isKoreanTicker(h.ticker)) {
+          usDirectWeight += h.weight;
+        } else if (isOverseasUnderlying(h.ticker, cat, name)) {
+          krOverseasWeight += h.weight;
+        } else if (isDomesticEquity(h.ticker, cat, name)) {
+          krDomesticWeight += h.weight;
+        } else {
+          krOtherWeight += h.weight;
+        }
+      }
+
+      // 미국 직상장 양도세
+      const usProfit = totalProfit * usDirectWeight;
+      if (usProfit > OVERSEAS_CAPITAL_GAIN_DEDUCTION) {
+        const tax = (usProfit - OVERSEAS_CAPITAL_GAIN_DEDUCTION) * OVERSEAS_CAPITAL_GAIN_TAX_RATE;
+        states.general.tax += tax;
+        states.general.balance -= tax;
+      }
+
+      // 국내상장 해외ETF — 매매차익 배당세
+      const krOverseasProfit = totalProfit * krOverseasWeight;
+      if (krOverseasProfit > 0) {
+        const tax = krOverseasProfit * DIVIDEND_TAX_RATE;
+        states.general.tax += tax;
+        states.general.balance -= tax;
+      }
+
+      // 채권/원자재 등 — 매매차익 배당세
+      const krOtherProfit = totalProfit * krOtherWeight;
+      if (krOtherProfit > 0) {
+        const tax = krOtherProfit * DIVIDEND_TAX_RATE;
+        states.general.tax += tax;
+        states.general.balance -= tax;
+      }
+
+      // 국내주식형: 비과세 (세금 없음)
+      // krDomesticWeight는 그대로 둠
+      void krDomesticWeight;
     }
   }
 
-  // ── 비교군: 일반계좌만 사용 ──
+  // ── 비교군: 일반계좌만 사용 (같은 자산 유형 분류 적용) ──
+  let usDirectWeightCmp = 0;
+  let krOverseasWeightCmp = 0;
+  let krDomesticWeightCmp = 0;
+  let krOtherWeightCmp = 0;
+  for (const h of holdings) {
+    const name = holdingNames[h.ticker] ?? h.ticker;
+    const meta = KR_ETF_CATALOG.find((e) => e.ticker === h.ticker);
+    const cat = meta?.category;
+    if (!isKoreanTicker(h.ticker)) usDirectWeightCmp += h.weight;
+    else if (isOverseasUnderlying(h.ticker, cat, name)) krOverseasWeightCmp += h.weight;
+    else if (isDomesticEquity(h.ticker, cat, name)) krDomesticWeightCmp += h.weight;
+    else krOtherWeightCmp += h.weight;
+  }
+
   let generalOnlyBalance = 0;
-  let generalOnlyDeposit = initialCapital + monthlyDeposit * 12 * totalYears;
+  const generalOnlyDeposit = initialCapital + monthlyDeposit * 12 * totalYears;
   {
     let bal = 0;
     for (let year = 1; year <= totalYears; year++) {
@@ -268,11 +375,19 @@ export function simulateTax(input: TaxSimInput): TaxResult {
       const divTax = generalDividendTax(div, options);
       bal += div - divTax;
     }
-    if (overseasWeight > 0) {
-      const profit = (bal - generalOnlyDeposit) * overseasWeight;
-      if (profit > OVERSEAS_CAPITAL_GAIN_DEDUCTION) {
-        bal -= (profit - OVERSEAS_CAPITAL_GAIN_DEDUCTION) * OVERSEAS_CAPITAL_GAIN_TAX_RATE;
+    const profit = bal - generalOnlyDeposit;
+    if (profit > 0) {
+      // 미국 직상장
+      const usProfit = profit * usDirectWeightCmp;
+      if (usProfit > OVERSEAS_CAPITAL_GAIN_DEDUCTION) {
+        bal -= (usProfit - OVERSEAS_CAPITAL_GAIN_DEDUCTION) * OVERSEAS_CAPITAL_GAIN_TAX_RATE;
       }
+      // 국내상장 해외ETF
+      bal -= profit * krOverseasWeightCmp * DIVIDEND_TAX_RATE;
+      // 기타 (채권/원자재)
+      bal -= profit * krOtherWeightCmp * DIVIDEND_TAX_RATE;
+      // 국내주식형: 비과세
+      void krDomesticWeightCmp;
     }
     generalOnlyBalance = bal;
   }
@@ -293,13 +408,26 @@ export function simulateTax(input: TaxSimInput): TaxResult {
   const totalFinalBalance = accounts.reduce((sum, a) => sum + a.finalBalance, 0);
   const totalTaxCredit = accounts.reduce((sum, a) => sum + a.totalTaxCredit, 0);
 
+  const totalDeposit = initialCapital + monthlyDeposit * 12 * totalYears;
+  const finalWithCredit = totalFinalBalance + totalTaxCredit;
+
+  // CAGR = (최종/원금)^(1/years) - 1
+  const afterTaxCagr = totalDeposit > 0 && totalYears > 0
+    ? Math.pow(finalWithCredit / totalDeposit, 1 / totalYears) - 1
+    : 0;
+  const generalCaseCagr = totalDeposit > 0 && totalYears > 0
+    ? Math.pow(generalOnlyBalance / totalDeposit, 1 / totalYears) - 1
+    : 0;
+
   return {
     accounts,
-    totalFinalBalance: totalFinalBalance + totalTaxCredit, // 환급액도 자산으로 카운트
+    totalFinalBalance: finalWithCredit,
     generalCaseBalance: generalOnlyBalance,
-    totalSavings: (totalFinalBalance + totalTaxCredit) - generalOnlyBalance,
+    totalSavings: finalWithCredit - generalOnlyBalance,
     totalTaxCredit,
     windmillCycles,
     unallocated,
+    afterTaxCagr,
+    generalCaseCagr,
   };
 }

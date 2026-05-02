@@ -1,11 +1,24 @@
 /**
  * 절세 시뮬레이션용 헬퍼 함수들.
- * - 계좌별 종목 적격성 (ISA/연금/IRP 가능 여부)
- * - 안전자산 판정 (IRP 30% 룰)
- * - 세금 계산
+ *
+ * 한국 ETF 세제 정리:
+ * ─────────────────────────────────────────
+ *  유형                     매매차익      배당(분배금)
+ * ─────────────────────────────────────────
+ *  국내주식형 ETF           비과세        15.4% 배당세
+ *  국내 상장 해외주식 ETF   15.4% (배당세) 15.4% 배당세  ← 매매차익도 배당과세!
+ *  국내 상장 채권/원자재     15.4%         15.4%
+ *  미국 직상장 ETF          22% 양도세    15% 원천세 (US)
+ *  레버리지/인버스          15.4%         15.4%
+ * ─────────────────────────────────────────
+ *
+ * 핵심: 한국 투자자가 "TIGER 미국S&P500" 같은 국내상장 해외ETF를 사면
+ *      매매차익도 일반 분배금과 같은 15.4% 배당과세를 적용받음 (배당소득세).
+ *      이걸 절세계좌(ISA/연금)에 넣으면 비과세/저세율 적용 → 가장 큰 절세 포인트.
  */
 
 import type { AccountType, TaxOptions } from "./types";
+import type { KrEtfCategory } from "./catalogKr";
 
 // ──────────────────────────────────────────────────────────────
 // 한국 티커 판별
@@ -16,84 +29,111 @@ export function isKoreanTicker(ticker: string): boolean {
 }
 
 // ──────────────────────────────────────────────────────────────
-// 적격성 룰
+// 종목 분류 (이름 기반)
 // ──────────────────────────────────────────────────────────────
 
-/** 종목 이름으로 레버리지/인버스 판별. */
-function isLeveragedOrInverse(name: string): boolean {
+/** 레버리지/인버스 (연금/IRP 불가). */
+export function isLeveragedOrInverse(name: string): boolean {
   return /레버리지|인버스|2X|3X|leveraged|inverse|ultra|bull|bear/i.test(name);
 }
 
-/** 종목 이름으로 채권/안전자산 판별 (IRP 30% 룰용). */
+/** 채권/안전자산 (IRP 30% 안전자산 카운트). */
 export function isSafeAsset(name: string, category?: string): boolean {
   if (category === "bond") return true;
   return /채권|국고채|회사채|머니마켓|금리|단기|TDF|MMF|예금/i.test(name);
 }
 
 /**
- * 종목이 특정 계좌에 입금 가능한지 판정.
- * 룰:
- *  - 미국 티커: ISA/연금/IRP 모두 불가 (일반계좌만)
- *  - 레버리지/인버스: 연금/IRP 불가 (ISA, 일반은 가능)
- *  - 그 외 한국 ETF: 모두 가능
+ * 국내 상장 ETF 중 "해외 자산 추종" 여부.
+ * → 매매차익에 배당세(15.4%) 부과되는 그룹.
+ *
+ * 카테고리 기반: usIndex, global, commodity (금/은 등) 일부, coveredCall (해외형)
  */
+export function isOverseasUnderlying(
+  ticker: string,
+  category?: KrEtfCategory,
+  name?: string,
+): boolean {
+  if (!isKoreanTicker(ticker)) return false; // 미국 직상장은 별도 처리
+
+  if (category === "usIndex" || category === "global") return true;
+
+  // 이름으로 보충 판별
+  if (name) {
+    if (/미국|나스닥|S&P|S\$P|글로벌|중국|일본|차이나|인도|베트남|유럽/i.test(name)) {
+      return true;
+    }
+  }
+
+  // 원자재 (금/은/원유 — 해외기초자산)
+  if (category === "commodity" && name && /금|은|원유|구리|니켈|원자재/i.test(name)) {
+    return true;
+  }
+
+  return false;
+}
+
+/**
+ * 국내 주식형 ETF (매매차익 비과세).
+ * → kospi, kosdaq 카테고리 + 국내 자산만 추종하는 sector/dividend
+ */
+export function isDomesticEquity(
+  ticker: string,
+  category?: KrEtfCategory,
+  name?: string,
+): boolean {
+  if (!isKoreanTicker(ticker)) return false;
+  if (category === "kospi" || category === "kosdaq") return true;
+  // 국내 sector/dividend는 보통 국내 주식 (해외 추종이면 isOverseasUnderlying에서 걸러짐)
+  if ((category === "sector" || category === "dividend") &&
+      !isOverseasUnderlying(ticker, category, name)) {
+    return true;
+  }
+  return false;
+}
+
+// ──────────────────────────────────────────────────────────────
+// 적격성 판정
+// ──────────────────────────────────────────────────────────────
+
 export function isEligible(
   ticker: string,
   name: string,
   account: AccountType,
 ): boolean {
   if (account === "general") return true;
-
-  // 미국 ETF는 한국 절세계좌에 불가
   if (!isKoreanTicker(ticker)) return false;
-
-  if (account === "isa") return true; // ISA는 레버리지도 OK
-
-  // 연금/IRP는 레버리지·인버스 불가
+  if (account === "isa") return true;
   if (isLeveragedOrInverse(name)) return false;
-
   return true;
 }
 
 // ──────────────────────────────────────────────────────────────
-// 세율 / 한도
+// 한도 / 세율
 // ──────────────────────────────────────────────────────────────
 
-/** 계좌별 연간 납입한도 (KRW). */
 export const ANNUAL_LIMIT: Record<AccountType, number> = {
-  isa: 20_000_000,         // 연 2,000만
-  pension: 6_000_000,      // 연금저축 연 600만
-  irp: 3_000_000,          // IRP 연 300만 (연금저축과 합산하면 900만 한도)
+  isa: 20_000_000,
+  pension: 6_000_000,
+  irp: 3_000_000,
   general: Infinity,
 };
 
-/** ISA 누적 한도. */
-export const ISA_TOTAL_LIMIT = 100_000_000; // 누적 1억
+export const ISA_TOTAL_LIMIT = 100_000_000;
 
-/** ISA 비과세 한도. */
 export function isaTaxFreeLimit(servingType: "general" | "preferred"): number {
   return servingType === "preferred" ? 4_000_000 : 2_000_000;
 }
 
-/** 세액공제율 (연봉 5500만 초과 vs 이하). */
 export function taxCreditRate(highIncome: boolean): number {
   return highIncome ? 0.132 : 0.165;
 }
 
-/** 일반계좌 배당 원천세 (지방세 포함). */
-export const DIVIDEND_TAX_RATE = 0.154;
-
-/** ISA 초과분 분리과세율. */
-export const ISA_OVER_LIMIT_TAX_RATE = 0.099;
-
-/** 연금/IRP 인출 시 연금소득세 (3.3~5.5% 가정 → 5.5% 사용). */
-export const PENSION_INCOME_TAX_RATE = 0.055;
-
-/** 해외주식 양도소득세 (일반계좌, 250만 공제 후). */
-export const OVERSEAS_CAPITAL_GAIN_TAX_RATE = 0.22;
+export const DIVIDEND_TAX_RATE = 0.154;          // 일반계좌 배당세
+export const ISA_OVER_LIMIT_TAX_RATE = 0.099;    // ISA 초과분 분리과세
+export const PENSION_INCOME_TAX_RATE = 0.055;    // 연금소득세 (5.5%)
+export const OVERSEAS_CAPITAL_GAIN_TAX_RATE = 0.22; // 미국 직상장 양도세
 export const OVERSEAS_CAPITAL_GAIN_DEDUCTION = 2_500_000;
-
-/** 풍차돌리기 추가 세액공제 (이전액의 10%, 최대 300만). */
 export const WINDMILL_BONUS_RATE = 0.1;
 export const WINDMILL_BONUS_CAP = 3_000_000;
 
@@ -101,11 +141,6 @@ export const WINDMILL_BONUS_CAP = 3_000_000;
 // 세금 계산
 // ──────────────────────────────────────────────────────────────
 
-/**
- * 일반계좌 배당세 계산.
- * - 연 2천만 이하: 15.4% 분리과세
- * - 종합과세 적용 시: 사용자 종소세율
- */
 export function generalDividendTax(
   amount: number,
   options: TaxOptions,
@@ -116,11 +151,6 @@ export function generalDividendTax(
   return amount * DIVIDEND_TAX_RATE;
 }
 
-/**
- * ISA 만기 정산 세금.
- * - 비과세 한도 내 수익: 0원
- * - 초과분: 9.9% 분리과세
- */
 export function isaFinalTax(
   totalProfit: number,
   servingType: "general" | "preferred",
@@ -130,16 +160,10 @@ export function isaFinalTax(
   return taxable * ISA_OVER_LIMIT_TAX_RATE;
 }
 
-/**
- * 연금/IRP 인출 시 연금소득세.
- */
 export function pensionWithdrawalTax(amount: number): number {
   return amount * PENSION_INCOME_TAX_RATE;
 }
 
-/**
- * 풍차돌리기 추가 세액공제.
- */
 export function windmillTaxCredit(transferAmount: number, highIncome: boolean): number {
   const bonus = Math.min(transferAmount * WINDMILL_BONUS_RATE, WINDMILL_BONUS_CAP);
   return bonus * taxCreditRate(highIncome);

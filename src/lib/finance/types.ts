@@ -146,16 +146,20 @@ export type TaxOptions = {
   accounts: AccountConfig[];
 
   // 사용자 정보
-  highIncome: boolean;          // 연봉 5500만 초과 → 세액공제 13.2%, 아니면 16.5%
-  applyComprehensiveTax: boolean; // 금융소득종합과세 적용 (연 2천만 초과 시)
-  taxBracket: TaxBracket;        // 종합과세 시 사용
+  highIncome: boolean;
+  applyComprehensiveTax: boolean;
+  taxBracket: TaxBracket;
 
   // ISA 옵션
-  isaServingType: "general" | "preferred"; // 일반(200만 비과세) / 서민형(400만)
+  isaServingType: "general" | "preferred";
 
   // 풍차돌리기
   windmillEnabled: boolean;
-  windmillTransferRatio: number; // 0~1, ISA 만기 시 연금이전 비율 (기본 0.6)
+  windmillTransferRatio: number;
+
+  // 연금/IRP 인출 패턴 (Phase 3.1)
+  pensionWithdrawalMode: "annual" | "lump";  // 연금 분할 vs 일시금
+  pensionAnnualWithdrawal: number;            // 연 인출액 (KRW). 1500만 초과 시 종합과세
 };
 
 /** 계좌별 세금 + 잔액 결과. */
@@ -182,10 +186,12 @@ export type WindmillCycle = {
 /** 절세 시뮬레이션 결과. */
 export type TaxResult = {
   accounts: AccountResult[];
-  totalFinalBalance: number;       // 절세 후 합계
-  generalCaseBalance: number;      // 비교용: 일반계좌만 사용 시
-  totalSavings: number;            // 절감액 (절세 - 일반)
-  totalTaxCredit: number;          // 누적 환급액
-  windmillCycles: WindmillCycle[]; // 풍차돌리기 켜졌으면
-  unallocated: { ticker: string; reason: string }[]; // 어느 계좌에도 못 들어간 종목
+  totalFinalBalance: number;
+  generalCaseBalance: number;
+  totalSavings: number;
+  totalTaxCredit: number;
+  windmillCycles: WindmillCycle[];
+  unallocated: { ticker: string; reason: string }[];
+  afterTaxCagr: number;       // 절세 후 CAGR
+  generalCaseCagr: number;    // 일반계좌 시 CAGR
 };

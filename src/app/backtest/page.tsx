@@ -45,7 +45,12 @@ import {
 
 type Holding = { ticker: string; weight: number };
 type Market = "us" | "kr";
-type ExtendedResult = BacktestResult & { dca?: DcaResult; tax?: TaxResult };
+type ExtendedResult = BacktestResult & {
+  dca?: DcaResult;
+  tax?: TaxResult;
+  benchmarkInfo?: { ticker: string; name: string; reason: string };
+  dateAdjustments?: { ticker: string; firstAvailable: string }[];
+};
 
 function findAnyTicker(ticker: string):
   | { market: "us"; name: string }
@@ -99,6 +104,7 @@ export default function BacktestPage() {
   const [rebalance, setRebalance] = useState<RebalanceFrequency>("annual");
   const [rfMode, setRfMode] = useState<RiskFreeMode["type"]>("none");
   const [rfRate, setRfRate] = useState(3);
+  const [benchmarkChoice, setBenchmarkChoice] = useState<"auto" | "069500" | "SPY">("auto");
 
   // 적립식
   const [dcaEnabled, setDcaEnabled] = useState(false);
@@ -118,9 +124,10 @@ export default function BacktestPage() {
   const [highIncome, setHighIncome] = useState(false);
   const [applyComprehensive, setApplyComprehensive] = useState(false);
   const [taxBracket, setTaxBracket] = useState<TaxBracket>(0.165);
-  const [isaServingType, setIsaServingType] = useState<"general" | "preferred">("general");
-  const [windmillEnabled, setWindmillEnabled] = useState(false);
+  const [isaServingType, setIsaServingType] = useState<"general" | "preferred">("general");  const [windmillEnabled, setWindmillEnabled] = useState(false);
   const [windmillRatio, setWindmillRatio] = useState(0.6);
+  const [pensionWithdrawalMode, setPensionWithdrawalMode] = useState<"annual" | "lump">("annual");
+  const [pensionAnnualWithdrawal, setPensionAnnualWithdrawal] = useState(15_000_000);
 
   // 아코디언
   const [openSection, setOpenSection] = useState<"basic" | "dca" | "tax" | null>("basic");
@@ -187,7 +194,6 @@ export default function BacktestPage() {
       basis,
       feeRate: feeRate / 100,
     };
-
     const taxOptions: TaxOptions = {
       enabled: taxEnabled,
       accounts,
@@ -197,6 +203,8 @@ export default function BacktestPage() {
       isaServingType,
       windmillEnabled,
       windmillTransferRatio: windmillRatio,
+      pensionWithdrawalMode,
+      pensionAnnualWithdrawal,
     };
 
     const req: BacktestRequest & { dca: DcaOptions; tax: TaxOptions } = {
@@ -204,7 +212,7 @@ export default function BacktestPage() {
       startDate,
       endDate,
       rebalance,
-      benchmark: "SPY",
+      benchmark: benchmarkChoice,
       riskFree,
       dca: dcaOptions,
       tax: taxOptions,
@@ -234,11 +242,18 @@ export default function BacktestPage() {
       }))
     : [];
 
+  const benchLabel = (() => {
+    const info = result?.benchmarkInfo;
+    if (!info) return "SPY";
+    return /^[0-9A-Z]{6}$/.test(info.ticker) && /[0-9]/.test(info.ticker)
+      ? info.name
+      : info.ticker;
+  })();
   const yearlyData = result
     ? result.yearlyReturns.map((y) => ({
         year: y.year.toString(),
         포트폴리오: +(y.portfolio * 100).toFixed(2),
-        SPY: +(y.benchmark * 100).toFixed(2),
+        [benchLabel]: +(y.benchmark * 100).toFixed(2),
       }))
     : [];
 
@@ -348,6 +363,15 @@ export default function BacktestPage() {
                   )}
                 </div>
               </div>
+            </div>
+            <div>
+              <label className="block text-sm font-semibold text-slate-700 mb-1">벤치마크</label>
+              <select className="w-full border border-slate-300 rounded-lg px-3 py-2 text-sm bg-white focus:outline-none focus:ring-2 focus:ring-blue-500"
+                value={benchmarkChoice} onChange={(e) => setBenchmarkChoice(e.target.value as "auto" | "069500" | "SPY")}>
+                <option value="auto">자동 (포트폴리오 비중 기준)</option>
+                <option value="069500">KODEX 200 (한국 대표)</option>
+                <option value="SPY">SPY (미국 대표)</option>
+              </select>
             </div>
           </div>
         </div>
@@ -518,10 +542,33 @@ export default function BacktestPage() {
                   onChange={(e) => setWindmillRatio(Number(e.target.value) / 100)}
                   className="w-full" />
                 <div className="text-xs text-slate-600">
-                  ↪ 연금저축 이전: <strong>{Math.round(windmillRatio * 100)}%</strong> (10% 추가 세액공제, 최대 300만)
+                  → 연금저축 이전: <strong>{Math.round(windmillRatio * 100)}%</strong> (10% 추가 세액공제, 최대 300만)
                   <br />
-                  ↪ 새 ISA 재가입: <strong>{Math.round((1 - windmillRatio) * 100)}%</strong> (비과세 한도 리셋)
+                  → 새 ISA 재가입: <strong>{Math.round((1 - windmillRatio) * 100)}%</strong> (비과세 한도 리셋)
                 </div>
+              </div>
+            )}
+          </div>
+
+          {/* 연금/IRP 인출 패턴 */}
+          <div className="border-t border-slate-200 pt-4 mt-2">
+            <label className="block text-sm font-semibold text-slate-700 mb-2">연금/IRP 인출 방식</label>
+            <div className="grid grid-cols-2 gap-2 mb-2">
+              <button onClick={() => setPensionWithdrawalMode("annual")}
+                className={`py-2 px-3 rounded-lg text-sm font-medium ${pensionWithdrawalMode === "annual" ? "bg-blue-600 text-white" : "bg-slate-100 text-slate-700 hover:bg-slate-200"}`}>
+                연 분할 (연금)
+              </button>
+              <button onClick={() => setPensionWithdrawalMode("lump")}
+                className={`py-2 px-3 rounded-lg text-sm font-medium ${pensionWithdrawalMode === "lump" ? "bg-blue-600 text-white" : "bg-slate-100 text-slate-700 hover:bg-slate-200"}`}>
+                일시금
+              </button>
+            </div>
+            {pensionWithdrawalMode === "annual" && (
+              <div>
+                <label className="block text-xs text-slate-500 mb-1">연 인출액 (원) — 1,500만 초과 시 종합과세</label>
+                <input type="number" step="1000000"
+                  className="w-full border border-slate-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  value={pensionAnnualWithdrawal} onChange={(e) => setPensionAnnualWithdrawal(Number(e.target.value))} />
               </div>
             )}
           </div>
@@ -534,6 +581,29 @@ export default function BacktestPage() {
       </button>
 
       {error && <div className="text-sm text-rose-700 bg-rose-50 border border-rose-200 px-4 py-2 rounded-lg">{error}</div>}
+
+      {/* 레버리지/인버스 경고 */}
+      {(() => {
+        const leveraged = holdings.filter((h) => {
+          const meta = findAnyTicker(h.ticker);
+          return meta && /레버리지|인버스|2X|3X|leveraged|inverse|ultra|bull|bear/i.test(meta.name);
+        });
+        if (leveraged.length === 0) return null;
+        return (
+          <div className="text-xs text-amber-800 bg-amber-50 border border-amber-200 px-4 py-3 rounded-lg">
+            <div className="font-semibold mb-1 flex items-center gap-1.5">
+              <IconAlert />
+              <span>레버리지/인버스 ETF 포함 — 결과 해석 주의</span>
+            </div>
+            <ul className="ml-4 space-y-0.5">
+              {leveraged.map((h, i) => (
+                <li key={i}>• {h.ticker} ({findAnyTicker(h.ticker)?.name})</li>
+              ))}
+            </ul>
+            <p className="mt-1.5">레버리지 ETF는 일별 변동성으로 인한 시간 감쇠(volatility decay)가 발생합니다. 장기 보유 시 단순 N배 수익이 아닌, 변동성에 따라 누적 수익이 왜곡될 수 있습니다.</p>
+          </div>
+        );
+      })()}
 
       {pickerOpen !== null && (
         <TickerPicker selected={holdings[pickerOpen].ticker}
@@ -556,7 +626,7 @@ export default function BacktestPage() {
               <div key={m.label} className="bg-white border border-slate-200 rounded-xl p-4 shadow-sm">
                 <div className="text-xs font-medium text-slate-500 uppercase tracking-wide">{m.label}</div>
                 <div className={`text-2xl font-bold mt-1 ${m.accent}`}>{fmt(m.port, m.pct)}</div>
-                <div className="text-xs text-slate-400 mt-1">SPY {fmt(m.bench, m.pct)}</div>
+                <div className="text-xs text-slate-400 mt-1">{benchLabel} {fmt(m.bench, m.pct)}</div>
               </div>
             ))}
           </div>
@@ -629,6 +699,24 @@ export default function BacktestPage() {
                 </div>
               </div>
 
+              {/* 세후 CAGR 비교 */}
+              <div className="grid grid-cols-2 gap-3">
+                <div className="bg-emerald-50/50 border border-emerald-200 rounded-xl p-4 shadow-sm">
+                  <div className="text-xs font-medium text-emerald-700 uppercase tracking-wide">세후 CAGR (절세 적용)</div>
+                  <div className="text-2xl font-bold mt-1 text-emerald-600">
+                    {(result.tax.afterTaxCagr * 100).toFixed(2)}%
+                  </div>
+                  <div className="text-xs text-slate-500 mt-1">매년 평균 수익률 (세후)</div>
+                </div>
+                <div className="bg-white border border-slate-200 rounded-xl p-4 shadow-sm">
+                  <div className="text-xs font-medium text-slate-500 uppercase tracking-wide">세후 CAGR (일반계좌)</div>
+                  <div className="text-2xl font-bold mt-1 text-slate-700">
+                    {(result.tax.generalCaseCagr * 100).toFixed(2)}%
+                  </div>
+                  <div className="text-xs text-slate-500 mt-1">절세 미적용 비교군</div>
+                </div>
+              </div>
+
               {/* 계좌별 분포 */}
               <div className="bg-white border border-slate-200 rounded-xl p-5 shadow-sm">
                 <h2 className="font-bold text-slate-900 mb-4">계좌별 자금 분포</h2>
@@ -698,7 +786,21 @@ export default function BacktestPage() {
           <div className="bg-white border border-slate-200 rounded-xl p-5 shadow-sm">
             <div className="mb-3">
               <h2 className="font-bold text-slate-900">포트폴리오 가치 곡선</h2>
-              <p className="text-xs text-slate-500">시작값 100 기준 · {result.meta.actualStart} ~ {result.meta.actualEnd} ({result.meta.tradingDays} 거래일)</p>
+              <p className="text-xs text-slate-500">시작값 100 기준 · {result.meta.actualStart} ~ {result.meta.actualEnd} ({result.meta.tradingDays} 거래일)</p>              {result.benchmarkInfo && (
+                <p className="text-xs text-slate-400 mt-1">
+                  벤치마크: <span className="font-semibold text-slate-600">{result.benchmarkInfo.ticker}</span> ({result.benchmarkInfo.name}) — {result.benchmarkInfo.reason}
+                </p>
+              )}
+              {result.dateAdjustments && result.dateAdjustments.length > 0 && (
+                <div className="text-xs text-amber-700 bg-amber-50 border border-amber-200 px-3 py-2 rounded-lg mt-2">
+                  <div className="font-semibold mb-1">상장일이 늦어 시작일이 자동 조정됨</div>
+                  <ul>
+                    {result.dateAdjustments.map((d, i) => (
+                      <li key={i}>• {d.ticker}: {d.firstAvailable} 이후 데이터만 사용</li>
+                    ))}
+                  </ul>
+                </div>
+              )}
             </div>
             <ResponsiveContainer width="100%" height={380}>
               <LineChart data={chartData} margin={{ top: 10, right: 20, bottom: 10, left: 0 }}>
@@ -710,7 +812,7 @@ export default function BacktestPage() {
                 <Legend wrapperStyle={{ fontSize: 13 }} />
                 <ReferenceLine y={100} stroke="#cbd5e1" strokeDasharray="2 2" />
                 <Line type="monotone" dataKey="portfolio" stroke="#2563eb" name="포트폴리오" dot={false} strokeWidth={2} />
-                <Line type="monotone" dataKey="benchmark" stroke="#94a3b8" name="SPY 벤치마크" dot={false} strokeWidth={1.5} />
+                <Line type="monotone" dataKey="benchmark" stroke="#94a3b8" name={`${benchLabel} 벤치마크`} dot={false} strokeWidth={1.5} />
               </LineChart>
             </ResponsiveContainer>
           </div>
@@ -727,7 +829,7 @@ export default function BacktestPage() {
                 <Legend wrapperStyle={{ fontSize: 13 }} />
                 <ReferenceLine y={0} stroke="#94a3b8" />
                 <Bar dataKey="포트폴리오" fill="#2563eb" radius={[4, 4, 0, 0]} />
-                <Bar dataKey="SPY" fill="#cbd5e1" radius={[4, 4, 0, 0]} />
+                <Bar dataKey={benchLabel} fill="#cbd5e1" radius={[4, 4, 0, 0]} />
               </BarChart>
             </ResponsiveContainer>
           </div>

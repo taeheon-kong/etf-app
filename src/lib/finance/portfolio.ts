@@ -79,7 +79,8 @@ export function simulatePortfolio(
   dates: string[],
   weights: number[],
   startDate: string,
-  freq: RebalanceFrequency
+  freq: RebalanceFrequency,
+  rebalanceFeeRate: number = 0,  // 리밸런싱 거래비용 (예: 0.00015 = 0.015%)
 ): EquityPoint[] {
   const n = matrix.length;
   const k = weights.length;
@@ -96,15 +97,27 @@ export function simulatePortfolio(
     }
 
     // 2. 총 가치 합산
-    const total = holdings.reduce((s, h) => s + h, 0);
+    let total = holdings.reduce((s, h) => s + h, 0);
 
-    // 3. 리밸런싱 경계인지 확인 (이번 날짜 = 새 분기/연도 시작?)
-    //    t=0일 때는 전날이 startDate라고 가정하고 비교
+    // 3. 리밸런싱 경계인지 확인
     const prevDate = t === 0 ? startDate : dates[t - 1];
     const currDate = dates[t];
 
     if (isRebalanceBoundary(prevDate, currDate, freq)) {
-      // 총가치를 목표 비중으로 다시 분배
+      // 거래량 = 각 자산의 현재 가치와 목표 가치 차이의 절대값 합 / 2
+      // (매수=매도이므로 한쪽만 카운트)
+      let turnover = 0;
+      const targetHoldings = weights.map((w) => total * w);
+      for (let i = 0; i < k; i++) {
+        turnover += Math.abs(holdings[i] - targetHoldings[i]);
+      }
+      turnover /= 2;
+
+      // 거래비용 = 거래량 × 비용률 (매도+매수 둘 다 발생하므로 ×2)
+      const fee = turnover * rebalanceFeeRate * 2;
+      total -= fee;
+
+      // 비용 차감 후 목표 비중으로 재분배
       holdings = weights.map((w) => total * w);
     }
 

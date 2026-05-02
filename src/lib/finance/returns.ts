@@ -53,40 +53,52 @@ export function dailyReturns(
 // ──────────────────────────────────────────────────────────────
 
 /**
- * 여러 종목의 일별 수익률을 "공통 날짜"로 정렬.
+ * 여러 종목의 일별 수익률을 정렬 (Forward Fill 방식).
  *
- * 왜 필요한가: SCHD는 2011-10-20부터, SPY는 2005-01-03부터 시작.
- * 같이 쓰려면 둘 다 데이터가 있는 날짜만 골라야 함.
+ * 한국·미국 거래일이 다르므로(설/추석 vs Memorial Day 등) "공통 거래일"만 쓰면
+ * 데이터 손실이 큼 → 모든 종목의 거래일 합집합을 사용하고, 누락일은 수익률 0으로 채움.
  *
- * 입력: 여러 종목의 일별 수익률
- * 출력: 공통 날짜 배열 + 종목별 수익률 행렬
+ * 단, "최초 거래 시작일"은 모든 종목이 데이터를 보유한 시점 이후로 한정 (look-ahead 방지).
  */
 export function alignReturns(
   seriesList: { ticker: string; rows: { date: string; ret: number }[] }[]
 ): {
   dates: string[];
-  matrix: number[][]; // matrix[t][i] = t번째 날짜에서 i번째 종목의 수익률
+  matrix: number[][];
 } {
   if (seriesList.length === 0) {
     return { dates: [], matrix: [] };
   }
 
-  // 각 종목의 날짜 → 수익률 맵 생성
+  // 각 종목의 날짜→수익률 맵
   const maps = seriesList.map(
     (s) => new Map(s.rows.map((r) => [r.date, r.ret]))
   );
 
-  // 첫 번째 종목 날짜 중 모든 종목에 존재하는 것만 골라냄
-  const commonDates = seriesList[0].rows
-    .map((r) => r.date)
-    .filter((d) => maps.every((m) => m.has(d)));
-
-  // 행렬 구성
-  const matrix: number[][] = commonDates.map((d) =>
-    maps.map((m) => m.get(d)!)
+  // 각 종목의 최초 데이터 날짜 (그 종목이 시작하기 전엔 NaN, 그 이후엔 수익률 0으로 fill 가능)
+  const firstDates = seriesList.map((s) =>
+    s.rows.length > 0 ? s.rows[0].date : "9999-99-99"
   );
 
-  return { dates: commonDates, matrix };
+  // 모든 종목 거래일의 합집합 정렬
+  const allDatesSet = new Set<string>();
+  for (const s of seriesList) {
+    for (const r of s.rows) allDatesSet.add(r.date);
+  }
+  const allDates = Array.from(allDatesSet).sort();
+
+  // 최초 시작일 = 모든 종목의 firstDate 중 최댓값 (그 시점에는 모든 종목이 존재)
+  const startDate = firstDates.reduce((a, b) => (a > b ? a : b), "0000-00-00");
+
+  // startDate 이후의 날짜만 사용
+  const usableDates = allDates.filter((d) => d >= startDate);
+
+  // 행렬 구성: 누락된 날에는 수익률 0 (forward fill에 해당 — 가격 유지)
+  const matrix: number[][] = usableDates.map((d) =>
+    maps.map((m) => m.get(d) ?? 0)
+  );
+
+  return { dates: usableDates, matrix };
 }
 
 // ──────────────────────────────────────────────────────────────

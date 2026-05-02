@@ -15,6 +15,7 @@ import type {
   RiskFreeMode,
   YearlyReturn,
 } from "./types";
+import { loadCd91, valueAtOrBefore } from "./macroLoader";
 
 const TRADING_DAYS_PER_YEAR = 252;
 
@@ -58,22 +59,76 @@ function downsideStddev(arr: number[], target: number = 0): number {
  */
 function dailyRiskFreeRate(
   mode: RiskFreeMode,
-  irxSeries?: { date: string; rate: number }[]
+  irxSeries?: { date: string; rate: number }[],
+  korWeight: number = 0,
 ): number {
+  // 평균값(legacy fallback). 정밀 매칭은 dailyRiskFreeSeries() 사용.
   if (mode.type === "none") return 0;
 
   if (mode.type === "fixed") {
     return Math.pow(1 + mode.rate, 1 / TRADING_DAYS_PER_YEAR) - 1;
   }
 
-  // dynamic: ^IRX 평균 사용 (간단화 — 시점별 동적 매칭은 Phase 4에서)
   if (mode.type === "dynamic") {
-    if (!irxSeries || irxSeries.length === 0) return 0;
-    const avgAnnual = mean(irxSeries.map((r) => r.rate / 100));
-    return Math.pow(1 + avgAnnual, 1 / TRADING_DAYS_PER_YEAR) - 1;
-  }
+    const cd91 = loadCd91();
+    let krAnnual: number | null = null;
+    let usAnnual: number | null = null;
 
+    if (cd91.length > 0) {
+      krAnnual = cd91.reduce((s, r) => s + r.value, 0) / cd91.length;
+    }
+    if (irxSeries && irxSeries.length > 0) {
+      usAnnual = mean(irxSeries.map((r) => r.rate / 100));
+    }
+
+    let blendedAnnual = 0;
+    const usWeight = 1 - korWeight;
+    if (krAnnual !== null && usAnnual !== null) {
+      blendedAnnual = krAnnual * korWeight + usAnnual * usWeight;
+    } else if (krAnnual !== null) {
+      blendedAnnual = krAnnual;
+    } else if (usAnnual !== null) {
+      blendedAnnual = usAnnual;
+    } else {
+      return 0;
+    }
+    return Math.pow(1 + blendedAnnual, 1 / TRADING_DAYS_PER_YEAR) - 1;
+  }
   return 0;
+}
+
+/**
+ * 시점별 일별 무위험수익률.
+ * 각 거래일에 그 시점 CD91 + ^IRX를 가중평균한 일별 비율 반환.
+ */
+function dailyRiskFreeSeries(
+  dates: string[],
+  mode: RiskFreeMode,
+  irxSeries: { date: string; rate: number }[] | undefined,
+  korWeight: number,
+): number[] {
+  if (mode.type === "none") return dates.map(() => 0);
+  if (mode.type === "fixed") {
+    const d = Math.pow(1 + mode.rate, 1 / TRADING_DAYS_PER_YEAR) - 1;
+    return dates.map(() => d);
+  }
+  // dynamic
+  const cd91 = loadCd91();
+  const irxArr = irxSeries
+    ? irxSeries.map((r) => ({ date: r.date, value: r.rate / 100 }))
+    : [];
+  const usWeight = 1 - korWeight;
+
+  return dates.map((d) => {
+    const kr = valueAtOrBefore(cd91, d);
+    const us = valueAtOrBefore(irxArr, d);
+    let annual = 0;
+    if (kr !== null && us !== null) annual = kr * korWeight + us * usWeight;
+    else if (kr !== null) annual = kr;
+    else if (us !== null) annual = us;
+    else return 0;
+    return Math.pow(1 + annual, 1 / TRADING_DAYS_PER_YEAR) - 1;
+  });
 }
 
 // ──────────────────────────────────────────────────────────────
@@ -131,10 +186,12 @@ export function calcVolatility(dailyRets: number[]): number {
  */
 export function calcSharpe(
   dailyRets: number[],
-  rfDaily: number = 0
+  rfDaily: number | number[] = 0,
 ): number {
   if (dailyRets.length < 2) return 0;
-  const excess = dailyRets.map((r) => r - rfDaily);
+  const excess = Array.isArray(rfDaily)
+    ? dailyRets.map((r, i) => r - (rfDaily[i] ?? 0))
+    : dailyRets.map((r) => r - rfDaily);
   const sd = stddev(excess);
   if (sd === 0) return 0;
   return (mean(excess) / sd) * Math.sqrt(TRADING_DAYS_PER_YEAR);
@@ -146,10 +203,12 @@ export function calcSharpe(
  */
 export function calcSortino(
   dailyRets: number[],
-  rfDaily: number = 0
+  rfDaily: number | number[] = 0,
 ): number {
   if (dailyRets.length < 2) return 0;
-  const excess = dailyRets.map((r) => r - rfDaily);
+  const excess = Array.isArray(rfDaily)
+    ? dailyRets.map((r, i) => r - (rfDaily[i] ?? 0))
+    : dailyRets.map((r) => r - rfDaily);
   const ds = downsideStddev(excess, 0);
   if (ds === 0) return 0;
   return (mean(excess) / ds) * Math.sqrt(TRADING_DAYS_PER_YEAR);
@@ -171,16 +230,21 @@ export function calcAllMetrics(
   curve: EquityPoint[],
   dailyRets: number[],
   rfMode: RiskFreeMode = { type: "none" },
-  irxSeries?: { date: string; rate: number }[]
+  irxSeries?: { date: string; rate: number }[],
+  korWeight: number = 0,
 ): Metrics {
-  const rfDaily = dailyRiskFreeRate(rfMode, irxSeries);
+  // 시점별 일별 무위험수익률 시리즈 (curve의 시작점 다음부터, dailyRets와 길이 동일)
+  const retDates = curve.slice(1).map((p) => p.date);
+  const rfSeries = dailyRiskFreeSeries(retDates, rfMode, irxSeries, korWeight);
+  // legacy fallback (안 쓰면 경고 — void로 묶음)
+  void dailyRiskFreeRate;
 
   return {
     totalReturn: calcTotalReturn(curve),
     cagr: calcCAGR(curve),
     mdd: calcMDD(curve),
-    sharpe: calcSharpe(dailyRets, rfDaily),
-    sortino: calcSortino(dailyRets, rfDaily),
+    sharpe: calcSharpe(dailyRets, rfSeries),
+    sortino: calcSortino(dailyRets, rfSeries),
     volatility: calcVolatility(dailyRets),
   };
 }
