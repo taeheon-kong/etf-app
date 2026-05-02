@@ -77,9 +77,9 @@ const ACCOUNT_LABELS: Record<AccountType, string> = {
 };
 
 const ACCOUNT_DESC: Record<AccountType, string> = {
-  isa: "연 2,000만 / 누적 1억 / 3년 재개설",
-  pension: "연 600만 (단독)",
-  irp: "연 300만 (단독)",
+  isa: "연 2,000만 / 누적 1억",
+  pension: "연 600만",
+  irp: "연 300만",
   general: "한도 없음",
 };
 
@@ -124,13 +124,11 @@ export default function BacktestPage() {
   const [highIncome, setHighIncome] = useState(false);
   const [applyComprehensive, setApplyComprehensive] = useState(false);
   const [taxBracket, setTaxBracket] = useState<TaxBracket>(0.165);
-  const [isaServingType, setIsaServingType] = useState<"general" | "preferred">("general");  const [windmillEnabled, setWindmillEnabled] = useState(false);
+  const [isaServingType, setIsaServingType] = useState<"general" | "preferred">("general");
+  const [windmillEnabled, setWindmillEnabled] = useState(false);
   const [windmillRatio, setWindmillRatio] = useState(0.6);
   const [pensionWithdrawalMode, setPensionWithdrawalMode] = useState<"annual" | "lump">("annual");
   const [pensionAnnualWithdrawal, setPensionAnnualWithdrawal] = useState(15_000_000);
-
-  // 아코디언
-  const [openSection, setOpenSection] = useState<"basic" | "dca" | "tax" | null>("basic");
 
   const [pickerOpen, setPickerOpen] = useState<number | null>(null);
   const [loading, setLoading] = useState(false);
@@ -158,7 +156,6 @@ export default function BacktestPage() {
     setHoldings(holdings.filter((_, idx) => idx !== i));
   };
 
-  // 계좌 우선순위 변경
   const moveAccount = (idx: number, dir: "up" | "down") => {
     const sorted = [...accounts].sort((a, b) => a.priority - b.priority);
     if (dir === "up" && idx === 0) return;
@@ -194,6 +191,7 @@ export default function BacktestPage() {
       basis,
       feeRate: feeRate / 100,
     };
+
     const taxOptions: TaxOptions = {
       enabled: taxEnabled,
       accounts,
@@ -249,6 +247,7 @@ export default function BacktestPage() {
       ? info.name
       : info.ticker;
   })();
+
   const yearlyData = result
     ? result.yearlyReturns.map((y) => ({
         year: y.year.toString(),
@@ -268,26 +267,34 @@ export default function BacktestPage() {
   const sortedAccounts = [...accounts].sort((a, b) => a.priority - b.priority);
   const enabledCount = accounts.filter((a) => a.enabled).length;
 
+  // 레버리지 경고용
+  const leveragedHoldings = holdings.filter((h) => {
+    const meta = findAnyTicker(h.ticker);
+    return meta && /레버리지|인버스|2X|3X|leveraged|inverse|ultra|bull|bear/i.test(meta.name);
+  });
+
   return (
-    <div className="px-8 py-8 space-y-6 max-w-7xl">
-      <div>
-        <h1 className="text-3xl font-bold text-slate-900">백테스트 진행</h1>
+    <div className="px-6 lg:px-8 py-8 pb-32 max-w-[1400px]">
+      {/* 헤더 */}
+      <div className="mb-6">
+        <h1 className="text-3xl font-bold text-slate-900">백테스트</h1>
         <p className="text-sm text-slate-500 mt-1">
-          투자하고 싶은 ETF와 비중을 설정하여 전략을 최적화하세요
+          포트폴리오 구성 → 옵션 선택 → 실행
         </p>
       </div>
 
-      {/* ─── 기본 설정 ─── */}
-      <SectionCard
-        icon={<IconSettings />}
-        title="기본 설정"
-        subtitle="자산·비중·리밸런싱·기간"
-        open={openSection === "basic"}
-        onToggle={() => setOpenSection(openSection === "basic" ? null : "basic")}
-      >
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+      {/* 2단 레이아웃: 좌측(기본설정) 60% + 우측(옵션) 40% */}
+      <div className="grid grid-cols-1 lg:grid-cols-5 gap-5">
+        {/* ─── 좌측: 기본 설정 ─── */}
+        <div className="lg:col-span-3 bg-white border border-slate-200 rounded-xl p-6 shadow-sm space-y-5">
+          <div className="flex items-center gap-2">
+            <IconSettings />
+            <h2 className="font-bold text-slate-900">기본 설정</h2>
+          </div>
+
+          {/* 종목 */}
           <div>
-            <div className="flex items-center justify-between mb-3">
+            <div className="flex items-center justify-between mb-2">
               <label className="text-sm font-semibold text-slate-700">종목 + 비중 (%)</label>
               <span className={`text-sm font-semibold ${weightOK ? "text-emerald-600" : "text-rose-600"}`}>
                 합계 {totalWeight}%
@@ -308,312 +315,306 @@ export default function BacktestPage() {
                         </span>
                         <span className="text-xs text-slate-500 truncate">{meta?.name ?? "—"}</span>
                       </span>
-                      <span className="text-slate-400">▾</span>
+                      <IconChevronDown />
                     </button>
                     <input type="number" className="w-20 border border-slate-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
                       value={h.weight} onChange={(e) => updateHolding(i, "weight", e.target.value)} />
                     <button onClick={() => removeHolding(i)} disabled={holdings.length <= 1}
-                      className="px-3 text-sm text-slate-500 hover:bg-slate-100 rounded-lg disabled:opacity-30">✕</button>
+                      className="px-2.5 text-slate-400 hover:bg-slate-100 hover:text-rose-600 rounded-lg disabled:opacity-30 flex items-center justify-center">
+                      <IconX />
+                    </button>
                   </div>
                 );
               })}
             </div>
             <button onClick={addHolding} disabled={holdings.length >= 5}
-              className="mt-2 text-sm text-blue-600 hover:text-blue-800 disabled:opacity-40">
+              className="mt-2 text-sm text-blue-600 hover:text-blue-800 disabled:opacity-40 font-medium">
               + 종목 추가 ({holdings.length}/5)
             </button>
           </div>
 
-          <div className="space-y-3">
-            <div className="grid grid-cols-2 gap-3">
-              <div>
-                <label className="block text-sm font-semibold text-slate-700 mb-1">시작일</label>
-                <input type="date" className="w-full border border-slate-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
-                  value={startDate} onChange={(e) => setStartDate(e.target.value)} />
-              </div>
-              <div>
-                <label className="block text-sm font-semibold text-slate-700 mb-1">종료일</label>
-                <input type="date" className="w-full border border-slate-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
-                  value={endDate} onChange={(e) => setEndDate(e.target.value)} />
-              </div>
+          {/* 기간 */}
+          <div className="grid grid-cols-2 gap-3">
+            <div>
+              <label className="block text-sm font-semibold text-slate-700 mb-1">시작일</label>
+              <input type="date" className="w-full border border-slate-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+                value={startDate} onChange={(e) => setStartDate(e.target.value)} />
             </div>
-            <div className="grid grid-cols-2 gap-3">
-              <div>
-                <label className="block text-sm font-semibold text-slate-700 mb-1">리밸런싱</label>
-                <select className="w-full border border-slate-300 rounded-lg px-3 py-2 text-sm bg-white focus:outline-none focus:ring-2 focus:ring-blue-500"
-                  value={rebalance} onChange={(e) => setRebalance(e.target.value as RebalanceFrequency)}>
-                  <option value="none">없음 (Buy & Hold)</option>
-                  <option value="annual">연 1회</option>
-                  <option value="semiannual">반기</option>
-                  <option value="quarterly">분기</option>
-                </select>
-              </div>
-              <div>
-                <label className="block text-sm font-semibold text-slate-700 mb-1">무위험 수익률</label>
-                <div className="flex gap-2">
-                  <select className="flex-1 border border-slate-300 rounded-lg px-3 py-2 text-sm bg-white focus:outline-none focus:ring-2 focus:ring-blue-500"
-                    value={rfMode} onChange={(e) => setRfMode(e.target.value as RiskFreeMode["type"])}>
-                    <option value="none">0%</option>
-                    <option value="fixed">고정값</option>
-                    <option value="dynamic">^IRX 동적</option>
-                  </select>
-                  {rfMode === "fixed" && (
-                    <input type="number" step="0.1" className="w-16 border border-slate-300 rounded-lg px-2 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
-                      value={rfRate} onChange={(e) => setRfRate(Number(e.target.value))} />
-                  )}
-                </div>
-              </div>
+            <div>
+              <label className="block text-sm font-semibold text-slate-700 mb-1">종료일</label>
+              <input type="date" className="w-full border border-slate-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+                value={endDate} onChange={(e) => setEndDate(e.target.value)} />
+            </div>
+          </div>
+
+          {/* 옵션들 */}
+          <div className="grid grid-cols-2 gap-3">
+            <div>
+              <label className="block text-sm font-semibold text-slate-700 mb-1">리밸런싱</label>
+              <select className="w-full border border-slate-300 rounded-lg px-3 py-2 text-sm bg-white focus:outline-none focus:ring-2 focus:ring-blue-500"
+                value={rebalance} onChange={(e) => setRebalance(e.target.value as RebalanceFrequency)}>
+                <option value="none">없음 (Buy & Hold)</option>
+                <option value="annual">연 1회</option>
+                <option value="semiannual">반기</option>
+                <option value="quarterly">분기</option>
+              </select>
             </div>
             <div>
               <label className="block text-sm font-semibold text-slate-700 mb-1">벤치마크</label>
               <select className="w-full border border-slate-300 rounded-lg px-3 py-2 text-sm bg-white focus:outline-none focus:ring-2 focus:ring-blue-500"
                 value={benchmarkChoice} onChange={(e) => setBenchmarkChoice(e.target.value as "auto" | "069500" | "SPY")}>
-                <option value="auto">자동 (포트폴리오 비중 기준)</option>
-                <option value="069500">KODEX 200 (한국 대표)</option>
-                <option value="SPY">SPY (미국 대표)</option>
+                <option value="auto">자동</option>
+                <option value="069500">KODEX 200</option>
+                <option value="SPY">SPY</option>
               </select>
             </div>
-          </div>
-        </div>
-      </SectionCard>
-
-      {/* ─── 적립식 ─── */}
-      <SectionCard
-        icon={<IconPiggy />}
-        title="적립식 시뮬레이션"
-        subtitle="초기자본·월 적립·인플레·수수료"
-        badge={dcaEnabled ? null : "비활성"}
-        checkbox={{ checked: dcaEnabled, onChange: setDcaEnabled }}
-        open={openSection === "dca"}
-        onToggle={() => setOpenSection(openSection === "dca" ? null : "dca")}
-      >
-        <div className="space-y-4">
-          <div>
-            <label className="block text-sm font-semibold text-slate-700 mb-1">초기 자본 (원)</label>
-            <div className="flex gap-2 items-center">
-              <input type="number" className="flex-1 border border-slate-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
-                value={initialCapital} onChange={(e) => { setInitialCapital(Number(e.target.value)); setDcaEnabled(true); }} />
-              <QuickAdd amount={1_000_000} label="+100만" onAdd={(v) => { setInitialCapital(initialCapital + v); setDcaEnabled(true); }} />
-              <QuickAdd amount={10_000_000} label="+1000만" onAdd={(v) => { setInitialCapital(initialCapital + v); setDcaEnabled(true); }} />
-              <QuickAdd amount={100_000_000} label="+1억" onAdd={(v) => { setInitialCapital(initialCapital + v); setDcaEnabled(true); }} />
-            </div>
-          </div>
-          <div>
-            <label className="block text-sm font-semibold text-slate-700 mb-1">월 적립액 (원)</label>
-            <div className="flex gap-2 items-center">
-              <input type="number" className="flex-1 border border-slate-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
-                value={monthlyDeposit} onChange={(e) => { setMonthlyDeposit(Number(e.target.value)); setDcaEnabled(true); }} />
-              <QuickAdd amount={10_000} label="+1만" onAdd={(v) => { setMonthlyDeposit(monthlyDeposit + v); setDcaEnabled(true); }} />
-              <QuickAdd amount={100_000} label="+10만" onAdd={(v) => { setMonthlyDeposit(monthlyDeposit + v); setDcaEnabled(true); }} />
-              <QuickAdd amount={1_000_000} label="+100만" onAdd={(v) => { setMonthlyDeposit(monthlyDeposit + v); setDcaEnabled(true); }} />
-            </div>
-          </div>
-          <div>
-            <label className="block text-sm font-semibold text-slate-700 mb-2">입력 금액 기준</label>
-            <div className="grid grid-cols-2 gap-2">
-              <button onClick={() => setBasis("start")}
-                className={`py-2 px-3 rounded-lg text-sm font-medium transition-colors ${basis === "start" ? "bg-blue-600 text-white" : "bg-slate-100 text-slate-700 hover:bg-slate-200"}`}>
-                {basis === "start" ? "✓ " : ""}시작 시점 금액
-              </button>
-              <button onClick={() => setBasis("now")}
-                className={`py-2 px-3 rounded-lg text-sm font-medium transition-colors ${basis === "now" ? "bg-blue-600 text-white" : "bg-slate-100 text-slate-700 hover:bg-slate-200"}`}>
-                {basis === "now" ? "✓ " : ""}현재 기준 금액
-              </button>
-            </div>
-          </div>
-          <div>
-            <label className="block text-sm font-semibold text-slate-700 mb-1">매매 수수료 (%)</label>
-            <input type="number" step="0.001" className="w-full border border-slate-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
-              value={feeRate} onChange={(e) => setFeeRate(Number(e.target.value))} />
-          </div>
-        </div>
-      </SectionCard>
-
-      {/* ─── 절세 ─── */}
-      <SectionCard
-        icon={<IconBank />}
-        title="절세 시뮬레이션"
-        subtitle={`계좌 납입 우선순위 · ${enabledCount}개 활성`}
-        badge={taxEnabled ? null : "비활성"}
-        checkbox={{ checked: taxEnabled, onChange: (v) => { setTaxEnabled(v); if (v && !dcaEnabled) setDcaEnabled(true); } }}
-        open={openSection === "tax"}
-        onToggle={() => setOpenSection(openSection === "tax" ? null : "tax")}
-      >
-        {!dcaEnabled && taxEnabled && (
-          <div className="mb-3 text-xs text-amber-700 bg-amber-50 border border-amber-200 px-3 py-2 rounded-lg">
-            ⚠ 절세 시뮬레이션은 적립식이 활성화되어야 작동합니다. 자동으로 활성화됨.
-          </div>
-        )}
-
-        {/* 계좌 우선순위 */}
-        <div className="space-y-2 mb-4">
-          {sortedAccounts.map((acct, idx) => (
-            <div key={acct.type}
-              className={`flex items-center gap-2 px-3 py-2.5 rounded-lg border ${
-                acct.enabled ? "border-blue-200 bg-blue-50/40" : "border-slate-200 bg-slate-50"
-              }`}>
-              <div className="w-6 text-center font-bold text-slate-600">
-                {acct.enabled ? idx + 1 : "—"}
+            <div className="col-span-2">
+              <label className="block text-sm font-semibold text-slate-700 mb-1">무위험 수익률 (Sharpe 계산용)</label>
+              <div className="flex gap-2">
+                <select className="flex-1 border border-slate-300 rounded-lg px-3 py-2 text-sm bg-white focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  value={rfMode} onChange={(e) => setRfMode(e.target.value as RiskFreeMode["type"])}>
+                  <option value="none">사용 안 함 (0%)</option>
+                  <option value="fixed">고정값</option>
+                  <option value="dynamic">동적 (CD금리/IRX 자동 매칭)</option>
+                </select>
+                {rfMode === "fixed" && (
+                  <input type="number" step="0.1" className="w-20 border border-slate-300 rounded-lg px-2 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    value={rfRate} onChange={(e) => setRfRate(Number(e.target.value))} placeholder="%" />
+                )}
               </div>
-              <input type="checkbox" checked={acct.enabled} onChange={() => toggleAccount(acct.type)}
-                className="w-4 h-4 rounded border-slate-300 text-blue-600 focus:ring-blue-500" />
-              <div className="flex-1 min-w-0">
-                <div className="font-semibold text-slate-900 text-sm">{ACCOUNT_LABELS[acct.type]}</div>
-                <div className="text-xs text-slate-500">{ACCOUNT_DESC[acct.type]}</div>
-              </div>
-              <button onClick={() => moveAccount(idx, "up")} disabled={idx === 0}
-                className="p-1 text-slate-400 hover:text-blue-600 disabled:opacity-20">↑</button>
-              <button onClick={() => moveAccount(idx, "down")} disabled={idx === sortedAccounts.length - 1}
-                className="p-1 text-slate-400 hover:text-blue-600 disabled:opacity-20">↓</button>
             </div>
-          ))}
+          </div>
         </div>
 
-        {/* 사용자 정보 */}
-        <div className="space-y-3">
-          <div>
-            <label className="block text-sm font-semibold text-slate-700 mb-2">연봉 5,500만 초과?</label>
-            <div className="grid grid-cols-2 gap-2">
-              <button onClick={() => setHighIncome(false)}
-                className={`py-2 px-3 rounded-lg text-sm font-medium ${!highIncome ? "bg-blue-600 text-white" : "bg-slate-100 text-slate-700 hover:bg-slate-200"}`}>
-                {!highIncome ? "✓ " : ""}이하 (세액공제 16.5%)
-              </button>
-              <button onClick={() => setHighIncome(true)}
-                className={`py-2 px-3 rounded-lg text-sm font-medium ${highIncome ? "bg-blue-600 text-white" : "bg-slate-100 text-slate-700 hover:bg-slate-200"}`}>
-                {highIncome ? "✓ " : ""}초과 (세액공제 13.2%)
-              </button>
+        {/* ─── 우측: 적립식 + 절세 ─── */}
+        <div className="lg:col-span-2 space-y-5">
+          {/* 적립식 카드 */}
+          <div className={`bg-white border rounded-xl shadow-sm transition-colors ${dcaEnabled ? "border-blue-300" : "border-slate-200"}`}>
+            <div className="px-5 py-4 flex items-center gap-3 border-b border-slate-100">
+              <span className={dcaEnabled ? "text-blue-600" : "text-slate-400"}>
+                <IconPiggy />
+              </span>
+              <div className="flex-1">
+                <h3 className="font-bold text-slate-900">적립식 시뮬레이션</h3>
+                <p className="text-xs text-slate-500">초기자본 + 월 적립</p>
+              </div>
+              <ToggleSwitch checked={dcaEnabled} onChange={setDcaEnabled} />
             </div>
-          </div>
-
-          <div>
-            <label className="block text-sm font-semibold text-slate-700 mb-2">ISA 유형</label>
-            <div className="grid grid-cols-2 gap-2">
-              <button onClick={() => setIsaServingType("general")}
-                className={`py-2 px-3 rounded-lg text-sm font-medium ${isaServingType === "general" ? "bg-blue-600 text-white" : "bg-slate-100 text-slate-700 hover:bg-slate-200"}`}>
-                {isaServingType === "general" ? "✓ " : ""}일반형 (200만 비과세)
-              </button>
-              <button onClick={() => setIsaServingType("preferred")}
-                className={`py-2 px-3 rounded-lg text-sm font-medium ${isaServingType === "preferred" ? "bg-blue-600 text-white" : "bg-slate-100 text-slate-700 hover:bg-slate-200"}`}>
-                {isaServingType === "preferred" ? "✓ " : ""}서민형 (400만)
-              </button>
-            </div>
-          </div>
-
-          {/* 금융소득종합과세 */}
-          <div className="flex items-center justify-between bg-slate-50 px-3 py-2.5 rounded-lg">
-            <div className="text-sm">
-              <div className="font-semibold text-slate-700">금융소득종합과세 (일반계좌)</div>
-              <div className="text-xs text-slate-500">연 2천만 초과 시 한계세율 적용</div>
-            </div>
-            <ToggleSwitch checked={applyComprehensive} onChange={setApplyComprehensive} />
-          </div>
-
-          {applyComprehensive && (
-            <div>
-              <label className="block text-sm font-semibold text-slate-700 mb-1">종합소득세율 구간</label>
-              <select className="w-full border border-slate-300 rounded-lg px-3 py-2 text-sm bg-white focus:outline-none focus:ring-2 focus:ring-blue-500"
-                value={taxBracket} onChange={(e) => setTaxBracket(Number(e.target.value) as TaxBracket)}>
-                {TAX_BRACKETS.map((b) => (
-                  <option key={b.value} value={b.value}>{b.label}</option>
-                ))}
-              </select>
-            </div>
-          )}
-
-          {/* 풍차돌리기 */}
-          <div className="border-t border-slate-200 pt-4 mt-2">
-            <div className="flex items-center justify-between mb-2">
-              <div className="text-sm">
-                <div className="font-semibold text-slate-700 flex items-center gap-2">
-                  <IconWindmill />
-                  <span>풍차돌리기 모드</span>
-                  <span className="text-[10px] px-1.5 py-0.5 bg-emerald-50 text-emerald-700 rounded">추천</span>
+            {dcaEnabled && (
+              <div className="px-5 py-4 space-y-3">
+                <div>
+                  <label className="block text-xs font-semibold text-slate-700 mb-1">초기 자본 (원)</label>
+                  <input type="number" className="w-full border border-slate-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    value={initialCapital} onChange={(e) => setInitialCapital(Number(e.target.value))} />
+                  <div className="flex gap-1.5 mt-1.5">
+                    <QuickAdd amount={1_000_000} label="+100만" onAdd={(v) => setInitialCapital(initialCapital + v)} />
+                    <QuickAdd amount={10_000_000} label="+1000만" onAdd={(v) => setInitialCapital(initialCapital + v)} />
+                    <QuickAdd amount={100_000_000} label="+1억" onAdd={(v) => setInitialCapital(initialCapital + v)} />
+                  </div>
                 </div>
-              </div>
-              <ToggleSwitch checked={windmillEnabled} onChange={setWindmillEnabled} />
-            </div>
-
-            {windmillEnabled && (
-              <div className="bg-emerald-50/40 border border-emerald-200 rounded-lg p-3 mt-2 space-y-2">
-                <label className="block text-xs font-semibold text-slate-700">
-                  ISA 만기 시 연금저축 이전 비율: <span className="text-emerald-700">{Math.round(windmillRatio * 100)}%</span>
-                </label>
-                <input type="range" min="0" max="100" step="10" value={windmillRatio * 100}
-                  onChange={(e) => setWindmillRatio(Number(e.target.value) / 100)}
-                  className="w-full" />
-                <div className="text-xs text-slate-600">
-                  → 연금저축 이전: <strong>{Math.round(windmillRatio * 100)}%</strong> (10% 추가 세액공제, 최대 300만)
-                  <br />
-                  → 새 ISA 재가입: <strong>{Math.round((1 - windmillRatio) * 100)}%</strong> (비과세 한도 리셋)
+                <div>
+                  <label className="block text-xs font-semibold text-slate-700 mb-1">월 적립액 (원)</label>
+                  <input type="number" className="w-full border border-slate-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    value={monthlyDeposit} onChange={(e) => setMonthlyDeposit(Number(e.target.value))} />
+                  <div className="flex gap-1.5 mt-1.5">
+                    <QuickAdd amount={10_000} label="+1만" onAdd={(v) => setMonthlyDeposit(monthlyDeposit + v)} />
+                    <QuickAdd amount={100_000} label="+10만" onAdd={(v) => setMonthlyDeposit(monthlyDeposit + v)} />
+                    <QuickAdd amount={1_000_000} label="+100만" onAdd={(v) => setMonthlyDeposit(monthlyDeposit + v)} />
+                  </div>
+                </div>
+                <div className="grid grid-cols-2 gap-2">
+                  <button onClick={() => setBasis("start")}
+                    className={`py-2 px-2 rounded-lg text-xs font-medium ${basis === "start" ? "bg-blue-600 text-white" : "bg-slate-100 text-slate-700 hover:bg-slate-200"}`}>
+                    시작 시점 금액
+                  </button>
+                  <button onClick={() => setBasis("now")}
+                    className={`py-2 px-2 rounded-lg text-xs font-medium ${basis === "now" ? "bg-blue-600 text-white" : "bg-slate-100 text-slate-700 hover:bg-slate-200"}`}>
+                    현재 기준 금액
+                  </button>
+                </div>
+                <div>
+                  <label className="block text-xs font-semibold text-slate-700 mb-1">매매 수수료 (%)</label>
+                  <input type="number" step="0.001" className="w-full border border-slate-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    value={feeRate} onChange={(e) => setFeeRate(Number(e.target.value))} />
                 </div>
               </div>
             )}
           </div>
 
-          {/* 연금/IRP 인출 패턴 */}
-          <div className="border-t border-slate-200 pt-4 mt-2">
-            <label className="block text-sm font-semibold text-slate-700 mb-2">연금/IRP 인출 방식</label>
-            <div className="grid grid-cols-2 gap-2 mb-2">
-              <button onClick={() => setPensionWithdrawalMode("annual")}
-                className={`py-2 px-3 rounded-lg text-sm font-medium ${pensionWithdrawalMode === "annual" ? "bg-blue-600 text-white" : "bg-slate-100 text-slate-700 hover:bg-slate-200"}`}>
-                연 분할 (연금)
-              </button>
-              <button onClick={() => setPensionWithdrawalMode("lump")}
-                className={`py-2 px-3 rounded-lg text-sm font-medium ${pensionWithdrawalMode === "lump" ? "bg-blue-600 text-white" : "bg-slate-100 text-slate-700 hover:bg-slate-200"}`}>
-                일시금
-              </button>
+          {/* 절세 카드 */}
+          <div className={`bg-white border rounded-xl shadow-sm transition-colors ${taxEnabled ? "border-emerald-300" : "border-slate-200"}`}>
+            <div className="px-5 py-4 flex items-center gap-3 border-b border-slate-100">
+              <span className={taxEnabled ? "text-emerald-600" : "text-slate-400"}>
+                <IconBank />
+              </span>
+              <div className="flex-1">
+                <h3 className="font-bold text-slate-900">절세 시뮬레이션</h3>
+                <p className="text-xs text-slate-500">{enabledCount}개 계좌 활성</p>
+              </div>
+              <ToggleSwitch checked={taxEnabled} onChange={(v) => { setTaxEnabled(v); if (v && !dcaEnabled) setDcaEnabled(true); }} />
             </div>
-            {pensionWithdrawalMode === "annual" && (
-              <div>
-                <label className="block text-xs text-slate-500 mb-1">연 인출액 (원) — 1,500만 초과 시 종합과세</label>
-                <input type="number" step="1000000"
-                  className="w-full border border-slate-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
-                  value={pensionAnnualWithdrawal} onChange={(e) => setPensionAnnualWithdrawal(Number(e.target.value))} />
+
+            {taxEnabled && (
+              <div className="px-5 py-4 space-y-4">
+                {!dcaEnabled && (
+                  <div className="text-xs text-amber-700 bg-amber-50 border border-amber-200 px-3 py-2 rounded-lg flex items-center gap-1.5">
+                    <IconAlert /><span>적립식이 자동 활성화됩니다</span>
+                  </div>
+                )}
+
+                {/* 계좌 우선순위 */}
+                <div>
+                  <label className="block text-xs font-semibold text-slate-700 mb-2">계좌 납입 우선순위</label>
+                  <div className="space-y-1.5">
+                    {sortedAccounts.map((acct, idx) => (
+                      <div key={acct.type}
+                        className={`flex items-center gap-2 px-2.5 py-2 rounded-lg border ${
+                          acct.enabled ? "border-blue-200 bg-blue-50/40" : "border-slate-200 bg-slate-50"
+                        }`}>
+                        <div className="w-5 text-center text-xs font-bold text-slate-600">
+                          {acct.enabled ? idx + 1 : "—"}
+                        </div>
+                        <input type="checkbox" checked={acct.enabled} onChange={() => toggleAccount(acct.type)}
+                          className="w-3.5 h-3.5 rounded border-slate-300 text-blue-600 focus:ring-blue-500" />
+                        <div className="flex-1 min-w-0">
+                          <div className="font-semibold text-slate-900 text-xs">{ACCOUNT_LABELS[acct.type]}</div>
+                          <div className="text-[10px] text-slate-500">{ACCOUNT_DESC[acct.type]}</div>
+                        </div>
+                        <button onClick={() => moveAccount(idx, "up")} disabled={idx === 0}
+                          className="p-1 text-slate-400 hover:text-blue-600 disabled:opacity-20"><IconArrowUp /></button>
+                        <button onClick={() => moveAccount(idx, "down")} disabled={idx === sortedAccounts.length - 1}
+                          className="p-1 text-slate-400 hover:text-blue-600 disabled:opacity-20"><IconArrowDown /></button>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+
+                {/* 사용자 정보 */}
+                <div className="space-y-2.5">
+                  <div>
+                    <label className="block text-xs font-semibold text-slate-700 mb-1">연봉</label>
+                    <div className="grid grid-cols-2 gap-1.5">
+                      <button onClick={() => setHighIncome(false)}
+                        className={`py-1.5 px-2 rounded-lg text-xs font-medium ${!highIncome ? "bg-blue-600 text-white" : "bg-slate-100 text-slate-700 hover:bg-slate-200"}`}>
+                        5,500만 이하
+                      </button>
+                      <button onClick={() => setHighIncome(true)}
+                        className={`py-1.5 px-2 rounded-lg text-xs font-medium ${highIncome ? "bg-blue-600 text-white" : "bg-slate-100 text-slate-700 hover:bg-slate-200"}`}>
+                        초과
+                      </button>
+                    </div>
+                  </div>
+
+                  <div>
+                    <label className="block text-xs font-semibold text-slate-700 mb-1">ISA 유형</label>
+                    <div className="grid grid-cols-2 gap-1.5">
+                      <button onClick={() => setIsaServingType("general")}
+                        className={`py-1.5 px-2 rounded-lg text-xs font-medium ${isaServingType === "general" ? "bg-blue-600 text-white" : "bg-slate-100 text-slate-700 hover:bg-slate-200"}`}>
+                        일반형 (200만)
+                      </button>
+                      <button onClick={() => setIsaServingType("preferred")}
+                        className={`py-1.5 px-2 rounded-lg text-xs font-medium ${isaServingType === "preferred" ? "bg-blue-600 text-white" : "bg-slate-100 text-slate-700 hover:bg-slate-200"}`}>
+                        서민형 (400만)
+                      </button>
+                    </div>
+                  </div>
+
+                  <div className="flex items-center justify-between bg-slate-50 px-2.5 py-2 rounded-lg">
+                    <div className="text-xs">
+                      <div className="font-semibold text-slate-700">금융소득종합과세</div>
+                      <div className="text-[10px] text-slate-500">연 2천만 초과 시</div>
+                    </div>
+                    <ToggleSwitch checked={applyComprehensive} onChange={setApplyComprehensive} />
+                  </div>
+
+                  {applyComprehensive && (
+                    <select className="w-full border border-slate-300 rounded-lg px-2.5 py-1.5 text-xs bg-white focus:outline-none focus:ring-2 focus:ring-blue-500"
+                      value={taxBracket} onChange={(e) => setTaxBracket(Number(e.target.value) as TaxBracket)}>
+                      {TAX_BRACKETS.map((b) => (
+                        <option key={b.value} value={b.value}>{b.label}</option>
+                      ))}
+                    </select>
+                  )}
+                </div>
+
+                {/* 풍차돌리기 */}
+                <div className="border-t border-slate-200 pt-3">
+                  <div className="flex items-center justify-between">
+                    <div className="text-xs">
+                      <div className="font-semibold text-slate-700 flex items-center gap-1.5">
+                        <IconWindmill />
+                        <span>풍차돌리기</span>
+                        <span className="text-[9px] px-1.5 py-0.5 bg-emerald-50 text-emerald-700 rounded">추천</span>
+                      </div>
+                      <div className="text-[10px] text-slate-500">3년마다 ISA → 연금이전</div>
+                    </div>
+                    <ToggleSwitch checked={windmillEnabled} onChange={setWindmillEnabled} />
+                  </div>
+
+                  {windmillEnabled && (
+                    <div className="bg-emerald-50/40 border border-emerald-200 rounded-lg p-2.5 mt-2 space-y-1.5">
+                      <label className="block text-[10px] font-semibold text-slate-700">
+                        연금이전 비율: <span className="text-emerald-700">{Math.round(windmillRatio * 100)}%</span>
+                      </label>
+                      <input type="range" min="0" max="100" step="10" value={windmillRatio * 100}
+                        onChange={(e) => setWindmillRatio(Number(e.target.value) / 100)}
+                        className="w-full" />
+                    </div>
+                  )}
+                </div>
+
+                {/* 인출 패턴 */}
+                <div className="border-t border-slate-200 pt-3">
+                  <label className="block text-xs font-semibold text-slate-700 mb-1.5">연금/IRP 인출</label>
+                  <div className="grid grid-cols-2 gap-1.5 mb-1.5">
+                    <button onClick={() => setPensionWithdrawalMode("annual")}
+                      className={`py-1.5 px-2 rounded-lg text-xs font-medium ${pensionWithdrawalMode === "annual" ? "bg-blue-600 text-white" : "bg-slate-100 text-slate-700 hover:bg-slate-200"}`}>
+                      연 분할
+                    </button>
+                    <button onClick={() => setPensionWithdrawalMode("lump")}
+                      className={`py-1.5 px-2 rounded-lg text-xs font-medium ${pensionWithdrawalMode === "lump" ? "bg-blue-600 text-white" : "bg-slate-100 text-slate-700 hover:bg-slate-200"}`}>
+                      일시금
+                    </button>
+                  </div>
+                  {pensionWithdrawalMode === "annual" && (
+                    <input type="number" step="1000000"
+                      className="w-full border border-slate-300 rounded-lg px-2.5 py-1.5 text-xs focus:outline-none focus:ring-2 focus:ring-blue-500"
+                      value={pensionAnnualWithdrawal} onChange={(e) => setPensionAnnualWithdrawal(Number(e.target.value))}
+                      placeholder="연 인출액 (1500만 초과 시 종합과세)" />
+                  )}
+                </div>
               </div>
             )}
           </div>
         </div>
-      </SectionCard>
+      </div>
 
-      <button onClick={runBacktest} disabled={loading || !weightOK}
-        className="w-full py-4 bg-blue-600 hover:bg-blue-700 text-white rounded-xl font-semibold disabled:opacity-50 disabled:cursor-not-allowed transition-colors text-base">
-        {loading ? "계산 중..." : "백테스트 실행"}
-      </button>
-
-      {error && <div className="text-sm text-rose-700 bg-rose-50 border border-rose-200 px-4 py-2 rounded-lg">{error}</div>}
-
-      {/* 레버리지/인버스 경고 */}
-      {(() => {
-        const leveraged = holdings.filter((h) => {
-          const meta = findAnyTicker(h.ticker);
-          return meta && /레버리지|인버스|2X|3X|leveraged|inverse|ultra|bull|bear/i.test(meta.name);
-        });
-        if (leveraged.length === 0) return null;
-        return (
-          <div className="text-xs text-amber-800 bg-amber-50 border border-amber-200 px-4 py-3 rounded-lg">
-            <div className="font-semibold mb-1 flex items-center gap-1.5">
-              <IconAlert />
-              <span>레버리지/인버스 ETF 포함 — 결과 해석 주의</span>
-            </div>
-            <ul className="ml-4 space-y-0.5">
-              {leveraged.map((h, i) => (
-                <li key={i}>• {h.ticker} ({findAnyTicker(h.ticker)?.name})</li>
-              ))}
-            </ul>
-            <p className="mt-1.5">레버리지 ETF는 일별 변동성으로 인한 시간 감쇠(volatility decay)가 발생합니다. 장기 보유 시 단순 N배 수익이 아닌, 변동성에 따라 누적 수익이 왜곡될 수 있습니다.</p>
+      {/* 레버리지 경고 */}
+      {leveragedHoldings.length > 0 && (
+        <div className="mt-4 text-xs text-amber-800 bg-amber-50 border border-amber-200 px-4 py-3 rounded-lg">
+          <div className="font-semibold mb-1 flex items-center gap-1.5">
+            <IconAlert />
+            <span>레버리지/인버스 ETF 포함 — 결과 해석 주의</span>
           </div>
-        );
-      })()}
+          <p>레버리지 ETF는 일별 변동성으로 인한 시간 감쇠(volatility decay)가 발생합니다. 장기 보유 시 단순 N배 수익이 아닌, 변동성에 따라 누적 수익이 왜곡될 수 있습니다.</p>
+        </div>
+      )}
 
+      {/* 픽커 */}
       {pickerOpen !== null && (
         <TickerPicker selected={holdings[pickerOpen].ticker}
           onSelect={(t) => { updateHolding(pickerOpen, "ticker", t); setPickerOpen(null); }}
           onClose={() => setPickerOpen(null)} groupedUs={groupedUs} groupedKr={groupedKr} />
       )}
 
-      {/* ─── 결과 ─── */}
+      {/* ─── 결과 영역 (전폭) ─── */}
       {result && (
-        <>
+        <div className="mt-8 space-y-5">
+          <div className="border-t-2 border-slate-200 pt-6">
+            <h2 className="text-2xl font-bold text-slate-900 mb-4">결과</h2>
+          </div>
+
+          {/* 핵심 지표 */}
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3">
             {[
               { label: "총수익률", port: result.metrics.totalReturn, bench: result.benchmarkMetrics.totalReturn, pct: true, accent: "text-blue-600" },
@@ -657,7 +658,7 @@ export default function BacktestPage() {
               </div>
 
               <div className="bg-white border border-slate-200 rounded-xl p-5 shadow-sm">
-                <h2 className="font-bold text-slate-900 mb-3">적립식 자산 추이</h2>
+                <h3 className="font-bold text-slate-900 mb-3">적립식 자산 추이</h3>
                 <ResponsiveContainer width="100%" height={300}>
                   <LineChart data={dcaChartData} margin={{ top: 10, right: 20, bottom: 10, left: 30 }}>
                     <CartesianGrid strokeDasharray="3 3" stroke="#e2e8f0" />
@@ -699,27 +700,19 @@ export default function BacktestPage() {
                 </div>
               </div>
 
-              {/* 세후 CAGR 비교 */}
               <div className="grid grid-cols-2 gap-3">
                 <div className="bg-emerald-50/50 border border-emerald-200 rounded-xl p-4 shadow-sm">
-                  <div className="text-xs font-medium text-emerald-700 uppercase tracking-wide">세후 CAGR (절세 적용)</div>
-                  <div className="text-2xl font-bold mt-1 text-emerald-600">
-                    {(result.tax.afterTaxCagr * 100).toFixed(2)}%
-                  </div>
-                  <div className="text-xs text-slate-500 mt-1">매년 평균 수익률 (세후)</div>
+                  <div className="text-xs font-medium text-emerald-700 uppercase tracking-wide">세후 CAGR (절세)</div>
+                  <div className="text-2xl font-bold mt-1 text-emerald-600">{(result.tax.afterTaxCagr * 100).toFixed(2)}%</div>
                 </div>
                 <div className="bg-white border border-slate-200 rounded-xl p-4 shadow-sm">
-                  <div className="text-xs font-medium text-slate-500 uppercase tracking-wide">세후 CAGR (일반계좌)</div>
-                  <div className="text-2xl font-bold mt-1 text-slate-700">
-                    {(result.tax.generalCaseCagr * 100).toFixed(2)}%
-                  </div>
-                  <div className="text-xs text-slate-500 mt-1">절세 미적용 비교군</div>
+                  <div className="text-xs font-medium text-slate-500 uppercase tracking-wide">세후 CAGR (일반)</div>
+                  <div className="text-2xl font-bold mt-1 text-slate-700">{(result.tax.generalCaseCagr * 100).toFixed(2)}%</div>
                 </div>
               </div>
 
-              {/* 계좌별 분포 */}
               <div className="bg-white border border-slate-200 rounded-xl p-5 shadow-sm">
-                <h2 className="font-bold text-slate-900 mb-4">계좌별 자금 분포</h2>
+                <h3 className="font-bold text-slate-900 mb-4">계좌별 자금 분포</h3>
                 <div className="space-y-3">
                   {result.tax.accounts.map((a) => (
                     <div key={a.type} className="flex items-center gap-3">
@@ -734,13 +727,12 @@ export default function BacktestPage() {
                 </div>
               </div>
 
-              {/* 풍차돌리기 사이클 */}
               {result.tax.windmillCycles.length > 0 && (
                 <div className="bg-gradient-to-br from-emerald-50 to-blue-50 border border-emerald-200 rounded-xl p-5 shadow-sm">
-                  <h2 className="font-bold text-slate-900 mb-3 flex items-center gap-2">
+                  <h3 className="font-bold text-slate-900 mb-3 flex items-center gap-2">
                     <IconWindmill />
                     <span>풍차돌리기 사이클 ({result.tax.windmillCycles.length}회)</span>
-                  </h2>
+                  </h3>
                   <div className="space-y-2">
                     {result.tax.windmillCycles.map((c) => (
                       <div key={c.cycleNumber} className="bg-white rounded-lg p-3 border border-slate-200">
@@ -754,11 +746,11 @@ export default function BacktestPage() {
                             <div className="font-semibold">{fmtKrw(c.isaBalance)}</div>
                           </div>
                           <div>
-                            <div className="text-xs text-slate-500">→ 연금이전</div>
+                            <div className="text-xs text-slate-500 flex items-center gap-1"><IconArrowRight />연금이전</div>
                             <div className="font-semibold text-emerald-600">{fmtKrw(c.transferToPension)}</div>
                           </div>
                           <div>
-                            <div className="text-xs text-slate-500">→ 추가 환급</div>
+                            <div className="text-xs text-slate-500 flex items-center gap-1"><IconArrowRight />추가 환급</div>
                             <div className="font-semibold text-blue-600">+{fmtKrw(c.taxCreditFromTransfer)}</div>
                           </div>
                         </div>
@@ -768,10 +760,11 @@ export default function BacktestPage() {
                 </div>
               )}
 
-              {/* 미배분 종목 경고 */}
               {result.tax.unallocated.length > 0 && (
                 <div className="bg-amber-50 border border-amber-200 rounded-xl p-4">
-                  <div className="font-semibold text-amber-900 mb-2 text-sm">⚠ 절세계좌 입금 제한 안내</div>
+                  <div className="font-semibold text-amber-900 mb-2 text-sm flex items-center gap-1.5">
+                    <IconAlert /><span>절세계좌 입금 제한</span>
+                  </div>
                   <ul className="space-y-1">
                     {result.tax.unallocated.map((u, i) => (
                       <li key={i} className="text-xs text-amber-800">• {u.reason}</li>
@@ -785,15 +778,16 @@ export default function BacktestPage() {
           {/* 가치 곡선 */}
           <div className="bg-white border border-slate-200 rounded-xl p-5 shadow-sm">
             <div className="mb-3">
-              <h2 className="font-bold text-slate-900">포트폴리오 가치 곡선</h2>
-              <p className="text-xs text-slate-500">시작값 100 기준 · {result.meta.actualStart} ~ {result.meta.actualEnd} ({result.meta.tradingDays} 거래일)</p>              {result.benchmarkInfo && (
+              <h3 className="font-bold text-slate-900">포트폴리오 가치 곡선</h3>
+              <p className="text-xs text-slate-500">시작값 100 기준 · {result.meta.actualStart} ~ {result.meta.actualEnd} ({result.meta.tradingDays} 거래일)</p>
+              {result.benchmarkInfo && (
                 <p className="text-xs text-slate-400 mt-1">
-                  벤치마크: <span className="font-semibold text-slate-600">{result.benchmarkInfo.ticker}</span> ({result.benchmarkInfo.name}) — {result.benchmarkInfo.reason}
+                  벤치마크: <span className="font-semibold text-slate-600">{benchLabel}</span> — {result.benchmarkInfo.reason}
                 </p>
               )}
               {result.dateAdjustments && result.dateAdjustments.length > 0 && (
                 <div className="text-xs text-amber-700 bg-amber-50 border border-amber-200 px-3 py-2 rounded-lg mt-2">
-                  <div className="font-semibold mb-1">상장일이 늦어 시작일이 자동 조정됨</div>
+                  <div className="font-semibold mb-1">상장일이 늦어 시작일 자동 조정됨</div>
                   <ul>
                     {result.dateAdjustments.map((d, i) => (
                       <li key={i}>• {d.ticker}: {d.firstAvailable} 이후 데이터만 사용</li>
@@ -818,7 +812,7 @@ export default function BacktestPage() {
           </div>
 
           <div className="bg-white border border-slate-200 rounded-xl p-5 shadow-sm">
-            <h2 className="font-bold text-slate-900 mb-3">연도별 수익률</h2>
+            <h3 className="font-bold text-slate-900 mb-3">연도별 수익률</h3>
             <ResponsiveContainer width="100%" height={300}>
               <BarChart data={yearlyData} margin={{ top: 10, right: 20, bottom: 10, left: 0 }}>
                 <CartesianGrid strokeDasharray="3 3" stroke="#e2e8f0" />
@@ -833,8 +827,21 @@ export default function BacktestPage() {
               </BarChart>
             </ResponsiveContainer>
           </div>
-        </>
+        </div>
       )}
+
+      {/* Sticky 하단 실행 버튼 */}
+      <div className="fixed bottom-0 left-0 right-0 lg:left-60 bg-white/90 backdrop-blur-md border-t border-slate-200 px-6 py-4 z-40">
+        <div className="max-w-[1400px] mx-auto">
+          <button onClick={runBacktest} disabled={loading || !weightOK}
+            className="w-full py-3.5 bg-blue-600 hover:bg-blue-700 text-white rounded-xl font-semibold disabled:opacity-50 disabled:cursor-not-allowed transition-colors text-base shadow-lg shadow-blue-600/20">
+            {loading ? "계산 중..." : "백테스트 실행"}
+          </button>
+          {error && (
+            <div className="mt-2 text-sm text-rose-700 bg-rose-50 border border-rose-200 px-4 py-2 rounded-lg">{error}</div>
+          )}
+        </div>
+      </div>
     </div>
   );
 }
@@ -843,47 +850,10 @@ export default function BacktestPage() {
 // 컴포넌트들
 // ──────────────────────────────────────────────────────────────
 
-function SectionCard({
-  icon, title, subtitle, badge, checkbox, open, onToggle, children,
-}: {
-  icon: React.ReactNode;
-  title: string;
-  subtitle: string;
-  badge?: string | null;
-  checkbox?: { checked: boolean; onChange: (v: boolean) => void };
-  open: boolean;
-  onToggle: () => void;
-  children: React.ReactNode;
-}) {
-  return (
-    <div className="bg-white border border-slate-200 rounded-xl shadow-sm overflow-hidden">
-      <button type="button" onClick={onToggle}
-        className="w-full px-5 py-4 flex items-center gap-3 hover:bg-slate-50 transition-colors text-left">
-        {checkbox && (
-          <input type="checkbox" checked={checkbox.checked}
-            onChange={(e) => { e.stopPropagation(); checkbox.onChange(e.target.checked); }}
-            onClick={(e) => e.stopPropagation()}
-            className="w-5 h-5 rounded border-slate-300 text-blue-600 focus:ring-blue-500" />
-        )}
-        <span className="text-slate-600">{icon}</span>
-        <div className="flex-1">
-          <div className="flex items-center gap-2">
-            <h3 className="font-bold text-slate-900">{title}</h3>
-            {badge && <span className="text-[10px] px-2 py-0.5 bg-slate-100 text-slate-500 rounded-full">{badge}</span>}
-          </div>
-          <p className="text-xs text-slate-500 mt-0.5">{subtitle}</p>
-        </div>
-        <span className={`text-slate-400 transition-transform ${open ? "rotate-180" : ""}`}>▾</span>
-      </button>
-      {open && <div className="px-5 pb-5 pt-2 border-t border-slate-100">{children}</div>}
-    </div>
-  );
-}
-
 function QuickAdd({ amount, label, onAdd }: { amount: number; label: string; onAdd: (v: number) => void }) {
   return (
     <button type="button" onClick={() => onAdd(amount)}
-      className="px-3 py-2 text-xs bg-blue-50 text-blue-700 hover:bg-blue-100 rounded-lg font-medium whitespace-nowrap">
+      className="px-2.5 py-1 text-[11px] bg-blue-50 text-blue-700 hover:bg-blue-100 rounded-md font-medium whitespace-nowrap">
       {label}
     </button>
   );
@@ -892,7 +862,7 @@ function QuickAdd({ amount, label, onAdd }: { amount: number; label: string; onA
 function ToggleSwitch({ checked, onChange }: { checked: boolean; onChange: (v: boolean) => void }) {
   return (
     <button onClick={() => onChange(!checked)}
-      className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors ${checked ? "bg-blue-600" : "bg-slate-300"}`}>
+      className={`relative inline-flex h-6 w-11 shrink-0 items-center rounded-full transition-colors ${checked ? "bg-blue-600" : "bg-slate-300"}`}>
       <span className={`inline-block h-4 w-4 transform rounded-full bg-white transition-transform ${checked ? "translate-x-6" : "translate-x-1"}`} />
     </button>
   );
@@ -925,7 +895,7 @@ function TickerPicker({ selected, onSelect, onClose, groupedUs, groupedKr }: {
 
   return (
     <div className="fixed inset-0 bg-black/30 z-50 flex items-start justify-center pt-20" onClick={onClose}>
-      <div className="bg-white rounded-xl shadow-2xl w-full max-w-2xl max-h-[70vh] flex flex-col" onClick={(e) => e.stopPropagation()}>
+      <div className="bg-white rounded-xl shadow-2xl w-full max-w-2xl max-h-[70vh] flex flex-col mx-4" onClick={(e) => e.stopPropagation()}>
         <div className="flex border-b border-slate-200">
           <button onClick={() => { setMarket("us"); setQuery(""); setActiveCategory("all"); }}
             className={`flex-1 py-3 text-sm font-semibold transition-colors ${market === "us" ? "text-blue-600 border-b-2 border-blue-600" : "text-slate-500 hover:text-slate-700"}`}>
@@ -937,7 +907,7 @@ function TickerPicker({ selected, onSelect, onClose, groupedUs, groupedKr }: {
           </button>
         </div>
         <div className="p-4 border-b border-slate-200">
-          <input autoFocus type="text" placeholder="ETF 검색 (티커·이름·부문)"
+          <input autoFocus type="text" placeholder="ETF 검색"
             className="w-full border border-slate-300 rounded-lg px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
             value={query} onChange={(e) => setQuery(e.target.value)} />
           {!query && (
@@ -1039,7 +1009,8 @@ function TickerRow({ ticker, name, sizeLabel, selected, onClick }: {
 function IconSettings() {
   return (
     <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-      <path d="M4 6h12M16 6a2 2 0 1 0 4 0a2 2 0 1 0-4 0M4 12h4M8 12a2 2 0 1 0 4 0a2 2 0 1 0-4 0M12 12h8M4 18h12M16 18a2 2 0 1 0 4 0a2 2 0 1 0-4 0" />
+      <circle cx="12" cy="12" r="3" />
+      <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09a1.65 1.65 0 0 0-1-1.51 1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09a1.65 1.65 0 0 0 1.51-1 1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33h0a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82v0a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z" />
     </svg>
   );
 }
@@ -1065,7 +1036,7 @@ function IconBank() {
 
 function IconWindmill() {
   return (
-    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
       <circle cx="12" cy="12" r="2" />
       <path d="M12 10V4M14 12h6M12 14v6M10 12H4" />
     </svg>
@@ -1074,7 +1045,7 @@ function IconWindmill() {
 
 function IconAlert() {
   return (
-    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
       <path d="M12 9v4M12 17h.01M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z" />
     </svg>
   );
@@ -1082,7 +1053,7 @@ function IconAlert() {
 
 function IconArrowUp() {
   return (
-    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
       <path d="M12 19V5M5 12l7-7 7 7" />
     </svg>
   );
@@ -1090,7 +1061,7 @@ function IconArrowUp() {
 
 function IconArrowDown() {
   return (
-    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
       <path d="M12 5v14M19 12l-7 7-7-7" />
     </svg>
   );
@@ -1098,16 +1069,8 @@ function IconArrowDown() {
 
 function IconChevronDown() {
   return (
-    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
       <path d="M6 9l6 6 6-6" />
-    </svg>
-  );
-}
-
-function IconCheck() {
-  return (
-    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
-      <path d="M20 6L9 17l-5-5" />
     </svg>
   );
 }
@@ -1116,6 +1079,14 @@ function IconX() {
   return (
     <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
       <path d="M18 6L6 18M6 6l12 12" />
+    </svg>
+  );
+}
+
+function IconArrowRight() {
+  return (
+    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="inline-block">
+      <path d="M5 12h14M12 5l7 7-7 7" />
     </svg>
   );
 }
