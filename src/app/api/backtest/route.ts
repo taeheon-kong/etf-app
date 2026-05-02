@@ -6,7 +6,6 @@ import type {
   DcaOptions,
   DcaResult,
   TaxOptions,
-  TaxResult,
 } from "@/lib/finance/types";
 import { loadPrices, sliceByDate } from "@/lib/finance/loader";
 import {
@@ -18,7 +17,7 @@ import {
 import { simulatePortfolio, validateWeights } from "@/lib/finance/portfolio";
 import { calcAllMetrics, calcYearlyReturns } from "@/lib/finance/metrics";
 import { simulateDca } from "@/lib/finance/dca";
-import { simulateTax } from "@/lib/finance/tax";
+import { simulateDcaWithTax } from "@/lib/finance/dca_tax_merged"; // ✅ 새로 만든 통합 로직 임포트
 import { ETF_CATALOG } from "@/lib/finance/catalog";
 import { KR_ETF_CATALOG } from "@/lib/finance/catalogKr";
 
@@ -28,7 +27,7 @@ type ExtendedRequest = BacktestRequest & {
 };
 type ExtendedResult = BacktestResult & {
   dca?: DcaResult;
-  tax?: TaxResult;
+  merged?: any; // ✅ 프론트엔드와 맞춘 통합 결과물 타입
   benchmarkInfo?: { ticker: string; name: string; reason: string };
   dateAdjustments?: { ticker: string; firstAvailable: string }[];
 };
@@ -182,7 +181,7 @@ export async function POST(req: Request) {
 
     const yearlyReturns = calcYearlyReturns(portCurve, benchCurve);
 
-    // ── 적립식 ──
+    // ── 적립식 (DCA 차트용으로 여전히 필요함) ──
     let dcaResult: DcaResult | undefined;
     if (body.dca && body.dca.enabled) {
       try {
@@ -192,51 +191,36 @@ export async function POST(req: Request) {
       }
     }
 
-    // ── 절세 ──
-    let taxResult: TaxResult | undefined;
+    // ── 절세 (새로운 통합 로직 사용) ──
+    let mergedResult: any = undefined;
     if (body.tax && body.tax.enabled && body.dca && body.dca.enabled) {
       try {
-        const totalDays = dates.length;
-        const totalYears = Math.max(1, Math.round(totalDays / 252));
-
         const holdingNames: Record<string, string> = {};
         for (const t of tickers) holdingNames[t] = findName(t);
 
-        // 가중평균 배당수익률 계산 (한국 ETF는 메타에서, 미국은 추정치 1.5%)
-        let weightedDivYield = 0;
-        let weightAccountedFor = 0;
-        for (const h of body.holdings) {
-          const krMeta = KR_ETF_CATALOG.find((e) => e.ticker === h.ticker);
-          if (krMeta) {
-            // 메타에 dividendYieldTtm이 없으므로 일단 카테고리 기반 추정
-            // dividend/coveredCall/realEstate → 6%, bond → 3%, 그 외 → 1.5%
-            let estDiv = 0.015;
-            if (krMeta.category === "coveredCall") estDiv = 0.10;
-            else if (krMeta.category === "dividend") estDiv = 0.04;
-            else if (krMeta.category === "realEstate") estDiv = 0.05;
-            else if (krMeta.category === "bond") estDiv = 0.03;
-            weightedDivYield += h.weight * estDiv;
-            weightAccountedFor += h.weight;
-          } else {
-            // 미국 ETF: 평균 1.5%
-            weightedDivYield += h.weight * 0.015;
-            weightAccountedFor += h.weight;
-          }
-        }
-        const yearlyDividend = weightAccountedFor > 0 ? weightedDivYield / weightAccountedFor : 0.02;
-
-        taxResult = simulateTax({
-          holdings: body.holdings,
+        // ✅ 실제 주가 데이터 기반의 통합 절세 시뮬레이션 실행
+        mergedResult = simulateDcaWithTax({
+          prices: priceSeries,
+          tickers,
+          weights,
+          dates,
           holdingNames,
-          initialCapital: body.dca.initialCapital,
-          monthlyDeposit: body.dca.monthlyDeposit,
-          yearlyReturn: metrics.cagr,
-          yearlyDividend,
-          totalYears,
-          options: body.tax,
+          dcaOptions: body.dca,
+          taxOptions: body.tax,
         });
+
+        // ✅ 프론트엔드 UI에 뿌려주기 위해 일반계좌 비교값 및 CAGR 추가 계산
+        const generalCaseBalance = dcaResult?.finalBalance ?? 0;
+        const totalDeposit = dcaResult?.totalDeposit ?? 0;
+        const totalYears = Math.max(1, dates.length / 252);
+        
+        mergedResult.generalCaseBalance = generalCaseBalance;
+        mergedResult.totalSavings = mergedResult.totalFinalBalance - generalCaseBalance;
+        mergedResult.afterTaxCagr = totalDeposit > 0 ? Math.pow(mergedResult.totalFinalBalance / totalDeposit, 1 / totalYears) - 1 : 0;
+        mergedResult.generalCaseCagr = totalDeposit > 0 ? Math.pow(generalCaseBalance / totalDeposit, 1 / totalYears) - 1 : 0;
+
       } catch (e) {
-        console.error("Tax error:", e);
+        console.error("Merged Tax error:", e);
       }
     }
 
@@ -248,7 +232,7 @@ export async function POST(req: Request) {
       yearlyReturns,
       meta: { actualStart, actualEnd, tradingDays: dates.length },
       dca: dcaResult,
-      tax: taxResult,
+      merged: mergedResult, // ✅ tax 대신 merged로 반환
       benchmarkInfo: {
         ticker: benchmark,
         name: findName(benchmark),
