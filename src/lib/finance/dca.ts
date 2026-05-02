@@ -108,13 +108,28 @@ export function simulateDca(
     for (let i = 0; i < tickers.length; i++) {
       const m = priceMap.get(tickers[i]);
       if (!m) continue;
-      const px = m.get(date);
-      if (px === undefined) continue;
+
+      // 그날 가격 없으면 직전 거래일 가격 사용 (forward fill)
+      let px = m.get(date);
+      if (px === undefined || px <= 0) {
+        const allDates = Array.from(m.keys()).sort();
+        for (let j = allDates.length - 1; j >= 0; j--) {
+          if (allDates[j] <= date) {
+            const candidate = m.get(allDates[j]);
+            if (candidate !== undefined && candidate > 0) {
+              px = candidate;
+              break;
+            }
+          }
+        }
+        if (px === undefined || px <= 0) continue;
+      }
+
       if (isKor[i]) {
         bal += shares[i] * px;
       } else {
-        if (fxRate === null) continue;
-        bal += shares[i] * px * fxRate;
+        const rate = (fxRate !== null && fxRate > 0) ? fxRate : 1300;
+        bal += shares[i] * px * rate;
       }
     }
     return bal;
