@@ -14,10 +14,19 @@ import {
   weightedReturns,
   buildEquityCurve,
 } from "@/lib/finance/returns";
+// ✅ Phase 4에서 새로 만든 고급 메트릭 함수들 임포트
+import { 
+  calcAllMetrics, 
+  calcYearlyReturns,
+  dailyRiskFreeSeries,
+  calcRollingReturns,
+  calcRegressionMetrics,
+  calcCaptureRatios,
+  calcTailRisk 
+} from "@/lib/finance/metrics";
 import { simulatePortfolio, validateWeights } from "@/lib/finance/portfolio";
-import { calcAllMetrics, calcYearlyReturns } from "@/lib/finance/metrics";
 import { simulateDca } from "@/lib/finance/dca";
-import { simulateDcaWithTax } from "@/lib/finance/dca_tax_merged"; // ✅ 새로 만든 통합 로직 임포트
+import { simulateDcaWithTax } from "@/lib/finance/dca_tax_merged";
 import { ETF_CATALOG } from "@/lib/finance/catalog";
 import { KR_ETF_CATALOG } from "@/lib/finance/catalogKr";
 
@@ -27,7 +36,8 @@ type ExtendedRequest = BacktestRequest & {
 };
 type ExtendedResult = BacktestResult & {
   dca?: DcaResult;
-  merged?: any; // ✅ 프론트엔드와 맞춘 통합 결과물 타입
+  merged?: any; 
+  advancedMetrics?: any; // ✅ 프론트엔드로 보낼 고급 지표 데이터 타입 추가
   benchmarkInfo?: { ticker: string; name: string; reason: string };
   dateAdjustments?: { ticker: string; firstAvailable: string }[];
 };
@@ -49,8 +59,6 @@ function isKoreanTicker(ticker: string): boolean {
  *  - 한국 비중 ≥ 50% → KODEX 200 (069500)
  *  - 미국 비중 ≥ 50% → SPY
  *  - 그 외(혼합) → 사용자 지정 또는 SPY 기본
- *
- * 사용자가 명시적으로 지정한 경우 그대로 사용.
  */
 function pickBenchmark(
   holdings: { ticker: string; weight: number }[],
@@ -130,13 +138,12 @@ export async function POST(req: Request) {
       const series = priceSeries[i];
       if (series.rows.length === 0) continue;
       const firstAvailable = series.rows[0].date;
-      // 사용자 요청 시작일보다 데이터 시작이 늦으면 안내
       if (firstAvailable > body.startDate) {
         dateAdjustments.push({ ticker: tickers[i], firstAvailable });
       }
     }
 
-    // 리밸런싱 거래비용 (DCA 옵션의 feeRate 재사용, 없으면 0)
+    // 리밸런싱 거래비용
     const rebalanceFeeRate = body.dca?.feeRate ?? 0;
     const portCurve = simulatePortfolio(matrix, dates, weights, actualStart, body.rebalance, rebalanceFeeRate);
     const portRets = weightedReturns(matrix, weights);
@@ -161,7 +168,6 @@ export async function POST(req: Request) {
       }
     }
 
-    // 벤치마크의 한국 비중 (벤치마크 자체 메트릭용)
     const benchKrWeight = isKoreanTicker(benchmark) ? 1 : 0;
 
     const metrics = calcAllMetrics(
@@ -181,7 +187,19 @@ export async function POST(req: Request) {
 
     const yearlyReturns = calcYearlyReturns(portCurve, benchCurve);
 
-    // ── 적립식 (DCA 차트용으로 여전히 필요함) ──
+    // ── ✅ Phase 4: Advanced Metrics 계산 및 추가 ──
+    const retDates = portCurve.slice(1).map((p) => p.date);
+    const rfSeriesArray = dailyRiskFreeSeries(retDates, body.riskFree ?? { type: "none" }, irxSeries, krWeight);
+    const benchDailyRets = benchDaily.map(r => r.ret);
+
+    const advancedMetrics = {
+      rollingReturns: calcRollingReturns(portCurve),
+      regression: calcRegressionMetrics(portRets, benchDailyRets, rfSeriesArray),
+      captureRatios: calcCaptureRatios(portRets, benchDailyRets),
+      tailRisk: calcTailRisk(portCurve, portRets)
+    };
+
+    // ── 적립식 (DCA) ──
     let dcaResult: DcaResult | undefined;
     if (body.dca && body.dca.enabled) {
       try {
@@ -191,14 +209,13 @@ export async function POST(req: Request) {
       }
     }
 
-    // ── 절세 (새로운 통합 로직 사용) ──
+    // ── 절세 (Merged) ──
     let mergedResult: any = undefined;
     if (body.tax && body.tax.enabled && body.dca && body.dca.enabled) {
       try {
         const holdingNames: Record<string, string> = {};
         for (const t of tickers) holdingNames[t] = findName(t);
 
-        // ✅ 실제 주가 데이터 기반의 통합 절세 시뮬레이션 실행
         mergedResult = simulateDcaWithTax({
           prices: priceSeries,
           tickers,
@@ -209,7 +226,6 @@ export async function POST(req: Request) {
           taxOptions: body.tax,
         });
 
-        // ✅ 프론트엔드 UI에 뿌려주기 위해 일반계좌 비교값 및 CAGR 추가 계산
         const generalCaseBalance = dcaResult?.finalBalance ?? 0;
         const totalDeposit = dcaResult?.totalDeposit ?? 0;
         const totalYears = Math.max(1, dates.length / 252);
@@ -230,9 +246,10 @@ export async function POST(req: Request) {
       metrics,
       benchmarkMetrics,
       yearlyReturns,
+      advancedMetrics, // ✅ 프론트엔드로 내보낼 객체에 탑재
       meta: { actualStart, actualEnd, tradingDays: dates.length },
       dca: dcaResult,
-      merged: mergedResult, // ✅ tax 대신 merged로 반환
+      merged: mergedResult,
       benchmarkInfo: {
         ticker: benchmark,
         name: findName(benchmark),

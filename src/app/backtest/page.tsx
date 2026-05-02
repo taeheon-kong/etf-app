@@ -49,6 +49,7 @@ type ExtendedResult = BacktestResult & {
   dca?: DcaResult;
   tax?: TaxResult;
   merged?: any; 
+  advancedMetrics?: any;
   benchmarkInfo?: { ticker: string; name: string; reason: string };
   dateAdjustments?: { ticker: string; firstAvailable: string }[];
 };
@@ -804,6 +805,122 @@ export default function BacktestPage() {
               </BarChart>
             </ResponsiveContainer>
           </div>
+
+          {/* ─── 추가 지표 (타이틀 없이 기존 영역과 자연스럽게 연결) ─── */}
+          {result.advancedMetrics && (
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-5 mt-5">
+              
+              {/* 1. 롤링 수익률 (Rolling Returns) */}
+              <div className="bg-white border border-slate-200 rounded-xl p-5 shadow-sm">
+                <h3 className="font-bold text-slate-900 mb-4">기간별 롤링 수익률</h3>
+                <div className="space-y-3">
+                  {[
+                    { key: 252, label: "1년 (252일)" },
+                    { key: 756, label: "3년 (756일)" },
+                    { key: 1260, label: "5년 (1260일)" }
+                  ].map((period) => {
+                    const data = result.advancedMetrics.rollingReturns[period.key];
+                    if (!data) return null;
+                    return (
+                      <div key={period.key} className="bg-slate-50 rounded-lg p-3 border border-slate-100">
+                        <div className="text-sm font-semibold text-slate-700 mb-2">{period.label}</div>
+                        <div className="grid grid-cols-4 gap-2 text-center text-xs">
+                          <div>
+                            <div className="text-slate-500">최악</div>
+                            <div className={`font-bold mt-0.5 ${data.min < 0 ? 'text-rose-600' : 'text-emerald-600'}`}>{(data.min * 100).toFixed(2)}%</div>
+                          </div>
+                          <div>
+                            <div className="text-slate-500">평균</div>
+                            <div className="font-bold mt-0.5 text-slate-700">{(data.avg * 100).toFixed(2)}%</div>
+                          </div>
+                          <div>
+                            <div className="text-slate-500">최고</div>
+                            <div className="font-bold mt-0.5 text-emerald-600">{(data.max * 100).toFixed(2)}%</div>
+                          </div>
+                          <div className="border-l border-slate-200 pl-2">
+                            <div className="text-slate-500">최근</div>
+                            <div className={`font-bold mt-0.5 ${data.current < 0 ? 'text-rose-600' : 'text-blue-600'}`}>{(data.current * 100).toFixed(2)}%</div>
+                          </div>
+                        </div>
+                      </div>
+                    );
+                  })}
+                </div>
+              </div>
+
+              {/* 2. 회귀 분석 및 캡처 비율 */}
+              <div className="space-y-5">
+                {result.advancedMetrics.regression && (
+                  <div className="bg-white border border-slate-200 rounded-xl p-5 shadow-sm">
+                    <h3 className="font-bold text-slate-900 mb-4">벤치마크 상대 지표</h3>
+                    <div className="grid grid-cols-3 gap-4">
+                      <div>
+                        <div className="text-xs text-slate-500">Alpha (연)</div>
+                        <div className="text-lg font-bold text-slate-800">{(result.advancedMetrics.regression.alpha * 100).toFixed(2)}%</div>
+                      </div>
+                      <div>
+                        <div className="text-xs text-slate-500">Beta</div>
+                        <div className="text-lg font-bold text-slate-800">{result.advancedMetrics.regression.beta.toFixed(2)}</div>
+                      </div>
+                      <div>
+                        <div className="text-xs text-slate-500">R-Squared</div>
+                        <div className="text-lg font-bold text-slate-800">{(result.advancedMetrics.regression.rSquared * 100).toFixed(1)}%</div>
+                      </div>
+                      <div>
+                        <div className="text-xs text-slate-500">Tracking Error</div>
+                        <div className="text-lg font-bold text-slate-800">{(result.advancedMetrics.regression.trackingError * 100).toFixed(2)}%</div>
+                      </div>
+                      <div>
+                        <div className="text-xs text-slate-500">Info Ratio</div>
+                        <div className="text-lg font-bold text-slate-800">{result.advancedMetrics.regression.infoRatio.toFixed(2)}</div>
+                      </div>
+                    </div>
+                  </div>
+                )}
+
+                {result.advancedMetrics.captureRatios && (
+                  <div className="bg-white border border-slate-200 rounded-xl p-5 shadow-sm flex gap-4">
+                    <div className="flex-1">
+                      <h3 className="font-bold text-slate-900 mb-1">상승장 캡처 (Up)</h3>
+                      <div className="text-2xl font-bold text-emerald-600">{(result.advancedMetrics.captureRatios.upCapture * 100).toFixed(1)}%</div>
+                      <p className="text-[10px] text-slate-500 mt-1">벤치마크 상승 시 따라가는 비율</p>
+                    </div>
+                    <div className="w-px bg-slate-200"></div>
+                    <div className="flex-1">
+                      <h3 className="font-bold text-slate-900 mb-1">하락장 캡처 (Down)</h3>
+                      <div className="text-2xl font-bold text-rose-600">{(result.advancedMetrics.captureRatios.downCapture * 100).toFixed(1)}%</div>
+                      <p className="text-[10px] text-slate-500 mt-1">벤치마크 하락 시 방어하는 비율 (낮을수록 좋음)</p>
+                    </div>
+                  </div>
+                )}
+              </div>
+
+              {/* 3. 테일 리스크 (Tail Risk) */}
+              {result.advancedMetrics.tailRisk && (
+                <div className="bg-white border border-slate-200 rounded-xl p-5 shadow-sm md:col-span-2 flex justify-between items-center">
+                  <div>
+                    <h3 className="font-bold text-slate-900 mb-1">테일 리스크 (Tail Risk)</h3>
+                    <p className="text-xs text-slate-500">극단적인 하락장에 대한 위험 지표</p>
+                  </div>
+                  <div className="flex gap-8 text-right">
+                    <div>
+                      <div className="text-xs text-slate-500">Ulcer Index</div>
+                      <div className="text-xl font-bold text-amber-600">{result.advancedMetrics.tailRisk.ulcerIndex.toFixed(2)}</div>
+                    </div>
+                    <div>
+                      <div className="text-xs text-slate-500">VaR (95%)</div>
+                      <div className="text-xl font-bold text-rose-600">{(result.advancedMetrics.tailRisk.var95 * 100).toFixed(2)}%</div>
+                    </div>
+                    <div>
+                      <div className="text-xs text-slate-500">CVaR (95%)</div>
+                      <div className="text-xl font-bold text-rose-700">{(result.advancedMetrics.tailRisk.cvar95 * 100).toFixed(2)}%</div>
+                    </div>
+                  </div>
+                </div>
+              )}
+            </div>
+          )}
+
         </div>
       )}
 
