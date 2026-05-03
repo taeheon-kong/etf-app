@@ -75,7 +75,7 @@ export default function BacktestPage() {
     { ticker: "GLD", weight: 10 },
   ]);
   const [startDate, setStartDate] = useState("2020-01-01");
-  const [endDate, setEndDate] = useState("2024-12-31");
+  const [endDate, setEndDate] = useState(new Date().toISOString().slice(0, 10));
   const [rebalance, setRebalance] = useState<RebalanceFrequency>("annual");
   const [rfMode, setRfMode] = useState<RiskFreeMode["type"]>("none");
   const [rfRate, setRfRate] = useState(3);

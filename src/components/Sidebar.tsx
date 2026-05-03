@@ -35,8 +35,19 @@ const IconHome = (
   </svg>
 );
 
+// 분석 도구용 새 아이콘
+const IconAnalysis = (
+  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+    <rect x="3" y="3" width="7" height="7" rx="1" />
+    <rect x="14" y="3" width="7" height="7" rx="1" />
+    <rect x="14" y="14" width="7" height="7" rx="1" />
+    <rect x="3" y="14" width="7" height="7" rx="1" />
+  </svg>
+);
+
 const NAV_ITEMS: NavItem[] = [
   { href: "/backtest", label: "백테스트", icon: IconChart },
+  { href: "/analysis", label: "추가 분석", icon: IconAnalysis },
   { href: "/etfs/us", label: "해외 ETF", icon: IconGlobe },
   { href: "/etfs/kr", label: "국내 ETF", icon: IconHome },
 ];
@@ -74,7 +85,7 @@ export default function Sidebar() {
                 <span>{item.label}</span>
               </span>
               {item.badge && (
-                <span className="text-[10px] px-1.5 py-0.5 bg-slate-200 text-slate-600 rounded-full">
+                <span className="text-[10px] px-1.5 py-0.5 bg-blue-100 text-blue-700 rounded-full font-bold">
                   {item.badge}
                 </span>
               )}

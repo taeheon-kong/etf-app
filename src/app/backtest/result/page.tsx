@@ -12,6 +12,7 @@ import type {
 import { loadBacktestInput } from "@/lib/finance/useBacktestData";
 import { findByTicker } from "@/lib/finance/catalog";
 import { krFindByTicker } from "@/lib/finance/catalogKr";
+import { saveHistory, autoName } from "@/lib/finance/historyStore";
 
 type ExtendedResult = BacktestResult & {
   dca?: DcaResult;
@@ -76,6 +77,32 @@ export default function BacktestResultPage() {
       .catch((e) => setError((e as Error).message))
       .finally(() => setLoading(false));
   }, [router]);
+
+  // 백테스트 결과가 도착하면 history에 자동 저장
+  useEffect(() => {
+    if (!result || !input || !input.holdings) return;
+    const m = result.metrics;
+    const yrs = result.yearlyReturns ?? [];
+    const bestYear = yrs.length > 0 ? Math.max(...yrs.map((y) => y.portfolio)) : 0;
+    const worstYear = yrs.length > 0 ? Math.min(...yrs.map((y) => y.portfolio)) : 0;
+
+    const holdings = input.holdings.map((h) => ({
+      ticker: h.ticker,
+      weight: Math.round(h.weight * 100),
+    }));
+
+    saveHistory({
+      name: autoName(holdings),
+      holdings,
+      metrics: {
+        cagr: m.cagr,
+        mdd: m.mdd,
+        sharpe: m.sharpe,
+        bestYear,
+        worstYear,
+      },
+    });
+  }, [result, input]);
 
   if (loading) {
     return (
