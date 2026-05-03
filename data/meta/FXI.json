@@ -1,0 +1,82 @@
+{
+  "ticker": "FXI",
+  "longName": "iShares China Large-Cap ETF",
+  "summary": "The fund generally will invest at least 80% of its assets in the component securities of its underlying index and in investments that have economic characteristics that are substantially identical to the component securities of its underlying index. The index designed to measure the performance of the largest companies in the Chinese equity market that trade on the Stock Exchange of Hong Kong and are available to international investors. The fund is non-diversified.",
+  "category": "Greater China Region",
+  "fundFamily": "iShares",
+  "totalAssets": 5918727680,
+  "expenseRatio": 0.73,
+  "yield": 0.025899999,
+  "fundInceptionDate": 1096934400,
+  "navPrice": 36.75473,
+  "previousClose": 36.79,
+  "fiftyTwoWeekHigh": 42.0,
+  "fiftyTwoWeekLow": 34.47,
+  "beta3Year": 0.59,
+  "topHoldings": [
+    {
+      "symbol": "9988.HK",
+      "name": "Alibaba Group Holding Ltd Ordinary Shares",
+      "weight": 0.083384
+    },
+    {
+      "symbol": "0700.HK",
+      "name": "Tencent Holdings Ltd",
+      "weight": 0.082062796
+    },
+    {
+      "symbol": "00939",
+      "name": "China Construction Bank Corp Class H",
+      "weight": 0.081757
+    },
+    {
+      "symbol": "01398",
+      "name": "Industrial And Commercial Bank Of China Ltd Class H",
+      "weight": 0.0611365
+    },
+    {
+      "symbol": "1810.HK",
+      "name": "Xiaomi Corp Class B",
+      "weight": 0.0610471
+    },
+    {
+      "symbol": "3690.HK",
+      "name": "Meituan Class B",
+      "weight": 0.049246103
+    },
+    {
+      "symbol": "01211",
+      "name": "BYD Co Ltd Class H",
+      "weight": 0.0434136
+    },
+    {
+      "symbol": "02318",
+      "name": "Ping An Insurance (Group) Co. of China Ltd Class H",
+      "weight": 0.0430011
+    },
+    {
+      "symbol": "03988",
+      "name": "Bank Of China Ltd Class H",
+      "weight": 0.0380001
+    },
+    {
+      "symbol": "9999.HK",
+      "name": "NetEase Inc Ordinary Shares",
+      "weight": 0.0345944
+    }
+  ],
+  "sectorWeightings": {
+    "realestate": 0.0092,
+    "consumer_cyclical": 0.2697,
+    "basic_materials": 0.0416,
+    "consumer_defensive": 0.0094,
+    "technology": 0.061100002,
+    "communication_services": 0.1619,
+    "financial_services": 0.3433,
+    "utilities": 0.0041,
+    "industrials": 0.023699999,
+    "energy": 0.0538,
+    "healthcare": 0.0222
+  },
+  "fetchedAt": "2026-05-03T22:18:15.506249"
+}

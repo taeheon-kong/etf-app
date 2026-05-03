@@ -1,0 +1,77 @@
+{
+  "ticker": "PFF",
+  "longName": "iShares Preferred and Income Securities ETF",
+  "summary": "The fund may invest at least 80% of its assets in the component securities of its underlying index and and may invest up to 20% of its assets in certain futures, options and swap contracts, cash and cash equivalents.",
+  "category": "Preferred Stock",
+  "fundFamily": "iShares",
+  "totalAssets": 13332943872,
+  "expenseRatio": 0.45,
+  "yield": 0.0598,
+  "fundInceptionDate": 1174867200,
+  "navPrice": 31.37691,
+  "previousClose": 31.45,
+  "fiftyTwoWeekHigh": 32.26,
+  "fiftyTwoWeekLow": 29.86,
+  "beta3Year": 0.98,
+  "topHoldings": [
+    {
+      "symbol": "BAPA",
+      "name": "Boeing Co 6% PRF CONVERT 15/10/2027 USD 50 - Dep Rep 1/20th Sr A",
+      "weight": 0.0383172
+    },
+    {
+      "symbol": "STRC",
+      "name": "Strategy Inc VR PRF PERPETUAL USD 100 - Ser A",
+      "weight": 0.025833499
+    },
+    {
+      "symbol": "WFCPL",
+      "name": "Wells Fargo & Co 7 1/2 % Non Cum Perp Conv Pfd Shs -A- Series -L-",
+      "weight": 0.0232898
+    },
+    {
+      "symbol": "ALBPA",
+      "name": "Albemarle Corp PRF PERPETUAL USD 1000 - Ser A 1/20th Pref St",
+      "weight": 0.0169734
+    },
+    {
+      "symbol": "CPN",
+      "name": "Citigroup Capital XIII Floating Rate Trust Pfd Secs Registered 2010-30.10.4",
+      "weight": 0.0135414
+    },
+    {
+      "symbol": "BACPL",
+      "name": "Bank of America Corp 7 1/4 % Non-Cum Perp Conv Pfd Shs Series -L-",
+      "weight": 0.013490501
+    },
+    {
+      "symbol": "XTSLA",
+      "name": "BlackRock Cash Funds Treasury SL Agency",
+      "weight": 0.0128582
+    },
+    {
+      "symbol": "NEEPV",
+      "name": "NextEra Energy Inc Unit (Corporate Units 15/02/2029)",
+      "weight": 0.0118699
+    },
+    {
+      "symbol": "NEEPS",
+      "name": "NextEra Energy Inc 7.299% CORP UNIT 01/06/2027",
+      "weight": 0.0114995
+    }
+  ],
+  "sectorWeightings": {
+    "realestate": 0.0,
+    "consumer_cyclical": 0.0,
+    "basic_materials": 0.0,
+    "consumer_defensive": 0.0,
+    "technology": 0.060700003,
+    "communication_services": 0.0,
+    "financial_services": 0.0,
+    "utilities": 0.83769995,
+    "industrials": 0.0,
+    "energy": 0.0,
+    "healthcare": 0.1016
+  },
+  "fetchedAt": "2026-05-03T22:16:38.888399"
+}

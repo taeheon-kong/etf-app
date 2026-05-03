@@ -1,0 +1,82 @@
+{
+  "ticker": "IGV",
+  "longName": "iShares Expanded Tech-Software Sector ETF",
+  "summary": "The fund generally will invest at least 80% of its assets in the component securities of its underlying index and in investments that have economic characteristics that are substantially identical to the component securities of its underlying index. The index measures the performance of U.S.-traded stocks from the software industry and select companies from the interactive home entertainment and interactive media and services sub-industries in the U.S. and Canada. The fund is non-diversified.",
+  "category": "Technology",
+  "fundFamily": "iShares",
+  "totalAssets": 10379823104,
+  "expenseRatio": 0.39,
+  "yield": 0.0,
+  "fundInceptionDate": 994723200,
+  "navPrice": 86.59387,
+  "previousClose": 83.91,
+  "fiftyTwoWeekHigh": 117.99,
+  "fiftyTwoWeekLow": 73.93,
+  "beta3Year": 1.02,
+  "topHoldings": [
+    {
+      "symbol": "PLTR",
+      "name": "Palantir Technologies Inc Ordinary Shares - Class A",
+      "weight": 0.0881973
+    },
+    {
+      "symbol": "MSFT",
+      "name": "Microsoft Corp",
+      "weight": 0.0835705
+    },
+    {
+      "symbol": "ORCL",
+      "name": "Oracle Corp",
+      "weight": 0.08243439
+    },
+    {
+      "symbol": "CRM",
+      "name": "Salesforce Inc",
+      "weight": 0.073969
+    },
+    {
+      "symbol": "PANW",
+      "name": "Palo Alto Networks Inc",
+      "weight": 0.054790802
+    },
+    {
+      "symbol": "INTU",
+      "name": "Intuit Inc",
+      "weight": 0.0475024
+    },
+    {
+      "symbol": "APP",
+      "name": "AppLovin Corp Ordinary Shares - Class A",
+      "weight": 0.045611
+    },
+    {
+      "symbol": "NOW",
+      "name": "ServiceNow Inc",
+      "weight": 0.043754302
+    },
+    {
+      "symbol": "ADBE",
+      "name": "Adobe Inc",
+      "weight": 0.0427102
+    },
+    {
+      "symbol": "CRWD",
+      "name": "CrowdStrike Holdings Inc Class A",
+      "weight": 0.0421274
+    }
+  ],
+  "sectorWeightings": {
+    "realestate": 0.0,
+    "consumer_cyclical": 0.0,
+    "basic_materials": 0.0,
+    "consumer_defensive": 0.0,
+    "technology": 0.90230006,
+    "communication_services": 0.082200006,
+    "financial_services": 0.0139999995,
+    "utilities": 0.0,
+    "industrials": 0.0016,
+    "energy": 0.0,
+    "healthcare": 0.0
+  },
+  "fetchedAt": "2026-05-03T22:16:04.906051"
+}

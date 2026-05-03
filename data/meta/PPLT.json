@@ -1,0 +1,18 @@
+{
+  "ticker": "PPLT",
+  "longName": "abrdn Physical Platinum Shares ETF",
+  "summary": "The fund designed for investors who want a cost-effective and convenient way to invest in platinum with minimal credit risk. Advantages of investing in the Shares include Ease and Flexibility of Investment, Expenses, Minimal Credit Risk.",
+  "category": "Commodities Focused",
+  "fundFamily": "Aberdeen Standard Investments",
+  "totalAssets": 2396712704,
+  "expenseRatio": 0.6,
+  "yield": 0.0,
+  "fundInceptionDate": 1262908800,
+  "navPrice": 180.39268,
+  "previousClose": 179.8,
+  "fiftyTwoWeekHigh": 261.62,
+  "fiftyTwoWeekLow": 87.4,
+  "beta3Year": 0.18,
+  "topHoldings": [],
+  "fetchedAt": "2026-05-03T22:17:25.633487"
+}

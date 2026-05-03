@@ -1,0 +1,82 @@
+{
+  "ticker": "XLC",
+  "longName": "State Street Communication Services Select Sector SPDR ETF",
+  "summary": "Normally, the fund generally invests substantially all, but at least 95%, of its total assets in the securities comprising the index. The index includes companies that have been identified as Communication Services companies by the GICS®, including securities of companies from the following industries: diversified telecommunication services; wireless telecommunication services; media; entertainment; and interactive media & services. The fund is non-diversified.",
+  "category": "Communications",
+  "fundFamily": "State Street Investment Management",
+  "totalAssets": 24108154880,
+  "expenseRatio": 0.08,
+  "yield": 0.0126,
+  "fundInceptionDate": 1529280000,
+  "navPrice": 116.73316,
+  "previousClose": 116.51,
+  "fiftyTwoWeekHigh": 120.405,
+  "fiftyTwoWeekLow": 96.23,
+  "beta3Year": 0.92,
+  "topHoldings": [
+    {
+      "symbol": "META",
+      "name": "Meta Platforms Inc Class A",
+      "weight": 0.1816654
+    },
+    {
+      "symbol": "GOOGL",
+      "name": "Alphabet Inc Class A",
+      "weight": 0.1063334
+    },
+    {
+      "symbol": "GOOG",
+      "name": "Alphabet Inc Class C",
+      "weight": 0.0852071
+    },
+    {
+      "symbol": "NFLX",
+      "name": "Netflix Inc",
+      "weight": 0.0589354
+    },
+    {
+      "symbol": "T",
+      "name": "AT&T Inc",
+      "weight": 0.0503653
+    },
+    {
+      "symbol": "EA",
+      "name": "Electronic Arts Inc",
+      "weight": 0.0481178
+    },
+    {
+      "symbol": "VZ",
+      "name": "Verizon Communications Inc",
+      "weight": 0.0467391
+    },
+    {
+      "symbol": "WBD",
+      "name": "Warner Bros. Discovery Inc Ordinary Shares - Class A",
+      "weight": 0.0465921
+    },
+    {
+      "symbol": "TMUS",
+      "name": "T-Mobile US Inc",
+      "weight": 0.0464318
+    },
+    {
+      "symbol": "DIS",
+      "name": "The Walt Disney Co",
+      "weight": 0.045076597
+    }
+  ],
+  "sectorWeightings": {
+    "realestate": 0.0,
+    "consumer_cyclical": 0.0,
+    "basic_materials": 0.0,
+    "consumer_defensive": 0.0,
+    "technology": 0.0,
+    "communication_services": 1.0,
+    "financial_services": 0.0,
+    "utilities": 0.0,
+    "industrials": 0.0,
+    "energy": 0.0,
+    "healthcare": 0.0
+  },
+  "fetchedAt": "2026-05-03T22:17:59.280492"
+}

@@ -1,0 +1,82 @@
+{
+  "ticker": "EWT",
+  "longName": "iShares MSCI Taiwan ETF",
+  "summary": "The fund generally will invest at least 80% of its assets in the component securities of its underlying index and in investments that have economic characteristics that are substantially identical to the component securities of its underlying index. The index is a free float-adjusted market capitalization-weighted index that is designed to measure the performance of the large- and mid-capitalization segments of the equity market in Taiwan. The fund is non-diversified.",
+  "category": "Greater China Region",
+  "fundFamily": "iShares",
+  "totalAssets": 7183121920,
+  "expenseRatio": 0.59,
+  "yield": 0.0139999995,
+  "fundInceptionDate": 961459200,
+  "navPrice": 89.10864,
+  "previousClose": 89.88,
+  "fiftyTwoWeekHigh": 91.29,
+  "fiftyTwoWeekLow": 50.44,
+  "beta3Year": 0.87,
+  "topHoldings": [
+    {
+      "symbol": "2330.TW",
+      "name": "Taiwan Semiconductor Manufacturing Co Ltd",
+      "weight": 0.2156193
+    },
+    {
+      "symbol": "2308.TW",
+      "name": "Delta Electronics Inc",
+      "weight": 0.0475031
+    },
+    {
+      "symbol": "2317.TW",
+      "name": "Hon Hai Precision Industry Co Ltd",
+      "weight": 0.0393087
+    },
+    {
+      "symbol": "2454.TW",
+      "name": "MediaTek Inc",
+      "weight": 0.0387977
+    },
+    {
+      "symbol": "3711.TW",
+      "name": "ASE Technology Holding Co Ltd",
+      "weight": 0.0230684
+    },
+    {
+      "symbol": "2383.TW",
+      "name": "Elite Material Co Ltd",
+      "weight": 0.020651199
+    },
+    {
+      "symbol": "2345.TW",
+      "name": "Accton Technology Corp",
+      "weight": 0.020373099
+    },
+    {
+      "symbol": "2891.TW",
+      "name": "CTBC Financial Holding Co Ltd",
+      "weight": 0.0181948
+    },
+    {
+      "symbol": "3037.TW",
+      "name": "Unimicron Technology Corp",
+      "weight": 0.0181727
+    },
+    {
+      "symbol": "3017.TW",
+      "name": "Asia Vital Components Co Ltd",
+      "weight": 0.0173419
+    }
+  ],
+  "sectorWeightings": {
+    "realestate": 0.0,
+    "consumer_cyclical": 0.0231,
+    "basic_materials": 0.0394,
+    "consumer_defensive": 0.0139999995,
+    "technology": 0.6794,
+    "communication_services": 0.0233,
+    "financial_services": 0.15810001,
+    "utilities": 0.0,
+    "industrials": 0.053400002,
+    "energy": 0.0,
+    "healthcare": 0.0093
+  },
+  "fetchedAt": "2026-05-03T22:18:18.373127"
+}

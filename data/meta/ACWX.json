@@ -1,0 +1,82 @@
+{
+  "ticker": "ACWX",
+  "longName": "iShares MSCI ACWI ex U.S. ETF",
+  "summary": "The fund generally will invest at least 80% of its assets in the component securities of the underlying index and in investments that have economic characteristics that are substantially identical to the component securities of the underlying index. The index is a free float-adjusted market capitalization-weighted index designed to measure the combined equity market performance of developed and emerging markets countries, excluding the United States.",
+  "category": "Foreign Large Blend",
+  "fundFamily": "iShares",
+  "totalAssets": 9372976128,
+  "expenseRatio": 0.32,
+  "yield": 0.0278,
+  "fundInceptionDate": 1206489600,
+  "navPrice": 73.40345,
+  "previousClose": 73.63,
+  "fiftyTwoWeekHigh": 75.08,
+  "fiftyTwoWeekLow": 57.62,
+  "beta3Year": 0.94,
+  "topHoldings": [
+    {
+      "symbol": "2330.TW",
+      "name": "Taiwan Semiconductor Manufacturing Co Ltd",
+      "weight": 0.0407083
+    },
+    {
+      "symbol": "005930.KS",
+      "name": "Samsung Electronics Co Ltd",
+      "weight": 0.0155183
+    },
+    {
+      "symbol": "ASML.AS",
+      "name": "ASML Holding NV",
+      "weight": 0.0150165
+    },
+    {
+      "symbol": "0700.HK",
+      "name": "Tencent Holdings Ltd",
+      "weight": 0.0119324
+    },
+    {
+      "symbol": "AZN.L",
+      "name": "AstraZeneca PLC",
+      "weight": 0.0089426
+    },
+    {
+      "symbol": "000660.KS",
+      "name": "SK Hynix Inc",
+      "weight": 0.0086356
+    },
+    {
+      "symbol": "NOVN.SW",
+      "name": "Novartis AG Registered Shares",
+      "weight": 0.008582
+    },
+    {
+      "symbol": "ROP.SW",
+      "name": "Roche Holding AG Ordinary Shares new",
+      "weight": 0.0083341
+    },
+    {
+      "symbol": "HSBA.L",
+      "name": "HSBC Holdings PLC",
+      "weight": 0.0082984
+    },
+    {
+      "symbol": "SHEL.L",
+      "name": "Shell PLC",
+      "weight": 0.0081386
+    }
+  ],
+  "sectorWeightings": {
+    "realestate": 0.0153,
+    "consumer_cyclical": 0.0832,
+    "basic_materials": 0.0716,
+    "consumer_defensive": 0.0552,
+    "technology": 0.16129999,
+    "communication_services": 0.0535,
+    "financial_services": 0.24350001,
+    "utilities": 0.033099998,
+    "industrials": 0.1478,
+    "energy": 0.0574,
+    "healthcare": 0.078
+  },
+  "fetchedAt": "2026-05-03T22:18:08.685519"
+}

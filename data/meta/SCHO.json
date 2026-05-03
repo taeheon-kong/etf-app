@@ -1,0 +1,18 @@
+{
+  "ticker": "SCHO",
+  "longName": "Schwab Short-Term U.S. Treasury ETF",
+  "summary": "The fund will invest at least 90% of its net assets (including, for this purpose, any borrowings for investment purposes) in securities included in the index. The index includes all publicly-issued U.S. Treasury securities that have a remaining maturity of greater than or equal to one year and less than three years, are rated investment grade, and have $300 million or more of outstanding face value. The securities in the index must be denominated in U.S. dollars and must be fixed-rate and non-convertible.",
+  "category": "Short Government",
+  "fundFamily": "Schwab ETFs",
+  "totalAssets": 12451366912,
+  "expenseRatio": 0.03,
+  "yield": 0.04,
+  "fundInceptionDate": 1280966400,
+  "navPrice": 24.17,
+  "previousClose": 24.1749,
+  "fiftyTwoWeekHigh": 24.46,
+  "fiftyTwoWeekLow": 24.17,
+  "beta3Year": 0.24,
+  "topHoldings": [],
+  "fetchedAt": "2026-05-03T22:17:02.566932"
+}

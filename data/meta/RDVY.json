@@ -1,0 +1,82 @@
+{
+  "ticker": "RDVY",
+  "longName": "First Trust Rising Dividend Achievers ETF",
+  "summary": "The fund will normally invest at least 90% of its net assets (including investment borrowings) in the common stock and depositary receipts that comprise the index. According to the index Provider, the index measures the performance of a selection of securities that have increased their dividend value over the previous three year and five-year annual periods. The index is comprised of four Sub-Portfolios.",
+  "category": "Large Value",
+  "fundFamily": "First Trust",
+  "totalAssets": 19852767232,
+  "expenseRatio": 0.47,
+  "yield": 0.010299999,
+  "fundInceptionDate": 1388966400,
+  "navPrice": 74.25,
+  "previousClose": 74.7,
+  "fiftyTwoWeekHigh": 75.26,
+  "fiftyTwoWeekLow": 57.73,
+  "beta3Year": 1.07,
+  "topHoldings": [
+    {
+      "symbol": "LRCX",
+      "name": "Lam Research Corp",
+      "weight": 0.0335492
+    },
+    {
+      "symbol": "AMAT",
+      "name": "Applied Materials Inc",
+      "weight": 0.0314208
+    },
+    {
+      "symbol": "KLAC",
+      "name": "KLA Corp",
+      "weight": 0.0280396
+    },
+    {
+      "symbol": "GEV",
+      "name": "GE Vernova Inc",
+      "weight": 0.0275504
+    },
+    {
+      "symbol": "ROST",
+      "name": "Ross Stores Inc",
+      "weight": 0.025593901
+    },
+    {
+      "symbol": "BKR",
+      "name": "Baker Hughes Co Class A",
+      "weight": 0.024751501
+    },
+    {
+      "symbol": "GOOGL",
+      "name": "Alphabet Inc Class A",
+      "weight": 0.023211902
+    },
+    {
+      "symbol": "BK",
+      "name": "Bank of New York Mellon Corp",
+      "weight": 0.0218575
+    },
+    {
+      "symbol": "MLI",
+      "name": "Mueller Industries Inc",
+      "weight": 0.021824999
+    },
+    {
+      "symbol": "CB",
+      "name": "Chubb Ltd",
+      "weight": 0.021087999
+    }
+  ],
+  "sectorWeightings": {
+    "realestate": 0.0,
+    "consumer_cyclical": 0.1141,
+    "basic_materials": 0.0,
+    "consumer_defensive": 0.0399,
+    "technology": 0.2306,
+    "communication_services": 0.0508,
+    "financial_services": 0.3529,
+    "utilities": 0.0,
+    "industrials": 0.1418,
+    "energy": 0.0248,
+    "healthcare": 0.045100003
+  },
+  "fetchedAt": "2026-05-03T22:16:38.068582"
+}

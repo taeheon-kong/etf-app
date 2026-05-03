@@ -1,0 +1,18 @@
+{
+  "ticker": "SQQQ",
+  "longName": "ProShares UltraPro Short QQQ",
+  "summary": "The fund invests in financial instruments that ProShare Advisors believes, in combination, should produce daily returns consistent with the Daily Target. The index includes 100 of the largest domestic and international non-financial companies listed on The Nasdaq Stock Market based on market capitalization. The fund is non-diversified.",
+  "category": "Trading--Inverse Equity",
+  "fundFamily": "ProShares",
+  "totalAssets": 2561364992,
+  "expenseRatio": 0.95,
+  "yield": 0.057800002,
+  "fundInceptionDate": 1265673600,
+  "navPrice": 50.2343,
+  "previousClose": 51.65,
+  "fiftyTwoWeekHigh": 154.15,
+  "fiftyTwoWeekLow": 49.79,
+  "beta3Year": -3.02,
+  "topHoldings": [],
+  "fetchedAt": "2026-05-03T22:18:54.399079"
+}

@@ -1,0 +1,82 @@
+{
+  "ticker": "VOX",
+  "longName": "Vanguard Communication Services Index Fund ETF Shares",
+  "summary": "The fund employs an indexing investment approach designed to track the performance of the index, an index made up of stocks of large, mid-size and small U.S. companies within the communication services sector, as classified under the GICS. The Advisor attempts to replicate the target index by seeking to invest all of its assets in the stocks that make up the index, in order to hold each stock in approximately the same proportion as its weighting in the index. It is non-diversified.",
+  "category": "Communications",
+  "fundFamily": "Vanguard",
+  "totalAssets": 5779845632,
+  "expenseRatio": 0.09,
+  "yield": 0.0105,
+  "fundInceptionDate": 1095897600,
+  "navPrice": 196.7,
+  "previousClose": 196.84,
+  "fiftyTwoWeekHigh": 200.77,
+  "fiftyTwoWeekLow": 148.61,
+  "beta3Year": 1.01,
+  "topHoldings": [
+    {
+      "symbol": "META",
+      "name": "Meta Platforms Inc Class A",
+      "weight": 0.2058214
+    },
+    {
+      "symbol": "GOOGL",
+      "name": "Alphabet Inc Class A",
+      "weight": 0.131385
+    },
+    {
+      "symbol": "GOOG",
+      "name": "Alphabet Inc Class C",
+      "weight": 0.0871425
+    },
+    {
+      "symbol": "NFLX",
+      "name": "Netflix Inc",
+      "weight": 0.0574358
+    },
+    {
+      "symbol": "VZ",
+      "name": "Verizon Communications Inc",
+      "weight": 0.0471913
+    },
+    {
+      "symbol": "T",
+      "name": "AT&T Inc",
+      "weight": 0.046494998
+    },
+    {
+      "symbol": "DIS",
+      "name": "The Walt Disney Co",
+      "weight": 0.0403588
+    },
+    {
+      "symbol": "TMUS",
+      "name": "T-Mobile US Inc",
+      "weight": 0.0301833
+    },
+    {
+      "symbol": "WBD",
+      "name": "Warner Bros. Discovery Inc Ordinary Shares - Class A",
+      "weight": 0.0300208
+    },
+    {
+      "symbol": "CMCSA",
+      "name": "Comcast Corp Class A",
+      "weight": 0.0293289
+    }
+  ],
+  "sectorWeightings": {
+    "realestate": 0.001,
+    "consumer_cyclical": 0.004,
+    "basic_materials": 0.0,
+    "consumer_defensive": 0.0,
+    "technology": 0.0137,
+    "communication_services": 0.981,
+    "financial_services": 0.0,
+    "utilities": 0.0,
+    "industrials": 0.0002,
+    "energy": 0.0,
+    "healthcare": 0.0001
+  },
+  "fetchedAt": "2026-05-03T22:18:00.241724"
+}

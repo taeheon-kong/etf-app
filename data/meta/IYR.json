@@ -1,0 +1,82 @@
+{
+  "ticker": "IYR",
+  "longName": "iShares U.S. Real Estate ETF",
+  "summary": "The fund seeks to track the investment results of the Dow Jones U.S. Real Estate Capped Index, which measures the performance of the real estate sector of the U.S. equity market, as defined by the \"index provider\". It generally invests at least 80% of its assets in the component securities of its underlying index and in investments that have economic characteristics that are substantially identical to the component securities of its underlying index.",
+  "category": "Real Estate",
+  "fundFamily": "iShares",
+  "totalAssets": 3970679040,
+  "expenseRatio": 0.38,
+  "yield": 0.0238,
+  "fundInceptionDate": 960768000,
+  "navPrice": 102.32152,
+  "previousClose": 102.63,
+  "fiftyTwoWeekHigh": 103.32,
+  "fiftyTwoWeekLow": 91.4,
+  "beta3Year": 1.1,
+  "topHoldings": [
+    {
+      "symbol": "WELL",
+      "name": "Welltower Inc",
+      "weight": 0.0996126
+    },
+    {
+      "symbol": "PLD",
+      "name": "Prologis Inc",
+      "weight": 0.0918032
+    },
+    {
+      "symbol": "EQIX",
+      "name": "Equinix Inc",
+      "weight": 0.0468784
+    },
+    {
+      "symbol": "DLR",
+      "name": "Digital Realty Trust Inc",
+      "weight": 0.046307903
+    },
+    {
+      "symbol": "SPG",
+      "name": "Simon Property Group Inc",
+      "weight": 0.045809302
+    },
+    {
+      "symbol": "O",
+      "name": "Realty Income Corp",
+      "weight": 0.044013802
+    },
+    {
+      "symbol": "AMT",
+      "name": "American Tower Corp",
+      "weight": 0.0439387
+    },
+    {
+      "symbol": "PSA",
+      "name": "Public Storage",
+      "weight": 0.034045402
+    },
+    {
+      "symbol": "CBRE",
+      "name": "CBRE Group Inc Class A",
+      "weight": 0.0313185
+    },
+    {
+      "symbol": "VTR",
+      "name": "Ventas Inc",
+      "weight": 0.0309071
+    }
+  ],
+  "sectorWeightings": {
+    "realestate": 0.9926,
+    "consumer_cyclical": 0.0,
+    "basic_materials": 0.0,
+    "consumer_defensive": 0.0,
+    "technology": 0.0,
+    "communication_services": 0.0074,
+    "financial_services": 0.0,
+    "utilities": 0.0,
+    "industrials": 0.0,
+    "energy": 0.0,
+    "healthcare": 0.0
+  },
+  "fetchedAt": "2026-05-03T22:17:35.376170"
+}

@@ -8,10 +8,10 @@
   "expenseRatio": 0.06,
   "yield": 0.0182,
   "fundInceptionDate": 1214265600,
-  "navPrice": 149.02,
-  "previousClose": 149.46,
-  "fiftyTwoWeekHigh": 151.44,
-  "fiftyTwoWeekLow": 116.87,
+  "navPrice": 151.18,
+  "previousClose": 151.2,
+  "fiftyTwoWeekHigh": 152.4,
+  "fiftyTwoWeekLow": 117.44,
   "beta3Year": 0.99,
   "topHoldings": [
     {
@@ -78,5 +78,5 @@
     "energy": 0.0466,
     "healthcare": 0.089499995
   },
-  "fetchedAt": "2026-04-30T21:07:23.918051"
+  "fetchedAt": "2026-05-03T22:18:06.167287"
 }

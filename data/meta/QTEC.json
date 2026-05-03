@@ -1,0 +1,82 @@
+{
+  "ticker": "QTEC",
+  "longName": "First Trust NASDAQ-100-Technology Sector Index Fund",
+  "summary": "The fund will normally invest at least 90% of its net assets (including investment borrowings) in the securities that comprise the index. The index is an equal-weighted index composed of the securities comprising the NASDAQ-100 Index® that are classified as \"technology\" according to the Industry Classification Benchmark classification system.",
+  "category": "Technology",
+  "fundFamily": "First Trust",
+  "totalAssets": 2625226752,
+  "expenseRatio": 0.55,
+  "yield": 0.0,
+  "fundInceptionDate": 1145404800,
+  "navPrice": 271.58,
+  "previousClose": 266.63,
+  "fiftyTwoWeekHigh": 271.87,
+  "fiftyTwoWeekLow": 178.61,
+  "beta3Year": 1.3,
+  "topHoldings": [
+    {
+      "symbol": "ARM",
+      "name": "ARM Holdings PLC ADR",
+      "weight": 0.0264541
+    },
+    {
+      "symbol": "MRVL",
+      "name": "Marvell Technology Inc",
+      "weight": 0.026076501
+    },
+    {
+      "symbol": "PDD",
+      "name": "PDD Holdings Inc ADR",
+      "weight": 0.0245896
+    },
+    {
+      "symbol": "TXN",
+      "name": "Texas Instruments Inc",
+      "weight": 0.0240009
+    },
+    {
+      "symbol": "NXPI",
+      "name": "NXP Semiconductors NV",
+      "weight": 0.0238078
+    },
+    {
+      "symbol": "ADI",
+      "name": "Analog Devices Inc",
+      "weight": 0.0237956
+    },
+    {
+      "symbol": "MCHP",
+      "name": "Microchip Technology Inc",
+      "weight": 0.0237025
+    },
+    {
+      "symbol": "AAPL",
+      "name": "Apple Inc",
+      "weight": 0.0236849
+    },
+    {
+      "symbol": "MPWR",
+      "name": "Monolithic Power Systems Inc",
+      "weight": 0.023635099
+    },
+    {
+      "symbol": "SHOP",
+      "name": "Shopify Inc Registered Shs -A- Subord Vtg",
+      "weight": 0.0235085
+    }
+  ],
+  "sectorWeightings": {
+    "realestate": 0.0,
+    "consumer_cyclical": 0.0468,
+    "basic_materials": 0.0,
+    "consumer_defensive": 0.0,
+    "technology": 0.86550003,
+    "communication_services": 0.0654,
+    "financial_services": 0.0,
+    "utilities": 0.0,
+    "industrials": 0.0223,
+    "energy": 0.0,
+    "healthcare": 0.0
+  },
+  "fetchedAt": "2026-05-03T22:15:58.901724"
+}

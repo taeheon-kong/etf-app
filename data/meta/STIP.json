@@ -1,0 +1,18 @@
+{
+  "ticker": "STIP",
+  "longName": "iShares 0-5 Year TIPS Bond ETF",
+  "summary": "The index measures the performance of the inflation-protected public obligations of the U.S. Treasury, commonly known as \"TIPS,\" that have a remaining maturity of less than or equal to five years. The fund will invest at least 80% of its assets in the component securities of the underlying index, and the fund will invest at least 90% of its assets in U.S. Treasury securities that BFA believes will help the fund track the underlying index.",
+  "category": "Short-Term Inflation-Protected Bond",
+  "fundFamily": "iShares",
+  "totalAssets": 14618504192,
+  "expenseRatio": 0.03,
+  "yield": 0.039300002,
+  "fundInceptionDate": 1291161600,
+  "navPrice": 103.50262,
+  "previousClose": 103.584,
+  "fiftyTwoWeekHigh": 104.16,
+  "fiftyTwoWeekLow": 101.98,
+  "beta3Year": 0.22,
+  "topHoldings": [],
+  "fetchedAt": "2026-05-03T22:17:14.518198"
+}

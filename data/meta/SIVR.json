@@ -1,0 +1,18 @@
+{
+  "ticker": "SIVR",
+  "longName": "abrdn Physical Silver Shares ETF",
+  "summary": "The shares are intended to constitute a simple and cost-effective means of making an investment similar to an investment in silver. An investment in physical silver requires expensive and sometimes complicated arrangements in connection with the assay, transportation, warehousing and insurance of the metal. Although the shares are not the exact equivalent of an investment in silver, they provide investors with an alternative that allows a level of participation in the silver market through the securities market.",
+  "category": "Commodities Focused",
+  "fundFamily": "Aberdeen Standard Investments",
+  "totalAssets": 4970486784,
+  "expenseRatio": 0.3,
+  "yield": 0.0,
+  "fundInceptionDate": 1248393600,
+  "navPrice": 69.54555,
+  "previousClose": 70.03,
+  "fiftyTwoWeekHigh": 115.26,
+  "fiftyTwoWeekLow": 30.34,
+  "beta3Year": 1.0,
+  "topHoldings": [],
+  "fetchedAt": "2026-05-03T22:17:24.770117"
+}

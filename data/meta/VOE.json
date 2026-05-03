@@ -1,0 +1,82 @@
+{
+  "ticker": "VOE",
+  "longName": "Vanguard Mid-Cap Value Index Fund ETF Shares",
+  "summary": "The fund employs an indexing investment approach designed to track the performance of the CRSP U.S. Mid Cap Value Index, a broadly diversified index of value stocks of mid-size U.S. companies. The advisor attempts to replicate the target index by investing all, or substantially all, of its assets in the stocks that make up the index, holding each stock in approximately the same proportion as its weighting in the index.",
+  "category": "Mid-Cap Value",
+  "fundFamily": "Vanguard",
+  "totalAssets": 34672295936,
+  "expenseRatio": 0.05,
+  "yield": 0.0199,
+  "fundInceptionDate": 1155772800,
+  "navPrice": 193.72,
+  "previousClose": 194.7,
+  "fiftyTwoWeekHigh": 195.18,
+  "fiftyTwoWeekLow": 156.56,
+  "beta3Year": 0.92,
+  "topHoldings": [
+    {
+      "symbol": "SLB",
+      "name": "SLB Ltd",
+      "weight": 0.014387799
+    },
+    {
+      "symbol": "CMI",
+      "name": "Cummins Inc",
+      "weight": 0.013918
+    },
+    {
+      "symbol": "VLO",
+      "name": "Valero Energy Corp",
+      "weight": 0.0138333
+    },
+    {
+      "symbol": "PSX",
+      "name": "Phillips 66",
+      "weight": 0.0136693
+    },
+    {
+      "symbol": "MPC",
+      "name": "Marathon Petroleum Corp",
+      "weight": 0.013475
+    },
+    {
+      "symbol": "CRH",
+      "name": "CRH PLC",
+      "weight": 0.0131524
+    },
+    {
+      "symbol": "GM",
+      "name": "General Motors Co",
+      "weight": 0.012609201
+    },
+    {
+      "symbol": "WBD",
+      "name": "Warner Bros. Discovery Inc Ordinary Shares - Class A",
+      "weight": 0.012112499
+    },
+    {
+      "symbol": "LHX",
+      "name": "L3Harris Technologies Inc",
+      "weight": 0.01207
+    },
+    {
+      "symbol": "DLR",
+      "name": "Digital Realty Trust Inc",
+      "weight": 0.0115939
+    }
+  ],
+  "sectorWeightings": {
+    "realestate": 0.0573,
+    "consumer_cyclical": 0.057800002,
+    "basic_materials": 0.056900002,
+    "consumer_defensive": 0.083100006,
+    "technology": 0.097200006,
+    "communication_services": 0.023599999,
+    "financial_services": 0.16450001,
+    "utilities": 0.1272,
+    "industrials": 0.1346,
+    "energy": 0.13069999,
+    "healthcare": 0.0669
+  },
+  "fetchedAt": "2026-05-03T22:16:26.956806"
+}

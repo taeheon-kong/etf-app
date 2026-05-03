@@ -1,0 +1,82 @@
+{
+  "ticker": "VBK",
+  "longName": "Vanguard Small-Cap Growth Index Fund ETF Shares",
+  "summary": "The fund advisor employs an indexing investment approach designed to track the performance of the CRSP U.S. Small Cap Growth Index, a broadly diversified index of growth stocks of small U.S. companies. The advisor attempts to replicate the target index by investing all, or substantially all, of its assets in the stocks that make up the index, holding each stock in approximately the same proportion as its weighting in the index.",
+  "category": "Small Growth",
+  "fundFamily": "Vanguard",
+  "totalAssets": 38686687232,
+  "expenseRatio": 0.05,
+  "yield": 0.0052,
+  "fundInceptionDate": 1075075200,
+  "navPrice": 337.28,
+  "previousClose": 334.96,
+  "fiftyTwoWeekHigh": 341.93,
+  "fiftyTwoWeekLow": 251.35,
+  "beta3Year": 1.37,
+  "topHoldings": [
+    {
+      "symbol": "FTI",
+      "name": "TechnipFMC PLC",
+      "weight": 0.0090642
+    },
+    {
+      "symbol": "CIEN",
+      "name": "Ciena Corp",
+      "weight": 0.0090004
+    },
+    {
+      "symbol": "CASY",
+      "name": "Casey's General Stores Inc",
+      "weight": 0.0088435
+    },
+    {
+      "symbol": "NTRA",
+      "name": "Natera Inc",
+      "weight": 0.008685701
+    },
+    {
+      "symbol": "FTAI",
+      "name": "FTAI Aviation Ltd",
+      "weight": 0.0082378
+    },
+    {
+      "symbol": "CW",
+      "name": "Curtiss-Wright Corp",
+      "weight": 0.0082326
+    },
+    {
+      "symbol": "LITE",
+      "name": "Lumentum Holdings Inc",
+      "weight": 0.0082237
+    },
+    {
+      "symbol": "FIX",
+      "name": "Comfort Systems USA Inc",
+      "weight": 0.0079497
+    },
+    {
+      "symbol": "COHR",
+      "name": "Coherent Corp",
+      "weight": 0.0073192
+    },
+    {
+      "symbol": "RGLD",
+      "name": "Royal Gold Inc",
+      "weight": 0.0070726
+    }
+  ],
+  "sectorWeightings": {
+    "realestate": 0.0399,
+    "consumer_cyclical": 0.1005,
+    "basic_materials": 0.0337,
+    "consumer_defensive": 0.025899999,
+    "technology": 0.2442,
+    "communication_services": 0.0339,
+    "financial_services": 0.055,
+    "utilities": 0.0115,
+    "industrials": 0.2375,
+    "energy": 0.0517,
+    "healthcare": 0.16610001
+  },
+  "fetchedAt": "2026-05-03T22:16:23.638902"
+}

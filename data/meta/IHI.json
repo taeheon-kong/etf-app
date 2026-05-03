@@ -1,0 +1,82 @@
+{
+  "ticker": "IHI",
+  "longName": "iShares U.S. Medical Devices ETF",
+  "summary": "The fund seeks to track the investment results of the Dow Jones U.S. Select Medical Equipment Index, which measures the performance of the medical equipment sector of the U.S. equity market, as defined by S&P Dow Jones Indices LLC. The index includes medical equipment companies, including manufacturers and distributors of medical devices such as magnetic resonance imaging scanners, prosthetics, pacemakers, X-ray machines, and other non-disposable medical devices. The fund is non-diversified.",
+  "category": "Health",
+  "fundFamily": "iShares",
+  "totalAssets": 3174217984,
+  "expenseRatio": 0.38,
+  "yield": 0.0042,
+  "fundInceptionDate": 1146441600,
+  "navPrice": 50.51452,
+  "previousClose": 51.06,
+  "fiftyTwoWeekHigh": 64.71,
+  "fiftyTwoWeekLow": 50.09,
+  "beta3Year": 1.22,
+  "topHoldings": [
+    {
+      "symbol": "ABT",
+      "name": "Abbott Laboratories",
+      "weight": 0.1697637
+    },
+    {
+      "symbol": "ISRG",
+      "name": "Intuitive Surgical Inc",
+      "weight": 0.1556726
+    },
+    {
+      "symbol": "SYK",
+      "name": "Stryker Corp",
+      "weight": 0.107615806
+    },
+    {
+      "symbol": "MDT",
+      "name": "Medtronic PLC",
+      "weight": 0.046213
+    },
+    {
+      "symbol": "BDX",
+      "name": "Becton Dickinson & Co",
+      "weight": 0.045723
+    },
+    {
+      "symbol": "EW",
+      "name": "Edwards Lifesciences Corp",
+      "weight": 0.0446566
+    },
+    {
+      "symbol": "IDXX",
+      "name": "IDEXX Laboratories Inc",
+      "weight": 0.0443981
+    },
+    {
+      "symbol": "RMD",
+      "name": "ResMed Inc",
+      "weight": 0.044345196
+    },
+    {
+      "symbol": "GEHC",
+      "name": "GE HealthCare Technologies Inc Common Stock",
+      "weight": 0.043990698
+    },
+    {
+      "symbol": "BSX",
+      "name": "Boston Scientific Corp",
+      "weight": 0.042761996
+    }
+  ],
+  "sectorWeightings": {
+    "realestate": 0.0,
+    "consumer_cyclical": 0.0,
+    "basic_materials": 0.0,
+    "consumer_defensive": 0.0,
+    "technology": 0.0,
+    "communication_services": 0.0,
+    "financial_services": 0.0,
+    "utilities": 0.0,
+    "industrials": 0.0,
+    "energy": 0.0,
+    "healthcare": 1.0
+  },
+  "fetchedAt": "2026-05-03T22:17:45.550243"
+}

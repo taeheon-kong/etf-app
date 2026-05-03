@@ -1,0 +1,82 @@
+{
+  "ticker": "BOTZ",
+  "longName": "Global X Robotics & Artificial Intelligence ETF",
+  "summary": "The fund invests at least 80% of its total assets in the securities of the underlying index. The underlying index is designed to provide exposure to exchange-listed companies in developed markets that are involved in the development of robotics and/or artificial intelligence as defined by Indxx, the provider of the underlying index. The fund is non-diversified.",
+  "category": "Miscellaneous Sector",
+  "fundFamily": "Global X Funds",
+  "totalAssets": 2944289280,
+  "expenseRatio": 0.68,
+  "yield": 0.0073,
+  "fundInceptionDate": 1473638400,
+  "navPrice": 38.42,
+  "previousClose": 38.45,
+  "fiftyTwoWeekHigh": 39.778,
+  "fiftyTwoWeekLow": 28.87,
+  "beta3Year": 1.68,
+  "topHoldings": [
+    {
+      "symbol": "NVDA",
+      "name": "NVIDIA Corp",
+      "weight": 0.0844016
+    },
+    {
+      "symbol": "ISRG",
+      "name": "Intuitive Surgical Inc",
+      "weight": 0.0823498
+    },
+    {
+      "symbol": "ABBN.SW",
+      "name": "ABB Ltd",
+      "weight": 0.082001
+    },
+    {
+      "symbol": "6861.T",
+      "name": "Keyence Corp",
+      "weight": 0.0786506
+    },
+    {
+      "symbol": "6954.T",
+      "name": "Fanuc Corp",
+      "weight": 0.0745316
+    },
+    {
+      "symbol": "300124.SZ",
+      "name": "Shenzhen Inovance Technology Co Ltd Class A",
+      "weight": 0.0472836
+    },
+    {
+      "symbol": "6273.T",
+      "name": "SMC Corp",
+      "weight": 0.0429467
+    },
+    {
+      "symbol": "6383.T",
+      "name": "Daifuku Co Ltd",
+      "weight": 0.0322032
+    },
+    {
+      "symbol": "9660.HK",
+      "name": "Horizon Robotics Class B",
+      "weight": 0.026303101
+    },
+    {
+      "symbol": "AVAV",
+      "name": "AeroVironment Inc",
+      "weight": 0.0227249
+    }
+  ],
+  "sectorWeightings": {
+    "realestate": 0.0,
+    "consumer_cyclical": 0.0466,
+    "basic_materials": 0.0,
+    "consumer_defensive": 0.00029999999,
+    "technology": 0.33540002,
+    "communication_services": 0.0428,
+    "financial_services": 0.0,
+    "utilities": 0.0,
+    "industrials": 0.4714,
+    "energy": 0.0,
+    "healthcare": 0.103599995
+  },
+  "fetchedAt": "2026-05-03T22:18:38.048226"
+}

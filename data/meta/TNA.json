@@ -1,0 +1,37 @@
+{
+  "ticker": "TNA",
+  "longName": "Direxion Daily Small Cap Bull 3X Shares",
+  "summary": "The fund invests at least 80% of its net assets in financial instruments, such as swap agreements, securities of the index, and exchange-traded funds (\"ETFs\") that track the index, that, in combination, provide 3X daily leveraged exposure to the index, consistent with the fund's investment objective. The index measures the performance of approximately 2,000 small-capitalization companies in the Russell 3000® Index, based on a combination of their market capitalization and current index membership. The fund is non-diversified.",
+  "category": "Trading--Leveraged Equity",
+  "fundFamily": "Direxion Funds",
+  "totalAssets": 1379485568,
+  "expenseRatio": 1.05,
+  "yield": 0.0062,
+  "fundInceptionDate": 1225843200,
+  "navPrice": 62.176,
+  "previousClose": 61.26,
+  "fiftyTwoWeekHigh": 62.75,
+  "fiftyTwoWeekLow": 25.7,
+  "beta3Year": 3.97,
+  "topHoldings": [
+    {
+      "symbol": "IWM",
+      "name": "iShares Russell 2000 ETF",
+      "weight": 0.6434582
+    }
+  ],
+  "sectorWeightings": {
+    "realestate": 0.0627,
+    "consumer_cyclical": 0.087299995,
+    "basic_materials": 0.0504,
+    "consumer_defensive": 0.0256,
+    "technology": 0.1512,
+    "communication_services": 0.0235,
+    "financial_services": 0.1594,
+    "utilities": 0.0305,
+    "industrials": 0.1659,
+    "energy": 0.0648,
+    "healthcare": 0.17870001
+  },
+  "fetchedAt": "2026-05-03T22:18:51.755052"
+}

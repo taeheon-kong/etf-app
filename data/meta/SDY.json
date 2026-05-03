@@ -1,0 +1,82 @@
+{
+  "ticker": "SDY",
+  "longName": "State Street SPDR S&P Dividend ETF",
+  "summary": "The fund generally invests substantially all, but at least 80%, of its total assets in the securities comprising the index. The index is designed to measure the performance of the highest dividend yielding S&P Composite 1500® Index constituents that have followed a managed-dividends policy of consistently increasing dividends every year for at least 20 consecutive years.",
+  "category": "Mid-Cap Value",
+  "fundFamily": "State Street Investment Management",
+  "totalAssets": 20672563200,
+  "expenseRatio": 0.35,
+  "yield": 0.0253,
+  "fundInceptionDate": 1131408000,
+  "navPrice": 149.15396,
+  "previousClose": 150.07,
+  "fiftyTwoWeekHigh": 156.39,
+  "fiftyTwoWeekLow": 130.39,
+  "beta3Year": 0.73,
+  "topHoldings": [
+    {
+      "symbol": "VZ",
+      "name": "Verizon Communications Inc",
+      "weight": 0.0368618
+    },
+    {
+      "symbol": "O",
+      "name": "Realty Income Corp",
+      "weight": 0.0241991
+    },
+    {
+      "symbol": "CVX",
+      "name": "Chevron Corp",
+      "weight": 0.023681099
+    },
+    {
+      "symbol": "TGT",
+      "name": "Target Corp",
+      "weight": 0.0226718
+    },
+    {
+      "symbol": "XOM",
+      "name": "Exxon Mobil Corp",
+      "weight": 0.0184856
+    },
+    {
+      "symbol": "PEP",
+      "name": "PepsiCo Inc",
+      "weight": 0.0178404
+    },
+    {
+      "symbol": "WEC",
+      "name": "WEC Energy Group Inc",
+      "weight": 0.0162387
+    },
+    {
+      "symbol": "ED",
+      "name": "Consolidated Edison Inc",
+      "weight": 0.0158653
+    },
+    {
+      "symbol": "KVUE",
+      "name": "Kenvue Inc",
+      "weight": 0.0156695
+    },
+    {
+      "symbol": "SO",
+      "name": "Southern Co",
+      "weight": 0.0156273
+    }
+  ],
+  "sectorWeightings": {
+    "realestate": 0.044899996,
+    "consumer_cyclical": 0.055,
+    "basic_materials": 0.063,
+    "consumer_defensive": 0.1706,
+    "technology": 0.075100005,
+    "communication_services": 0.037100002,
+    "financial_services": 0.11229999,
+    "utilities": 0.15010001,
+    "industrials": 0.1745,
+    "energy": 0.0506,
+    "healthcare": 0.0668
+  },
+  "fetchedAt": "2026-05-03T22:16:35.379886"
+}

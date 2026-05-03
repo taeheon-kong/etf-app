@@ -1,0 +1,18 @@
+{
+  "ticker": "SH",
+  "longName": "ProShares Short S&P500",
+  "summary": "The fund invests in financial instruments that ProShare Advisors believes, in combination, should produce daily returns consistent with the Daily Target. The index is designed to measure the performance of 500 of the largest companies listed and domiciled in the U.S. Under normal circumstances, the fund will obtain inverse exposure to at least 80% of its total assets in components of the index or in instruments with similar economic characteristics. The fund is non-diversified.",
+  "category": "Trading--Inverse Equity",
+  "fundFamily": "ProShares",
+  "totalAssets": 1560382848,
+  "expenseRatio": 0.89,
+  "yield": 0.0392,
+  "fundInceptionDate": 1150675200,
+  "navPrice": 34.3639,
+  "previousClose": 34.45,
+  "fiftyTwoWeekHigh": 44.29,
+  "fiftyTwoWeekLow": 34.16,
+  "beta3Year": -0.97,
+  "topHoldings": [],
+  "fetchedAt": "2026-05-03T22:18:55.341531"
+}

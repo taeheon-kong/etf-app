@@ -1,0 +1,18 @@
+{
+  "ticker": "VGLT",
+  "longName": "Vanguard Long-Term Treasury Index Fund ETF Shares",
+  "summary": "The fund employs an indexing investment approach designed to track the performance of the Bloomberg U.S. Long Treasury Index. This index includes fixed income securities issued by the U.S. Treasury (not including inflation-protected bonds, floating rate securities and certain other security types), with maturities greater than 10 years. Under normal circumstances, at least 80% of the fund's assets will be invested in bonds included in the index.",
+  "category": "Long Government",
+  "fundFamily": "Vanguard",
+  "totalAssets": 14362285056,
+  "expenseRatio": 0.03,
+  "yield": 0.044899996,
+  "fundInceptionDate": 1258588800,
+  "navPrice": 54.7,
+  "previousClose": 54.77,
+  "fiftyTwoWeekHigh": 58.44,
+  "fiftyTwoWeekLow": 53.18,
+  "beta3Year": 2.23,
+  "topHoldings": [],
+  "fetchedAt": "2026-05-03T22:16:51.527700"
+}

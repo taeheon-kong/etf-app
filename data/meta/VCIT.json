@@ -1,0 +1,18 @@
+{
+  "ticker": "VCIT",
+  "longName": "Vanguard Intermediate-Term Corporate Bond Index Fund ETF Shares",
+  "summary": "The fund employs an indexing investment approach designed to track the performance of the Bloomberg U.S. 5-10 Year Corporate Bond Index. This index includes U.S. dollar-denominated, investment-grade, fixed-rate, taxable securities issued by U.S. and non-U.S. industrial, utility, and financial companies, with maturities between 5 and 10 years. Under normal circumstances, at least 80% of the fund's assets will be invested in bonds included in the index.",
+  "category": "Corporate Bond",
+  "fundFamily": "Vanguard",
+  "totalAssets": 66028621824,
+  "expenseRatio": 0.03,
+  "yield": 0.047199998,
+  "fundInceptionDate": 1258588800,
+  "navPrice": 82.53,
+  "previousClose": 82.85,
+  "fiftyTwoWeekHigh": 84.84,
+  "fiftyTwoWeekLow": 80.42,
+  "beta3Year": 1.07,
+  "topHoldings": [],
+  "fetchedAt": "2026-05-03T22:17:04.199738"
+}

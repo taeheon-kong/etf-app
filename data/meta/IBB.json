@@ -1,0 +1,82 @@
+{
+  "ticker": "IBB",
+  "longName": "iShares Biotechnology ETF",
+  "summary": "The fund generally will invest at least 80% of its assets in the component securities of its underlying index and may invest up to 20% of its assets in certain futures, options and swap contracts, cash and cash equivalents. It is non-diversified.",
+  "category": "Health",
+  "fundFamily": "iShares",
+  "totalAssets": 8122660352,
+  "expenseRatio": 0.44,
+  "yield": 0.0023,
+  "fundInceptionDate": 981331200,
+  "navPrice": 167.32755,
+  "previousClose": 168.69,
+  "fiftyTwoWeekHigh": 179.64,
+  "fiftyTwoWeekLow": 116.25,
+  "beta3Year": 0.9,
+  "topHoldings": [
+    {
+      "symbol": "GILD",
+      "name": "Gilead Sciences Inc",
+      "weight": 0.0774744
+    },
+    {
+      "symbol": "AMGN",
+      "name": "Amgen Inc",
+      "weight": 0.0750683
+    },
+    {
+      "symbol": "VRTX",
+      "name": "Vertex Pharmaceuticals Inc",
+      "weight": 0.0744309
+    },
+    {
+      "symbol": "REGN",
+      "name": "Regeneron Pharmaceuticals Inc",
+      "weight": 0.0721178
+    },
+    {
+      "symbol": "ALNY",
+      "name": "Alnylam Pharmaceuticals Inc",
+      "weight": 0.039901398
+    },
+    {
+      "symbol": "INSM",
+      "name": "Insmed Inc",
+      "weight": 0.0319635
+    },
+    {
+      "symbol": "ARGX",
+      "name": "argenx SE ADR",
+      "weight": 0.0307334
+    },
+    {
+      "symbol": "BIIB",
+      "name": "Biogen Inc",
+      "weight": 0.0246229
+    },
+    {
+      "symbol": "NTRA",
+      "name": "Natera Inc",
+      "weight": 0.024142
+    },
+    {
+      "symbol": "UTHR",
+      "name": "United Therapeutics Corp",
+      "weight": 0.023031099
+    }
+  ],
+  "sectorWeightings": {
+    "realestate": 0.0,
+    "consumer_cyclical": 0.0,
+    "basic_materials": 0.0,
+    "consumer_defensive": 0.0,
+    "technology": 0.0,
+    "communication_services": 0.0,
+    "financial_services": 0.0,
+    "utilities": 0.0,
+    "industrials": 0.0,
+    "energy": 0.0,
+    "healthcare": 1.0
+  },
+  "fetchedAt": "2026-05-03T22:17:43.881650"
+}

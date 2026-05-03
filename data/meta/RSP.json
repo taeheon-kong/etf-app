@@ -1,0 +1,82 @@
+{
+  "ticker": "RSP",
+  "longName": "Invesco S&P 500 Equal Weight ETF",
+  "summary": "The fund generally will invest at least 90% of its total assets in securities that comprise the underlying index. Strictly in accordance with its guidelines and mandated procedures, the index provider compiles, maintains and calculates the underlying index, which consists of all of the of the S&P 500® Index.",
+  "category": "Large Blend",
+  "fundFamily": "Invesco",
+  "totalAssets": 83238453248,
+  "expenseRatio": 0.2,
+  "yield": 0.0162,
+  "fundInceptionDate": 1051142400,
+  "navPrice": 202.81,
+  "previousClose": 203.44,
+  "fiftyTwoWeekHigh": 205.24,
+  "fiftyTwoWeekLow": 169.48,
+  "beta3Year": 0.98,
+  "topHoldings": [
+    {
+      "symbol": "APA",
+      "name": "APA Corp",
+      "weight": 0.0026205
+    },
+    {
+      "symbol": "DOW",
+      "name": "Dow Inc",
+      "weight": 0.002467
+    },
+    {
+      "symbol": "LYB",
+      "name": "LyondellBasell Industries NV Class A",
+      "weight": 0.0024343
+    },
+    {
+      "symbol": "OXY",
+      "name": "Occidental Petroleum Corp",
+      "weight": 0.0023806
+    },
+    {
+      "symbol": "CIEN",
+      "name": "Ciena Corp",
+      "weight": 0.0023258
+    },
+    {
+      "symbol": "COP",
+      "name": "ConocoPhillips",
+      "weight": 0.0022958
+    },
+    {
+      "symbol": "DAL",
+      "name": "Delta Air Lines Inc",
+      "weight": 0.0022882998
+    },
+    {
+      "symbol": "CTRA",
+      "name": "Coterra Energy Inc Ordinary Shares",
+      "weight": 0.0022819
+    },
+    {
+      "symbol": "FANG",
+      "name": "Diamondback Energy Inc",
+      "weight": 0.0022793
+    },
+    {
+      "symbol": "XOM",
+      "name": "Exxon Mobil Corp",
+      "weight": 0.0022787
+    }
+  ],
+  "sectorWeightings": {
+    "realestate": 0.061100002,
+    "consumer_cyclical": 0.1043,
+    "basic_materials": 0.0418,
+    "consumer_defensive": 0.0688,
+    "technology": 0.16600001,
+    "communication_services": 0.041300002,
+    "financial_services": 0.1433,
+    "utilities": 0.0634,
+    "industrials": 0.1452,
+    "energy": 0.048299998,
+    "healthcare": 0.1166
+  },
+  "fetchedAt": "2026-05-03T22:15:53.747596"
+}

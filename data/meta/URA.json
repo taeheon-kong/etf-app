@@ -1,0 +1,77 @@
+{
+  "ticker": "URA",
+  "longName": "Global X Uranium ETF",
+  "summary": "The fund invests at least 80% of its total assets in the securities of the underlying index and in American Depositary Receipts (\"ADRs\") and Global Depositary Receipts (\"GDRs\") based on the securities in the underlying index. The underlying index is designed to measure broad based equity market performance of global companies involved in the uranium industry. The fund is non-diversified.",
+  "category": "Natural Resources",
+  "fundFamily": "Global X Funds",
+  "totalAssets": 6505265152,
+  "expenseRatio": 0.69,
+  "yield": 0.044,
+  "fundInceptionDate": 1288828800,
+  "navPrice": 55.21,
+  "previousClose": 56.42,
+  "fiftyTwoWeekHigh": 62.28,
+  "fiftyTwoWeekLow": 25.2,
+  "beta3Year": 1.47,
+  "topHoldings": [
+    {
+      "symbol": "CCO.TO",
+      "name": "Cameco Corp",
+      "weight": 0.2399472
+    },
+    {
+      "symbol": "NXE.TO",
+      "name": "NexGen Energy Ltd",
+      "weight": 0.067912504
+    },
+    {
+      "symbol": "UEC",
+      "name": "Uranium Energy Corp",
+      "weight": 0.061642397
+    },
+    {
+      "symbol": "OKLO",
+      "name": "Oklo Inc Class A Shares",
+      "weight": 0.0587014
+    },
+    {
+      "symbol": "KAP",
+      "name": "National Atomic Co Kazatomprom JSC ADR",
+      "weight": 0.0501506
+    },
+    {
+      "symbol": "EFR.TO",
+      "name": "Energy Fuels Inc",
+      "weight": 0.042192504
+    },
+    {
+      "symbol": "PDN.AX",
+      "name": "Paladin Energy Ltd",
+      "weight": 0.0331056
+    },
+    {
+      "symbol": "DML.TO",
+      "name": "Denison Mines Corp",
+      "weight": 0.031165099
+    },
+    {
+      "symbol": "000720.KS",
+      "name": "Hyundai Engineering & Construction Co Ltd",
+      "weight": 0.0303366
+    }
+  ],
+  "sectorWeightings": {
+    "realestate": 0.0,
+    "consumer_cyclical": 0.0,
+    "basic_materials": 0.0461,
+    "consumer_defensive": 0.0,
+    "technology": 0.0081,
+    "communication_services": 0.0,
+    "financial_services": 0.0,
+    "utilities": 0.0588,
+    "industrials": 0.204,
+    "energy": 0.6829,
+    "healthcare": 0.0
+  },
+  "fetchedAt": "2026-05-03T22:17:31.813033"
+}

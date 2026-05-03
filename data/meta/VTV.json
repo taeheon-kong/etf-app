@@ -1,0 +1,82 @@
+{
+  "ticker": "VTV",
+  "longName": "Vanguard Value Index Fund ETF Shares",
+  "summary": "The manager employs an indexing investment approach designed to track the performance of the index, a broadly diversified index predominantly made up of value stocks of large U.S. companies. The manager attempts to replicate the target index by investing all, or substantially all, of its assets in the stocks that make up the index, holding each stock in approximately the same proportion as its weighting in the index.",
+  "category": "Large Value",
+  "fundFamily": "Vanguard",
+  "totalAssets": 225662468096,
+  "expenseRatio": 0.03,
+  "yield": 0.0202,
+  "fundInceptionDate": 1075075200,
+  "navPrice": 205.93,
+  "previousClose": 206.78,
+  "fiftyTwoWeekHigh": 208.2,
+  "fiftyTwoWeekLow": 166.2,
+  "beta3Year": 0.8,
+  "topHoldings": [
+    {
+      "symbol": "BRK-B",
+      "name": "Berkshire Hathaway Inc Class B",
+      "weight": 0.030531099
+    },
+    {
+      "symbol": "JPM",
+      "name": "JPMorgan Chase & Co",
+      "weight": 0.0303005
+    },
+    {
+      "symbol": "XOM",
+      "name": "Exxon Mobil Corp",
+      "weight": 0.0289467
+    },
+    {
+      "symbol": "JNJ",
+      "name": "Johnson & Johnson",
+      "weight": 0.024121301
+    },
+    {
+      "symbol": "WMT",
+      "name": "Walmart Inc",
+      "weight": 0.0223075
+    },
+    {
+      "symbol": "CVX",
+      "name": "Chevron Corp",
+      "weight": 0.0160593
+    },
+    {
+      "symbol": "ABBV",
+      "name": "AbbVie Inc",
+      "weight": 0.015746899
+    },
+    {
+      "symbol": "MU",
+      "name": "Micron Technology Inc",
+      "weight": 0.0155699
+    },
+    {
+      "symbol": "PG",
+      "name": "Procter & Gamble Co",
+      "weight": 0.0137448
+    },
+    {
+      "symbol": "CAT",
+      "name": "Caterpillar Inc",
+      "weight": 0.0134973
+    }
+  ],
+  "sectorWeightings": {
+    "realestate": 0.0272,
+    "consumer_cyclical": 0.0423,
+    "basic_materials": 0.0312,
+    "consumer_defensive": 0.096,
+    "technology": 0.1106,
+    "communication_services": 0.0356,
+    "financial_services": 0.2229,
+    "utilities": 0.0538,
+    "industrials": 0.1388,
+    "energy": 0.0879,
+    "healthcare": 0.1535
+  },
+  "fetchedAt": "2026-05-03T22:16:16.634687"
+}

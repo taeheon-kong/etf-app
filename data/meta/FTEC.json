@@ -1,0 +1,82 @@
+{
+  "ticker": "FTEC",
+  "longName": "Fidelity MSCI Information Technology Index ETF",
+  "summary": "The fund invests at least 80% of assets in securities included in the fund's underlying index. The fund's underlying index is the MSCI USA IMI Information Technology 25/50 Index, which represents the performance of the information technology sector in the U.S. equity market. It may or may not hold all of the securities in the MSCI USA IMI Information Technology 25/50 Index. The fund is non-diversified.",
+  "category": "Technology",
+  "fundFamily": "Fidelity Investments",
+  "totalAssets": 15053115392,
+  "expenseRatio": 0.084,
+  "yield": 0.0046,
+  "fundInceptionDate": 1382313600,
+  "navPrice": 250.1534,
+  "previousClose": 246.31,
+  "fiftyTwoWeekHigh": 250.82,
+  "fiftyTwoWeekLow": 164.76,
+  "beta3Year": 1.17,
+  "topHoldings": [
+    {
+      "symbol": "NVDA",
+      "name": "NVIDIA Corp",
+      "weight": 0.1825181
+    },
+    {
+      "symbol": "AAPL",
+      "name": "Apple Inc",
+      "weight": 0.1601922
+    },
+    {
+      "symbol": "MSFT",
+      "name": "Microsoft Corp",
+      "weight": 0.102894805
+    },
+    {
+      "symbol": "AVGO",
+      "name": "Broadcom Inc",
+      "weight": 0.0431947
+    },
+    {
+      "symbol": "MU",
+      "name": "Micron Technology Inc",
+      "weight": 0.0201078
+    },
+    {
+      "symbol": "AMD",
+      "name": "Advanced Micro Devices Inc",
+      "weight": 0.017602
+    },
+    {
+      "symbol": "CSCO",
+      "name": "Cisco Systems Inc",
+      "weight": 0.017185
+    },
+    {
+      "symbol": "PLTR",
+      "name": "Palantir Technologies Inc Ordinary Shares - Class A",
+      "weight": 0.0169726
+    },
+    {
+      "symbol": "AMAT",
+      "name": "Applied Materials Inc",
+      "weight": 0.014517
+    },
+    {
+      "symbol": "LRCX",
+      "name": "Lam Research Corp",
+      "weight": 0.0141989
+    }
+  ],
+  "sectorWeightings": {
+    "realestate": 0.0,
+    "consumer_cyclical": 0.0,
+    "basic_materials": 0.0,
+    "consumer_defensive": 0.0,
+    "technology": 0.98620003,
+    "communication_services": 0.0053,
+    "financial_services": 0.0038,
+    "utilities": 0.0,
+    "industrials": 0.0047,
+    "energy": 0.0,
+    "healthcare": 0.0
+  },
+  "fetchedAt": "2026-05-03T22:16:01.379515"
+}

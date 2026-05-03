@@ -1,0 +1,82 @@
+{
+  "ticker": "ITA",
+  "longName": "iShares U.S. Aerospace & Defense ETF",
+  "summary": "The index measures the performance of the aerospace and defense sector of the U.S. equity market, as defined by SPDJI. The fund generally will invest at least 80% of its assets in the component securities of its index and in investments that have economic characteristics that are substantially identical to the component securities of its index and may invest up to 20% of its assets in certain futures, options and swap contracts, cash and cash equivalents. The fund is non-diversified.",
+  "category": "Industrials",
+  "fundFamily": "iShares",
+  "totalAssets": 13488702464,
+  "expenseRatio": 0.38,
+  "yield": 0.0049,
+  "fundInceptionDate": 1146441600,
+  "navPrice": 216.33205,
+  "previousClose": 218.56,
+  "fiftyTwoWeekHigh": 250.65,
+  "fiftyTwoWeekLow": 158.55,
+  "beta3Year": 1.26,
+  "topHoldings": [
+    {
+      "symbol": "GE",
+      "name": "GE Aerospace",
+      "weight": 0.1902765
+    },
+    {
+      "symbol": "RTX",
+      "name": "RTX Corp",
+      "weight": 0.16553819
+    },
+    {
+      "symbol": "BA",
+      "name": "Boeing Co",
+      "weight": 0.0891236
+    },
+    {
+      "symbol": "GD",
+      "name": "General Dynamics Corp",
+      "weight": 0.047698304
+    },
+    {
+      "symbol": "LHX",
+      "name": "L3Harris Technologies Inc",
+      "weight": 0.0465958
+    },
+    {
+      "symbol": "LMT",
+      "name": "Lockheed Martin Corp",
+      "weight": 0.0457623
+    },
+    {
+      "symbol": "NOC",
+      "name": "Northrop Grumman Corp",
+      "weight": 0.0457591
+    },
+    {
+      "symbol": "TDG",
+      "name": "TransDigm Group Inc",
+      "weight": 0.0452919
+    },
+    {
+      "symbol": "HWM",
+      "name": "Howmet Aerospace Inc",
+      "weight": 0.0450348
+    },
+    {
+      "symbol": "AXON",
+      "name": "Axon Enterprise Inc",
+      "weight": 0.0282622
+    }
+  ],
+  "sectorWeightings": {
+    "realestate": 0.0,
+    "consumer_cyclical": 0.0,
+    "basic_materials": 0.0,
+    "consumer_defensive": 0.0,
+    "technology": 0.0,
+    "communication_services": 0.0,
+    "financial_services": 0.0,
+    "utilities": 0.0,
+    "industrials": 1.0,
+    "energy": 0.0,
+    "healthcare": 0.0
+  },
+  "fetchedAt": "2026-05-03T22:17:56.748181"
+}

@@ -1,0 +1,82 @@
+{
+  "ticker": "XLP",
+  "longName": "State Street Consumer Staples Select Sector SPDR ETF",
+  "summary": "In seeking to track the performance of the index, the fund employs a replication strategy. It generally invests substantially all, but at least 95%, of its total assets in the securities comprising the index. The index includes companies that have been identified as Consumer Staples companies by the GICS®. It is non-diversified.",
+  "category": "Consumer Defensive",
+  "fundFamily": "State Street Investment Management",
+  "totalAssets": 15480581120,
+  "expenseRatio": 0.08,
+  "yield": 0.026500002,
+  "fundInceptionDate": 913766400,
+  "navPrice": 84.14454,
+  "previousClose": 84.31,
+  "fiftyTwoWeekHigh": 90.14,
+  "fiftyTwoWeekLow": 75.16,
+  "beta3Year": 0.66,
+  "topHoldings": [
+    {
+      "symbol": "WMT",
+      "name": "Walmart Inc",
+      "weight": 0.1184654
+    },
+    {
+      "symbol": "COST",
+      "name": "Costco Wholesale Corp",
+      "weight": 0.096174896
+    },
+    {
+      "symbol": "PG",
+      "name": "Procter & Gamble Co",
+      "weight": 0.072993495
+    },
+    {
+      "symbol": "KO",
+      "name": "Coca-Cola Co",
+      "weight": 0.0640225
+    },
+    {
+      "symbol": "PM",
+      "name": "Philip Morris International Inc",
+      "weight": 0.0559677
+    },
+    {
+      "symbol": "MDLZ",
+      "name": "Mondelez International Inc Class A",
+      "weight": 0.0479345
+    },
+    {
+      "symbol": "PEP",
+      "name": "PepsiCo Inc",
+      "weight": 0.0461488
+    },
+    {
+      "symbol": "MO",
+      "name": "Altria Group Inc",
+      "weight": 0.045795497
+    },
+    {
+      "symbol": "CL",
+      "name": "Colgate-Palmolive Co",
+      "weight": 0.043788098
+    },
+    {
+      "symbol": "TGT",
+      "name": "Target Corp",
+      "weight": 0.0370525
+    }
+  ],
+  "sectorWeightings": {
+    "realestate": 0.0,
+    "consumer_cyclical": 0.0,
+    "basic_materials": 0.0,
+    "consumer_defensive": 1.0,
+    "technology": 0.0,
+    "communication_services": 0.0,
+    "financial_services": 0.0,
+    "utilities": 0.0,
+    "industrials": 0.0,
+    "energy": 0.0,
+    "healthcare": 0.0
+  },
+  "fetchedAt": "2026-05-03T22:17:51.612111"
+}

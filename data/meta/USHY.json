@@ -1,0 +1,37 @@
+{
+  "ticker": "USHY",
+  "longName": "iShares Broad USD High Yield Corporate Bond ETF",
+  "summary": "The fund will invest at least 80% of its assets in the component securities of the underlying index and it will invest at least 90% of its assets in fixed income securities of the types included in the underlying index that BFA believes will help the fund track the underlying index. The underlying index is designed to provide a broad representation of the U.S. dollar-denominated high yield corporate bond market.",
+  "category": "High Yield Bond",
+  "fundFamily": "iShares",
+  "totalAssets": 23919251456,
+  "expenseRatio": 0.08,
+  "yield": 0.0689,
+  "fundInceptionDate": 1508889600,
+  "navPrice": 36.9943,
+  "previousClose": 37.0275,
+  "fiftyTwoWeekHigh": 37.867,
+  "fiftyTwoWeekLow": 36.39,
+  "beta3Year": 0.64,
+  "topHoldings": [
+    {
+      "symbol": "XTSLA",
+      "name": "BlackRock Cash Funds Treasury SL Agency",
+      "weight": 0.0119468
+    }
+  ],
+  "sectorWeightings": {
+    "realestate": 0.0081,
+    "consumer_cyclical": 0.0,
+    "basic_materials": 0.0,
+    "consumer_defensive": 0.0,
+    "technology": 0.0,
+    "communication_services": 0.0,
+    "financial_services": 0.0,
+    "utilities": 0.0,
+    "industrials": 0.0,
+    "energy": 0.9919,
+    "healthcare": 0.0
+  },
+  "fetchedAt": "2026-05-03T22:17:10.320176"
+}

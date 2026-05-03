@@ -1,0 +1,34 @@
+{
+  "ticker": "DBC",
+  "longName": "Invesco DB Commodity Index Tracking Fund",
+  "summary": "The fund pursues its investment objective by investing in a portfolio of exchange-traded futures on Light Sweet Crude Oil (WTI), Heating Oil, RBOB Gasoline, Natural Gas, Brent Crude, Gold, Silver, Aluminum, Zinc, Copper Grade A, Corn, Wheat, Soybeans, and Sugar. The index is composed of notional amounts of each of these commodities.",
+  "category": "Commodities Broad Basket",
+  "fundFamily": "Invesco",
+  "totalAssets": 1710741888,
+  "expenseRatio": 0.85,
+  "yield": 0.0257,
+  "fundInceptionDate": 1138924800,
+  "navPrice": 30.8,
+  "previousClose": 31.1,
+  "fiftyTwoWeekHigh": 31.11,
+  "fiftyTwoWeekLow": 20.58,
+  "beta3Year": 1.0,
+  "topHoldings": [
+    {
+      "symbol": "AGPXX",
+      "name": "Invesco Shrt-Trm Inv Gov&Agcy Instl",
+      "weight": 0.4169493
+    },
+    {
+      "symbol": "BRNQ26",
+      "name": "Brent Crude Future June 26",
+      "weight": 0.0911039
+    },
+    {
+      "symbol": "TBLL",
+      "name": "Invesco Short Term Treasury ETF",
+      "weight": 0.067755
+    }
+  ],
+  "fetchedAt": "2026-05-03T22:17:27.451940"
+}

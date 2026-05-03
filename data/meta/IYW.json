@@ -1,0 +1,82 @@
+{
+  "ticker": "IYW",
+  "longName": "iShares U.S. Technology ETF",
+  "summary": "The fund generally will invest at least 80% of its assets in the component securities of its underlying index. The underlying index measures the performance of the technology sector of the U.S. equity market, as defined by FTSE Russell. The fund is non-diversified.",
+  "category": "Technology",
+  "fundFamily": "iShares",
+  "totalAssets": 17692475392,
+  "expenseRatio": 0.38,
+  "yield": 0.0015,
+  "fundInceptionDate": 958348800,
+  "navPrice": 221.05405,
+  "previousClose": 218.11,
+  "fiftyTwoWeekHigh": 221.58,
+  "fiftyTwoWeekLow": 144.44,
+  "beta3Year": 1.15,
+  "topHoldings": [
+    {
+      "symbol": "NVDA",
+      "name": "NVIDIA Corp",
+      "weight": 0.17047079
+    },
+    {
+      "symbol": "AAPL",
+      "name": "Apple Inc",
+      "weight": 0.15324199
+    },
+    {
+      "symbol": "GOOGL",
+      "name": "Alphabet Inc Class A",
+      "weight": 0.0703853
+    },
+    {
+      "symbol": "GOOG",
+      "name": "Alphabet Inc Class C",
+      "weight": 0.0571714
+    },
+    {
+      "symbol": "MSFT",
+      "name": "Microsoft Corp",
+      "weight": 0.0435136
+    },
+    {
+      "symbol": "AVGO",
+      "name": "Broadcom Inc",
+      "weight": 0.0336709
+    },
+    {
+      "symbol": "META",
+      "name": "Meta Platforms Inc Class A",
+      "weight": 0.0315118
+    },
+    {
+      "symbol": "AMD",
+      "name": "Advanced Micro Devices Inc",
+      "weight": 0.024149999
+    },
+    {
+      "symbol": "PLTR",
+      "name": "Palantir Technologies Inc Ordinary Shares - Class A",
+      "weight": 0.0235434
+    },
+    {
+      "symbol": "MU",
+      "name": "Micron Technology Inc",
+      "weight": 0.0233977
+    }
+  ],
+  "sectorWeightings": {
+    "realestate": 0.0,
+    "consumer_cyclical": 0.0045,
+    "basic_materials": 0.0,
+    "consumer_defensive": 0.0,
+    "technology": 0.8185,
+    "communication_services": 0.1693,
+    "financial_services": 0.0001,
+    "utilities": 0.0,
+    "industrials": 0.0076,
+    "energy": 0.0,
+    "healthcare": 0.0
+  },
+  "fetchedAt": "2026-05-03T22:16:02.202243"
+}

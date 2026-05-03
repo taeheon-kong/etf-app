@@ -1,0 +1,37 @@
+{
+  "ticker": "SHYG",
+  "longName": "iShares 0-5 Year High Yield Corporate Bond ETF",
+  "summary": "The index is designed to reflect the performance of U.S. dollar-denominated high yield corporate debt. The fund will invest at least 80% of its assets in the component securities of the underlying index, and the fund will invest at least 90% of its assets in fixed income securities of the types included in the underlying index that BFA believes will help the fund track the underlying index.",
+  "category": "High Yield Bond",
+  "fundFamily": "iShares",
+  "totalAssets": 7458061312,
+  "expenseRatio": 0.3,
+  "yield": 0.071,
+  "fundInceptionDate": 1381795200,
+  "navPrice": 42.38876,
+  "previousClose": 42.424,
+  "fiftyTwoWeekHigh": 43.39,
+  "fiftyTwoWeekLow": 41.83,
+  "beta3Year": 0.45,
+  "topHoldings": [
+    {
+      "symbol": "XTSLA",
+      "name": "BlackRock Cash Funds Treasury SL Agency",
+      "weight": 0.0123462
+    }
+  ],
+  "sectorWeightings": {
+    "realestate": 0.0068,
+    "consumer_cyclical": 0.0,
+    "basic_materials": 0.0,
+    "consumer_defensive": 0.0,
+    "technology": 0.0,
+    "communication_services": 0.0,
+    "financial_services": 0.0,
+    "utilities": 0.9932,
+    "industrials": 0.0,
+    "energy": 0.0,
+    "healthcare": 0.0
+  },
+  "fetchedAt": "2026-05-03T22:17:11.160892"
+}

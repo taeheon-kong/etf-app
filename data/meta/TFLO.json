@@ -1,0 +1,24 @@
+{
+  "ticker": "TFLO",
+  "longName": "iShares Treasury Floating Rate Bond ETF",
+  "summary": "The fund will invest at least 80% of its assets in the component securities of the underlying index and will invest at least 90% of its assets in U.S. Treasury securities that BFA believes will help the fund track the underlying index. The underlying index is a market capitalization-weighted index that measures the performance of floating rate public obligations of the U.S. Treasury.",
+  "category": "Ultrashort Bond",
+  "fundFamily": "iShares",
+  "totalAssets": 6834522112,
+  "expenseRatio": 0.15,
+  "yield": 0.0405,
+  "fundInceptionDate": 1391472000,
+  "navPrice": 50.48692,
+  "previousClose": 50.4764,
+  "fiftyTwoWeekHigh": 50.67,
+  "fiftyTwoWeekLow": 50.39,
+  "beta3Year": -0.02,
+  "topHoldings": [
+    {
+      "symbol": "XTSLA",
+      "name": "BlackRock Cash Funds Treasury SL Agency",
+      "weight": 0.0002151
+    }
+  ],
+  "fetchedAt": "2026-05-03T22:16:56.634158"
+}

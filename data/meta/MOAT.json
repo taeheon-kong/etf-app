@@ -1,0 +1,82 @@
+{
+  "ticker": "MOAT",
+  "longName": "VanEck Morningstar Wide Moat ETF",
+  "summary": "The fund normally invests at least 80% of its total assets in securities that comprise the fund's benchmark index. The index is comprised of securities issued by companies that Morningstar, Inc. (\"Morningstar\") determines to have sustainable competitive advantages based on a proprietary methodology that considers quantitative and qualitative factors (\"wide moat companies\"). The fund is non-diversified.",
+  "category": "Large Blend",
+  "fundFamily": "VanEck",
+  "totalAssets": 11615921152,
+  "expenseRatio": 0.46,
+  "yield": 0.0145000005,
+  "fundInceptionDate": 1335225600,
+  "navPrice": 100.1,
+  "previousClose": 100.37,
+  "fiftyTwoWeekHigh": 108.1,
+  "fiftyTwoWeekLow": 85.58,
+  "beta3Year": 1.07,
+  "topHoldings": [
+    {
+      "symbol": "BMY",
+      "name": "Bristol-Myers Squibb Co",
+      "weight": 0.0292176
+    },
+    {
+      "symbol": "MDLZ",
+      "name": "Mondelez International Inc Class A",
+      "weight": 0.028325802
+    },
+    {
+      "symbol": "STZ",
+      "name": "Constellation Brands Inc Class A",
+      "weight": 0.0281908
+    },
+    {
+      "symbol": "KVUE",
+      "name": "Kenvue Inc",
+      "weight": 0.0272531
+    },
+    {
+      "symbol": "BF-B",
+      "name": "Brown-Forman Corp Registered Shs -B- Non Vtg",
+      "weight": 0.0270141
+    },
+    {
+      "symbol": "CLX",
+      "name": "Clorox Co",
+      "weight": 0.026403898
+    },
+    {
+      "symbol": "ZTS",
+      "name": "Zoetis Inc Class A",
+      "weight": 0.0263891
+    },
+    {
+      "symbol": "ABNB",
+      "name": "Airbnb Inc Ordinary Shares - Class A",
+      "weight": 0.026299901
+    },
+    {
+      "symbol": "ZBH",
+      "name": "Zimmer Biomet Holdings Inc",
+      "weight": 0.0262014
+    },
+    {
+      "symbol": "FTNT",
+      "name": "Fortinet Inc",
+      "weight": 0.0258454
+    }
+  ],
+  "sectorWeightings": {
+    "realestate": 0.0116,
+    "consumer_cyclical": 0.075500004,
+    "basic_materials": 0.0,
+    "consumer_defensive": 0.1872,
+    "technology": 0.2742,
+    "communication_services": 0.0229,
+    "financial_services": 0.100600004,
+    "utilities": 0.0,
+    "industrials": 0.1469,
+    "energy": 0.0,
+    "healthcare": 0.18110001
+  },
+  "fetchedAt": "2026-05-03T22:15:55.557788"
+}

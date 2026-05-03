@@ -1,0 +1,18 @@
+{
+  "ticker": "TIP",
+  "longName": "iShares TIPS Bond ETF",
+  "summary": "The index tracks the performance of inflation-protected public obligations of the U.S. Treasury, commonly known as “TIPS,” that have a remaining maturity of more than one year. The fund will invest at least 80% of its assets in the component securities of the index, and it will invest at least 90% of its assets in U.S. Treasury securities that BFA believes will help the fund track the index.",
+  "category": "Inflation-Protected Bond",
+  "fundFamily": "iShares",
+  "totalAssets": 13898044416,
+  "expenseRatio": 0.18,
+  "yield": 0.0345,
+  "fundInceptionDate": 1070496000,
+  "navPrice": 111.15238,
+  "previousClose": 110.999,
+  "fiftyTwoWeekHigh": 112.26,
+  "fiftyTwoWeekLow": 107.98,
+  "beta3Year": 0.7,
+  "topHoldings": [],
+  "fetchedAt": "2026-05-03T22:17:12.868079"
+}

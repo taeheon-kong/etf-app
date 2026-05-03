@@ -1,0 +1,82 @@
+{
+  "ticker": "ITOT",
+  "longName": "iShares Core S&P Total U.S. Stock Market ETF",
+  "summary": "The index consists of all U.S. common equities listed on the NYSE, the NASDAQ Global Select Market, the NASDAQ Select Market, the NASDAQ Capital Market, Cboe BZX, Cboe BYX, Cboe EDGA and Cboe EDGX, Inc. The fund generally will invest at least 80% of its assets in the component securities of its underlying index and may invest up to 20% of its assets in certain futures, options and swap contracts, cash and cash equivalents.",
+  "category": "Large Blend",
+  "fundFamily": "iShares",
+  "totalAssets": 79621505024,
+  "expenseRatio": 0.03,
+  "yield": 0.0113,
+  "fundInceptionDate": 1074556800,
+  "navPrice": 157.74998,
+  "previousClose": 157.29,
+  "fiftyTwoWeekHigh": 158.59,
+  "fiftyTwoWeekLow": 121.45,
+  "beta3Year": 1.04,
+  "topHoldings": [
+    {
+      "symbol": "NVDA",
+      "name": "NVIDIA Corp",
+      "weight": 0.0668941
+    },
+    {
+      "symbol": "AAPL",
+      "name": "Apple Inc",
+      "weight": 0.058818404
+    },
+    {
+      "symbol": "MSFT",
+      "name": "Microsoft Corp",
+      "weight": 0.043383002
+    },
+    {
+      "symbol": "AMZN",
+      "name": "Amazon.com Inc",
+      "weight": 0.032121502
+    },
+    {
+      "symbol": "GOOGL",
+      "name": "Alphabet Inc Class A",
+      "weight": 0.026405498
+    },
+    {
+      "symbol": "AVGO",
+      "name": "Broadcom Inc",
+      "weight": 0.0231653
+    },
+    {
+      "symbol": "GOOG",
+      "name": "Alphabet Inc Class C",
+      "weight": 0.0211976
+    },
+    {
+      "symbol": "META",
+      "name": "Meta Platforms Inc Class A",
+      "weight": 0.0197546
+    },
+    {
+      "symbol": "TSLA",
+      "name": "Tesla Inc",
+      "weight": 0.0165074
+    },
+    {
+      "symbol": "BRK-B",
+      "name": "Berkshire Hathaway Inc Class B",
+      "weight": 0.0138581
+    }
+  ],
+  "sectorWeightings": {
+    "realestate": 0.024300002,
+    "consumer_cyclical": 0.1004,
+    "basic_materials": 0.0219,
+    "consumer_defensive": 0.0498,
+    "technology": 0.3179,
+    "communication_services": 0.096499994,
+    "financial_services": 0.1262,
+    "utilities": 0.0248,
+    "industrials": 0.0963,
+    "energy": 0.0418,
+    "healthcare": 0.1001
+  },
+  "fetchedAt": "2026-05-03T22:15:48.707807"
+}

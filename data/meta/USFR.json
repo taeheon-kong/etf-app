@@ -1,0 +1,18 @@
+{
+  "ticker": "USFR",
+  "longName": "WisdomTree Floating Rate Treasury Fund",
+  "summary": "The fund invests at least 80% of its total assets (exclusive of collateral held from securities lending) in the component securities of the index and investments that have economic characteristics that are substantially identical to the economic characteristics of such component securities. The index is designed to measure the performance of floating rate public obligations of the U.S. Treasury. The fund is non-diversified.",
+  "category": "Ultrashort Bond",
+  "fundFamily": "WisdomTree",
+  "totalAssets": 17591769088,
+  "expenseRatio": 0.15,
+  "yield": 0.04,
+  "fundInceptionDate": 1391472000,
+  "navPrice": 50.353,
+  "previousClose": 50.35,
+  "fiftyTwoWeekHigh": 50.49,
+  "fiftyTwoWeekLow": 50.23,
+  "beta3Year": -0.02,
+  "topHoldings": [],
+  "fetchedAt": "2026-05-03T22:16:55.816550"
+}

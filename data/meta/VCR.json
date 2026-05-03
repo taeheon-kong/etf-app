@@ -1,0 +1,82 @@
+{
+  "ticker": "VCR",
+  "longName": "Vanguard Consumer Discretionary Index Fund ETF Shares",
+  "summary": "The fund employs an indexing investment approach designed to track the performance of the index, an index made up of stocks of large, mid-size, and small U.S. companies within the consumer discretionary sector, as classified under the GICS. The Advisor attempts to replicate the target index by seeking to invest all of its assets in the stocks that make up the index, in order to hold each stock in approximately the same proportion as its weighting in the index. It is non-diversified.",
+  "category": "Consumer Cyclical",
+  "fundFamily": "Vanguard",
+  "totalAssets": 6162764800,
+  "expenseRatio": 0.09,
+  "yield": 0.008,
+  "fundInceptionDate": 1075075200,
+  "navPrice": 394.36,
+  "previousClose": 393.58,
+  "fiftyTwoWeekHigh": 414.28,
+  "fiftyTwoWeekLow": 325.42,
+  "beta3Year": 1.32,
+  "topHoldings": [
+    {
+      "symbol": "AMZN",
+      "name": "Amazon.com Inc",
+      "weight": 0.24768129
+    },
+    {
+      "symbol": "TSLA",
+      "name": "Tesla Inc",
+      "weight": 0.1634866
+    },
+    {
+      "symbol": "HD",
+      "name": "The Home Depot Inc",
+      "weight": 0.0488884
+    },
+    {
+      "symbol": "MCD",
+      "name": "McDonald's Corp",
+      "weight": 0.035783898
+    },
+    {
+      "symbol": "TJX",
+      "name": "TJX Companies Inc",
+      "weight": 0.0287867
+    },
+    {
+      "symbol": "BKNG",
+      "name": "Booking Holdings Inc",
+      "weight": 0.0221281
+    },
+    {
+      "symbol": "LOW",
+      "name": "Lowe's Companies Inc",
+      "weight": 0.0215227
+    },
+    {
+      "symbol": "SBUX",
+      "name": "Starbucks Corp",
+      "weight": 0.0165851
+    },
+    {
+      "symbol": "ORLY",
+      "name": "O'Reilly Automotive Inc",
+      "weight": 0.0129307
+    },
+    {
+      "symbol": "MELI",
+      "name": "MercadoLibre Inc",
+      "weight": 0.0128688
+    }
+  ],
+  "sectorWeightings": {
+    "realestate": 0.0005,
+    "consumer_cyclical": 0.96860003,
+    "basic_materials": 0.0,
+    "consumer_defensive": 0.0117999995,
+    "technology": 0.0095999995,
+    "communication_services": 0.0004,
+    "financial_services": 0.0005,
+    "utilities": 0.0,
+    "industrials": 0.007900001,
+    "energy": 0.0,
+    "healthcare": 0.0007
+  },
+  "fetchedAt": "2026-05-03T22:17:50.680340"
+}

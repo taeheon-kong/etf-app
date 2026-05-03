@@ -1,0 +1,82 @@
+{
+  "ticker": "XLI",
+  "longName": "State Street Industrial Select Sector SPDR ETF",
+  "summary": "Under normal market conditions, the fund generally invests substantially all, but at least 95%, of its total assets in the securities comprising the index. The index includes companies that have been identified as Industrial companies by the Global Industry Classification Standard, including securities of companies from the following industries: aerospace and defense; industrial conglomerates; marine transportation. It is non-diversified.",
+  "category": "Industrials",
+  "fundFamily": "State Street Investment Management",
+  "totalAssets": 28334837760,
+  "expenseRatio": 0.08,
+  "yield": 0.0127,
+  "fundInceptionDate": 913766400,
+  "navPrice": 172.94154,
+  "previousClose": 174.58,
+  "fiftyTwoWeekHigh": 179.31,
+  "fiftyTwoWeekLow": 132.96,
+  "beta3Year": 1.24,
+  "topHoldings": [
+    {
+      "symbol": "CAT",
+      "name": "Caterpillar Inc",
+      "weight": 0.0651776
+    },
+    {
+      "symbol": "GE",
+      "name": "GE Aerospace",
+      "weight": 0.0588476
+    },
+    {
+      "symbol": "RTX",
+      "name": "RTX Corp",
+      "weight": 0.0511968
+    },
+    {
+      "symbol": "GEV",
+      "name": "GE Vernova Inc",
+      "weight": 0.0465188
+    },
+    {
+      "symbol": "BA",
+      "name": "Boeing Co",
+      "weight": 0.030906701
+    },
+    {
+      "symbol": "UBER",
+      "name": "Uber Technologies Inc",
+      "weight": 0.0292715
+    },
+    {
+      "symbol": "UNP",
+      "name": "Union Pacific Corp",
+      "weight": 0.028466599
+    },
+    {
+      "symbol": "HON",
+      "name": "Honeywell International Inc",
+      "weight": 0.028374
+    },
+    {
+      "symbol": "DE",
+      "name": "Deere & Co",
+      "weight": 0.0280783
+    },
+    {
+      "symbol": "ETN",
+      "name": "Eaton Corp PLC",
+      "weight": 0.027468
+    }
+  ],
+  "sectorWeightings": {
+    "realestate": 0.0,
+    "consumer_cyclical": 0.0031,
+    "basic_materials": 0.0,
+    "consumer_defensive": 0.0,
+    "technology": 0.0626,
+    "communication_services": 0.0,
+    "financial_services": 0.0,
+    "utilities": 0.0,
+    "industrials": 0.9343,
+    "energy": 0.0,
+    "healthcare": 0.0
+  },
+  "fetchedAt": "2026-05-03T22:17:55.057269"
+}

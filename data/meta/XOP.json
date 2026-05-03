@@ -1,0 +1,82 @@
+{
+  "ticker": "XOP",
+  "longName": "State Street SPDR S&P Oil & Gas Exploration & Production ETF",
+  "summary": "In seeking to track the performance of the S&P Oil & Gas Exploration & Production Select Industry Index, the fund employs a sampling strategy. It generally invests substantially all, but at least 80%, of its total assets in the securities comprising the index. The index represents the oil and gas exploration and production segment of the S&P Total Market Index (\"S&P TMI\").",
+  "category": "Equity Energy",
+  "fundFamily": "State Street Investment Management",
+  "totalAssets": 3545002240,
+  "expenseRatio": 0.35,
+  "yield": 0.0179,
+  "fundInceptionDate": 1150675200,
+  "navPrice": 176.68033,
+  "previousClose": 178.21,
+  "fiftyTwoWeekHigh": 190.36,
+  "fiftyTwoWeekLow": 111.91,
+  "beta3Year": 0.13,
+  "topHoldings": [
+    {
+      "symbol": "APA",
+      "name": "APA Corp",
+      "weight": 0.03004
+    },
+    {
+      "symbol": "VG",
+      "name": "Venture Global Inc Ordinary Shares - Class A",
+      "weight": 0.0295175
+    },
+    {
+      "symbol": "SM",
+      "name": "SM Energy Co",
+      "weight": 0.0283898
+    },
+    {
+      "symbol": "MUR",
+      "name": "Murphy Oil Corp",
+      "weight": 0.0283124
+    },
+    {
+      "symbol": "OXY",
+      "name": "Occidental Petroleum Corp",
+      "weight": 0.0272918
+    },
+    {
+      "symbol": "CHRD",
+      "name": "Chord Energy Corp Ordinary Shares - New",
+      "weight": 0.026584499
+    },
+    {
+      "symbol": "PBF",
+      "name": "PBF Energy Inc Class A",
+      "weight": 0.0264654
+    },
+    {
+      "symbol": "COP",
+      "name": "ConocoPhillips",
+      "weight": 0.0263213
+    },
+    {
+      "symbol": "MTDR",
+      "name": "Matador Resources Co",
+      "weight": 0.0262166
+    },
+    {
+      "symbol": "CTRA",
+      "name": "Coterra Energy Inc Ordinary Shares",
+      "weight": 0.026158
+    }
+  ],
+  "sectorWeightings": {
+    "realestate": 0.0,
+    "consumer_cyclical": 0.0,
+    "basic_materials": 0.0298,
+    "consumer_defensive": 0.0,
+    "technology": 0.0,
+    "communication_services": 0.0,
+    "financial_services": 0.0,
+    "utilities": 0.0,
+    "industrials": 0.0,
+    "energy": 0.97019994,
+    "healthcare": 0.0
+  },
+  "fetchedAt": "2026-05-03T22:17:48.072985"
+}

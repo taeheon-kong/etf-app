@@ -1,0 +1,82 @@
+{
+  "ticker": "TAN",
+  "longName": "Invesco Solar ETF",
+  "summary": "The fund will generally invest at least 90% of its total assets in the securities that comprise the underlying index. Strictly in accordance with its guidelines and mandated procedures, MAC Indexing LLC, has contracted with S&P DJI Netherlands B.V. to calculate and administer the underlying index, which seeks to track the performance of companies in global solar energy businesses. The fund is non-diversified.",
+  "category": "Miscellaneous Sector",
+  "fundFamily": "Invesco",
+  "totalAssets": 1482877824,
+  "expenseRatio": 0.7,
+  "yield": 0.0,
+  "fundInceptionDate": 1208217600,
+  "navPrice": 59.08,
+  "previousClose": 58.41,
+  "fiftyTwoWeekHigh": 61.03,
+  "fiftyTwoWeekLow": 28.61,
+  "beta3Year": 1.73,
+  "topHoldings": [
+    {
+      "symbol": "NXT",
+      "name": "Nextpower Inc Class A",
+      "weight": 0.101184905
+    },
+    {
+      "symbol": "FSLR",
+      "name": "First Solar Inc",
+      "weight": 0.1010308
+    },
+    {
+      "symbol": "ENPH",
+      "name": "Enphase Energy Inc",
+      "weight": 0.0647816
+    },
+    {
+      "symbol": "ENLT.TA",
+      "name": "Enlight Renewable Energy Ltd",
+      "weight": 0.063204795
+    },
+    {
+      "symbol": "SEDG",
+      "name": "SolarEdge Technologies Inc",
+      "weight": 0.056511696
+    },
+    {
+      "symbol": "RUN",
+      "name": "Sunrun Inc",
+      "weight": 0.0523987
+    },
+    {
+      "symbol": "3800.HK",
+      "name": "GCL Technology Holdings Ltd",
+      "weight": 0.0418717
+    },
+    {
+      "symbol": "HASI",
+      "name": "HA Sustainable Infrastructure Capital Inc",
+      "weight": 0.041521903
+    },
+    {
+      "symbol": "SLR.MC",
+      "name": "Solaria Energia y Medio Ambiente SA",
+      "weight": 0.041475702
+    },
+    {
+      "symbol": "DORL.TA",
+      "name": "Doral Group Renewable Eneryy Resources Ltd Ordinary Shares",
+      "weight": 0.034614302
+    }
+  ],
+  "sectorWeightings": {
+    "realestate": 0.0,
+    "consumer_cyclical": 0.0,
+    "basic_materials": 0.0,
+    "consumer_defensive": 0.0,
+    "technology": 0.6893,
+    "communication_services": 0.0,
+    "financial_services": 0.0416,
+    "utilities": 0.24120001,
+    "industrials": 0.0279,
+    "energy": 0.0,
+    "healthcare": 0.0
+  },
+  "fetchedAt": "2026-05-03T22:18:40.596093"
+}

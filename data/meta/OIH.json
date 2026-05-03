@@ -1,0 +1,82 @@
+{
+  "ticker": "OIH",
+  "longName": "VanEck Oil Services ETF",
+  "summary": "The fund normally invests at least 80% of its total assets in securities that comprise the fund's benchmark index. The index includes common stocks and depositary receipts of U.S. exchange-listed companies in the oil services segment. Such companies may include small- and medium-capitalization companies and foreign companies that are listed on a U.S. exchange. The fund is non-diversified.",
+  "category": "Equity Energy",
+  "fundFamily": "VanEck",
+  "totalAssets": 2344008448,
+  "expenseRatio": 0.35,
+  "yield": 0.012,
+  "fundInceptionDate": 1324339200,
+  "navPrice": 444.44,
+  "previousClose": 448.24,
+  "fiftyTwoWeekHigh": 450.85,
+  "fiftyTwoWeekLow": 210.7,
+  "beta3Year": 0.9,
+  "topHoldings": [
+    {
+      "symbol": "SLB",
+      "name": "SLB Ltd",
+      "weight": 0.2049727
+    },
+    {
+      "symbol": "BKR",
+      "name": "Baker Hughes Co Class A",
+      "weight": 0.1173495
+    },
+    {
+      "symbol": "HAL",
+      "name": "Halliburton Co",
+      "weight": 0.0716327
+    },
+    {
+      "symbol": "FTI",
+      "name": "TechnipFMC PLC",
+      "weight": 0.0628971
+    },
+    {
+      "symbol": "TS",
+      "name": "Tenaris SA ADR",
+      "weight": 0.0503489
+    },
+    {
+      "symbol": "NE",
+      "name": "Noble Corp PLC Class A",
+      "weight": 0.0464975
+    },
+    {
+      "symbol": "RIG",
+      "name": "Transocean Ltd",
+      "weight": 0.0454347
+    },
+    {
+      "symbol": "WFRD",
+      "name": "Weatherford International PLC Ordinary Shares - New",
+      "weight": 0.0430791
+    },
+    {
+      "symbol": "VAL",
+      "name": "Valaris Ltd",
+      "weight": 0.0404926
+    },
+    {
+      "symbol": "LBRT",
+      "name": "Liberty Energy Inc Class A",
+      "weight": 0.0357416
+    }
+  ],
+  "sectorWeightings": {
+    "realestate": 0.0,
+    "consumer_cyclical": 0.0,
+    "basic_materials": 0.0,
+    "consumer_defensive": 0.0,
+    "technology": 0.0,
+    "communication_services": 0.0,
+    "financial_services": 0.0,
+    "utilities": 0.0,
+    "industrials": 0.0,
+    "energy": 1.0,
+    "healthcare": 0.0
+  },
+  "fetchedAt": "2026-05-03T22:17:48.934886"
+}

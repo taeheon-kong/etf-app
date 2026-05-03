@@ -1,0 +1,18 @@
+{
+  "ticker": "GLDM",
+  "longName": "SPDR Gold MiniShares",
+  "summary": "The Shares are designed for investors who want a cost-effective and convenient way to invest in gold. Advantages of investing in the Shares include ease and flexibility of investment and expenses.",
+  "category": "Commodities Focused",
+  "fundFamily": "State Street Investment Management",
+  "totalAssets": 29616130048,
+  "expenseRatio": 0.1,
+  "yield": 0.0,
+  "fundInceptionDate": 1529884800,
+  "navPrice": 91.75404,
+  "previousClose": 91.37,
+  "fiftyTwoWeekHigh": 109.74,
+  "fiftyTwoWeekLow": 62.7,
+  "beta3Year": 0.19,
+  "topHoldings": [],
+  "fetchedAt": "2026-05-03T22:17:21.338529"
+}

@@ -1,0 +1,82 @@
+{
+  "ticker": "DXJ",
+  "longName": "WisdomTree Japan Hedged Equity Fund",
+  "summary": "Under normal circumstances, at least 95% of the fund's total assets will be invested in constituent securities of the index and investments that have economic characteristics that are substantially identical to the economic characteristics of such constituent securities. The index consists of dividend-paying companies incorporated in Japan and traded on the Tokyo Stock Exchange that derive less than 80% of their revenue from sources in Japan. The fund is non-diversified.",
+  "category": "Japan Stock",
+  "fundFamily": "WisdomTree",
+  "totalAssets": 5847538688,
+  "expenseRatio": 0.48,
+  "yield": 0.0121,
+  "fundInceptionDate": 1150416000,
+  "navPrice": 162.566,
+  "previousClose": 162.07,
+  "fiftyTwoWeekHigh": 170.55,
+  "fiftyTwoWeekLow": 108.86,
+  "beta3Year": 0.47,
+  "topHoldings": [
+    {
+      "symbol": "7203.T",
+      "name": "Toyota Motor Corp",
+      "weight": 0.050754
+    },
+    {
+      "symbol": "8306.T",
+      "name": "Mitsubishi UFJ Financial Group Inc",
+      "weight": 0.0485775
+    },
+    {
+      "symbol": "8316.T",
+      "name": "Sumitomo Mitsui Financial Group Inc",
+      "weight": 0.034382
+    },
+    {
+      "symbol": "8058.T",
+      "name": "Mitsubishi Corp",
+      "weight": 0.0281998
+    },
+    {
+      "symbol": "8766.T",
+      "name": "Tokio Marine Holdings Inc",
+      "weight": 0.0259887
+    },
+    {
+      "symbol": "8411.T",
+      "name": "Mizuho Financial Group Inc",
+      "weight": 0.025221601
+    },
+    {
+      "symbol": "8031.T",
+      "name": "Mitsui & Co Ltd",
+      "weight": 0.0223443
+    },
+    {
+      "symbol": "2914.T",
+      "name": "Japan Tobacco Inc",
+      "weight": 0.0223402
+    },
+    {
+      "symbol": "9432.T",
+      "name": "NTT Inc",
+      "weight": 0.0218787
+    },
+    {
+      "symbol": "4502.T",
+      "name": "Takeda Pharmaceutical Co Ltd",
+      "weight": 0.019512499
+    }
+  ],
+  "sectorWeightings": {
+    "realestate": 0.0,
+    "consumer_cyclical": 0.17799999,
+    "basic_materials": 0.0787,
+    "consumer_defensive": 0.047,
+    "technology": 0.1073,
+    "communication_services": 0.0367,
+    "financial_services": 0.1849,
+    "utilities": 0.0011999999,
+    "industrials": 0.278,
+    "energy": 0.0175,
+    "healthcare": 0.0708
+  },
+  "fetchedAt": "2026-05-03T22:18:11.276192"
+}

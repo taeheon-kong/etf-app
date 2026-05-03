@@ -1,0 +1,82 @@
+{
+  "ticker": "VNQI",
+  "longName": "Vanguard Global ex-U.S. Real Estate Index Fund ETF Shares",
+  "summary": "The fund employs an indexing investment approach designed to track the performance of the index, a float-adjusted, market-capitalization-weighted index that measures the equity market performance of international real estate stocks in both developed and emerging markets. The index is composed of stocks of publicly traded equity real estate investment trusts (known as REITs) and certain real estate management and development companies (REMDs).",
+  "category": "Global Real Estate",
+  "fundFamily": "Vanguard",
+  "totalAssets": 3683638528,
+  "expenseRatio": 0.12,
+  "yield": 0.048699997,
+  "fundInceptionDate": 1288569600,
+  "navPrice": 47.13,
+  "previousClose": 47.23,
+  "fiftyTwoWeekHigh": 50.88,
+  "fiftyTwoWeekLow": 42.63,
+  "beta3Year": 1.05,
+  "topHoldings": [
+    {
+      "symbol": "GMG.AX",
+      "name": "Goodman Group",
+      "weight": 0.034906197
+    },
+    {
+      "symbol": "8802.T",
+      "name": "Mitsubishi Estate Co Ltd",
+      "weight": 0.0321255
+    },
+    {
+      "symbol": "8801.T",
+      "name": "Mitsui Fudosan Co Ltd",
+      "weight": 0.0282024
+    },
+    {
+      "symbol": "8830.T",
+      "name": "Sumitomo Realty & Development Co Ltd",
+      "weight": 0.0252549
+    },
+    {
+      "symbol": "0016.HK",
+      "name": "Sun Hung Kai Properties Ltd",
+      "weight": 0.0243153
+    },
+    {
+      "symbol": "VNA.DE",
+      "name": "Vonovia SE",
+      "weight": 0.0199963
+    },
+    {
+      "symbol": "EMAAR.AE",
+      "name": "Emaar Properties PJSC",
+      "weight": 0.0192509
+    },
+    {
+      "symbol": "1925.T",
+      "name": "Daiwa House Industry Co Ltd",
+      "weight": 0.0181034
+    },
+    {
+      "symbol": "SPSN.SW",
+      "name": "Swiss Prime Site AG",
+      "weight": 0.0129138995
+    },
+    {
+      "symbol": "URW.PA",
+      "name": "Unibail-Rodamco-Westfield Act. SIIC ET STES FONC.EUROP.",
+      "weight": 0.0127852
+    }
+  ],
+  "sectorWeightings": {
+    "realestate": 0.9843,
+    "consumer_cyclical": 0.0075,
+    "basic_materials": 0.0,
+    "consumer_defensive": 0.0001,
+    "technology": 0.00029999999,
+    "communication_services": 0.0,
+    "financial_services": 0.0023,
+    "utilities": 0.0,
+    "industrials": 0.0054,
+    "energy": 0.0,
+    "healthcare": 0.0001
+  },
+  "fetchedAt": "2026-05-03T22:17:37.077570"
+}

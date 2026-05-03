@@ -1,0 +1,31 @@
+{
+  "ticker": "JNK",
+  "longName": "State Street SPDR Bloomberg High Yield Bond ETF",
+  "summary": "The fund generally invests substantially all, but at least 80%, of its total assets in the securities comprising the index and in securities that the Adviser determines have economic characteristics that are substantially identical to the economic characteristics of the securities that comprise the index. The index is designed to measure the performance of publicly issued U.S. dollar denominated high yield corporate bonds with above-average liquidity. -null-.",
+  "category": "High Yield Bond",
+  "fundFamily": "State Street Investment Management",
+  "totalAssets": 6959778304,
+  "expenseRatio": 0.4,
+  "yield": 0.0668,
+  "fundInceptionDate": 1196208000,
+  "navPrice": 96.29622,
+  "previousClose": 96.3031,
+  "fiftyTwoWeekHigh": 98.24,
+  "fiftyTwoWeekLow": 94.3,
+  "beta3Year": 0.67,
+  "topHoldings": [],
+  "sectorWeightings": {
+    "realestate": 0.0,
+    "consumer_cyclical": 0.0,
+    "basic_materials": 0.0,
+    "consumer_defensive": 0.0,
+    "technology": 0.0,
+    "communication_services": 0.0,
+    "financial_services": 0.0,
+    "utilities": 0.0,
+    "industrials": 0.0,
+    "energy": 1.0,
+    "healthcare": 0.0
+  },
+  "fetchedAt": "2026-05-03T22:17:09.505766"
+}

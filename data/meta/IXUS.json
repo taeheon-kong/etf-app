@@ -1,0 +1,82 @@
+{
+  "ticker": "IXUS",
+  "longName": "iShares Core MSCI Total International Stock ETF",
+  "summary": "The fund generally will invest at least 80% of its assets in the component securities of its underlying index and in investments that have economic characteristics that are substantially identical to the component securities of its underlying index. The index is a free float-adjusted market capitalization weighted index designed to measure the combined equity market performance of developed and emerging markets countries, excluding the United States.",
+  "category": "Foreign Large Blend",
+  "fundFamily": "iShares",
+  "totalAssets": 51986108416,
+  "expenseRatio": 0.07,
+  "yield": 0.0318,
+  "fundInceptionDate": 1350518400,
+  "navPrice": 92.84812,
+  "previousClose": 93.18,
+  "fiftyTwoWeekHigh": 95.02,
+  "fiftyTwoWeekLow": 72.8,
+  "beta3Year": 0.95,
+  "topHoldings": [
+    {
+      "symbol": "2330.TW",
+      "name": "Taiwan Semiconductor Manufacturing Co Ltd",
+      "weight": 0.0350743
+    },
+    {
+      "symbol": "005930.KS",
+      "name": "Samsung Electronics Co Ltd",
+      "weight": 0.0133959
+    },
+    {
+      "symbol": "ASML.AS",
+      "name": "ASML Holding NV",
+      "weight": 0.0129112005
+    },
+    {
+      "symbol": "0700.HK",
+      "name": "Tencent Holdings Ltd",
+      "weight": 0.010175001
+    },
+    {
+      "symbol": "AZN.L",
+      "name": "AstraZeneca PLC",
+      "weight": 0.0077507
+    },
+    {
+      "symbol": "000660.KS",
+      "name": "SK Hynix Inc",
+      "weight": 0.0074273003
+    },
+    {
+      "symbol": "NOVN.SW",
+      "name": "Novartis AG Registered Shares",
+      "weight": 0.0073507
+    },
+    {
+      "symbol": "HSBA.L",
+      "name": "HSBC Holdings PLC",
+      "weight": 0.0071696
+    },
+    {
+      "symbol": "ROP.SW",
+      "name": "Roche Holding AG Ordinary Shares new",
+      "weight": 0.0071125003
+    },
+    {
+      "symbol": "SHEL.L",
+      "name": "Shell PLC",
+      "weight": 0.0069208
+    }
+  ],
+  "sectorWeightings": {
+    "realestate": 0.0254,
+    "consumer_cyclical": 0.0867,
+    "basic_materials": 0.0796,
+    "consumer_defensive": 0.0545,
+    "technology": 0.15529999,
+    "communication_services": 0.051,
+    "financial_services": 0.22600001,
+    "utilities": 0.033299997,
+    "industrials": 0.15609999,
+    "energy": 0.0555,
+    "healthcare": 0.0766
+  },
+  "fetchedAt": "2026-05-03T22:18:09.619019"
+}

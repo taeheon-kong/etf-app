@@ -1,0 +1,82 @@
+{
+  "ticker": "IEMG",
+  "longName": "iShares Core MSCI Emerging Markets ETF",
+  "summary": "The fund generally will invest at least 80% of its assets in the component securities of the underlying index and in investments that have economic characteristics that are substantially identical to the component securities of the underlying index. The index is designed to measure large-, mid- and small-cap equity market performance in the global emerging markets.",
+  "category": "Diversified Emerging Mkts",
+  "fundFamily": "iShares",
+  "totalAssets": 134083567616,
+  "expenseRatio": 0.09,
+  "yield": 0.026800001,
+  "fundInceptionDate": 1350518400,
+  "navPrice": 77.91567,
+  "previousClose": 78.49,
+  "fiftyTwoWeekHigh": 79.33,
+  "fiftyTwoWeekLow": 55.11,
+  "beta3Year": 0.93,
+  "topHoldings": [
+    {
+      "symbol": "2330.TW",
+      "name": "Taiwan Semiconductor Manufacturing Co Ltd",
+      "weight": 0.11491589
+    },
+    {
+      "symbol": "005930.KS",
+      "name": "Samsung Electronics Co Ltd",
+      "weight": 0.043853797
+    },
+    {
+      "symbol": "0700.HK",
+      "name": "Tencent Holdings Ltd",
+      "weight": 0.0334164
+    },
+    {
+      "symbol": "000660.KS",
+      "name": "SK Hynix Inc",
+      "weight": 0.0243864
+    },
+    {
+      "symbol": "9988.HK",
+      "name": "Alibaba Group Holding Ltd Ordinary Shares",
+      "weight": 0.022121402
+    },
+    {
+      "symbol": "00939",
+      "name": "China Construction Bank Corp Class H",
+      "weight": 0.0087134
+    },
+    {
+      "symbol": "HDFCBANK.NS",
+      "name": "HDFC Bank Ltd",
+      "weight": 0.0074387
+    },
+    {
+      "symbol": "RELIANCE.NS",
+      "name": "Reliance Industries Ltd",
+      "weight": 0.0072970004
+    },
+    {
+      "symbol": "2308.TW",
+      "name": "Delta Electronics Inc",
+      "weight": 0.0071309
+    },
+    {
+      "symbol": "2317.TW",
+      "name": "Hon Hai Precision Industry Co Ltd",
+      "weight": 0.0062396997
+    }
+  ],
+  "sectorWeightings": {
+    "realestate": 0.0185,
+    "consumer_cyclical": 0.1033,
+    "basic_materials": 0.0748,
+    "consumer_defensive": 0.036,
+    "technology": 0.3036,
+    "communication_services": 0.0727,
+    "financial_services": 0.2002,
+    "utilities": 0.0228,
+    "industrials": 0.0853,
+    "energy": 0.0414,
+    "healthcare": 0.041500002
+  },
+  "fetchedAt": "2026-05-03T22:18:05.301039"
+}

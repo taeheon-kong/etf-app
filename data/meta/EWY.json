@@ -2,16 +2,16 @@
   "ticker": "EWY",
   "longName": "iShares MSCI South Korea ETF",
   "summary": "The fund generally will invest at least 80% of its assets in the component securities of its underlying index and in investments that have economic characteristics that are substantially identical to the component securities of its underlying index. The index is a free float-adjusted market capitalization-weighted index that is designed to measure the performance of the large- and mid-capitalization segments of the equity market in Korea. The fund is non-diversified.",
-  "category": "Miscellaneous Region",
+  "category": "Focused Region",
   "fundFamily": "iShares",
   "totalAssets": 15736128512,
   "expenseRatio": 0.59,
   "yield": 0.016900001,
   "fundInceptionDate": 957830400,
-  "navPrice": 158.46707,
-  "previousClose": 154.37,
-  "fiftyTwoWeekHigh": 158.1,
-  "fiftyTwoWeekLow": 55.58,
+  "navPrice": 158.30624,
+  "previousClose": 160.76,
+  "fiftyTwoWeekHigh": 164.18,
+  "fiftyTwoWeekLow": 57.19,
   "beta3Year": 1.95,
   "topHoldings": [
     {
@@ -78,5 +78,5 @@
     "energy": 0.0143,
     "healthcare": 0.043899998
   },
-  "fetchedAt": "2026-04-30T21:07:29.549675"
+  "fetchedAt": "2026-05-03T22:18:17.455740"
 }

@@ -1,0 +1,82 @@
+{
+  "ticker": "VDE",
+  "longName": "Vanguard Energy Index Fund ETF Shares",
+  "summary": "The fund employs an indexing investment approach designed to track the performance of the index, an index made up of stocks of large, mid-size, and small U.S. companies within the energy sector, as classified under the GICS. The Advisor attempts to replicate the target index by seeking to invest all, or substantially all, of its assets in the stocks that make up the index, in order to hold each stock in approximately the same proportion as its weighting in the index. The fund is non-diversified.",
+  "category": "Equity Energy",
+  "fundFamily": "Vanguard",
+  "totalAssets": 13196124160,
+  "expenseRatio": 0.09,
+  "yield": 0.0227,
+  "fundInceptionDate": 1095897600,
+  "navPrice": 167.48,
+  "previousClose": 169.58,
+  "fiftyTwoWeekHigh": 179.34,
+  "fiftyTwoWeekLow": 111.68,
+  "beta3Year": 0.24,
+  "topHoldings": [
+    {
+      "symbol": "XOM",
+      "name": "Exxon Mobil Corp",
+      "weight": 0.2252054
+    },
+    {
+      "symbol": "CVX",
+      "name": "Chevron Corp",
+      "weight": 0.1486463
+    },
+    {
+      "symbol": "COP",
+      "name": "ConocoPhillips",
+      "weight": 0.0605194
+    },
+    {
+      "symbol": "WMB",
+      "name": "Williams Companies Inc",
+      "weight": 0.033561498
+    },
+    {
+      "symbol": "EOG",
+      "name": "EOG Resources Inc",
+      "weight": 0.0299315
+    },
+    {
+      "symbol": "MPC",
+      "name": "Marathon Petroleum Corp",
+      "weight": 0.029096602
+    },
+    {
+      "symbol": "VLO",
+      "name": "Valero Energy Corp",
+      "weight": 0.029049799
+    },
+    {
+      "symbol": "PSX",
+      "name": "Phillips 66",
+      "weight": 0.0278846
+    },
+    {
+      "symbol": "SLB",
+      "name": "SLB Ltd",
+      "weight": 0.025931599
+    },
+    {
+      "symbol": "KMI",
+      "name": "Kinder Morgan Inc Class P",
+      "weight": 0.0254375
+    }
+  ],
+  "sectorWeightings": {
+    "realestate": 0.0,
+    "consumer_cyclical": 0.0,
+    "basic_materials": 0.0038,
+    "consumer_defensive": 0.0,
+    "technology": 0.0,
+    "communication_services": 0.0,
+    "financial_services": 0.0,
+    "utilities": 0.0,
+    "industrials": 0.00090000004,
+    "energy": 0.9953,
+    "healthcare": 0.0
+  },
+  "fetchedAt": "2026-05-03T22:17:47.214429"
+}

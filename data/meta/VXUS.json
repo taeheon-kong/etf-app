@@ -1,0 +1,82 @@
+{
+  "ticker": "VXUS",
+  "longName": "Vanguard Total International Stock Index Fund ETF Shares",
+  "summary": "The manager employs an indexing investment approach designed to track the performance of the FTSE Global All Cap ex US Index, a float-adjusted market-capitalization-weighted index designed to measure equity market performance of companies located in developed and emerging markets, excluding the United States. The fund invests all, or substantially all, of its assets in the common stocks included in its target index.",
+  "category": "Foreign Large Blend",
+  "fundFamily": "Vanguard",
+  "totalAssets": 582269730816,
+  "expenseRatio": 0.05,
+  "yield": 0.0299,
+  "fundInceptionDate": 1296000000,
+  "navPrice": 82.64,
+  "previousClose": 83.06,
+  "fiftyTwoWeekHigh": 84.48,
+  "fiftyTwoWeekLow": 64.6,
+  "beta3Year": 0.94,
+  "topHoldings": [
+    {
+      "symbol": "2330.TW",
+      "name": "Taiwan Semiconductor Manufacturing Co Ltd",
+      "weight": 0.034853
+    },
+    {
+      "symbol": "005930.KS",
+      "name": "Samsung Electronics Co Ltd",
+      "weight": 0.0136277
+    },
+    {
+      "symbol": "ASML.AS",
+      "name": "ASML Holding NV",
+      "weight": 0.0127928
+    },
+    {
+      "symbol": "0700.HK",
+      "name": "Tencent Holdings Ltd",
+      "weight": 0.0096808
+    },
+    {
+      "symbol": "000660.KS",
+      "name": "SK Hynix Inc",
+      "weight": 0.0076124
+    },
+    {
+      "symbol": "NOVN.SW",
+      "name": "Novartis AG Registered Shares",
+      "weight": 0.0073066996
+    },
+    {
+      "symbol": "AZN.L",
+      "name": "AstraZeneca PLC",
+      "weight": 0.0072675003
+    },
+    {
+      "symbol": "HSBA.L",
+      "name": "HSBC Holdings PLC",
+      "weight": 0.0069927
+    },
+    {
+      "symbol": "ROP.SW",
+      "name": "Roche Holding AG Ordinary Shares new",
+      "weight": 0.0069599003
+    },
+    {
+      "symbol": "9988.HK",
+      "name": "Alibaba Group Holding Ltd Ordinary Shares",
+      "weight": 0.0069516
+    }
+  ],
+  "sectorWeightings": {
+    "realestate": 0.026199998,
+    "consumer_cyclical": 0.088199995,
+    "basic_materials": 0.0789,
+    "consumer_defensive": 0.053400002,
+    "technology": 0.1585,
+    "communication_services": 0.047,
+    "financial_services": 0.22479999,
+    "utilities": 0.033,
+    "industrials": 0.1592,
+    "energy": 0.0542,
+    "healthcare": 0.0765
+  },
+  "fetchedAt": "2026-05-03T22:18:07.010809"
+}

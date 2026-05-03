@@ -1,0 +1,42 @@
+{
+  "ticker": "DBA",
+  "longName": "Invesco DB Agriculture Fund",
+  "summary": "The fund invests in a portfolio of exchange-traded futures on the index Commodities (“Index Contracts”), which consist of Corn, Soybeans, Wheat, Kansas City Wheat, Sugar, Cocoa, Coffee, Cotton, Live Cattle, Feeder Cattle, and Lean Hogs. The index is composed of notional amounts of each Index Commodity. The sponsor of the index is Deutsche Bank Securities, Inc. (the “Index Sponsor” or “DBSI”).",
+  "category": "Commodities Focused",
+  "fundFamily": "Invesco",
+  "totalAssets": 1182587904,
+  "expenseRatio": 0.85,
+  "yield": 0.0335,
+  "fundInceptionDate": 1167955200,
+  "navPrice": 28.08,
+  "previousClose": 28.03,
+  "fiftyTwoWeekHigh": 28.21,
+  "fiftyTwoWeekLow": 25.4,
+  "beta3Year": 0.32,
+  "topHoldings": [
+    {
+      "symbol": "AGPXX",
+      "name": "Invesco Shrt-Trm Inv Gov&Agcy Instl",
+      "weight": 0.41985562
+    },
+    {
+      "symbol": "TBLL",
+      "name": "Invesco Short Term Treasury ETF",
+      "weight": 0.0498997
+    }
+  ],
+  "sectorWeightings": {
+    "realestate": 0.0111,
+    "consumer_cyclical": 0.118,
+    "basic_materials": 0.107,
+    "consumer_defensive": 0.0879,
+    "technology": 0.062800005,
+    "communication_services": 0.0744,
+    "financial_services": 0.1373,
+    "utilities": 0.029000001,
+    "industrials": 0.1519,
+    "energy": 0.0525,
+    "healthcare": 0.1682
+  },
+  "fetchedAt": "2026-05-03T22:17:29.148856"
+}

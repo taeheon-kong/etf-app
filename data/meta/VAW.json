@@ -1,0 +1,82 @@
+{
+  "ticker": "VAW",
+  "longName": "Vanguard Materials Index Fund ETF Shares",
+  "summary": "The fund employs an indexing investment approach designed to track the performance of the index, an index made up of stocks of large, mid-size, and small U.S. companies within the materials sector, as classified under the GICS. The Advisor attempts to replicate the target index by seeking to invest all, or substantially all, of its assets in the stocks that make up the index, in order to hold each stock in approximately the same proportion as its weighting in the index. The fund is non-diversified.",
+  "category": "Natural Resources",
+  "fundFamily": "Vanguard",
+  "totalAssets": 4337299456,
+  "expenseRatio": 0.09,
+  "yield": 0.014099999,
+  "fundInceptionDate": 1075075200,
+  "navPrice": 231.74,
+  "previousClose": 232.32,
+  "fiftyTwoWeekHigh": 245.26,
+  "fiftyTwoWeekLow": 183.54,
+  "beta3Year": 1.18,
+  "topHoldings": [
+    {
+      "symbol": "LIN",
+      "name": "Linde PLC",
+      "weight": 0.1514377
+    },
+    {
+      "symbol": "NEM",
+      "name": "Newmont Corp",
+      "weight": 0.0772768
+    },
+    {
+      "symbol": "FCX",
+      "name": "Freeport-McMoRan Inc",
+      "weight": 0.0552147
+    },
+    {
+      "symbol": "SHW",
+      "name": "Sherwin-Williams Co",
+      "weight": 0.0493831
+    },
+    {
+      "symbol": "CRH",
+      "name": "CRH PLC",
+      "weight": 0.0460921
+    },
+    {
+      "symbol": "ECL",
+      "name": "Ecolab Inc",
+      "weight": 0.0443609
+    },
+    {
+      "symbol": "APD",
+      "name": "Air Products and Chemicals Inc",
+      "weight": 0.0405018
+    },
+    {
+      "symbol": "CTVA",
+      "name": "Corteva Inc",
+      "weight": 0.0370038
+    },
+    {
+      "symbol": "NUE",
+      "name": "Nucor Corp",
+      "weight": 0.025316602
+    },
+    {
+      "symbol": "VMC",
+      "name": "Vulcan Materials Co",
+      "weight": 0.0235368
+    }
+  ],
+  "sectorWeightings": {
+    "realestate": 0.0,
+    "consumer_cyclical": 0.0922,
+    "basic_materials": 0.8933,
+    "consumer_defensive": 0.0002,
+    "technology": 0.0,
+    "communication_services": 0.0,
+    "financial_services": 0.0,
+    "utilities": 0.0,
+    "industrials": 0.0088,
+    "energy": 0.0,
+    "healthcare": 0.0055
+  },
+  "fetchedAt": "2026-05-03T22:17:58.433557"
+}

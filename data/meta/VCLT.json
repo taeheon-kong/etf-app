@@ -1,0 +1,18 @@
+{
+  "ticker": "VCLT",
+  "longName": "Vanguard Long-Term Corporate Bond Index Fund ETF Shares",
+  "summary": "The fund employs an indexing investment approach designed to track the performance of the Bloomberg U.S. 10+ Year Corporate Bond Index. This index includes U.S. dollar-denominated, investment-grade, fixed-rate, taxable securities issued by U.S. and non-U.S. industrial, utility, and financial companies, with maturities greater than 10 years. Under normal circumstances, at least 80% of the fund's assets will be invested in bonds included in the index.",
+  "category": "Long-Term Bond",
+  "fundFamily": "Vanguard",
+  "totalAssets": 8196291584,
+  "expenseRatio": 0.03,
+  "yield": 0.0563,
+  "fundInceptionDate": 1258588800,
+  "navPrice": 74.43,
+  "previousClose": 74.61,
+  "fiftyTwoWeekHigh": 79.28,
+  "fiftyTwoWeekLow": 71.52,
+  "beta3Year": 1.95,
+  "topHoldings": [],
+  "fetchedAt": "2026-05-03T22:17:06.031694"
+}

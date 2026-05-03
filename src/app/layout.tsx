@@ -3,8 +3,8 @@ import "./globals.css";
 import Sidebar from "@/components/Sidebar";
 
 export const metadata: Metadata = {
-  title: "Backtester",
-  description: "ETF 백테스트 + 분석 도구",
+  title: "ETF 포트폴리오",
+  description: "ETF 백테스트 + 분석 + 추천",
 };
 
 export default function RootLayout({

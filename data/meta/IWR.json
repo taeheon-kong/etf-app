@@ -1,0 +1,82 @@
+{
+  "ticker": "IWR",
+  "longName": "iShares Russell Mid-Cap ETF",
+  "summary": "The fund generally invests at least 80% of its assets in the component securities of its underlying index and in investments that have economic characteristics that are substantially identical to the component securities of its underlying index (i.e., depositary receipts representing securities of the underlying index) and may invest up to 20% of its assets in certain futures, options and swap contracts, cash and cash equivalents.",
+  "category": "Mid-Cap Blend",
+  "fundFamily": "iShares",
+  "totalAssets": 48215203840,
+  "expenseRatio": 0.18,
+  "yield": 0.0128,
+  "fundInceptionDate": 995328000,
+  "navPrice": 104.18169,
+  "previousClose": 104.34,
+  "fiftyTwoWeekHigh": 105.41,
+  "fiftyTwoWeekLow": 84.59,
+  "beta3Year": 1.11,
+  "topHoldings": [
+    {
+      "symbol": "GLW",
+      "name": "Corning Inc",
+      "weight": 0.0084232995
+    },
+    {
+      "symbol": "VRT",
+      "name": "Vertiv Holdings Co Class A",
+      "weight": 0.0075642
+    },
+    {
+      "symbol": "HWM",
+      "name": "Howmet Aerospace Inc",
+      "weight": 0.0073325
+    },
+    {
+      "symbol": "WDC",
+      "name": "Western Digital Corp",
+      "weight": 0.0073021
+    },
+    {
+      "symbol": "SNDK",
+      "name": "SanDisk Corp Ordinary Shares",
+      "weight": 0.0072101
+    },
+    {
+      "symbol": "BK",
+      "name": "Bank of New York Mellon Corp",
+      "weight": 0.0064818
+    },
+    {
+      "symbol": "PWR",
+      "name": "Quanta Services Inc",
+      "weight": 0.0064153997
+    },
+    {
+      "symbol": "VLO",
+      "name": "Valero Energy Corp",
+      "weight": 0.0059594
+    },
+    {
+      "symbol": "CMI",
+      "name": "Cummins Inc",
+      "weight": 0.0058751
+    },
+    {
+      "symbol": "MPC",
+      "name": "Marathon Petroleum Corp",
+      "weight": 0.0058259
+    }
+  ],
+  "sectorWeightings": {
+    "realestate": 0.0696,
+    "consumer_cyclical": 0.1154,
+    "basic_materials": 0.0435,
+    "consumer_defensive": 0.044299997,
+    "technology": 0.1549,
+    "communication_services": 0.0354,
+    "financial_services": 0.1244,
+    "utilities": 0.0644,
+    "industrials": 0.17860001,
+    "energy": 0.0762,
+    "healthcare": 0.0934
+  },
+  "fetchedAt": "2026-05-03T22:16:26.127929"
+}

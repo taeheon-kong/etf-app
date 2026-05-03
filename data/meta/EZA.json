@@ -1,0 +1,82 @@
+{
+  "ticker": "EZA",
+  "longName": "iShares MSCI South Africa ETF",
+  "summary": "The fund generally will invest at least 80% of its assets in the component securities of its underlying index and in investments that have economic characteristics that are substantially identical to the component securities of its underlying index. The underlying index is designed to measure the performance of the large- and mid-capitalization segments of the equity market in South Africa. The underlying index uses a capping methodology that limits the weight of any single “group entity” to a maximum of 25% of the underlying index weight. The fund is non-diversified.",
+  "category": "Focused Region",
+  "fundFamily": "iShares",
+  "totalAssets": 744812096,
+  "expenseRatio": 0.59,
+  "yield": 0.0626,
+  "fundInceptionDate": 1044230400,
+  "navPrice": 68.0348,
+  "previousClose": 68.22,
+  "fiftyTwoWeekHigh": 81.76,
+  "fiftyTwoWeekLow": 49.35,
+  "beta3Year": 1.43,
+  "topHoldings": [
+    {
+      "symbol": "AU",
+      "name": "Anglogold Ashanti PLC",
+      "weight": 0.1252042
+    },
+    {
+      "symbol": "NPN.JO",
+      "name": "Naspers Ltd Class N",
+      "weight": 0.1029103
+    },
+    {
+      "symbol": "GFI.JO",
+      "name": "Gold Fields Ltd",
+      "weight": 0.102748804
+    },
+    {
+      "symbol": "FSR.JO",
+      "name": "Firstrand Ltd",
+      "weight": 0.0643888
+    },
+    {
+      "symbol": "SBK.JO",
+      "name": "Standard Bank Group Ltd",
+      "weight": 0.050500304
+    },
+    {
+      "symbol": "MTN.JO",
+      "name": "MTN Group Ltd",
+      "weight": 0.047108203
+    },
+    {
+      "symbol": "VAL.JO",
+      "name": "Valterra Platinum Ltd",
+      "weight": 0.046443
+    },
+    {
+      "symbol": "CPI.JO",
+      "name": "Capitec Bank Holdings Ltd",
+      "weight": 0.0415342
+    },
+    {
+      "symbol": "IMP.JO",
+      "name": "Impala Platinum Holdings Ltd",
+      "weight": 0.0372941
+    },
+    {
+      "symbol": "ABG.JO",
+      "name": "Absa Group Ltd",
+      "weight": 0.0351971
+    }
+  ],
+  "sectorWeightings": {
+    "realestate": 0.0156,
+    "consumer_cyclical": 0.14220001,
+    "basic_materials": 0.4132,
+    "consumer_defensive": 0.024300002,
+    "technology": 0.0,
+    "communication_services": 0.0642,
+    "financial_services": 0.31309998,
+    "utilities": 0.0,
+    "industrials": 0.0143,
+    "energy": 0.0,
+    "healthcare": 0.013200001
+  },
+  "fetchedAt": "2026-05-03T22:18:23.865381"
+}

@@ -1,0 +1,82 @@
+{
+  "ticker": "CIBR",
+  "longName": "First Trust NASDAQ Cybersecurity ETF",
+  "summary": "The fund will normally invest at least 90% of its net assets (including investment borrowings) in the common stocks and depositary receipts that comprise the index. The index includes securities of companies classified as \"cyber security\" companies by CTA. The fund is non-diversified.",
+  "category": "Technology",
+  "fundFamily": "First Trust",
+  "totalAssets": 9485453312,
+  "expenseRatio": 0.58,
+  "yield": 0.0064999997,
+  "fundInceptionDate": 1436140800,
+  "navPrice": 68.74,
+  "previousClose": 67.45,
+  "fiftyTwoWeekHigh": 78.34,
+  "fiftyTwoWeekLow": 60.07,
+  "beta3Year": 0.71,
+  "topHoldings": [
+    {
+      "symbol": "PANW",
+      "name": "Palo Alto Networks Inc",
+      "weight": 0.0845588
+    },
+    {
+      "symbol": "CRWD",
+      "name": "CrowdStrike Holdings Inc Class A",
+      "weight": 0.082438
+    },
+    {
+      "symbol": "CSCO",
+      "name": "Cisco Systems Inc",
+      "weight": 0.0766976
+    },
+    {
+      "symbol": "AVGO",
+      "name": "Broadcom Inc",
+      "weight": 0.0760777
+    },
+    {
+      "symbol": "FTNT",
+      "name": "Fortinet Inc",
+      "weight": 0.073943704
+    },
+    {
+      "symbol": "NET",
+      "name": "Cloudflare Inc",
+      "weight": 0.047062103
+    },
+    {
+      "symbol": "AKAM",
+      "name": "Akamai Technologies Inc",
+      "weight": 0.0367658
+    },
+    {
+      "symbol": "ZS",
+      "name": "Zscaler Inc",
+      "weight": 0.0364678
+    },
+    {
+      "symbol": "CHKP",
+      "name": "Check Point Software Technologies Ltd",
+      "weight": 0.031817
+    },
+    {
+      "symbol": "FFIV",
+      "name": "F5 Inc",
+      "weight": 0.0308428
+    }
+  ],
+  "sectorWeightings": {
+    "realestate": 0.0,
+    "consumer_cyclical": 0.0,
+    "basic_materials": 0.0,
+    "consumer_defensive": 0.0,
+    "technology": 0.94,
+    "communication_services": 0.0215,
+    "financial_services": 0.0,
+    "utilities": 0.0,
+    "industrials": 0.0385,
+    "energy": 0.0,
+    "healthcare": 0.0
+  },
+  "fetchedAt": "2026-05-03T22:16:06.652720"
+}

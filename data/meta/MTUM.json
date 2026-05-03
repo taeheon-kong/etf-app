@@ -1,0 +1,82 @@
+{
+  "ticker": "MTUM",
+  "longName": "iShares MSCI USA Momentum Factor ETF",
+  "summary": "The fund generally will invest at least 80% of its assets in the component securities of its underlying index and in investments that have economic characteristics that are substantially identical to the component securities of its underlying index. The index consists of stocks exhibiting relatively higher momentum characteristics than the traditional market capitalization-weighted parent index, the MSCI USA Index.",
+  "category": "Large Blend",
+  "fundFamily": "iShares",
+  "totalAssets": 20236066816,
+  "expenseRatio": 0.15,
+  "yield": 0.0082,
+  "fundInceptionDate": 1366070400,
+  "navPrice": 285.00354,
+  "previousClose": 283.98,
+  "fiftyTwoWeekHigh": 286.87,
+  "fiftyTwoWeekLow": 212.6,
+  "beta3Year": 1.15,
+  "topHoldings": [
+    {
+      "symbol": "NVDA",
+      "name": "NVIDIA Corp",
+      "weight": 0.047902297
+    },
+    {
+      "symbol": "AVGO",
+      "name": "Broadcom Inc",
+      "weight": 0.047287002
+    },
+    {
+      "symbol": "JNJ",
+      "name": "Johnson & Johnson",
+      "weight": 0.0471917
+    },
+    {
+      "symbol": "XOM",
+      "name": "Exxon Mobil Corp",
+      "weight": 0.044591296
+    },
+    {
+      "symbol": "MU",
+      "name": "Micron Technology Inc",
+      "weight": 0.042933997
+    },
+    {
+      "symbol": "LRCX",
+      "name": "Lam Research Corp",
+      "weight": 0.0353701
+    },
+    {
+      "symbol": "JPM",
+      "name": "JPMorgan Chase & Co",
+      "weight": 0.0318295
+    },
+    {
+      "symbol": "WMT",
+      "name": "Walmart Inc",
+      "weight": 0.0306402
+    },
+    {
+      "symbol": "CAT",
+      "name": "Caterpillar Inc",
+      "weight": 0.030157398
+    },
+    {
+      "symbol": "AMD",
+      "name": "Advanced Micro Devices Inc",
+      "weight": 0.0273386
+    }
+  ],
+  "sectorWeightings": {
+    "realestate": 0.0195,
+    "consumer_cyclical": 0.040799998,
+    "basic_materials": 0.019299999,
+    "consumer_defensive": 0.0368,
+    "technology": 0.38919997,
+    "communication_services": 0.0696,
+    "financial_services": 0.1126,
+    "utilities": 0.0178,
+    "industrials": 0.1633,
+    "energy": 0.045300003,
+    "healthcare": 0.0859
+  },
+  "fetchedAt": "2026-05-03T22:18:26.370498"
+}

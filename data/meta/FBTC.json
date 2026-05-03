@@ -1,0 +1,18 @@
+{
+  "ticker": "FBTC",
+  "longName": "Fidelity Wise Origin Bitcoin Fund",
+  "summary": "The index is constructed using bitcoin price feeds from eligible bitcoin spot markets and a volume-weighted median price (“VWMP”) methodology, calculated every 15 seconds based on VWMP spot market data over rolling sixty-minute increments. In seeking to achieve its investment objective, the trust will hold bitcoin and will value its shares daily as of 4:00 p.m. EST using the same methodology used to calculate the index. All of the trust’s bitcoin will be held by the custodian.",
+  "category": "Digital Assets",
+  "fundFamily": "Fidelity Investments",
+  "totalAssets": 12742539264,
+  "expenseRatio": 0.25,
+  "yield": 0.0,
+  "fundInceptionDate": 1704844800,
+  "navPrice": 68.27415,
+  "previousClose": 66.53,
+  "fiftyTwoWeekHigh": 110.25,
+  "fiftyTwoWeekLow": 54.205,
+  "beta3Year": 0.0,
+  "topHoldings": [],
+  "fetchedAt": "2026-05-03T22:18:57.055077"
+}

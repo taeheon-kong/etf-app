@@ -1,0 +1,82 @@
+{
+  "ticker": "FDN",
+  "longName": "First Trust Dow Jones Internet Index Fund",
+  "summary": "The fund will normally invest at least 90% of its net assets (including investment borrowings) in the securities that comprise the index. The index is designed to measure the performance of the largest and most actively traded securities issued by U.S. companies in the Internet industry. The index is a composite of its two sub-indices, the Dow Jones Internet Commerce Index and the Dow Jones Internet Services Index. It is non-diversified.",
+  "category": "Technology",
+  "fundFamily": "First Trust",
+  "totalAssets": 4539641344,
+  "expenseRatio": 0.49,
+  "yield": 0.0,
+  "fundInceptionDate": 1150675200,
+  "navPrice": 266.16,
+  "previousClose": 263.43,
+  "fiftyTwoWeekHigh": 287.81,
+  "fiftyTwoWeekLow": 224.47,
+  "beta3Year": 1.09,
+  "topHoldings": [
+    {
+      "symbol": "AMZN",
+      "name": "Amazon.com Inc",
+      "weight": 0.1024096
+    },
+    {
+      "symbol": "META",
+      "name": "Meta Platforms Inc Class A",
+      "weight": 0.0913553
+    },
+    {
+      "symbol": "NFLX",
+      "name": "Netflix Inc",
+      "weight": 0.0897793
+    },
+    {
+      "symbol": "CSCO",
+      "name": "Cisco Systems Inc",
+      "weight": 0.0677959
+    },
+    {
+      "symbol": "GOOGL",
+      "name": "Alphabet Inc Class A",
+      "weight": 0.0540366
+    },
+    {
+      "symbol": "BKNG",
+      "name": "Booking Holdings Inc",
+      "weight": 0.0458352
+    },
+    {
+      "symbol": "CRM",
+      "name": "Salesforce Inc",
+      "weight": 0.0452453
+    },
+    {
+      "symbol": "GOOG",
+      "name": "Alphabet Inc Class C",
+      "weight": 0.043301202
+    },
+    {
+      "symbol": "ANET",
+      "name": "Arista Networks Inc",
+      "weight": 0.0417941
+    },
+    {
+      "symbol": "NET",
+      "name": "Cloudflare Inc",
+      "weight": 0.0345201
+    }
+  ],
+  "sectorWeightings": {
+    "realestate": 0.0,
+    "consumer_cyclical": 0.2666,
+    "basic_materials": 0.0,
+    "consumer_defensive": 0.0,
+    "technology": 0.3815,
+    "communication_services": 0.29860002,
+    "financial_services": 0.023599999,
+    "utilities": 0.0,
+    "industrials": 0.0156,
+    "energy": 0.0,
+    "healthcare": 0.0139999995
+  },
+  "fetchedAt": "2026-05-03T22:16:05.786701"
+}

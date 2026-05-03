@@ -1,0 +1,82 @@
+{
+  "ticker": "XLB",
+  "longName": "State Street Materials Select Sector SPDR ETF",
+  "summary": "In seeking to track the performance of the index, the fund employs a replication strategy. It generally invests substantially all, but at least 95%, of its total assets in the securities comprising the index. The index includes securities of companies from the following industries: chemicals; metals and mining; paper and forest products; containers and packaging; and construction materials. The fund is non-diversified.",
+  "category": "Natural Resources",
+  "fundFamily": "State Street Investment Management",
+  "totalAssets": 6540082688,
+  "expenseRatio": 0.08,
+  "yield": 0.0175,
+  "fundInceptionDate": 913766400,
+  "navPrice": 51.34717,
+  "previousClose": 51.47,
+  "fiftyTwoWeekHigh": 54.14,
+  "fiftyTwoWeekLow": 41.455,
+  "beta3Year": 1.09,
+  "topHoldings": [
+    {
+      "symbol": "LIN",
+      "name": "Linde PLC",
+      "weight": 0.1440074
+    },
+    {
+      "symbol": "NEM",
+      "name": "Newmont Corp",
+      "weight": 0.0734856
+    },
+    {
+      "symbol": "FCX",
+      "name": "Freeport-McMoRan Inc",
+      "weight": 0.0525514
+    },
+    {
+      "symbol": "CTVA",
+      "name": "Corteva Inc",
+      "weight": 0.047462102
+    },
+    {
+      "symbol": "APD",
+      "name": "Air Products and Chemicals Inc",
+      "weight": 0.0466375
+    },
+    {
+      "symbol": "SHW",
+      "name": "Sherwin-Williams Co",
+      "weight": 0.0459712
+    },
+    {
+      "symbol": "CRH",
+      "name": "CRH PLC",
+      "weight": 0.045063
+    },
+    {
+      "symbol": "VMC",
+      "name": "Vulcan Materials Co",
+      "weight": 0.0450387
+    },
+    {
+      "symbol": "MLM",
+      "name": "Martin Marietta Materials Inc",
+      "weight": 0.0439177
+    },
+    {
+      "symbol": "NUE",
+      "name": "Nucor Corp",
+      "weight": 0.0438792
+    }
+  ],
+  "sectorWeightings": {
+    "realestate": 0.0,
+    "consumer_cyclical": 0.13340001,
+    "basic_materials": 0.86660004,
+    "consumer_defensive": 0.0,
+    "technology": 0.0,
+    "communication_services": 0.0,
+    "financial_services": 0.0,
+    "utilities": 0.0,
+    "industrials": 0.0,
+    "energy": 0.0,
+    "healthcare": 0.0
+  },
+  "fetchedAt": "2026-05-03T22:17:57.602651"
+}

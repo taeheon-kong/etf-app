@@ -1,0 +1,82 @@
+{
+  "ticker": "IWB",
+  "longName": "iShares Russell 1000 ETF",
+  "summary": "The fund generally will invest at least 80% of its assets in the component securities of its underlying index and may invest up to 20% of its assets in certain futures, options and swap contracts, cash and cash equivalents. It is non-diversified.",
+  "category": "Large Blend",
+  "fundFamily": "iShares",
+  "totalAssets": 42777825280,
+  "expenseRatio": 0.15,
+  "yield": 0.0106,
+  "fundInceptionDate": 958348800,
+  "navPrice": 393.82855,
+  "previousClose": 392.83,
+  "fiftyTwoWeekHigh": 396.11,
+  "fiftyTwoWeekLow": 305.56,
+  "beta3Year": 1.02,
+  "topHoldings": [
+    {
+      "symbol": "NVDA",
+      "name": "NVIDIA Corp",
+      "weight": 0.0681813
+    },
+    {
+      "symbol": "AAPL",
+      "name": "Apple Inc",
+      "weight": 0.0610741
+    },
+    {
+      "symbol": "MSFT",
+      "name": "Microsoft Corp",
+      "weight": 0.045858696
+    },
+    {
+      "symbol": "AMZN",
+      "name": "Amazon.com Inc",
+      "weight": 0.0333725
+    },
+    {
+      "symbol": "GOOGL",
+      "name": "Alphabet Inc Class A",
+      "weight": 0.0279215
+    },
+    {
+      "symbol": "AVGO",
+      "name": "Broadcom Inc",
+      "weight": 0.023877101
+    },
+    {
+      "symbol": "GOOG",
+      "name": "Alphabet Inc Class C",
+      "weight": 0.0226795
+    },
+    {
+      "symbol": "META",
+      "name": "Meta Platforms Inc Class A",
+      "weight": 0.020866498
+    },
+    {
+      "symbol": "TSLA",
+      "name": "Tesla Inc",
+      "weight": 0.0175216
+    },
+    {
+      "symbol": "BRK-B",
+      "name": "Berkshire Hathaway Inc Class B",
+      "weight": 0.0147637995
+    }
+  ],
+  "sectorWeightings": {
+    "realestate": 0.0226,
+    "consumer_cyclical": 0.1018,
+    "basic_materials": 0.0215,
+    "consumer_defensive": 0.0514,
+    "technology": 0.319,
+    "communication_services": 0.1019,
+    "financial_services": 0.1259,
+    "utilities": 0.0248,
+    "industrials": 0.0932,
+    "energy": 0.041300002,
+    "healthcare": 0.0967
+  },
+  "fetchedAt": "2026-05-03T22:15:52.833445"
+}

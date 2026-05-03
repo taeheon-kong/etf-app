@@ -1,0 +1,82 @@
+{
+  "ticker": "HACK",
+  "longName": "Amplify Cybersecurity ETF",
+  "summary": "Under normal circumstances, the fund will invest at least 80% of its net assets in the securities of companies that comprise the index. In pursuing this investment strategy, the fund invests 80% of its net assets in companies actively involved in providing cyber security technology and services, in accordance with the ISE Cyber Security® Industry classification. The index will consist of a selection of constituents in the Nasdaq ISE Cyber Security Index. The fund is non-diversified.",
+  "category": "Technology",
+  "fundFamily": "Amplify ETFs",
+  "totalAssets": 1881086976,
+  "expenseRatio": 0.6,
+  "yield": 0.0008,
+  "fundInceptionDate": 1415664000,
+  "navPrice": 80.8891,
+  "previousClose": 79.25,
+  "fiftyTwoWeekHigh": 89.59,
+  "fiftyTwoWeekLow": 69.66,
+  "beta3Year": 0.62,
+  "topHoldings": [
+    {
+      "symbol": "AVGO",
+      "name": "Broadcom Inc",
+      "weight": 0.0680563
+    },
+    {
+      "symbol": "PANW",
+      "name": "Palo Alto Networks Inc",
+      "weight": 0.0582581
+    },
+    {
+      "symbol": "CSCO",
+      "name": "Cisco Systems Inc",
+      "weight": 0.0579172
+    },
+    {
+      "symbol": "NET",
+      "name": "Cloudflare Inc",
+      "weight": 0.057649
+    },
+    {
+      "symbol": "CRWD",
+      "name": "CrowdStrike Holdings Inc Class A",
+      "weight": 0.0547796
+    },
+    {
+      "symbol": "FSLY",
+      "name": "Fastly Inc Class A",
+      "weight": 0.0545014
+    },
+    {
+      "symbol": "GD",
+      "name": "General Dynamics Corp",
+      "weight": 0.0500693
+    },
+    {
+      "symbol": "FTNT",
+      "name": "Fortinet Inc",
+      "weight": 0.0500239
+    },
+    {
+      "symbol": "NOC",
+      "name": "Northrop Grumman Corp",
+      "weight": 0.0491208
+    },
+    {
+      "symbol": "OKTA",
+      "name": "Okta Inc Class A",
+      "weight": 0.0449848
+    }
+  ],
+  "sectorWeightings": {
+    "realestate": 0.0,
+    "consumer_cyclical": 0.0,
+    "basic_materials": 0.0,
+    "consumer_defensive": 0.0,
+    "technology": 0.9,
+    "communication_services": 0.0,
+    "financial_services": 0.0,
+    "utilities": 0.0,
+    "industrials": 0.1,
+    "energy": 0.0,
+    "healthcare": 0.0
+  },
+  "fetchedAt": "2026-05-03T22:16:07.607591"
+}

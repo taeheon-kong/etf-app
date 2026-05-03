@@ -1,0 +1,82 @@
+{
+  "ticker": "EWA",
+  "longName": "iShares MSCI Australia ETF",
+  "summary": "The fund generally invests at least 80% of its assets in the component securities of its underlying index and in investments that have economic characteristics that are substantially identical to the component securities of its underlying index. The underlying index is designed to measure the performance of large- and mid-capitalization segments of the Australian equity market. The fund is non-diversified.",
+  "category": "Focused Region",
+  "fundFamily": "iShares",
+  "totalAssets": 1340583552,
+  "expenseRatio": 0.5,
+  "yield": 0.030199999,
+  "fundInceptionDate": 826588800,
+  "navPrice": 29.26482,
+  "previousClose": 29.49,
+  "fiftyTwoWeekHigh": 30.48,
+  "fiftyTwoWeekLow": 24.78,
+  "beta3Year": 1.08,
+  "topHoldings": [
+    {
+      "symbol": "CBA.AX",
+      "name": "Commonwealth Bank of Australia",
+      "weight": 0.1428915
+    },
+    {
+      "symbol": "BHP.AX",
+      "name": "BHP Group Ltd",
+      "weight": 0.1303084
+    },
+    {
+      "symbol": "WBC.AX",
+      "name": "Westpac Banking Corp",
+      "weight": 0.0687367
+    },
+    {
+      "symbol": "NAB.AX",
+      "name": "National Australia Bank Ltd",
+      "weight": 0.0647239
+    },
+    {
+      "symbol": "ANZ.AX",
+      "name": "ANZ Group Holdings Ltd",
+      "weight": 0.0552039
+    },
+    {
+      "symbol": "WES.AX",
+      "name": "Wesfarmers Ltd",
+      "weight": 0.0421452
+    },
+    {
+      "symbol": "MQG.AX",
+      "name": "Macquarie Group Ltd",
+      "weight": 0.0372276
+    },
+    {
+      "symbol": "CSL.AX",
+      "name": "CSL Ltd",
+      "weight": 0.0347757
+    },
+    {
+      "symbol": "WDS.AX",
+      "name": "Woodside Energy Group Ltd",
+      "weight": 0.0339274
+    },
+    {
+      "symbol": "RIO.AX",
+      "name": "Rio Tinto Ltd",
+      "weight": 0.0305236
+    }
+  ],
+  "sectorWeightings": {
+    "realestate": 0.045700002,
+    "consumer_cyclical": 0.0615,
+    "basic_materials": 0.2258,
+    "consumer_defensive": 0.038,
+    "technology": 0.0105,
+    "communication_services": 0.0194,
+    "financial_services": 0.4322,
+    "utilities": 0.0177,
+    "industrials": 0.0456,
+    "energy": 0.0475,
+    "healthcare": 0.056199998
+  },
+  "fetchedAt": "2026-05-03T22:18:22.182109"
+}

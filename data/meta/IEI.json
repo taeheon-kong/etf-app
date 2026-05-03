@@ -1,0 +1,18 @@
+{
+  "ticker": "IEI",
+  "longName": "iShares 3-7 Year Treasury Bond ETF",
+  "summary": "The index measures the performance of public obligations of the U.S. Treasury that have a remaining maturity of greater than or equal to three years and less than seven years. The fund will invest at least 80% of its assets in the component securities of the index, and the fund will invest at least 90% of its assets in U.S. Treasury securities that BFA believes will help the fund track the index.",
+  "category": "Intermediate Government",
+  "fundFamily": "iShares",
+  "totalAssets": 18661527552,
+  "expenseRatio": 0.15,
+  "yield": 0.0355,
+  "fundInceptionDate": 1167955200,
+  "navPrice": 117.8684,
+  "previousClose": 118.23,
+  "fiftyTwoWeekHigh": 120.78,
+  "fiftyTwoWeekLow": 116.89,
+  "beta3Year": 0.69,
+  "topHoldings": [],
+  "fetchedAt": "2026-05-03T22:16:59.927206"
+}

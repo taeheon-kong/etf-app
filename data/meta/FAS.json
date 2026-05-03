@@ -1,0 +1,62 @@
+{
+  "ticker": "FAS",
+  "longName": "Direxion Daily Financial Bull 3X Shares",
+  "summary": "The fund invests at least 80% of its net assets in financial instruments, such as swap agreements, securities of the index, and ETFs that track the index, that, in combination, provide 3X daily leveraged exposure to the index, consistent with the fund's investment objective. The index includes securities of companies from the following industries: financial services; insurance; banks; capital markets; mortgage real estate investment trusts; and consumer finance. It is non-diversified.",
+  "category": "Trading--Leveraged Equity",
+  "fundFamily": "Direxion Funds",
+  "totalAssets": 1939098240,
+  "expenseRatio": 0.88,
+  "yield": 0.1178,
+  "fundInceptionDate": 1225929600,
+  "navPrice": 136.097,
+  "previousClose": 137.92,
+  "fiftyTwoWeekHigh": 184.75,
+  "fiftyTwoWeekLow": 106.91,
+  "beta3Year": 2.92,
+  "topHoldings": [
+    {
+      "symbol": "BRK-B",
+      "name": "Berkshire Hathaway Inc Class B",
+      "weight": 0.0819839
+    },
+    {
+      "symbol": "JPM",
+      "name": "JPMorgan Chase & Co",
+      "weight": 0.073996805
+    },
+    {
+      "symbol": "V",
+      "name": "Visa Inc Class A",
+      "weight": 0.0474041
+    },
+    {
+      "symbol": "MA",
+      "name": "Mastercard Inc Class A",
+      "weight": 0.037965402
+    },
+    {
+      "symbol": "BAC",
+      "name": "Bank of America Corp",
+      "weight": 0.0301802
+    },
+    {
+      "symbol": "GS",
+      "name": "The Goldman Sachs Group Inc",
+      "weight": 0.0236724
+    }
+  ],
+  "sectorWeightings": {
+    "realestate": 0.0,
+    "consumer_cyclical": 0.0,
+    "basic_materials": 0.0,
+    "consumer_defensive": 0.0,
+    "technology": 0.016900001,
+    "communication_services": 0.0,
+    "financial_services": 0.98080003,
+    "utilities": 0.0,
+    "industrials": 0.0023,
+    "energy": 0.0,
+    "healthcare": 0.0
+  },
+  "fetchedAt": "2026-05-03T22:18:50.927459"
+}

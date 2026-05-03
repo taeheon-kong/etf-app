@@ -1,0 +1,82 @@
+{
+  "ticker": "VDC",
+  "longName": "Vanguard Consumer Staples Index Fund ETF Shares",
+  "summary": "The fund employs an indexing investment approach designed to track the performance of the index, an index made up of stocks of large, mid-size, and small U.S. companies within the consumer staples sector, as classified under the GICS. The Advisor attempts to replicate the target index by seeking to invest all, or substantially all, of its assets in the stocks that make up the index, in order to hold each stock in approximately the same proportion as its weighting in the index. The fund is non-diversified.",
+  "category": "Consumer Defensive",
+  "fundFamily": "Vanguard",
+  "totalAssets": 9237031936,
+  "expenseRatio": 0.09,
+  "yield": 0.0215,
+  "fundInceptionDate": 1075075200,
+  "navPrice": 231.69,
+  "previousClose": 232.14,
+  "fiftyTwoWeekHigh": 244.33,
+  "fiftyTwoWeekLow": 205.45,
+  "beta3Year": 0.69,
+  "topHoldings": [
+    {
+      "symbol": "WMT",
+      "name": "Walmart Inc",
+      "weight": 0.157128
+    },
+    {
+      "symbol": "COST",
+      "name": "Costco Wholesale Corp",
+      "weight": 0.1243733
+    },
+    {
+      "symbol": "PG",
+      "name": "Procter & Gamble Co",
+      "weight": 0.0924762
+    },
+    {
+      "symbol": "KO",
+      "name": "Coca-Cola Co",
+      "weight": 0.083214395
+    },
+    {
+      "symbol": "PEP",
+      "name": "PepsiCo Inc",
+      "weight": 0.0458845
+    },
+    {
+      "symbol": "PM",
+      "name": "Philip Morris International Inc",
+      "weight": 0.043073602
+    },
+    {
+      "symbol": "MO",
+      "name": "Altria Group Inc",
+      "weight": 0.0368139
+    },
+    {
+      "symbol": "MDLZ",
+      "name": "Mondelez International Inc Class A",
+      "weight": 0.0251011
+    },
+    {
+      "symbol": "CL",
+      "name": "Colgate-Palmolive Co",
+      "weight": 0.022228898
+    },
+    {
+      "symbol": "TGT",
+      "name": "Target Corp",
+      "weight": 0.0192247
+    }
+  ],
+  "sectorWeightings": {
+    "realestate": 0.0,
+    "consumer_cyclical": 0.0164,
+    "basic_materials": 0.003,
+    "consumer_defensive": 0.977,
+    "technology": 0.0,
+    "communication_services": 0.0,
+    "financial_services": 0.0,
+    "utilities": 0.0,
+    "industrials": 0.0033000002,
+    "energy": 0.0,
+    "healthcare": 0.00029999999
+  },
+  "fetchedAt": "2026-05-03T22:17:52.453927"
+}

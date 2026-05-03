@@ -1,0 +1,82 @@
+{
+  "ticker": "SCHX",
+  "longName": "Schwab U.S. Large-Cap ETF",
+  "summary": "To pursue its goal, the fund generally invests in stocks that are included in the Dow Jones U.S. Large-Cap Total Stock Market Index. The index includes the large-cap portion of the Dow Jones U.S. Total Stock Market Index actually available to investors in the marketplace. The Dow Jones U.S. Large-Cap Total Stock Market Index includes the components ranked 1-750 by full market capitalization. The index is a float-adjusted market capitalization weighted index.",
+  "category": "Large Blend",
+  "fundFamily": "Schwab ETFs",
+  "totalAssets": 61436944384,
+  "expenseRatio": 0.03,
+  "yield": 0.0117,
+  "fundInceptionDate": 1257206400,
+  "navPrice": 28.38,
+  "previousClose": 28.29,
+  "fiftyTwoWeekHigh": 28.54,
+  "fiftyTwoWeekLow": 21.81,
+  "beta3Year": 1.02,
+  "topHoldings": [
+    {
+      "symbol": "NVDA",
+      "name": "NVIDIA Corp",
+      "weight": 0.0698584
+    },
+    {
+      "symbol": "AAPL",
+      "name": "Apple Inc",
+      "weight": 0.0630186
+    },
+    {
+      "symbol": "MSFT",
+      "name": "Microsoft Corp",
+      "weight": 0.0463848
+    },
+    {
+      "symbol": "AMZN",
+      "name": "Amazon.com Inc",
+      "weight": 0.0341844
+    },
+    {
+      "symbol": "GOOGL",
+      "name": "Alphabet Inc Class A",
+      "weight": 0.027709201
+    },
+    {
+      "symbol": "AVGO",
+      "name": "Broadcom Inc",
+      "weight": 0.0242249
+    },
+    {
+      "symbol": "GOOG",
+      "name": "Alphabet Inc Class C",
+      "weight": 0.022225799
+    },
+    {
+      "symbol": "META",
+      "name": "Meta Platforms Inc Class A",
+      "weight": 0.020428902
+    },
+    {
+      "symbol": "TSLA",
+      "name": "Tesla Inc",
+      "weight": 0.0174001
+    },
+    {
+      "symbol": "BRK-B",
+      "name": "Berkshire Hathaway Inc Class B",
+      "weight": 0.0151564
+    }
+  ],
+  "sectorWeightings": {
+    "realestate": 0.0217,
+    "consumer_cyclical": 0.099700004,
+    "basic_materials": 0.020299999,
+    "consumer_defensive": 0.052800003,
+    "technology": 0.3241,
+    "communication_services": 0.0998,
+    "financial_services": 0.1247,
+    "utilities": 0.0255,
+    "industrials": 0.0915,
+    "energy": 0.042600002,
+    "healthcare": 0.097200006
+  },
+  "fetchedAt": "2026-05-03T22:15:52.020990"
+}

@@ -8,41 +8,41 @@
   "expenseRatio": 0.75,
   "yield": 0.0016,
   "fundInceptionDate": 1268265600,
-  "navPrice": 118.104,
-  "previousClose": 109.56,
-  "fiftyTwoWeekHigh": 130.12,
-  "fiftyTwoWeekLow": 12.05,
+  "navPrice": 130.342,
+  "previousClose": 126.98,
+  "fiftyTwoWeekHigh": 131.38,
+  "fiftyTwoWeekLow": 12.12,
   "beta3Year": 5.13,
   "topHoldings": [
     {
       "symbol": "NVDA",
       "name": "NVIDIA Corp",
-      "weight": 0.062124
+      "weight": 0.053245302
     },
     {
       "symbol": "AVGO",
       "name": "Broadcom Inc",
-      "weight": 0.0618259
+      "weight": 0.0523896
     },
     {
       "symbol": "MU",
       "name": "Micron Technology Inc",
-      "weight": 0.056928903
+      "weight": 0.0443227
     },
     {
       "symbol": "AMD",
       "name": "Advanced Micro Devices Inc",
-      "weight": 0.049425904
+      "weight": 0.040980503
     },
     {
       "symbol": "AMAT",
       "name": "Applied Materials Inc",
-      "weight": 0.044375703
+      "weight": 0.0370346
     },
     {
       "symbol": "MRVL",
       "name": "Marvell Technology Inc",
-      "weight": 0.0381549
+      "weight": 0.0327914
     }
   ],
   "sectorWeightings": {
@@ -58,5 +58,5 @@
     "energy": 0.0,
     "healthcare": 0.0
   },
-  "fetchedAt": "2026-04-30T21:07:37.190856"
+  "fetchedAt": "2026-05-03T22:18:45.718431"
 }

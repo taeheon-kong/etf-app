@@ -1,0 +1,82 @@
+{
+  "ticker": "SCHV",
+  "longName": "Schwab U.S. Large-Cap Value ETF",
+  "summary": "To pursue its goal, the fund generally invests in stocks that are included in the Dow Jones U.S. Large-Cap Value Total Stock Market Index. The index includes the large-cap value portion of the Dow Jones U.S. Total Stock Market Index actually available to investors in the marketplace. The Dow Jones U.S. Large-Cap Value Total Stock Market Index includes the components ranked 1-750 by full market capitalization and that are classified as \"value\" based on a number of factors.",
+  "category": "Large Value",
+  "fundFamily": "Schwab ETFs",
+  "totalAssets": 14824918016,
+  "expenseRatio": 0.04,
+  "yield": 0.0197,
+  "fundInceptionDate": 1260489600,
+  "navPrice": 32.37,
+  "previousClose": 32.47,
+  "fiftyTwoWeekHigh": 32.6,
+  "fiftyTwoWeekLow": 25.82,
+  "beta3Year": 0.86,
+  "topHoldings": [
+    {
+      "symbol": "BRK-B",
+      "name": "Berkshire Hathaway Inc Class B",
+      "weight": 0.0315596
+    },
+    {
+      "symbol": "JPM",
+      "name": "JPMorgan Chase & Co",
+      "weight": 0.0277415
+    },
+    {
+      "symbol": "XOM",
+      "name": "Exxon Mobil Corp",
+      "weight": 0.025981901
+    },
+    {
+      "symbol": "JNJ",
+      "name": "Johnson & Johnson",
+      "weight": 0.0211886
+    },
+    {
+      "symbol": "WMT",
+      "name": "Walmart Inc",
+      "weight": 0.0196294
+    },
+    {
+      "symbol": "CVX",
+      "name": "Chevron Corp",
+      "weight": 0.0143214
+    },
+    {
+      "symbol": "ABBV",
+      "name": "AbbVie Inc",
+      "weight": 0.013657301
+    },
+    {
+      "symbol": "MU",
+      "name": "Micron Technology Inc",
+      "weight": 0.0131324995
+    },
+    {
+      "symbol": "PG",
+      "name": "Procter & Gamble Co",
+      "weight": 0.0121948
+    },
+    {
+      "symbol": "HD",
+      "name": "The Home Depot Inc",
+      "weight": 0.011677001
+    }
+  ],
+  "sectorWeightings": {
+    "realestate": 0.040599998,
+    "consumer_cyclical": 0.0721,
+    "basic_materials": 0.028499998,
+    "consumer_defensive": 0.0925,
+    "technology": 0.14850001,
+    "communication_services": 0.028299998,
+    "financial_services": 0.19590001,
+    "utilities": 0.049099997,
+    "industrials": 0.1388,
+    "energy": 0.0809,
+    "healthcare": 0.1248
+  },
+  "fetchedAt": "2026-05-03T22:16:18.598131"
+}

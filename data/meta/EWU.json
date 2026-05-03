@@ -1,0 +1,82 @@
+{
+  "ticker": "EWU",
+  "longName": "iShares MSCI United Kingdom ETF",
+  "summary": "The fund generally will invest at least 80% of its assets in the component securities of its underlying index and in investments that have economic characteristics that are substantially identical to the component securities of its underlying index. The underlying index is designed to measure the performance of the large- and mid-capitalization segments of the UK market. The fund is non-diversified.",
+  "category": "Focused Region",
+  "fundFamily": "iShares",
+  "totalAssets": 3324233216,
+  "expenseRatio": 0.5,
+  "yield": 0.0364,
+  "fundInceptionDate": 826588800,
+  "navPrice": 46.82019,
+  "previousClose": 47.15,
+  "fiftyTwoWeekHigh": 48.92,
+  "fiftyTwoWeekLow": 38.02,
+  "beta3Year": 0.83,
+  "topHoldings": [
+    {
+      "symbol": "AZN.L",
+      "name": "AstraZeneca PLC",
+      "weight": 0.097156495
+    },
+    {
+      "symbol": "HSBA.L",
+      "name": "HSBC Holdings PLC",
+      "weight": 0.0894801
+    },
+    {
+      "symbol": "SHEL.L",
+      "name": "Shell PLC",
+      "weight": 0.087106705
+    },
+    {
+      "symbol": "BP.L",
+      "name": "BP PLC",
+      "weight": 0.0407067
+    },
+    {
+      "symbol": "BATS.L",
+      "name": "British American Tobacco PLC",
+      "weight": 0.0406067
+    },
+    {
+      "symbol": "RR.L",
+      "name": "Rolls-Royce Holdings PLC",
+      "weight": 0.040543698
+    },
+    {
+      "symbol": "ULVR.L",
+      "name": "Unilever PLC",
+      "weight": 0.0390492
+    },
+    {
+      "symbol": "GSK.L",
+      "name": "GSK PLC",
+      "weight": 0.0358709
+    },
+    {
+      "symbol": "RIO.L",
+      "name": "Rio Tinto PLC Ordinary Shares",
+      "weight": 0.0334295
+    },
+    {
+      "symbol": "BA.L",
+      "name": "BAE Systems PLC",
+      "weight": 0.0281536
+    }
+  ],
+  "sectorWeightings": {
+    "realestate": 0.0054,
+    "consumer_cyclical": 0.0396,
+    "basic_materials": 0.088999994,
+    "consumer_defensive": 0.1338,
+    "technology": 0.0062,
+    "communication_services": 0.0252,
+    "financial_services": 0.2297,
+    "utilities": 0.0538,
+    "industrials": 0.1251,
+    "energy": 0.1338,
+    "healthcare": 0.1584
+  },
+  "fetchedAt": "2026-05-03T22:18:20.399489"
+}

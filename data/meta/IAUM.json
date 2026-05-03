@@ -1,0 +1,18 @@
+{
+  "ticker": "IAUM",
+  "longName": "iShares Gold Trust Micro",
+  "summary": "The Advisor intends to constitute a simple and cost-effective means of making an investment similar to an investment in gold. An investment in physical gold requires expensive and sometimes complicated arrangements in connection with the assay, transportation, warehousing and insurance of the metal. Although the Shares are not the exact equivalent of an investment in gold, they provide investors with an alternative that allows a level of participation in the gold market through the securities market.",
+  "category": "Commodities Focused",
+  "fundFamily": "iShares",
+  "totalAssets": 7153505280,
+  "expenseRatio": 0.09,
+  "yield": 0.0,
+  "fundInceptionDate": 1623715200,
+  "navPrice": 46.21124,
+  "previousClose": 45.98,
+  "fiftyTwoWeekHigh": 55.27,
+  "fiftyTwoWeekLow": 31.57,
+  "beta3Year": 0.19,
+  "topHoldings": [],
+  "fetchedAt": "2026-05-03T22:17:23.011585"
+}

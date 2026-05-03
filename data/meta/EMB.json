@@ -1,0 +1,24 @@
+{
+  "ticker": "EMB",
+  "longName": "iShares J.P. Morgan USD Emerging Markets Bond ETF",
+  "summary": "The fund will invest at least 80% of its assets in the component securities of the underlying index and will invest at least 90% of its assets in fixed income securities of the types included in the underlying index. The index is a broad, diverse U.S. dollar-denominated emerging markets debt benchmark that tracks the total return of actively traded external debt instruments in emerging market countries.",
+  "category": "Emerging Markets Bond",
+  "fundFamily": "iShares",
+  "totalAssets": 14120442880,
+  "expenseRatio": 0.39,
+  "yield": 0.0511,
+  "fundInceptionDate": 1197849600,
+  "navPrice": 95.4902,
+  "previousClose": 95.8,
+  "fiftyTwoWeekHigh": 97.8,
+  "fiftyTwoWeekLow": 89.09,
+  "beta3Year": 1.06,
+  "topHoldings": [
+    {
+      "symbol": "XTSLA",
+      "name": "BlackRock Cash Funds Treasury SL Agency",
+      "weight": 0.0048559997
+    }
+  ],
+  "fetchedAt": "2026-05-03T22:17:19.681718"
+}

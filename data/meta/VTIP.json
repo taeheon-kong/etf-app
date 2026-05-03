@@ -1,0 +1,18 @@
+{
+  "ticker": "VTIP",
+  "longName": "Vanguard Short-Term Inflation-Protected Securities Index Fund ETF Shares",
+  "summary": "The index is a market-capitalization-weighted index that includes all inflation-protected public obligations issued by the U.S. Treasury with remaining maturities of less than 5 years.",
+  "category": "Short-Term Inflation-Protected Bond",
+  "fundFamily": "Vanguard",
+  "totalAssets": 65838837760,
+  "expenseRatio": 0.03,
+  "yield": 0.0377,
+  "fundInceptionDate": 1350000000,
+  "navPrice": 50.36,
+  "previousClose": 50.36,
+  "fiftyTwoWeekHigh": 50.81,
+  "fiftyTwoWeekLow": 49.35,
+  "beta3Year": 0.22,
+  "topHoldings": [],
+  "fetchedAt": "2026-05-03T22:17:13.687891"
+}

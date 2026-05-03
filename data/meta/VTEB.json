@@ -1,0 +1,18 @@
+{
+  "ticker": "VTEB",
+  "longName": "Vanguard Tax-Exempt Bond Index Fund ETF Shares",
+  "summary": "The Target Index includes municipal bonds issued by states, local governments, or agencies whose interest is exempt from U.S. federal income taxes and the federal alternative minimum tax (AMT). Under normal circumstances, the fund invests at least 80% of its net assets, plus the amount of any borrowings for investment purposes, in the bonds that make up the Target Index.",
+  "category": "Muni National Interm",
+  "fundFamily": "Vanguard",
+  "totalAssets": 44200468480,
+  "expenseRatio": 0.03,
+  "yield": 0.0336,
+  "fundInceptionDate": 1440115200,
+  "navPrice": 50.13,
+  "previousClose": 50.1677,
+  "fiftyTwoWeekHigh": 51.18,
+  "fiftyTwoWeekLow": 48.46,
+  "beta3Year": 0.95,
+  "topHoldings": [],
+  "fetchedAt": "2026-05-03T22:17:16.300113"
+}

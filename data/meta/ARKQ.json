@@ -1,0 +1,82 @@
+{
+  "ticker": "ARKQ",
+  "longName": "ARK Autonomous Technology & Robotics ETF",
+  "summary": "The fund is an actively-managed exchange-traded fund that will invest under normal circumstances primarily (at least 80% of its assets) in domestic and foreign equity securities of autonomous technology and robotics companies that are relevant to the fund's investment theme of disruptive innovation. Substantially all of the fund's assets will be invested in equity securities, including common stocks, partnership interests, business trust shares and other equity investments or ownership interests in business enterprises. The fund is non-diversified.",
+  "category": "Mid-Cap Growth",
+  "fundFamily": "ARK ETF Trust",
+  "totalAssets": 1834103168,
+  "expenseRatio": 0.75,
+  "yield": 0.0027,
+  "fundInceptionDate": 1412035200,
+  "navPrice": 128.834,
+  "previousClose": 128.79,
+  "fiftyTwoWeekHigh": 135.18,
+  "fiftyTwoWeekLow": 70.25,
+  "beta3Year": 1.77,
+  "topHoldings": [
+    {
+      "symbol": "TSLA",
+      "name": "Tesla Inc",
+      "weight": 0.100905
+    },
+    {
+      "symbol": "TER",
+      "name": "Teradyne Inc",
+      "weight": 0.0888461
+    },
+    {
+      "symbol": "KTOS",
+      "name": "Kratos Defense & Security Solutions Inc",
+      "weight": 0.0650506
+    },
+    {
+      "symbol": "AMD",
+      "name": "Advanced Micro Devices Inc",
+      "weight": 0.0480292
+    },
+    {
+      "symbol": "RKLB",
+      "name": "Rocket Lab Corp",
+      "weight": 0.04614
+    },
+    {
+      "symbol": "DE",
+      "name": "Deere & Co",
+      "weight": 0.0448382
+    },
+    {
+      "symbol": "PLTR",
+      "name": "Palantir Technologies Inc Ordinary Shares - Class A",
+      "weight": 0.044674803
+    },
+    {
+      "symbol": "GOOG",
+      "name": "Alphabet Inc Class C",
+      "weight": 0.0354319
+    },
+    {
+      "symbol": "LHX",
+      "name": "L3Harris Technologies Inc",
+      "weight": 0.0346901
+    },
+    {
+      "symbol": "AVAV",
+      "name": "AeroVironment Inc",
+      "weight": 0.031567298
+    }
+  ],
+  "sectorWeightings": {
+    "realestate": 0.0,
+    "consumer_cyclical": 0.15010001,
+    "basic_materials": 0.0,
+    "consumer_defensive": 0.0,
+    "technology": 0.3406,
+    "communication_services": 0.0672,
+    "financial_services": 0.0,
+    "utilities": 0.0093,
+    "industrials": 0.3865,
+    "energy": 0.0201,
+    "healthcare": 0.026099999
+  },
+  "fetchedAt": "2026-05-03T22:18:34.303580"
+}

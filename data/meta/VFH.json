@@ -1,0 +1,77 @@
+{
+  "ticker": "VFH",
+  "longName": "Vanguard Financials Index Fund ETF Shares",
+  "summary": "The fund employs an indexing investment approach designed to track the performance of the index, an index made up of stocks of large, mid-size, and small U.S. companies within the financials sector, as classified under the GICS. The Advisor attempts to replicate the target index by seeking to invest all, or substantially all, of its assets in the stocks that make up the index, in order to hold each stock in approximately the same proportion as its weighting in the index. It is non-diversified.",
+  "category": "Financial",
+  "fundFamily": "Vanguard",
+  "totalAssets": 13349177344,
+  "expenseRatio": 0.09,
+  "yield": 0.0161,
+  "fundInceptionDate": 1075075200,
+  "navPrice": 127.66,
+  "previousClose": 128.2,
+  "fiftyTwoWeekHigh": 137.89,
+  "fiftyTwoWeekLow": 116.67,
+  "beta3Year": 1.01,
+  "topHoldings": [
+    {
+      "symbol": "JPM",
+      "name": "JPMorgan Chase & Co",
+      "weight": 0.090641
+    },
+    {
+      "symbol": "BRK-B",
+      "name": "Berkshire Hathaway Inc Class B",
+      "weight": 0.0798524
+    },
+    {
+      "symbol": "MA",
+      "name": "Mastercard Inc Class A",
+      "weight": 0.051251303
+    },
+    {
+      "symbol": "V",
+      "name": "Visa Inc Class A",
+      "weight": 0.0397804
+    },
+    {
+      "symbol": "BAC",
+      "name": "Bank of America Corp",
+      "weight": 0.038540103
+    },
+    {
+      "symbol": "WFC",
+      "name": "Wells Fargo & Co",
+      "weight": 0.0302741
+    },
+    {
+      "symbol": "GS",
+      "name": "The Goldman Sachs Group Inc",
+      "weight": 0.0292343
+    },
+    {
+      "symbol": "MS",
+      "name": "Morgan Stanley",
+      "weight": 0.0236699
+    },
+    {
+      "symbol": "C",
+      "name": "Citigroup Inc",
+      "weight": 0.0231368
+    }
+  ],
+  "sectorWeightings": {
+    "realestate": 0.0077,
+    "consumer_cyclical": 0.0001,
+    "basic_materials": 0.0,
+    "consumer_defensive": 0.0,
+    "technology": 0.020599999,
+    "communication_services": 0.0001,
+    "financial_services": 0.96900004,
+    "utilities": 0.0,
+    "industrials": 0.0022,
+    "energy": 0.0,
+    "healthcare": 0.00029999999
+  },
+  "fetchedAt": "2026-05-03T22:17:39.647478"
+}

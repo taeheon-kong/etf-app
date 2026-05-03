@@ -1,0 +1,82 @@
+{
+  "ticker": "VOOG",
+  "longName": "Vanguard S&P 500 Growth Index Fund ETF Shares",
+  "summary": "The advisor employs an indexing investment approach designed to track the performance of the S&P 500® Growth Index, which represents the growth companies, as determined by the index sponsor, of the S&P 500 Index. The index measures the performance of large-capitalization growth companies in the United States.",
+  "category": "Large Growth",
+  "fundFamily": "Vanguard",
+  "totalAssets": 20818771968,
+  "expenseRatio": 0.07,
+  "yield": 0.0054,
+  "fundInceptionDate": 1283817600,
+  "navPrice": 78.47,
+  "previousClose": 78.03,
+  "fiftyTwoWeekHigh": 78.84,
+  "fiftyTwoWeekLow": 57.291668,
+  "beta3Year": 1.11,
+  "topHoldings": [
+    {
+      "symbol": "NVDA",
+      "name": "NVIDIA Corp",
+      "weight": 0.1460897
+    },
+    {
+      "symbol": "MSFT",
+      "name": "Microsoft Corp",
+      "weight": 0.0947548
+    },
+    {
+      "symbol": "AAPL",
+      "name": "Apple Inc",
+      "weight": 0.0642201
+    },
+    {
+      "symbol": "GOOGL",
+      "name": "Alphabet Inc Class A",
+      "weight": 0.057705
+    },
+    {
+      "symbol": "AVGO",
+      "name": "Broadcom Inc",
+      "weight": 0.0505866
+    },
+    {
+      "symbol": "GOOG",
+      "name": "Alphabet Inc Class C",
+      "weight": 0.046253398
+    },
+    {
+      "symbol": "META",
+      "name": "Meta Platforms Inc Class A",
+      "weight": 0.0431365
+    },
+    {
+      "symbol": "AMZN",
+      "name": "Amazon.com Inc",
+      "weight": 0.0371718
+    },
+    {
+      "symbol": "BRK-B",
+      "name": "Berkshire Hathaway Inc Class B",
+      "weight": 0.030290999
+    },
+    {
+      "symbol": "LLY",
+      "name": "Eli Lilly and Co",
+      "weight": 0.0251246
+    }
+  ],
+  "sectorWeightings": {
+    "realestate": 0.0063,
+    "consumer_cyclical": 0.0947,
+    "basic_materials": 0.0041,
+    "consumer_defensive": 0.011,
+    "technology": 0.48299998,
+    "communication_services": 0.16860001,
+    "financial_services": 0.0967,
+    "utilities": 0.0045,
+    "industrials": 0.062800005,
+    "energy": 0.0,
+    "healthcare": 0.0682
+  },
+  "fetchedAt": "2026-05-03T22:16:15.800613"
+}

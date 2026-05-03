@@ -1,0 +1,82 @@
+{
+  "ticker": "DRIV",
+  "longName": "Global X Autonomous & Electric Vehicles ETF",
+  "summary": "The fund invests at least 80% of its total assets in the securities of the index. The index is designed to provide exposure to exchange-listed companies that are involved in the development of electric vehicles and/or autonomous vehicles, including companies that produce electric/hybrid vehicles, electric/hybrid vehicle components and materials, autonomous driving technology, and network connected services for transportation.",
+  "category": "Miscellaneous Sector",
+  "fundFamily": "Global X Funds",
+  "totalAssets": 327560096,
+  "expenseRatio": 0.68,
+  "yield": 0.0105,
+  "fundInceptionDate": 1523577600,
+  "navPrice": 37.6,
+  "previousClose": 37.4292,
+  "fiftyTwoWeekHigh": 37.92,
+  "fiftyTwoWeekLow": 20.8,
+  "beta3Year": 1.54,
+  "topHoldings": [
+    {
+      "symbol": "NVDA",
+      "name": "NVIDIA Corp",
+      "weight": 0.0303495
+    },
+    {
+      "symbol": "GOOGL",
+      "name": "Alphabet Inc Class A",
+      "weight": 0.027685799
+    },
+    {
+      "symbol": "TSLA",
+      "name": "Tesla Inc",
+      "weight": 0.0268806
+    },
+    {
+      "symbol": "INTC",
+      "name": "Intel Corp",
+      "weight": 0.0266855
+    },
+    {
+      "symbol": "MSFT",
+      "name": "Microsoft Corp",
+      "weight": 0.025427498
+    },
+    {
+      "symbol": "7203.T",
+      "name": "Toyota Motor Corp",
+      "weight": 0.025241
+    },
+    {
+      "symbol": "HON",
+      "name": "Honeywell International Inc",
+      "weight": 0.024532001
+    },
+    {
+      "symbol": "QCOM",
+      "name": "Qualcomm Inc",
+      "weight": 0.0206994
+    },
+    {
+      "symbol": "RIO.L",
+      "name": "Rio Tinto PLC Ordinary Shares",
+      "weight": 0.0205424
+    },
+    {
+      "symbol": "AMPX",
+      "name": "Amprius Technologies Inc",
+      "weight": 0.0199508
+    }
+  ],
+  "sectorWeightings": {
+    "realestate": 0.0,
+    "consumer_cyclical": 0.31870002,
+    "basic_materials": 0.1496,
+    "consumer_defensive": 0.0,
+    "technology": 0.2898,
+    "communication_services": 0.051799998,
+    "financial_services": 0.0,
+    "utilities": 0.0,
+    "industrials": 0.19,
+    "energy": 0.0,
+    "healthcare": 0.0
+  },
+  "fetchedAt": "2026-05-03T22:18:43.176482"
+}

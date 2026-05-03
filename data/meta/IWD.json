@@ -1,0 +1,82 @@
+{
+  "ticker": "IWD",
+  "longName": "iShares Russell 1000 Value ETF",
+  "summary": "The fund generally invests at least 80% of its assets in the component securities of its underlying index and may invest up to 20% of its assets in certain futures, options and swap contracts, cash and cash equivalents.",
+  "category": "Large Value",
+  "fundFamily": "iShares",
+  "totalAssets": 69788860416,
+  "expenseRatio": 0.18,
+  "yield": 0.0167,
+  "fundInceptionDate": 958953600,
+  "navPrice": 230.81592,
+  "previousClose": 231.25,
+  "fiftyTwoWeekHigh": 232.26,
+  "fiftyTwoWeekLow": 182.36,
+  "beta3Year": 0.87,
+  "topHoldings": [
+    {
+      "symbol": "BRK-B",
+      "name": "Berkshire Hathaway Inc Class B",
+      "weight": 0.029089501
+    },
+    {
+      "symbol": "JPM",
+      "name": "JPMorgan Chase & Co",
+      "weight": 0.0263009
+    },
+    {
+      "symbol": "XOM",
+      "name": "Exxon Mobil Corp",
+      "weight": 0.023591
+    },
+    {
+      "symbol": "GOOGL",
+      "name": "Alphabet Inc Class A",
+      "weight": 0.0195272
+    },
+    {
+      "symbol": "JNJ",
+      "name": "Johnson & Johnson",
+      "weight": 0.0193604
+    },
+    {
+      "symbol": "AMZN",
+      "name": "Amazon.com Inc",
+      "weight": 0.0180776
+    },
+    {
+      "symbol": "WMT",
+      "name": "Walmart Inc",
+      "weight": 0.016017899
+    },
+    {
+      "symbol": "GOOG",
+      "name": "Alphabet Inc Class C",
+      "weight": 0.0158611
+    },
+    {
+      "symbol": "CVX",
+      "name": "Chevron Corp",
+      "weight": 0.0127577
+    },
+    {
+      "symbol": "MU",
+      "name": "Micron Technology Inc",
+      "weight": 0.0124237
+    }
+  ],
+  "sectorWeightings": {
+    "realestate": 0.0405,
+    "consumer_cyclical": 0.0727,
+    "basic_materials": 0.0392,
+    "consumer_defensive": 0.0747,
+    "technology": 0.1245,
+    "communication_services": 0.0797,
+    "financial_services": 0.19590001,
+    "utilities": 0.0463,
+    "industrials": 0.1318,
+    "energy": 0.0774,
+    "healthcare": 0.1172
+  },
+  "fetchedAt": "2026-05-03T22:16:17.453344"
+}

@@ -1,0 +1,77 @@
+{
+  "ticker": "ARKF",
+  "longName": "ARK Blockchain & Fintech Innovation ETF",
+  "summary": "The fund is an actively-managed ETF that will invest under normal circumstances primarily (at least 80% of its assets) in domestic and foreign equity securities of companies that are engaged in the fund's investment theme of financial technology (\"Fintech\") innovation. A company is deemed to be engaged in the theme of Fintech innovation if (i) it derives a significant portion of its revenue or market value from the theme of Fintech innovation, or (ii) it has stated its primary business to be in products and services focused on the theme of Fintech innovation. The fund is non-diversified.",
+  "category": "Technology",
+  "fundFamily": "ARK ETF Trust",
+  "totalAssets": 762445184,
+  "expenseRatio": 0.75,
+  "yield": 0.0011,
+  "fundInceptionDate": 1548979200,
+  "navPrice": 42.102,
+  "previousClose": 41.2,
+  "fiftyTwoWeekHigh": 59.2,
+  "fiftyTwoWeekLow": 35.42,
+  "beta3Year": 2.34,
+  "topHoldings": [
+    {
+      "symbol": "SHOP",
+      "name": "Shopify Inc Registered Shs -A- Subord Vtg",
+      "weight": 0.0985303
+    },
+    {
+      "symbol": "CRCL",
+      "name": "Circle Internet Group Inc Ordinary Shares - Class A",
+      "weight": 0.062301103
+    },
+    {
+      "symbol": "COIN",
+      "name": "Coinbase Global Inc Ordinary Shares - Class A",
+      "weight": 0.0588709
+    },
+    {
+      "symbol": "XYZ",
+      "name": "Block Inc Class A",
+      "weight": 0.0492133
+    },
+    {
+      "symbol": "PLTR",
+      "name": "Palantir Technologies Inc Ordinary Shares - Class A",
+      "weight": 0.0468132
+    },
+    {
+      "symbol": "HOOD",
+      "name": "Robinhood Markets Inc Class A",
+      "weight": 0.042043
+    },
+    {
+      "symbol": "TOST",
+      "name": "Toast Inc Class A",
+      "weight": 0.0415617
+    },
+    {
+      "symbol": "BLSH",
+      "name": "Bullish",
+      "weight": 0.036567498
+    },
+    {
+      "symbol": "MELI",
+      "name": "MercadoLibre Inc",
+      "weight": 0.033380102
+    }
+  ],
+  "sectorWeightings": {
+    "realestate": 0.0,
+    "consumer_cyclical": 0.1566,
+    "basic_materials": 0.0,
+    "consumer_defensive": 0.0,
+    "technology": 0.4257,
+    "communication_services": 0.1173,
+    "financial_services": 0.2984,
+    "utilities": 0.0,
+    "industrials": 0.0,
+    "energy": 0.0,
+    "healthcare": 0.0021
+  },
+  "fetchedAt": "2026-05-03T22:18:37.150767"
+}

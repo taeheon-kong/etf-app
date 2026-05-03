@@ -1,0 +1,82 @@
+{
+  "ticker": "GDXJ",
+  "longName": "VanEck Junior Gold Miners ETF",
+  "summary": "The fund normally invests at least 80% of its total assets in securities that comprise the index. The index includes companies that generate at least 50% of their revenues from gold and/or silver mining/royalties/streaming or have mining projects with the potential to generate at least 50% of their revenues from gold and/or silver when developed. It is non-diversified.",
+  "category": "Equity Precious Metals",
+  "fundFamily": "VanEck",
+  "totalAssets": 9021971456,
+  "expenseRatio": 0.51,
+  "yield": 0.0223,
+  "fundInceptionDate": 1257811200,
+  "navPrice": 115.44,
+  "previousClose": 116.34,
+  "fiftyTwoWeekHigh": 157.49,
+  "fiftyTwoWeekLow": 57.4,
+  "beta3Year": 1.16,
+  "topHoldings": [
+    {
+      "symbol": "AGI.TO",
+      "name": "Alamos Gold Inc Class A",
+      "weight": 0.0718271
+    },
+    {
+      "symbol": "EQX.TO",
+      "name": "Equinox Gold Corp Ordinary Shares Class A",
+      "weight": 0.0636516
+    },
+    {
+      "symbol": "CDE",
+      "name": "Coeur Mining Inc",
+      "weight": 0.0629168
+    },
+    {
+      "symbol": "EVN.AX",
+      "name": "Evolution Mining Ltd",
+      "weight": 0.061658703
+    },
+    {
+      "symbol": "EDV.L",
+      "name": "Endeavour Mining PLC",
+      "weight": 0.0606067
+    },
+    {
+      "symbol": "AG.TO",
+      "name": "First Majestic Silver Corp",
+      "weight": 0.0276295
+    },
+    {
+      "symbol": "PE&OLES.MX",
+      "name": "Industrias Penoles SAB de CV",
+      "weight": 0.025553701
+    },
+    {
+      "symbol": "IMG.TO",
+      "name": "Iamgold Corp",
+      "weight": 0.0236043
+    },
+    {
+      "symbol": "LUG.TO",
+      "name": "Lundin Gold Inc",
+      "weight": 0.022667998
+    },
+    {
+      "symbol": "HL",
+      "name": "Hecla Mining Co",
+      "weight": 0.0224321
+    }
+  ],
+  "sectorWeightings": {
+    "realestate": 0.0,
+    "consumer_cyclical": 0.0,
+    "basic_materials": 1.0,
+    "consumer_defensive": 0.0,
+    "technology": 0.0,
+    "communication_services": 0.0,
+    "financial_services": 0.0,
+    "utilities": 0.0,
+    "industrials": 0.0,
+    "energy": 0.0,
+    "healthcare": 0.0
+  },
+  "fetchedAt": "2026-05-03T22:18:30.915093"
+}

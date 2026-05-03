@@ -1,0 +1,82 @@
+{
+  "ticker": "EWW",
+  "longName": "iShares MSCI Mexico ETF",
+  "summary": "The fund generally will invest at least 80% of its assets in the component securities of its underlying index and in investments that have economic characteristics that are substantially identical to the component securities of its underlying index. The underlying index is a free float-adjusted market capitalization-weighted index that is designed to measure the performance of the large-, mid- and small- capitalization segments of the equity market in Mexico. The fund is non-diversified.",
+  "category": "Focused Region",
+  "fundFamily": "iShares",
+  "totalAssets": 2125196032,
+  "expenseRatio": 0.5,
+  "yield": 0.0321,
+  "fundInceptionDate": 826588800,
+  "navPrice": 76.63559,
+  "previousClose": 76.44,
+  "fiftyTwoWeekHigh": 81.65,
+  "fiftyTwoWeekLow": 56.0,
+  "beta3Year": 1.18,
+  "topHoldings": [
+    {
+      "symbol": "GMEXICOB.MX",
+      "name": "Grupo Mexico SAB de CV Class B",
+      "weight": 0.1283687
+    },
+    {
+      "symbol": "GFNORTEO.MX",
+      "name": "Grupo Financiero Banorte SAB de CV Class O",
+      "weight": 0.1067244
+    },
+    {
+      "symbol": "AMXB.MX",
+      "name": "America Movil SAB de CV Ordinary Shares - Class B",
+      "weight": 0.0845961
+    },
+    {
+      "symbol": "FEMSAUBD.MX",
+      "name": "Fomento Economico Mexicano SAB de CV Units Cons. Of 1 Shs-B- And 4 Shs-D-",
+      "weight": 0.0686338
+    },
+    {
+      "symbol": "WALMEX.MX",
+      "name": "Wal - Mart de Mexico SAB de CV",
+      "weight": 0.0605213
+    },
+    {
+      "symbol": "CEMEXCPO.MX",
+      "name": "Cemex SAB de CV",
+      "weight": 0.0440878
+    },
+    {
+      "symbol": "GAPB.MX",
+      "name": "Grupo Aeroportuario del Pacifico SAB de CV Class B",
+      "weight": 0.040622
+    },
+    {
+      "symbol": "PE&OLES.MX",
+      "name": "Industrias Penoles SAB de CV",
+      "weight": 0.0368534
+    },
+    {
+      "symbol": "ASURB.MX",
+      "name": "Grupo Aeroportuario del Sureste SAB de CV Class B",
+      "weight": 0.0278153
+    },
+    {
+      "symbol": "AC.MX",
+      "name": "Arca Continental SAB de CV Class B Ordinary Shares",
+      "weight": 0.0274801
+    }
+  ],
+  "sectorWeightings": {
+    "realestate": 0.074499995,
+    "consumer_cyclical": 0.0152,
+    "basic_materials": 0.22799999,
+    "consumer_defensive": 0.2507,
+    "technology": 0.0,
+    "communication_services": 0.1022,
+    "financial_services": 0.187,
+    "utilities": 0.0,
+    "industrials": 0.1369,
+    "energy": 0.0,
+    "healthcare": 0.0055
+  },
+  "fetchedAt": "2026-05-03T22:18:23.023915"
+}

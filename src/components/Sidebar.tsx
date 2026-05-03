@@ -45,7 +45,15 @@ const IconAnalysis = (
   </svg>
 );
 
+const IconSparkles = (
+  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+    <path d="M12 3l1.9 5.1L19 10l-5.1 1.9L12 17l-1.9-5.1L5 10l5.1-1.9L12 3z" />
+    <path d="M19 17l.7 1.8L21.5 19.5l-1.8.7L19 22l-.7-1.8L16.5 19.5l1.8-.7L19 17z" />
+  </svg>
+);
+
 const NAV_ITEMS: NavItem[] = [
+  { href: "/recommend", label: "추천", icon: IconSparkles },
   { href: "/backtest", label: "백테스트", icon: IconChart },
   { href: "/analysis", label: "추가 분석", icon: IconAnalysis },
   { href: "/etfs/us", label: "해외 ETF", icon: IconGlobe },
@@ -59,7 +67,7 @@ export default function Sidebar() {
     <aside className="w-60 shrink-0 border-r border-slate-200 bg-white min-h-screen">
       <div className="px-5 py-6 border-b border-slate-200">
         <Link href="/" className="block">
-          <h1 className="text-xl font-bold text-slate-900">Backtester</h1>
+          <h1 className="text-xl font-bold text-slate-900">ETF 포트폴리오</h1>
           <p className="text-xs text-slate-500 mt-0.5">ETF 분석·시뮬레이션</p>
         </Link>
       </div>

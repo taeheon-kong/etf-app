@@ -1,0 +1,82 @@
+{
+  "ticker": "VONG",
+  "longName": "Vanguard Russell 1000 Growth Index Fund ETF Shares",
+  "summary": "The index is designed to measure the performance of large-capitalization growth stocks in the United States. The Advisor attempts to replicate the target index by investing all, or substantially all, of its assets in the stocks that make up the index, holding each stock in approximately the same proportion as its weighting in the index. The fund may become non-diversified, as defined under the Investment Company Act of 1940, solely as a result of a change in relative market capitalization or index weighting of one or more constituents of the index.",
+  "category": "Large Growth",
+  "fundFamily": "Vanguard",
+  "totalAssets": 44948783104,
+  "expenseRatio": 0.06,
+  "yield": 0.0050999997,
+  "fundInceptionDate": 1284940800,
+  "navPrice": 123.57,
+  "previousClose": 122.76,
+  "fiftyTwoWeekHigh": 126.83,
+  "fiftyTwoWeekLow": 94.63,
+  "beta3Year": 1.16,
+  "topHoldings": [
+    {
+      "symbol": "NVDA",
+      "name": "NVIDIA Corp",
+      "weight": 0.1291302
+    },
+    {
+      "symbol": "AAPL",
+      "name": "Apple Inc",
+      "weight": 0.1162768
+    },
+    {
+      "symbol": "MSFT",
+      "name": "Microsoft Corp",
+      "weight": 0.08814511
+    },
+    {
+      "symbol": "AVGO",
+      "name": "Broadcom Inc",
+      "weight": 0.0478513
+    },
+    {
+      "symbol": "AMZN",
+      "name": "Amazon.com Inc",
+      "weight": 0.046543103
+    },
+    {
+      "symbol": "TSLA",
+      "name": "Tesla Inc",
+      "weight": 0.0354587
+    },
+    {
+      "symbol": "GOOGL",
+      "name": "Alphabet Inc Class A",
+      "weight": 0.0353088
+    },
+    {
+      "symbol": "META",
+      "name": "Meta Platforms Inc Class A",
+      "weight": 0.0345381
+    },
+    {
+      "symbol": "GOOG",
+      "name": "Alphabet Inc Class C",
+      "weight": 0.0287043
+    },
+    {
+      "symbol": "LLY",
+      "name": "Eli Lilly and Co",
+      "weight": 0.026559
+    }
+  ],
+  "sectorWeightings": {
+    "realestate": 0.0045,
+    "consumer_cyclical": 0.13229999,
+    "basic_materials": 0.0034,
+    "consumer_defensive": 0.0292,
+    "technology": 0.5052,
+    "communication_services": 0.1242,
+    "financial_services": 0.0561,
+    "utilities": 0.0029,
+    "industrials": 0.056999996,
+    "energy": 0.0045,
+    "healthcare": 0.080699995
+  },
+  "fetchedAt": "2026-05-03T22:16:13.856715"
+}

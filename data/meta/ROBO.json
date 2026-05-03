@@ -1,0 +1,82 @@
+{
+  "ticker": "ROBO",
+  "longName": "Robo Global Robotics and Automation Index ETF",
+  "summary": "The fund will normally invest at least 80% of its total assets in securities of the index or in depositary receipts representing securities of the index. The index is designed to measure the performance of robotics-related and/or automation-related companies. The fund may invest up to 20% of its assets in investments that are not included in the index, but which the Adviser and Sub-Adviser believe will help it track the index. It is non-diversified.",
+  "category": "Global Small/Mid Stock",
+  "fundFamily": "Robo Global",
+  "totalAssets": 1479143680,
+  "expenseRatio": 0.95,
+  "yield": 0.0043,
+  "fundInceptionDate": 1382400000,
+  "navPrice": 81.22,
+  "previousClose": 81.65,
+  "fiftyTwoWeekHigh": 81.97,
+  "fiftyTwoWeekLow": 51.66,
+  "beta3Year": 1.62,
+  "topHoldings": [
+    {
+      "symbol": "TER",
+      "name": "Teradyne Inc",
+      "weight": 0.0190228
+    },
+    {
+      "symbol": "CELT",
+      "name": "Celtic Investment Inc",
+      "weight": 0.0182424
+    },
+    {
+      "symbol": "ISRG",
+      "name": "Intuitive Surgical Inc",
+      "weight": 0.0182056
+    },
+    {
+      "symbol": "ROK",
+      "name": "Rockwell Automation Inc",
+      "weight": 0.017940901
+    },
+    {
+      "symbol": "SYM",
+      "name": "Symbotic Inc Ordinary Shares - Class A",
+      "weight": 0.0177978
+    },
+    {
+      "symbol": "NOVT",
+      "name": "Novanta Inc",
+      "weight": 0.0167282
+    },
+    {
+      "symbol": "IPGP",
+      "name": "IPG Photonics Corp",
+      "weight": 0.0167249
+    },
+    {
+      "symbol": "6954.T",
+      "name": "Fanuc Corp",
+      "weight": 0.0161437
+    },
+    {
+      "symbol": "G1A.DE",
+      "name": "GEA Group AG",
+      "weight": 0.0159851
+    },
+    {
+      "symbol": "AMBA",
+      "name": "Ambarella Inc",
+      "weight": 0.0158874
+    }
+  ],
+  "sectorWeightings": {
+    "realestate": 0.0,
+    "consumer_cyclical": 0.0374,
+    "basic_materials": 0.0,
+    "consumer_defensive": 0.0,
+    "technology": 0.413,
+    "communication_services": 0.0089,
+    "financial_services": 0.0183,
+    "utilities": 0.0,
+    "industrials": 0.4646,
+    "energy": 0.0,
+    "healthcare": 0.0579
+  },
+  "fetchedAt": "2026-05-03T22:18:38.885351"
+}

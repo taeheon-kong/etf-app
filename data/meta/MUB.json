@@ -1,0 +1,18 @@
+{
+  "ticker": "MUB",
+  "longName": "iShares National Muni Bond ETF",
+  "summary": "The underlying index includes municipal bonds, the interest of which is exempt from Federal income taxes and not subject to alternative minimum tax. The fund will invest at least 80% of its assets in the component securities of the underlying index and it will invest at least 90% of its assets in fixed income securities of the types included in the underlying index that BFA believes will help the fund track the underlying index.",
+  "category": "Muni National Interm",
+  "fundFamily": "iShares",
+  "totalAssets": 42596511744,
+  "expenseRatio": 0.05,
+  "yield": 0.0319,
+  "fundInceptionDate": 1189123200,
+  "navPrice": 106.58755,
+  "previousClose": 106.841,
+  "fiftyTwoWeekHigh": 109.0,
+  "fiftyTwoWeekLow": 103.14,
+  "beta3Year": 0.9,
+  "topHoldings": [],
+  "fetchedAt": "2026-05-03T22:17:15.342409"
+}

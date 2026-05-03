@@ -1,0 +1,18 @@
+{
+  "ticker": "UNG",
+  "longName": "United States Natural Gas Fund, LP",
+  "summary": "The fund invests primarily in futures contracts for natural gas that are traded on the NYMEX, ICE Futures Europe and ICE Futures U.S. (together, “ICE Futures”) or other U.S. and foreign exchanges. The Benchmark Futures Contract is the futures contract on natural gas as traded on the New York Mercantile Exchange that is the near month contract to expire, except when the near month contract is within two weeks of expiration.",
+  "category": "Commodities Focused",
+  "fundFamily": "USCF Investments",
+  "totalAssets": 450859744,
+  "expenseRatio": 1.17,
+  "yield": 0.0,
+  "fundInceptionDate": 1176854400,
+  "navPrice": 10.681,
+  "previousClose": 10.6,
+  "fiftyTwoWeekHigh": 19.11,
+  "fiftyTwoWeekLow": 9.95,
+  "beta3Year": 2.41,
+  "topHoldings": [],
+  "fetchedAt": "2026-05-03T22:17:30.853938"
+}

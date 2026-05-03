@@ -1,0 +1,82 @@
+{
+  "ticker": "VO",
+  "longName": "Vanguard Mid-Cap Index Fund ETF Shares",
+  "summary": "The fund employs an indexing investment approach designed to track the performance of the CRSP U.S. Mid Cap Index, a broadly diversified index of stocks of mid-size U.S. companies. The advisor attempts to replicate the target index by investing all, or substantially all, of its assets in the stocks that make up the index, holding each stock in approximately the same proportion as its weighting in the index.",
+  "category": "Mid-Cap Blend",
+  "fundFamily": "Vanguard",
+  "totalAssets": 198243745792,
+  "expenseRatio": 0.03,
+  "yield": 0.0150999995,
+  "fundInceptionDate": 1075075200,
+  "navPrice": 77.21,
+  "previousClose": 77.31,
+  "fiftyTwoWeekHigh": 77.64,
+  "fiftyTwoWeekLow": 64.375,
+  "beta3Year": 1.07,
+  "topHoldings": [
+    {
+      "symbol": "VRT",
+      "name": "Vertiv Holdings Co Class A",
+      "weight": 0.010239
+    },
+    {
+      "symbol": "HWM",
+      "name": "Howmet Aerospace Inc",
+      "weight": 0.010044499
+    },
+    {
+      "symbol": "WDC",
+      "name": "Western Digital Corp",
+      "weight": 0.009969099
+    },
+    {
+      "symbol": "CEG",
+      "name": "Constellation Energy Corp",
+      "weight": 0.0093498
+    },
+    {
+      "symbol": "STX",
+      "name": "Seagate Technology Holdings PLC",
+      "weight": 0.009287
+    },
+    {
+      "symbol": "PWR",
+      "name": "Quanta Services Inc",
+      "weight": 0.0089296
+    },
+    {
+      "symbol": "SLB",
+      "name": "SLB Ltd",
+      "weight": 0.0083536
+    },
+    {
+      "symbol": "CMI",
+      "name": "Cummins Inc",
+      "weight": 0.0080807
+    },
+    {
+      "symbol": "VLO",
+      "name": "Valero Energy Corp",
+      "weight": 0.0080317
+    },
+    {
+      "symbol": "PSX",
+      "name": "Phillips 66",
+      "weight": 0.0079365
+    }
+  ],
+  "sectorWeightings": {
+    "realestate": 0.0538,
+    "consumer_cyclical": 0.0953,
+    "basic_materials": 0.040799998,
+    "consumer_defensive": 0.051599998,
+    "technology": 0.1664,
+    "communication_services": 0.0306,
+    "financial_services": 0.1254,
+    "utilities": 0.0888,
+    "industrials": 0.1762,
+    "energy": 0.0883,
+    "healthcare": 0.083000004
+  },
+  "fetchedAt": "2026-05-03T22:16:25.295271"
+}

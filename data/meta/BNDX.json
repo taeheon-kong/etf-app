@@ -1,0 +1,31 @@
+{
+  "ticker": "BNDX",
+  "longName": "Vanguard Total International Bond Index Fund",
+  "summary": "The fund employs an indexing investment approach designed to track the performance of the Bloomberg Global Aggregate ex-USD Float Adjusted RIC Capped Index (USD Hedged). This index provides a broad-based measure of the global, investment-grade, fixed-rate bond markets. It is non-diversified.",
+  "category": "Global Bond-USD Hedged",
+  "fundFamily": "Vanguard",
+  "totalAssets": 116905074688,
+  "expenseRatio": 0.07,
+  "yield": 0.0446,
+  "fundInceptionDate": 1369958400,
+  "navPrice": 47.86,
+  "previousClose": 48.05,
+  "fiftyTwoWeekHigh": 49.93,
+  "fiftyTwoWeekLow": 47.6,
+  "beta3Year": 0.61,
+  "topHoldings": [],
+  "sectorWeightings": {
+    "realestate": 0.0,
+    "consumer_cyclical": 0.0,
+    "basic_materials": 0.0,
+    "consumer_defensive": 0.0,
+    "technology": 1.0,
+    "communication_services": 0.0,
+    "financial_services": 0.0,
+    "utilities": 0.0,
+    "industrials": 0.0,
+    "energy": 0.0,
+    "healthcare": 0.0
+  },
+  "fetchedAt": "2026-05-03T22:16:49.902105"
+}

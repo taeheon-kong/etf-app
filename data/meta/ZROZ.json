@@ -1,0 +1,18 @@
+{
+  "ticker": "ZROZ",
+  "longName": "PIMCO 25+ Year Zero Coupon U.S. Treasury Index Exchange-Traded Fund",
+  "summary": "The fund invests at least 80% of its total assets (exclusive of collateral held from securities lending) in the component securities of the ICE BofA Long U.S. Treasury Principal STRIPS Index (the \"underlying index\"). The underlying index is an unmanaged index comprised of long maturity Separate Trading of Registered Interest and Principal of Securities (\"STRIPS\") representing the final principal payment of U.S. Treasury bonds.",
+  "category": "Long Government",
+  "fundFamily": "PIMCO",
+  "totalAssets": 1402552832,
+  "expenseRatio": 0.15,
+  "yield": 0.0496,
+  "fundInceptionDate": 1256860800,
+  "navPrice": 62.59,
+  "previousClose": 62.1,
+  "fiftyTwoWeekHigh": 71.22,
+  "fiftyTwoWeekLow": 61.0,
+  "beta3Year": 3.62,
+  "topHoldings": [],
+  "fetchedAt": "2026-05-03T22:16:53.360160"
+}

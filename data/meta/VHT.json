@@ -1,0 +1,82 @@
+{
+  "ticker": "VHT",
+  "longName": "Vanguard Health Care Index Fund ETF Shares",
+  "summary": "The fund employs an indexing investment approach designed to track the performance of the index, an index made up of stocks of large, mid-size, and small U.S. companies within the health care sector, as classified under the GICS. The Advisor attempts to replicate the target index by seeking to invest all, or substantially all, of its assets in the stocks that make up the index, in order to hold each stock in approximately the same proportion as its weighting in the index. The fund is non-diversified.",
+  "category": "Health",
+  "fundFamily": "Vanguard",
+  "totalAssets": 18587713536,
+  "expenseRatio": 0.09,
+  "yield": 0.0172,
+  "fundInceptionDate": 1075075200,
+  "navPrice": 271.38,
+  "previousClose": 272.46,
+  "fiftyTwoWeekHigh": 298.61,
+  "fiftyTwoWeekLow": 234.13,
+  "beta3Year": 0.77,
+  "topHoldings": [
+    {
+      "symbol": "LLY",
+      "name": "Eli Lilly and Co",
+      "weight": 0.118899204
+    },
+    {
+      "symbol": "JNJ",
+      "name": "Johnson & Johnson",
+      "weight": 0.093428604
+    },
+    {
+      "symbol": "ABBV",
+      "name": "AbbVie Inc",
+      "weight": 0.061835
+    },
+    {
+      "symbol": "MRK",
+      "name": "Merck & Co Inc",
+      "weight": 0.0480291
+    },
+    {
+      "symbol": "UNH",
+      "name": "UnitedHealth Group Inc",
+      "weight": 0.0394314
+    },
+    {
+      "symbol": "AMGN",
+      "name": "Amgen Inc",
+      "weight": 0.0304778
+    },
+    {
+      "symbol": "TMO",
+      "name": "Thermo Fisher Scientific Inc",
+      "weight": 0.029707601
+    },
+    {
+      "symbol": "ABT",
+      "name": "Abbott Laboratories",
+      "weight": 0.0287205
+    },
+    {
+      "symbol": "GILD",
+      "name": "Gilead Sciences Inc",
+      "weight": 0.027815001
+    },
+    {
+      "symbol": "ISRG",
+      "name": "Intuitive Surgical Inc",
+      "weight": 0.0262882
+    }
+  ],
+  "sectorWeightings": {
+    "realestate": 0.0,
+    "consumer_cyclical": 0.0,
+    "basic_materials": 0.0,
+    "consumer_defensive": 0.0,
+    "technology": 0.0001,
+    "communication_services": 0.0,
+    "financial_services": 0.00029999999,
+    "utilities": 0.0,
+    "industrials": 0.0001,
+    "energy": 0.0,
+    "healthcare": 0.9996
+  },
+  "fetchedAt": "2026-05-03T22:17:43.043273"
+}

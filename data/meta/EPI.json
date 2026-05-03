@@ -1,0 +1,82 @@
+{
+  "ticker": "EPI",
+  "longName": "WisdomTree India Earnings Fund",
+  "summary": "Under normal circumstances, at least 95% of the fund's total assets (exclusive of collateral held from securities lending) will be invested in constituent securities of the index and investments that have economic characteristics that are substantially identical to the economic characteristics of such constituent securities. The index is comprised of companies incorporated and traded in India that are profitable and that are eligible to be purchased by foreign investors as of the annual index screening date. It is non-diversified.",
+  "category": "India Equity",
+  "fundFamily": "WisdomTree",
+  "totalAssets": 2088172032,
+  "expenseRatio": 0.84,
+  "yield": 0.0,
+  "fundInceptionDate": 1203638400,
+  "navPrice": 43.013,
+  "previousClose": 43.52,
+  "fiftyTwoWeekHigh": 47.68,
+  "fiftyTwoWeekLow": 39.41,
+  "beta3Year": 0.55,
+  "topHoldings": [
+    {
+      "symbol": "RELIANCE.NS",
+      "name": "Reliance Industries Ltd",
+      "weight": 0.069388
+    },
+    {
+      "symbol": "HDFCBANK.NS",
+      "name": "HDFC Bank Ltd",
+      "weight": 0.0545445
+    },
+    {
+      "symbol": "ICICIBANK.NS",
+      "name": "ICICI Bank Ltd",
+      "weight": 0.0527504
+    },
+    {
+      "symbol": "SBIN.NS",
+      "name": "State Bank of India",
+      "weight": 0.0342224
+    },
+    {
+      "symbol": "INFY.NS",
+      "name": "Infosys Ltd",
+      "weight": 0.032123998
+    },
+    {
+      "symbol": "500312",
+      "name": "Oil & Natural Gas Corp Ltd",
+      "weight": 0.029762499
+    },
+    {
+      "symbol": "COALINDIA.NS",
+      "name": "Coal India Ltd",
+      "weight": 0.0260388
+    },
+    {
+      "symbol": "NTPC.BO",
+      "name": "NTPC Ltd",
+      "weight": 0.0225487
+    },
+    {
+      "symbol": "HINDALCO.NS",
+      "name": "Hindalco Industries Ltd",
+      "weight": 0.022269102
+    },
+    {
+      "symbol": "POWERGRID.BO",
+      "name": "Power Grid Corp Of India Ltd",
+      "weight": 0.0202712
+    }
+  ],
+  "sectorWeightings": {
+    "realestate": 0.0081,
+    "consumer_cyclical": 0.0762,
+    "basic_materials": 0.1385,
+    "consumer_defensive": 0.0345,
+    "technology": 0.0868,
+    "communication_services": 0.0195,
+    "financial_services": 0.253,
+    "utilities": 0.074200004,
+    "industrials": 0.091000006,
+    "energy": 0.1663,
+    "healthcare": 0.0519
+  },
+  "fetchedAt": "2026-05-03T22:18:24.708268"
+}

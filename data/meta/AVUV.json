@@ -1,0 +1,82 @@
+{
+  "ticker": "AVUV",
+  "longName": "Avantis US Small Cap Value ETF",
+  "summary": "The fund invests primarily in a diverse group of U.S. small cap companies across market sectors and industry groups. Under normal market conditions, it will invest at least 80% of its assets in securities of small capitalization companies located in the United States. The fund also may invest in derivative instruments such as futures contracts, currency forwards, and swap agreements.",
+  "category": "Small Value",
+  "fundFamily": "Avantis Investors",
+  "totalAssets": 23433220096,
+  "expenseRatio": 0.25,
+  "yield": 0.014099999,
+  "fundInceptionDate": 1569283200,
+  "navPrice": 119.9583,
+  "previousClose": 120.14,
+  "fiftyTwoWeekHigh": 120.46,
+  "fiftyTwoWeekLow": 83.68,
+  "beta3Year": 1.15,
+  "topHoldings": [
+    {
+      "symbol": "SM",
+      "name": "SM Energy Co",
+      "weight": 0.0110379
+    },
+    {
+      "symbol": "FIVE",
+      "name": "Five Below Inc",
+      "weight": 0.0097235
+    },
+    {
+      "symbol": "VSAT",
+      "name": "Viasat Inc",
+      "weight": 0.0090715
+    },
+    {
+      "symbol": "MATX",
+      "name": "Matson Inc",
+      "weight": 0.0089689
+    },
+    {
+      "symbol": "CRC",
+      "name": "California Resources Corp Ordinary Shares - New",
+      "weight": 0.008531299
+    },
+    {
+      "symbol": "MGY",
+      "name": "Magnolia Oil & Gas Corp Class A",
+      "weight": 0.0082741
+    },
+    {
+      "symbol": "GATX",
+      "name": "GATX Corp",
+      "weight": 0.0080979
+    },
+    {
+      "symbol": "M",
+      "name": "Macy's Inc",
+      "weight": 0.0080342
+    },
+    {
+      "symbol": "LEA",
+      "name": "Lear Corp",
+      "weight": 0.0079315
+    },
+    {
+      "symbol": "AROC",
+      "name": "Archrock Inc",
+      "weight": 0.0077455
+    }
+  ],
+  "sectorWeightings": {
+    "realestate": 0.0066000004,
+    "consumer_cyclical": 0.177,
+    "basic_materials": 0.0506,
+    "consumer_defensive": 0.046,
+    "technology": 0.059,
+    "communication_services": 0.0252,
+    "financial_services": 0.2542,
+    "utilities": 0.0007,
+    "industrials": 0.1459,
+    "energy": 0.19770001,
+    "healthcare": 0.0372
+  },
+  "fetchedAt": "2026-05-03T22:16:27.793624"
+}

@@ -1,0 +1,82 @@
+{
+  "ticker": "IVE",
+  "longName": "iShares S&P 500 Value ETF",
+  "summary": "The index measures the performance of the large-capitalization value sector of the U.S. equity market. The fund generally will invest at least 80% of its assets in the component securities of its index and may invest up to 20% of its assets in certain futures, options and swap contracts, cash and cash equivalents.",
+  "category": "Large Value",
+  "fundFamily": "iShares",
+  "totalAssets": 46617006080,
+  "expenseRatio": 0.18,
+  "yield": 0.0164,
+  "fundInceptionDate": 958953600,
+  "navPrice": 223.47823,
+  "previousClose": 223.67,
+  "fiftyTwoWeekHigh": 225.26,
+  "fiftyTwoWeekLow": 183.05,
+  "beta3Year": 0.89,
+  "topHoldings": [
+    {
+      "symbol": "AAPL",
+      "name": "Apple Inc",
+      "weight": 0.0689686
+    },
+    {
+      "symbol": "AMZN",
+      "name": "Amazon.com Inc",
+      "weight": 0.0354007
+    },
+    {
+      "symbol": "XOM",
+      "name": "Exxon Mobil Corp",
+      "weight": 0.0262482
+    },
+    {
+      "symbol": "WMT",
+      "name": "Walmart Inc",
+      "weight": 0.0201687
+    },
+    {
+      "symbol": "COST",
+      "name": "Costco Wholesale Corp",
+      "weight": 0.0163738
+    },
+    {
+      "symbol": "TSLA",
+      "name": "Tesla Inc",
+      "weight": 0.0147084
+    },
+    {
+      "symbol": "CVX",
+      "name": "Chevron Corp",
+      "weight": 0.0143581
+    },
+    {
+      "symbol": "PG",
+      "name": "Procter & Gamble Co",
+      "weight": 0.0124271
+    },
+    {
+      "symbol": "HD",
+      "name": "The Home Depot Inc",
+      "weight": 0.012121201
+    },
+    {
+      "symbol": "BAC",
+      "name": "Bank of America Corp",
+      "weight": 0.011975501
+    }
+  ],
+  "sectorWeightings": {
+    "realestate": 0.0337,
+    "consumer_cyclical": 0.1058,
+    "basic_materials": 0.035099998,
+    "consumer_defensive": 0.097200006,
+    "technology": 0.17809999,
+    "communication_services": 0.0364,
+    "financial_services": 0.15100001,
+    "utilities": 0.0479,
+    "industrials": 0.1083,
+    "energy": 0.0833,
+    "healthcare": 0.1232
+  },
+  "fetchedAt": "2026-05-03T22:16:19.414008"
+}

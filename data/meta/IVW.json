@@ -1,0 +1,82 @@
+{
+  "ticker": "IVW",
+  "longName": "iShares S&P 500 Growth ETF",
+  "summary": "The index measures the performance of the large-capitalization growth sector of the U.S. equity market. The fund generally will invest at least 80% of its assets in the component securities of its underlying index and may invest up to 20% of its assets in certain futures, options and swap contracts, cash and cash equivalents. It is non-diversified.",
+  "category": "Large Growth",
+  "fundFamily": "iShares",
+  "totalAssets": 60921368576,
+  "expenseRatio": 0.18,
+  "yield": 0.0043,
+  "fundInceptionDate": 958953600,
+  "navPrice": 130.57043,
+  "previousClose": 129.82,
+  "fiftyTwoWeekHigh": 131.21,
+  "fiftyTwoWeekLow": 95.32,
+  "beta3Year": 1.11,
+  "topHoldings": [
+    {
+      "symbol": "NVDA",
+      "name": "NVIDIA Corp",
+      "weight": 0.1461874
+    },
+    {
+      "symbol": "MSFT",
+      "name": "Microsoft Corp",
+      "weight": 0.09481809
+    },
+    {
+      "symbol": "AAPL",
+      "name": "Apple Inc",
+      "weight": 0.064263
+    },
+    {
+      "symbol": "GOOGL",
+      "name": "Alphabet Inc Class A",
+      "weight": 0.057750802
+    },
+    {
+      "symbol": "AVGO",
+      "name": "Broadcom Inc",
+      "weight": 0.0506206
+    },
+    {
+      "symbol": "GOOG",
+      "name": "Alphabet Inc Class C",
+      "weight": 0.046276998
+    },
+    {
+      "symbol": "META",
+      "name": "Meta Platforms Inc Class A",
+      "weight": 0.043165397
+    },
+    {
+      "symbol": "AMZN",
+      "name": "Amazon.com Inc",
+      "weight": 0.0371963
+    },
+    {
+      "symbol": "BRK-B",
+      "name": "Berkshire Hathaway Inc Class B",
+      "weight": 0.030311698
+    },
+    {
+      "symbol": "LLY",
+      "name": "Eli Lilly and Co",
+      "weight": 0.0251415
+    }
+  ],
+  "sectorWeightings": {
+    "realestate": 0.0063,
+    "consumer_cyclical": 0.0946,
+    "basic_materials": 0.0041,
+    "consumer_defensive": 0.011,
+    "technology": 0.48229998,
+    "communication_services": 0.1684,
+    "financial_services": 0.09810001,
+    "utilities": 0.0045,
+    "industrials": 0.0627,
+    "energy": 0.0,
+    "healthcare": 0.0681
+  },
+  "fetchedAt": "2026-05-03T22:16:14.836698"
+}

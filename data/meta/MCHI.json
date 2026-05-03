@@ -2,16 +2,16 @@
   "ticker": "MCHI",
   "longName": "iShares MSCI China ETF",
   "summary": "The fund generally will invest at least 80% of its assets in the component securities of the underlying index and in investments that have economic characteristics that are substantially identical to the component securities of the underlying index. The index is a free float-adjusted market capitalization-weighted index that is designed to measure the performance of equity securities in the top 85% in market capitalization of the Chinese equity securities markets, as represented by the H-shares and B-shares markets. The fund is non-diversified.",
-  "category": "China Region",
+  "category": "Greater China Region",
   "fundFamily": "iShares",
   "totalAssets": 6613231616,
   "expenseRatio": 0.59,
   "yield": 0.0227,
   "fundInceptionDate": 1301356800,
-  "navPrice": 57.21357,
-  "previousClose": 56.76,
+  "navPrice": 57.56081,
+  "previousClose": 57.57,
   "fiftyTwoWeekHigh": 67.37,
-  "fiftyTwoWeekLow": 51.48,
+  "fiftyTwoWeekLow": 52.53,
   "beta3Year": 0.73,
   "topHoldings": [
     {
@@ -78,5 +78,5 @@
     "energy": 0.0357,
     "healthcare": 0.0546
   },
-  "fetchedAt": "2026-04-30T21:07:28.713904"
+  "fetchedAt": "2026-05-03T22:18:14.653173"
 }

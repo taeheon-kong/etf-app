@@ -1,0 +1,18 @@
+{
+  "ticker": "BIV",
+  "longName": "Vanguard Intermediate-Term Bond Index Fund",
+  "summary": "This index includes all medium and larger issues of U.S. government, investment-grade corporate and investment-grade international dollar-denominated bonds that have maturities between 5 and 10 years and are publicly issued. All of the fund's investments will be selected through the sampling process, and at least 80% of its assets will be invested in bonds held in the index.",
+  "category": "Intermediate Core Bond",
+  "fundFamily": "Vanguard",
+  "totalAssets": 51797950464,
+  "expenseRatio": 0.03,
+  "yield": 0.040999997,
+  "fundInceptionDate": 762480000,
+  "navPrice": 76.77,
+  "previousClose": 76.7465,
+  "fiftyTwoWeekHigh": 79.09,
+  "fiftyTwoWeekLow": 75.28,
+  "beta3Year": 1.03,
+  "topHoldings": [],
+  "fetchedAt": "2026-05-03T22:17:17.936955"
+}

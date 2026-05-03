@@ -1,0 +1,24 @@
+{
+  "ticker": "TMF",
+  "longName": "Direxion Daily 20+ Year Treasury Bull 3X Shares",
+  "summary": "The fund, under normal circumstances, invests at least 80% of its net assets in financial instruments, such as swap agreements, securities of the index, and ETFs that track the index, that, in combination, provide 3X daily leveraged exposure to the index, consistent with the fund's investment objective. The index is a market value weighted index that includes publicly issued U.S. Treasury securities that have a remaining maturity of greater than 20 years. The fund is non-diversified.",
+  "category": "Trading--Leveraged Debt",
+  "fundFamily": "Direxion Funds",
+  "totalAssets": 2984871424,
+  "expenseRatio": 0.9,
+  "yield": 0.0402,
+  "fundInceptionDate": 1239840000,
+  "navPrice": 35.163,
+  "previousClose": 34.82,
+  "fiftyTwoWeekHigh": 44.24,
+  "fiftyTwoWeekLow": 33.51,
+  "beta3Year": 7.14,
+  "topHoldings": [
+    {
+      "symbol": "TLT",
+      "name": "iShares 20+ Year Treasury Bond ETF",
+      "weight": 0.66498846
+    }
+  ],
+  "fetchedAt": "2026-05-03T22:18:53.565842"
+}

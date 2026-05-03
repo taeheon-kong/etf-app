@@ -1,0 +1,82 @@
+{
+  "ticker": "IJH",
+  "longName": "iShares Core S&P Mid-Cap ETF",
+  "summary": "The index measures the performance of the mid-capitalization sector of the U.S. equity market, as determined by SPDJI. The fund generally will invest at least 80% of its assets in the component securities of its index and may invest up to 20% of its assets in certain futures, options and swap contracts, cash and cash equivalents.",
+  "category": "Mid-Cap Blend",
+  "fundFamily": "iShares",
+  "totalAssets": 106048217088,
+  "expenseRatio": 0.05,
+  "yield": 0.013200001,
+  "fundInceptionDate": 958953600,
+  "navPrice": 72.79724,
+  "previousClose": 72.77,
+  "fiftyTwoWeekHigh": 74.03,
+  "fiftyTwoWeekLow": 57.76,
+  "beta3Year": 1.14,
+  "topHoldings": [
+    {
+      "symbol": "FTI",
+      "name": "TechnipFMC PLC",
+      "weight": 0.0087382
+    },
+    {
+      "symbol": "CASY",
+      "name": "Casey's General Stores Inc",
+      "weight": 0.0084304
+    },
+    {
+      "symbol": "UTHR",
+      "name": "United Therapeutics Corp",
+      "weight": 0.0079783
+    },
+    {
+      "symbol": "CW",
+      "name": "Curtiss-Wright Corp",
+      "weight": 0.007847399
+    },
+    {
+      "symbol": "FLEX",
+      "name": "Flex Ltd",
+      "weight": 0.0075207
+    },
+    {
+      "symbol": "XPO",
+      "name": "XPO Inc",
+      "weight": 0.0071215997
+    },
+    {
+      "symbol": "WWD",
+      "name": "Woodward Inc",
+      "weight": 0.0066676997
+    },
+    {
+      "symbol": "RGLD",
+      "name": "Royal Gold Inc",
+      "weight": 0.006443
+    },
+    {
+      "symbol": "USFD",
+      "name": "US Foods Holding Corp",
+      "weight": 0.0063546
+    },
+    {
+      "symbol": "BURL",
+      "name": "Burlington Stores Inc",
+      "weight": 0.0063221995
+    }
+  ],
+  "sectorWeightings": {
+    "realestate": 0.0749,
+    "consumer_cyclical": 0.1169,
+    "basic_materials": 0.048899997,
+    "consumer_defensive": 0.0395,
+    "technology": 0.1415,
+    "communication_services": 0.0104,
+    "financial_services": 0.1435,
+    "utilities": 0.031600002,
+    "industrials": 0.2439,
+    "energy": 0.0571,
+    "healthcare": 0.091800004
+  },
+  "fetchedAt": "2026-05-03T22:16:24.470923"
+}

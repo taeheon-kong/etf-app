@@ -1,0 +1,82 @@
+{
+  "ticker": "COPX",
+  "longName": "Global X Copper Miners ETF",
+  "summary": "The fund invests at least 80% of its total assets in the securities of the underlying index and in American Depositary Receipts (\"ADRs\") and Global Depositary Receipts (\"GDRs\") based on the securities in the underlying index. The underlying index is designed to measure broad-based equity market performance of global companies involved in the copper mining industry. The fund is non-diversified.",
+  "category": "Natural Resources",
+  "fundFamily": "Global X Funds",
+  "totalAssets": 6707480576,
+  "expenseRatio": 0.65,
+  "yield": 0.025899999,
+  "fundInceptionDate": 1271635200,
+  "navPrice": 79.18,
+  "previousClose": 79.61,
+  "fiftyTwoWeekHigh": 99.99,
+  "fiftyTwoWeekLow": 38.28,
+  "beta3Year": 1.68,
+  "topHoldings": [
+    {
+      "symbol": "LUN.TO",
+      "name": "Lundin Mining Corp",
+      "weight": 0.06255
+    },
+    {
+      "symbol": "GLEN.L",
+      "name": "Glencore PLC",
+      "weight": 0.061444703
+    },
+    {
+      "symbol": "5713.T",
+      "name": "Sumitomo Metal Mining Co Ltd",
+      "weight": 0.0586414
+    },
+    {
+      "symbol": "FCX",
+      "name": "Freeport-McMoRan Inc",
+      "weight": 0.054570198
+    },
+    {
+      "symbol": "KGH.WA",
+      "name": "KGHM Polska Miedz SA",
+      "weight": 0.0531043
+    },
+    {
+      "symbol": "SCCO",
+      "name": "Southern Copper Corp",
+      "weight": 0.051538803
+    },
+    {
+      "symbol": "HBM.TO",
+      "name": "Hudbay Minerals Inc",
+      "weight": 0.0474896
+    },
+    {
+      "symbol": "ANTO.L",
+      "name": "Antofagasta PLC",
+      "weight": 0.0469414
+    },
+    {
+      "symbol": "BHP.AX",
+      "name": "BHP Group Ltd",
+      "weight": 0.046571102
+    },
+    {
+      "symbol": "TECK-B.TO",
+      "name": "Teck Resources Ltd Class B (Sub Voting)",
+      "weight": 0.0457115
+    }
+  ],
+  "sectorWeightings": {
+    "realestate": 0.0,
+    "consumer_cyclical": 0.0,
+    "basic_materials": 0.96860003,
+    "consumer_defensive": 0.0,
+    "technology": 0.0,
+    "communication_services": 0.0,
+    "financial_services": 0.0,
+    "utilities": 0.0,
+    "industrials": 0.031400003,
+    "energy": 0.0,
+    "healthcare": 0.0
+  },
+  "fetchedAt": "2026-05-03T22:17:32.660079"
+}

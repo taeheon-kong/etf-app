@@ -1,0 +1,52 @@
+{
+  "ticker": "LABU",
+  "longName": "Direxion Daily S&P Biotech Bull 3X Shares",
+  "summary": "The fund, under normal circumstances, invests at least 80% of its net assets in financial instruments, such as swap agreements, securities of the index, and ETFs that track the index, that, in combination, provide 3X daily leveraged exposure to the index, consistent with the fund's investment objective. The index is designed to measure the performance of the biotechnology sub-industry based on the Global Industry Classification Standards (\"GICS\"). The fund is non-diversified.",
+  "category": "Trading--Leveraged Equity",
+  "fundFamily": "Direxion Funds",
+  "totalAssets": 561001216,
+  "expenseRatio": 0.96,
+  "yield": 0.0074,
+  "fundInceptionDate": 1432771200,
+  "navPrice": 173.83,
+  "previousClose": 177.56,
+  "fiftyTwoWeekHigh": 212.45,
+  "fiftyTwoWeekLow": 44.685,
+  "beta3Year": 3.75,
+  "topHoldings": [
+    {
+      "symbol": "APLS",
+      "name": "Apellis Pharmaceuticals Inc",
+      "weight": 0.0127308
+    },
+    {
+      "symbol": "ALKS",
+      "name": "Alkermes PLC",
+      "weight": 0.010070699
+    },
+    {
+      "symbol": "MDGL",
+      "name": "Madrigal Pharmaceuticals Inc",
+      "weight": 0.0095938
+    },
+    {
+      "symbol": "TGTX",
+      "name": "TG Therapeutics Inc",
+      "weight": 0.0093668
+    }
+  ],
+  "sectorWeightings": {
+    "realestate": 0.0,
+    "consumer_cyclical": 0.0,
+    "basic_materials": 0.0,
+    "consumer_defensive": 0.0,
+    "technology": 0.0,
+    "communication_services": 0.0,
+    "financial_services": 0.0017,
+    "utilities": 0.0,
+    "industrials": 0.0,
+    "energy": 0.0,
+    "healthcare": 0.9983
+  },
+  "fetchedAt": "2026-05-03T22:18:52.621396"
+}

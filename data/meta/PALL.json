@@ -1,0 +1,18 @@
+{
+  "ticker": "PALL",
+  "longName": "abrdn Physical Palladium Shares ETF",
+  "summary": "The fund is designed for investors who want a cost-effective and convenient way to invest in palladium with minimal credit risk.",
+  "category": "Commodities Focused",
+  "fundFamily": "Aberdeen Standard Investments",
+  "totalAssets": 789607936,
+  "expenseRatio": 0.6,
+  "yield": 0.0,
+  "fundInceptionDate": 1262908800,
+  "navPrice": 138.60323,
+  "previousClose": 138.54,
+  "fiftyTwoWeekHigh": 197.41,
+  "fiftyTwoWeekLow": 85.8,
+  "beta3Year": 0.23,
+  "topHoldings": [],
+  "fetchedAt": "2026-05-03T22:17:26.500132"
+}

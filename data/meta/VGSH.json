@@ -1,0 +1,18 @@
+{
+  "ticker": "VGSH",
+  "longName": "Vanguard Short-Term Treasury Index Fund ETF Shares",
+  "summary": "The fund employs an indexing investment approach designed to track the performance of the Bloomberg US Treasury 1-3 Year Index. This index includes fixed income securities issued by the U.S. Treasury (not including inflation-protected securities, floating rate securities and certain other security types), all with maturities between 1 and 3 years. At least 80% of the fund's assets will be invested in bonds included in the index.",
+  "category": "Short Government",
+  "fundFamily": "Vanguard",
+  "totalAssets": 33368180736,
+  "expenseRatio": 0.03,
+  "yield": 0.0395,
+  "fundInceptionDate": 1258588800,
+  "navPrice": 58.29,
+  "previousClose": 58.47,
+  "fiftyTwoWeekHigh": 59.01,
+  "fiftyTwoWeekLow": 58.29,
+  "beta3Year": 0.24,
+  "topHoldings": [],
+  "fetchedAt": "2026-05-03T22:17:01.729543"
+}

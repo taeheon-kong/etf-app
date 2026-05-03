@@ -1,0 +1,82 @@
+{
+  "ticker": "VIS",
+  "longName": "Vanguard Industrials Index Fund ETF Shares",
+  "summary": "The fund employs an indexing investment approach designed to track the performance of the index, an index made up of stocks of large, mid-size, and small U.S. companies within the industrials sector, as classified under the GICS. The Advisor attempts to replicate the target index by seeking to invest all, or substantially all, of its assets in the stocks that make up the index, in order to hold each stock in approximately the same proportion as its weighting in the index.",
+  "category": "Industrials",
+  "fundFamily": "Vanguard",
+  "totalAssets": 7597085184,
+  "expenseRatio": 0.09,
+  "yield": 0.0097,
+  "fundInceptionDate": 1095897600,
+  "navPrice": 337.47,
+  "previousClose": 340.02,
+  "fiftyTwoWeekHigh": 345.71,
+  "fiftyTwoWeekLow": 251.84,
+  "beta3Year": 1.31,
+  "topHoldings": [
+    {
+      "symbol": "CAT",
+      "name": "Caterpillar Inc",
+      "weight": 0.050892
+    },
+    {
+      "symbol": "GE",
+      "name": "GE Aerospace",
+      "weight": 0.045946103
+    },
+    {
+      "symbol": "RTX",
+      "name": "RTX Corp",
+      "weight": 0.0397004
+    },
+    {
+      "symbol": "GEV",
+      "name": "GE Vernova Inc",
+      "weight": 0.0363533
+    },
+    {
+      "symbol": "BA",
+      "name": "Boeing Co",
+      "weight": 0.0239233
+    },
+    {
+      "symbol": "DE",
+      "name": "Deere & Co",
+      "weight": 0.0222146
+    },
+    {
+      "symbol": "HON",
+      "name": "Honeywell International Inc",
+      "weight": 0.0220272
+    },
+    {
+      "symbol": "UBER",
+      "name": "Uber Technologies Inc",
+      "weight": 0.021794401
+    },
+    {
+      "symbol": "ETN",
+      "name": "Eaton Corp PLC",
+      "weight": 0.021323198
+    },
+    {
+      "symbol": "LMT",
+      "name": "Lockheed Martin Corp",
+      "weight": 0.0193214
+    }
+  ],
+  "sectorWeightings": {
+    "realestate": 0.0,
+    "consumer_cyclical": 0.0093,
+    "basic_materials": 0.0025,
+    "consumer_defensive": 0.0,
+    "technology": 0.0651,
+    "communication_services": 0.0002,
+    "financial_services": 0.0021,
+    "utilities": 0.00059999997,
+    "industrials": 0.91980004,
+    "energy": 0.0002,
+    "healthcare": 0.0002
+  },
+  "fetchedAt": "2026-05-03T22:17:55.904307"
+}

@@ -1,0 +1,82 @@
+{
+  "ticker": "EWG",
+  "longName": "iShares MSCI Germany ETF",
+  "summary": "The fund generally will invest at least 80% of its assets in the component securities of its underlying index and in depositary receipts representing securities of the underlying index. The underlying index is designed to measure the performance of the large- and mid-capitalization segments of the German equity market. The fund is non-diversified.",
+  "category": "Focused Region",
+  "fundFamily": "iShares",
+  "totalAssets": 1397146368,
+  "expenseRatio": 0.49,
+  "yield": 0.0171,
+  "fundInceptionDate": 826588800,
+  "navPrice": 42.34866,
+  "previousClose": 42.26,
+  "fiftyTwoWeekHigh": 44.65,
+  "fiftyTwoWeekLow": 37.98,
+  "beta3Year": 1.06,
+  "topHoldings": [
+    {
+      "symbol": "SIE.DE",
+      "name": "Siemens AG",
+      "weight": 0.099342406
+    },
+    {
+      "symbol": "SAP.DE",
+      "name": "SAP SE",
+      "weight": 0.09747639
+    },
+    {
+      "symbol": "ALV.DE",
+      "name": "Allianz SE",
+      "weight": 0.086855605
+    },
+    {
+      "symbol": "DTE.DE",
+      "name": "Deutsche Telekom AG",
+      "weight": 0.0746902
+    },
+    {
+      "symbol": "ENR.DE",
+      "name": "Siemens Energy AG Ordinary Shares",
+      "weight": 0.070054
+    },
+    {
+      "symbol": "MUV2.DE",
+      "name": "Munchener Ruckversicherungs-Gesellschaft AG",
+      "weight": 0.0447832
+    },
+    {
+      "symbol": "RHM.DE",
+      "name": "Rheinmetall AG",
+      "weight": 0.042239398
+    },
+    {
+      "symbol": "IFX.DE",
+      "name": "Infineon Technologies AG",
+      "weight": 0.0315339
+    },
+    {
+      "symbol": "DB1.DE",
+      "name": "Deutsche Boerse AG",
+      "weight": 0.0300459
+    },
+    {
+      "symbol": "BAS.DE",
+      "name": "Basf SE",
+      "weight": 0.029718699
+    }
+  ],
+  "sectorWeightings": {
+    "realestate": 0.013200001,
+    "consumer_cyclical": 0.0863,
+    "basic_materials": 0.0583,
+    "consumer_defensive": 0.0156,
+    "technology": 0.13159999,
+    "communication_services": 0.0799,
+    "financial_services": 0.2199,
+    "utilities": 0.050300002,
+    "industrials": 0.2782,
+    "energy": 0.0,
+    "healthcare": 0.066700004
+  },
+  "fetchedAt": "2026-05-03T22:18:19.420840"
+}

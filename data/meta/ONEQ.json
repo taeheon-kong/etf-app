@@ -1,0 +1,77 @@
+{
+  "ticker": "ONEQ",
+  "longName": "Fidelity Nasdaq Composite Index ETF",
+  "summary": "The fund normally invests at least 80% of assets in common stocks included in the index. The advisor uses statistical sampling techniques that take into account such factors as capitalization, industry exposures, dividend yield, price/earnings (P/E) ratio, price/book (P/B) ratio, and earnings growth to create a portfolio of securities listed in the Nasdaq Composite Index® that have a similar investment profile to the entire index.",
+  "category": "Large Growth",
+  "fundFamily": "Fidelity Investments",
+  "totalAssets": 8595072000,
+  "expenseRatio": 0.21,
+  "yield": 0.0083,
+  "fundInceptionDate": 1064448000,
+  "navPrice": 98.84477,
+  "previousClose": 98.14,
+  "fiftyTwoWeekHigh": 99.28,
+  "fiftyTwoWeekLow": 68.82,
+  "beta3Year": 1.18,
+  "topHoldings": [
+    {
+      "symbol": "NVDA",
+      "name": "NVIDIA Corp",
+      "weight": 0.1158903
+    },
+    {
+      "symbol": "AAPL",
+      "name": "Apple Inc",
+      "weight": 0.101890095
+    },
+    {
+      "symbol": "MSFT",
+      "name": "Microsoft Corp",
+      "weight": 0.0751731
+    },
+    {
+      "symbol": "AMZN",
+      "name": "Amazon.com Inc",
+      "weight": 0.061142202
+    },
+    {
+      "symbol": "GOOGL",
+      "name": "Alphabet Inc Class A",
+      "weight": 0.0457867
+    },
+    {
+      "symbol": "GOOG",
+      "name": "Alphabet Inc Class C",
+      "weight": 0.042655703
+    },
+    {
+      "symbol": "AVGO",
+      "name": "Broadcom Inc",
+      "weight": 0.040095802
+    },
+    {
+      "symbol": "TSLA",
+      "name": "Tesla Inc",
+      "weight": 0.038113598
+    },
+    {
+      "symbol": "META",
+      "name": "Meta Platforms Inc Class A",
+      "weight": 0.0341867
+    }
+  ],
+  "sectorWeightings": {
+    "realestate": 0.0068,
+    "consumer_cyclical": 0.13260001,
+    "basic_materials": 0.0105,
+    "consumer_defensive": 0.056799997,
+    "technology": 0.4951,
+    "communication_services": 0.1594,
+    "financial_services": 0.0328,
+    "utilities": 0.0095,
+    "industrials": 0.0312,
+    "energy": 0.0064999997,
+    "healthcare": 0.0588
+  },
+  "fetchedAt": "2026-05-03T22:15:58.072930"
+}

@@ -8,10 +8,10 @@
   "expenseRatio": 0.59,
   "yield": 0.0295,
   "fundInceptionDate": 1415318400,
-  "navPrice": 18.43,
-  "previousClose": 18.07,
+  "navPrice": 18.35,
+  "previousClose": 18.53,
   "fiftyTwoWeekHigh": 18.535,
-  "fiftyTwoWeekLow": 12.355,
+  "fiftyTwoWeekLow": 12.435,
   "beta3Year": 1.02,
   "topHoldings": [
     {
@@ -20,5 +20,5 @@
       "weight": 0.7891604
     }
   ],
-  "fetchedAt": "2026-04-30T21:07:11.362235"
+  "fetchedAt": "2026-05-03T22:17:28.308266"
 }

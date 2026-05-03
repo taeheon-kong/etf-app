@@ -1,0 +1,82 @@
+{
+  "ticker": "REZ",
+  "longName": "iShares Residential and Multisector Real Estate ETF",
+  "summary": "The fund generally will invest at least 80% of its assets in the component securities of the underlying index and may invest up to 20% of its assets in certain futures, options and swap contracts, cash and cash equivalents. The underlying index measures the performance of the residential apartments, manufactured homes, healthcare and self-storage real estate sectors of the U.S. equity market. The fund is non-diversified.",
+  "category": "Real Estate",
+  "fundFamily": "iShares",
+  "totalAssets": 785973504,
+  "expenseRatio": 0.48,
+  "yield": 0.0228,
+  "fundInceptionDate": 1177977600,
+  "navPrice": 90.06456,
+  "previousClose": 90.3183,
+  "fiftyTwoWeekHigh": 90.61,
+  "fiftyTwoWeekLow": 80.45,
+  "beta3Year": 0.94,
+  "topHoldings": [
+    {
+      "symbol": "WELL",
+      "name": "Welltower Inc",
+      "weight": 0.23173709
+    },
+    {
+      "symbol": "PSA",
+      "name": "Public Storage",
+      "weight": 0.0858766
+    },
+    {
+      "symbol": "VTR",
+      "name": "Ventas Inc",
+      "weight": 0.0768602
+    },
+    {
+      "symbol": "EXR",
+      "name": "Extra Space Storage Inc",
+      "weight": 0.0554495
+    },
+    {
+      "symbol": "EQR",
+      "name": "Equity Residential",
+      "weight": 0.045164097
+    },
+    {
+      "symbol": "AVB",
+      "name": "AvalonBay Communities Inc",
+      "weight": 0.043975603
+    },
+    {
+      "symbol": "SUI",
+      "name": "Sun Communities Inc",
+      "weight": 0.0360557
+    },
+    {
+      "symbol": "ESS",
+      "name": "Essex Property Trust Inc",
+      "weight": 0.0360497
+    },
+    {
+      "symbol": "INVH",
+      "name": "Invitation Homes Inc",
+      "weight": 0.0355394
+    },
+    {
+      "symbol": "MAA",
+      "name": "Mid-America Apartment Communities Inc",
+      "weight": 0.0332127
+    }
+  ],
+  "sectorWeightings": {
+    "realestate": 1.0,
+    "consumer_cyclical": 0.0,
+    "basic_materials": 0.0,
+    "consumer_defensive": 0.0,
+    "technology": 0.0,
+    "communication_services": 0.0,
+    "financial_services": 0.0,
+    "utilities": 0.0,
+    "industrials": 0.0,
+    "energy": 0.0,
+    "healthcare": 0.0
+  },
+  "fetchedAt": "2026-05-03T22:17:36.236648"
+}

@@ -1,0 +1,82 @@
+{
+  "ticker": "ARKG",
+  "longName": "ARK Genomic Revolution ETF",
+  "summary": "The fund is an actively-managed exchange-traded fund (\"ETF\") that will invest under normal circumstances primarily (at least 80% of its assets) in domestic and foreign equity securities of companies across multiple sectors, including healthcare, information technology, materials, energy and consumer discretionary, that are relevant to the fund's investment theme of the genomics revolution (\"Genomics Revolution Companies\"). It is non-diversified.",
+  "category": "Health",
+  "fundFamily": "ARK ETF Trust",
+  "totalAssets": 1042499968,
+  "expenseRatio": 0.75,
+  "yield": 0.0,
+  "fundInceptionDate": 1414713600,
+  "navPrice": 30.34,
+  "previousClose": 29.87,
+  "fiftyTwoWeekHigh": 34.39,
+  "fiftyTwoWeekLow": 20.25,
+  "beta3Year": 2.53,
+  "topHoldings": [
+    {
+      "symbol": "CRSP",
+      "name": "CRISPR Therapeutics AG",
+      "weight": 0.0921204
+    },
+    {
+      "symbol": "TWST",
+      "name": "Twist Bioscience Corp",
+      "weight": 0.090399906
+    },
+    {
+      "symbol": "TEM",
+      "name": "Tempus AI Inc Class A common stock",
+      "weight": 0.087013505
+    },
+    {
+      "symbol": "TXG",
+      "name": "10x Genomics Inc Ordinary Shares - Class A",
+      "weight": 0.062929004
+    },
+    {
+      "symbol": "BEAM",
+      "name": "Beam Therapeutics Inc",
+      "weight": 0.048526403
+    },
+    {
+      "symbol": "PSNL",
+      "name": "Personalis Inc",
+      "weight": 0.0468293
+    },
+    {
+      "symbol": "NTRA",
+      "name": "Natera Inc",
+      "weight": 0.044699203
+    },
+    {
+      "symbol": "ILMN",
+      "name": "Illumina Inc",
+      "weight": 0.044395197
+    },
+    {
+      "symbol": "GH",
+      "name": "Guardant Health Inc",
+      "weight": 0.0420139
+    },
+    {
+      "symbol": "NTLA",
+      "name": "Intellia Therapeutics Inc",
+      "weight": 0.035724398
+    }
+  ],
+  "sectorWeightings": {
+    "realestate": 0.0,
+    "consumer_cyclical": 0.0,
+    "basic_materials": 0.0,
+    "consumer_defensive": 0.0,
+    "technology": 0.0,
+    "communication_services": 0.0,
+    "financial_services": 0.0,
+    "utilities": 0.0,
+    "industrials": 0.0,
+    "energy": 0.0,
+    "healthcare": 1.0
+  },
+  "fetchedAt": "2026-05-03T22:18:36.007928"
+}

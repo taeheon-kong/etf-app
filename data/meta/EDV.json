@@ -1,0 +1,18 @@
+{
+  "ticker": "EDV",
+  "longName": "Vanguard Extended Duration Treasury Index Fund ETF Shares",
+  "summary": "The advisor employs an indexing investment approach designed to track the performance of the Bloomberg U.S. Treasury STRIPS 20-30 Year Equal Par Bond Index. This index includes zero-coupon U.S. Treasury securities (Treasury STRIPS), which are backed by the full faith and credit of the U.S. government, with maturities ranging from 20 to 30 years. The fund invests by sampling the index. At least 80% of it's assets will be invested in U.S. Treasury securities held in the index.",
+  "category": "Long Government",
+  "fundFamily": "Vanguard",
+  "totalAssets": 4688987648,
+  "expenseRatio": 0.05,
+  "yield": 0.0496,
+  "fundInceptionDate": 1196899200,
+  "navPrice": 63.29,
+  "previousClose": 63.13,
+  "fiftyTwoWeekHigh": 71.31,
+  "fiftyTwoWeekLow": 61.56,
+  "beta3Year": 3.38,
+  "topHoldings": [],
+  "fetchedAt": "2026-05-03T22:16:52.344737"
+}

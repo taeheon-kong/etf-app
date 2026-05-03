@@ -1,0 +1,82 @@
+{
+  "ticker": "IUSG",
+  "longName": "iShares Core S&P U.S. Growth ETF",
+  "summary": "The fund generally will invest at least 80% of its assets in the component securities of its underlying index and may invest up to 20% of its assets in certain futures, options and swap contracts, cash and cash equivalents. It is non-diversified.",
+  "category": "Large Growth",
+  "fundFamily": "iShares",
+  "totalAssets": 25966977024,
+  "expenseRatio": 0.04,
+  "yield": 0.0058,
+  "fundInceptionDate": 964396800,
+  "navPrice": 178.54082,
+  "previousClose": 177.54,
+  "fiftyTwoWeekHigh": 179.36,
+  "fiftyTwoWeekLow": 130.78,
+  "beta3Year": 1.11,
+  "topHoldings": [
+    {
+      "symbol": "NVDA",
+      "name": "NVIDIA Corp",
+      "weight": 0.1383622
+    },
+    {
+      "symbol": "MSFT",
+      "name": "Microsoft Corp",
+      "weight": 0.0897427
+    },
+    {
+      "symbol": "AAPL",
+      "name": "Apple Inc",
+      "weight": 0.060823202
+    },
+    {
+      "symbol": "GOOGL",
+      "name": "Alphabet Inc Class A",
+      "weight": 0.0546595
+    },
+    {
+      "symbol": "AVGO",
+      "name": "Broadcom Inc",
+      "weight": 0.0479109
+    },
+    {
+      "symbol": "GOOG",
+      "name": "Alphabet Inc Class C",
+      "weight": 0.043799803
+    },
+    {
+      "symbol": "META",
+      "name": "Meta Platforms Inc Class A",
+      "weight": 0.0408548
+    },
+    {
+      "symbol": "AMZN",
+      "name": "Amazon.com Inc",
+      "weight": 0.0352053
+    },
+    {
+      "symbol": "BRK-B",
+      "name": "Berkshire Hathaway Inc Class B",
+      "weight": 0.0286892
+    },
+    {
+      "symbol": "LLY",
+      "name": "Eli Lilly and Co",
+      "weight": 0.0237957
+    }
+  ],
+  "sectorWeightings": {
+    "realestate": 0.0089,
+    "consumer_cyclical": 0.094799995,
+    "basic_materials": 0.0058999998,
+    "consumer_defensive": 0.0116,
+    "technology": 0.467,
+    "communication_services": 0.1602,
+    "financial_services": 0.0967,
+    "utilities": 0.0053,
+    "industrials": 0.075500004,
+    "energy": 0.002,
+    "healthcare": 0.0722
+  },
+  "fetchedAt": "2026-05-03T22:16:13.028105"
+}

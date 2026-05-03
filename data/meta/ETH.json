@@ -1,0 +1,18 @@
+{
+  "ticker": "ETH",
+  "longName": "Grayscale Ethereum Mini Trust ETF",
+  "summary": "While an investment in the Shares is not a direct investment in Ether, the Shares are designed to provide investors with a cost-effective and convenient way to gain investment exposure to Ether.",
+  "category": "Digital Assets",
+  "fundFamily": "Grayscale",
+  "totalAssets": 1805017728,
+  "expenseRatio": 0.15,
+  "yield": 0.0,
+  "fundInceptionDate": 1721692800,
+  "navPrice": 21.87,
+  "previousClose": 21.46,
+  "fiftyTwoWeekHigh": 45.785,
+  "fiftyTwoWeekLow": 16.495,
+  "beta3Year": 0.0,
+  "topHoldings": [],
+  "fetchedAt": "2026-05-03T22:18:58.728807"
+}

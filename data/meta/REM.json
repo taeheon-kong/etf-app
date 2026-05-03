@@ -1,0 +1,82 @@
+{
+  "ticker": "REM",
+  "longName": "iShares Mortgage Real Estate Capped ETF",
+  "summary": "The fund generally will invest at least 80% of its assets in the component securities of its underlying index and may invest up to 20% of its assets in S-2 certain futures, options and swap contracts, cash and cash equivalents. The fund is non-diversified.",
+  "category": "Real Estate",
+  "fundFamily": "iShares",
+  "totalAssets": 545352064,
+  "expenseRatio": 0.48,
+  "yield": 0.0922,
+  "fundInceptionDate": 1177977600,
+  "navPrice": 23.11143,
+  "previousClose": 23.02,
+  "fiftyTwoWeekHigh": 24.05,
+  "fiftyTwoWeekLow": 20.35,
+  "beta3Year": 1.17,
+  "topHoldings": [
+    {
+      "symbol": "NLY",
+      "name": "Annaly Capital Management Inc",
+      "weight": 0.2171077
+    },
+    {
+      "symbol": "AGNC",
+      "name": "AGNC Investment Corp",
+      "weight": 0.1419722
+    },
+    {
+      "symbol": "STWD",
+      "name": "Starwood Property Trust Inc",
+      "weight": 0.0762047
+    },
+    {
+      "symbol": "BXMT",
+      "name": "Blackstone Mortgage Trust Inc Class A",
+      "weight": 0.0458886
+    },
+    {
+      "symbol": "RITM",
+      "name": "Rithm Capital Corp",
+      "weight": 0.045197703
+    },
+    {
+      "symbol": "DX",
+      "name": "Dynex Capital Inc",
+      "weight": 0.0436805
+    },
+    {
+      "symbol": "ARR",
+      "name": "ARMOUR Residential REIT Inc",
+      "weight": 0.0407121
+    },
+    {
+      "symbol": "ABR",
+      "name": "Arbor Realty Trust Inc",
+      "weight": 0.032397497
+    },
+    {
+      "symbol": "ARI",
+      "name": "Apollo Commercial Real Estate Finance Inc",
+      "weight": 0.031892702
+    },
+    {
+      "symbol": "EFC",
+      "name": "Ellington Financial Inc",
+      "weight": 0.0312241
+    }
+  ],
+  "sectorWeightings": {
+    "realestate": 1.0,
+    "consumer_cyclical": 0.0,
+    "basic_materials": 0.0,
+    "consumer_defensive": 0.0,
+    "technology": 0.0,
+    "communication_services": 0.0,
+    "financial_services": 0.0,
+    "utilities": 0.0,
+    "industrials": 0.0,
+    "energy": 0.0,
+    "healthcare": 0.0
+  },
+  "fetchedAt": "2026-05-03T22:17:37.941216"
+}

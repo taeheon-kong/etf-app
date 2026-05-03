@@ -1,0 +1,82 @@
+{
+  "ticker": "EWC",
+  "longName": "iShares MSCI Canada ETF",
+  "summary": "The fund generally will invest at least 80% of its assets in the component securities of its underlying index and in investments that have economic characteristics that are substantially identical to the component securities of its underlying index. The underlying index is designed to measure broad-based equity performance in Canada. The underlying index includes large- and mid-capitalization companies and may change over time.",
+  "category": "Focused Region",
+  "fundFamily": "iShares",
+  "totalAssets": 4682100224,
+  "expenseRatio": 0.5,
+  "yield": 0.014199999,
+  "fundInceptionDate": 826588800,
+  "navPrice": 58.39582,
+  "previousClose": 58.6,
+  "fiftyTwoWeekHigh": 58.89,
+  "fiftyTwoWeekLow": 42.57,
+  "beta3Year": 0.88,
+  "topHoldings": [
+    {
+      "symbol": "RY",
+      "name": "Royal Bank of Canada",
+      "weight": 0.0788646
+    },
+    {
+      "symbol": "TD",
+      "name": "The Toronto-Dominion Bank",
+      "weight": 0.0550821
+    },
+    {
+      "symbol": "SHOP",
+      "name": "Shopify Inc Registered Shs -A- Subord Vtg",
+      "weight": 0.050640102
+    },
+    {
+      "symbol": "ENB.TO",
+      "name": "Enbridge Inc",
+      "weight": 0.041277498
+    },
+    {
+      "symbol": "AEM.TO",
+      "name": "Agnico Eagle Mines Ltd",
+      "weight": 0.035573002
+    },
+    {
+      "symbol": "CNQ.TO",
+      "name": "Canadian Natural Resources Ltd",
+      "weight": 0.0354731
+    },
+    {
+      "symbol": "BMO.TO",
+      "name": "Bank of Montreal",
+      "weight": 0.0334552
+    },
+    {
+      "symbol": "CM.TO",
+      "name": "Canadian Imperial Bank of Commerce",
+      "weight": 0.030727401
+    },
+    {
+      "symbol": "BNS.TO",
+      "name": "Bank of Nova Scotia",
+      "weight": 0.029921701
+    },
+    {
+      "symbol": "BN.TO",
+      "name": "Brookfield Corp Registered Shs -A- Limited Vtg",
+      "weight": 0.0291664
+    }
+  ],
+  "sectorWeightings": {
+    "realestate": 0.002,
+    "consumer_cyclical": 0.0374,
+    "basic_materials": 0.16319999,
+    "consumer_defensive": 0.0345,
+    "technology": 0.0837,
+    "communication_services": 0.007900001,
+    "financial_services": 0.36029997,
+    "utilities": 0.023699999,
+    "industrials": 0.0911,
+    "energy": 0.19629999,
+    "healthcare": 0.0
+  },
+  "fetchedAt": "2026-05-03T22:18:21.349269"
+}

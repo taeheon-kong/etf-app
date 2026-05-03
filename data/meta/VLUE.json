@@ -1,0 +1,82 @@
+{
+  "ticker": "VLUE",
+  "longName": "iShares MSCI USA Value Factor ETF",
+  "summary": "The fund generally will invest at least 80% of its assets in the component securities of the underlying index and may invest up to 20% of its assets in certain futures, options and swap contracts, cash and cash equivalents. The index is based on a traditional market capitalization-weighted parent index, the MSCI USA Index (the \"parent index\"). The parent index includes U.S. large- and mid- capitalization stocks.",
+  "category": "Large Value",
+  "fundFamily": "iShares",
+  "totalAssets": 10015417344,
+  "expenseRatio": 0.15,
+  "yield": 0.02,
+  "fundInceptionDate": 1366070400,
+  "navPrice": 168.33212,
+  "previousClose": 167.07,
+  "fiftyTwoWeekHigh": 169.2,
+  "fiftyTwoWeekLow": 103.02,
+  "beta3Year": 1.0,
+  "topHoldings": [
+    {
+      "symbol": "MU",
+      "name": "Micron Technology Inc",
+      "weight": 0.08890139
+    },
+    {
+      "symbol": "CSCO",
+      "name": "Cisco Systems Inc",
+      "weight": 0.0532419
+    },
+    {
+      "symbol": "INTC",
+      "name": "Intel Corp",
+      "weight": 0.050766703
+    },
+    {
+      "symbol": "AMAT",
+      "name": "Applied Materials Inc",
+      "weight": 0.0371085
+    },
+    {
+      "symbol": "GM",
+      "name": "General Motors Co",
+      "weight": 0.0358005
+    },
+    {
+      "symbol": "T",
+      "name": "AT&T Inc",
+      "weight": 0.0327801
+    },
+    {
+      "symbol": "VZ",
+      "name": "Verizon Communications Inc",
+      "weight": 0.0324854
+    },
+    {
+      "symbol": "MRK",
+      "name": "Merck & Co Inc",
+      "weight": 0.0202014
+    },
+    {
+      "symbol": "C",
+      "name": "Citigroup Inc",
+      "weight": 0.020139402
+    },
+    {
+      "symbol": "BAC",
+      "name": "Bank of America Corp",
+      "weight": 0.020062398
+    }
+  ],
+  "sectorWeightings": {
+    "realestate": 0.019199999,
+    "consumer_cyclical": 0.0932,
+    "basic_materials": 0.0171,
+    "consumer_defensive": 0.0467,
+    "technology": 0.3742,
+    "communication_services": 0.1022,
+    "financial_services": 0.111899994,
+    "utilities": 0.0232,
+    "industrials": 0.0794,
+    "energy": 0.037100002,
+    "healthcare": 0.095699996
+  },
+  "fetchedAt": "2026-05-03T22:18:28.072252"
+}
