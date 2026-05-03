@@ -183,10 +183,16 @@ export async function POST(req: Request) {
     const driftData = calcAssetDrift(matrix, dates, weights, body.rebalance, tickers);
     const extendedMetrics = calcExtendedPerformanceMetrics(portCurve, portRets, metrics.cagr, metrics.mdd, yearlyReturns);
 
+    // portRets와 alignedBenchRets 길이 맞추기
+    const minLen = Math.min(portRets.length, alignedBenchRets.length, rfSeriesArray.length);
+    const portRetsAligned = portRets.slice(-minLen);
+    const benchRetsAligned = alignedBenchRets.slice(-minLen);
+    const rfAligned = rfSeriesArray.slice(-minLen);
+
     const advancedMetrics = {
       rollingReturns: calcRollingReturns(portCurve),
-      regression: calcRegressionMetrics(portRets, alignedBenchRets, rfSeriesArray),
-      captureRatios: calcCaptureRatios(portRets, alignedBenchRets),
+      regression: calcRegressionMetrics(portRetsAligned, benchRetsAligned, rfAligned),
+      captureRatios: calcCaptureRatios(portRetsAligned, benchRetsAligned),
       tailRisk: calcTailRisk(portCurve, portRets),
       drawdowns: calcDrawdowns(portCurve),
       topDrawdowns: calcTopDrawdowns(portCurve, 5),
