@@ -1,0 +1,50 @@
+{
+  "scored_at": "2026-05-04T15:38:26.625105",
+  "source_file": "global_2026_05.json",
+  "composite_score": 37.9,
+  "composite_label": "거시 우호 우호",
+  "scores": {
+    "inflation": {
+      "score": 58.4,
+      "us_cpi_yoy": 3.32,
+      "us_core_yoy": 2.67,
+      "eu_cpi_yoy": 2.53,
+      "jp_cpi_yoy": -0.4,
+      "interpretation": "디스인플레 강함"
+    },
+    "rate": {
+      "score": 14.3,
+      "fed_rate": 3.64,
+      "fed_rate_1m_change": 0.0,
+      "us_10y_yield": 4.378,
+      "yield_curve_spread": 0.74,
+      "yield_curve_inverted": false,
+      "interpretation": "중립"
+    },
+    "growth": {
+      "score": 59.5,
+      "us_unemployment": 4.3,
+      "eu_unemployment": 6.7,
+      "jp_unemployment": 2.8,
+      "sp500_3m_pct": 4.19,
+      "kospi_3m_pct": 33.95,
+      "nikkei_3m_pct": 11.53,
+      "interpretation": "성장 확장 강함"
+    },
+    "risk": {
+      "score": 68.5,
+      "vix": 16.99,
+      "vix_1m_change": -7.55,
+      "gold_1m_pct": -1.05,
+      "interpretation": "위험선호 강함"
+    },
+    "currency": {
+      "score": -11.0,
+      "usdkrw": 1464.88,
+      "usdkrw_1m_change_pct": -2.94,
+      "dxy": 98.094,
+      "dxy_3m_pct": 0.5,
+      "interpretation": "중립"
+    }
+  }
+}

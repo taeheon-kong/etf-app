@@ -27,6 +27,7 @@ export type RecommendedPortfolio = {
   expectedSharpe: number;
   expectedYield: number;
   totalCost: number;
+  narrative?: string;
 };
 
 type AssetClass = "stocks" | "bonds" | "alternatives" | "cash" | "theme";
@@ -385,6 +386,7 @@ function buildOne(
         : "장기 수익 극대화에 초점을 둔 포트폴리오",
     holdings,
     ...expected,
+    narrative: undefined,
   };
 }
 

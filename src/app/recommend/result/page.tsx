@@ -52,6 +52,7 @@ type Portfolio = {
   expectedSharpe: number;
   expectedYield: number;
   totalCost: number;
+  narrative?: string;
 };
 
 type Response = {
@@ -60,6 +61,11 @@ type Response = {
   topPicks: TopPick[];
   portfolios: { defensive: Portfolio; balanced: Portfolio; aggressive: Portfolio };
   bestPickType: "defensive" | "balanced" | "aggressive";
+  marketHeadline?: string | null;
+  marketSummary?: string | null;
+  marketAsOf?: string | null;
+  userType?: string | null;
+  profileHint?: string | null;
 };
 
 const SERIES_COLORS = ["#2563eb", "#10b981", "#f59e0b", "#f43f5e", "#8b5cf6"];
@@ -170,6 +176,32 @@ export default function RecommendResultPage() {
             당신에게 가장 적합
           </span>
         </div>
+        {(data.marketHeadline || data.marketSummary) && (
+          <div className="mb-5 bg-gradient-to-br from-blue-50 to-indigo-50 border border-blue-200 rounded-xl p-5">
+            <div className="flex items-center gap-2 mb-2">
+              <span className="text-xs font-bold text-blue-700 uppercase tracking-wider">📊 현재 시장 환경</span>
+              {data.marketAsOf && (
+                <span className="text-[10px] text-slate-500">기준일: {data.marketAsOf}</span>
+              )}
+            </div>
+            {data.marketHeadline && (
+              <div className="text-base font-bold text-slate-900 mb-2 pb-2 border-b border-blue-200">
+                🎯 {data.marketHeadline}
+              </div>
+            )}
+            {data.marketSummary && (
+              <p className="text-sm text-slate-700 leading-relaxed">{data.marketSummary}</p>
+            )}
+            {data.profileHint && (
+              <div className="mt-3 pt-3 border-t border-blue-200">
+                <div className="text-[10px] font-bold text-indigo-700 uppercase tracking-wider mb-1">
+                  💡 당신에게 특별히
+                </div>
+                <p className="text-[13px] text-slate-700 leading-relaxed">{data.profileHint}</p>
+              </div>
+            )}
+          </div>
+        )}
         <PortfolioCard portfolio={bestPick} highlighted onBacktest={goBacktest} />
       </section>
 
@@ -390,6 +422,16 @@ function PortfolioCard({
             )}
           </div>
           <p className="text-xs text-slate-500">{portfolio.description}</p>
+          {portfolio.narrative && !compact && (
+            <div className="mt-4 bg-slate-50 border border-slate-200 rounded-lg p-4">
+              <div className="text-[10px] font-bold text-slate-600 uppercase tracking-wider mb-2">
+                💡 이 포트폴리오를 추천하는 이유
+              </div>
+              <p className="text-[13px] text-slate-700 leading-relaxed whitespace-pre-line">
+                {portfolio.narrative}
+              </p>
+            </div>
+          )}
         </div>
       </div>
 
@@ -441,7 +483,7 @@ function PortfolioCard({
 
       <div className="flex items-center justify-between gap-2 pt-3 border-t border-slate-100">
         <div className="text-xs text-slate-500">
-          가중평균 운용보수 <span className="font-bold text-slate-700">{portfolio.totalCost.toFixed(2)}%</span>
+          가중평균 운용보수 <span className="font-bold text-slate-700">{(portfolio.totalCost * 100).toFixed(2)}%</span>
         </div>
         <button
           onClick={() => onBacktest(portfolio.holdings)}

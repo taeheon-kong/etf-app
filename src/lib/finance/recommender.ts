@@ -62,9 +62,21 @@ export type ScoreWeights = {
 
 export type MarketContext = {
   asOf: string;
+  headline?: string;
   summary: string;
   categoryScores: Record<string, number>;
   categoryNotes: Record<string, string>;
+  portfolioNarratives?: {
+    defensive: string;
+    balanced: string;
+    aggressive: string;
+  };
+  profileHints?: {
+    young_aggressive: string;
+    midage_balanced: string;
+    retirement_defensive: string;
+    theme_focused: string;
+  };
 };
 
 function loadUsMeta(ticker: string): any | null {
@@ -115,7 +127,7 @@ function parseKrMarketValue(s: string): number {
   return total;
 }
 
-// 한국 totalFee는 % 단위 (0.017 = 0.017%)
+// 한국 totalFee는 % 단위 (0.1 = 0.1%) → 소수로 변환 (0.001)
 function normalizeKrFee(rawFee: number): number {
   if (!rawFee || rawFee <= 0) return 0.005;
   return rawFee / 100;
@@ -172,7 +184,7 @@ export function buildCandidates(
           sharpe,
           mdd,
           volatility: vol,
-          expenseRatio: meta?.expenseRatio ?? 0.005,
+          expenseRatio: (meta?.expenseRatio ?? 0.5) / 100,
           liquidity: e.aum,
           dividendYield: meta?.yield ?? 0,
         });

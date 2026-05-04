@@ -159,10 +159,13 @@ export function profileToBaseMix(profile: InvestorProfile): {
   balanced: PortfolioMix;
   aggressive: PortfolioMix;
 } {
+  // 균형형: 주식 50% (대형주 35% + 빅테크/반도체 15%) + 채권 20% + 대체 15% + 현금 5% + 테마 슬롯 활용 시 인프라 10%
+  // 공격형: 주식 75% (대형주 + 빅테크 + 반도체 위성) + 대체 15% + 테마(인프라/방산) 10%
+  // 방어형: 채권 55% (단기/중기) + 주식 25% + 대체 15% + 현금 5%
   return {
-    defensive: { stocks: 30, bonds: 50, alternatives: 15, cash: 5 },
-    balanced: { stocks: 60, bonds: 30, alternatives: 10, cash: 0 },
-    aggressive: { stocks: 90, bonds: 0, alternatives: 10, cash: 0 },
+    defensive: { stocks: 25, bonds: 55, alternatives: 15, cash: 5 },
+    balanced: { stocks: 50, bonds: 25, alternatives: 15, cash: 10 },
+    aggressive: { stocks: 75, bonds: 0, alternatives: 15, cash: 10 },
   };
 }
 
@@ -200,4 +203,38 @@ export function portfolioSizeToCount(size: PortfolioSize): {
     case "diverse":
       return { min: 5, max: 6 };
   }
+}
+
+// 사용자 프로필을 4가지 유형으로 분류 (profileHints 매칭용)
+export function classifyUserProfile(
+  profile: InvestorProfile,
+): "young_aggressive" | "midage_balanced" | "retirement_defensive" | "theme_focused" {
+  // 테마 강하게 선택한 경우 (3개 이상)
+  if (
+    profile.interests.length >= 3 &&
+    !profile.interests.includes("none")
+  ) {
+    return "theme_focused";
+  }
+
+  // 보수적 + 단기 = 은퇴/방어
+  if (
+    profile.riskTolerance === "conservative" ||
+    profile.goal === "preserve" ||
+    profile.horizon === "short"
+  ) {
+    return "retirement_defensive";
+  }
+
+  // 매우 공격적 + 장기 = 젊은 공격형
+  if (
+    (profile.riskTolerance === "very_aggressive" ||
+      profile.riskTolerance === "aggressive") &&
+    profile.horizon === "long"
+  ) {
+    return "young_aggressive";
+  }
+
+  // 그 외 = 중년 균형
+  return "midage_balanced";
 }
