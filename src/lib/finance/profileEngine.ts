@@ -1,17 +1,43 @@
 /**
- * 사용자 투자 성향(7문항) → 점수 가중치 변환.
- *
- * 7문항:
- *   1. horizon         — 투자 기간 (short/mid/long)
- *   2. riskTolerance   — 위험 감수도 (conservative/neutral/aggressive/very_aggressive)
- *   3. goal            — 목표 (preserve/balance/growth/maximize)
- *   4. market          — 시장 선호 (kr/us/global/any)
- *   5. dividendPref    — 배당 선호 (high/medium/none)
- *   6. costSensitive   — 비용 민감도 (high/medium/low)
- *   7. allowLeveraged  — 레버리지 허용 (true/false)
+ * 사용자 투자 성향(11문항) → 점수 가중치 변환.
  */
 
 import type { ScoreWeights, Market } from "./recommender";
+
+export type InvestmentInterest =
+  | "ai_semi"
+  | "tech"
+  | "clean_energy"
+  | "healthcare"
+  | "infra"
+  | "finance"
+  | "realestate"
+  | "crypto"
+  | "commodity"
+  | "dividend"
+  | "none";
+
+export type InvestmentRegion =
+  | "korea"
+  | "usa"
+  | "europe"
+  | "japan"
+  | "china"
+  | "emerging"
+  | "global";
+
+export type MacroView =
+  | "inflation"
+  | "recession"
+  | "bull"
+  | "neutral"
+  | "unsure";
+
+export type PortfolioSize =
+  | "minimal"   // 2개 (워런 버핏 스타일)
+  | "simple"    // 3개 (Bogleheads 3펀드)
+  | "balanced"  // 4~5개 (기본)
+  | "diverse";  // 5~6개 (분산 강화)
 
 export type InvestorProfile = {
   horizon: "short" | "mid" | "long";
@@ -21,14 +47,13 @@ export type InvestorProfile = {
   dividendPref: "high" | "medium" | "none";
   costSensitive: "high" | "medium" | "low";
   allowLeveraged: boolean;
+  interests: InvestmentInterest[];
+  regions: InvestmentRegion[];
+  macroView: MacroView;
+  portfolioSize: PortfolioSize;
 };
 
-/**
- * 성향 → 가중치 매핑.
- * 각 가중치는 0~10 범위, 최종 점수는 가중평균.
- */
 export function profileToWeights(profile: InvestorProfile): ScoreWeights {
-  // 기본값
   const w: ScoreWeights = {
     cagr: 5,
     sharpe: 5,
@@ -37,21 +62,19 @@ export function profileToWeights(profile: InvestorProfile): ScoreWeights {
     cost: 5,
     liquidity: 4,
     dividend: 3,
+    macroFit: 4,
+    interestFit: 4,
   };
 
-  // 1. 투자 기간
   if (profile.horizon === "short") {
-    // 단기 → 안정성 ↑, 비용 ↑
     w.mdd += 3;
     w.volatility += 2;
     w.cost += 2;
   } else if (profile.horizon === "long") {
-    // 장기 → 수익률 ↑, Sharpe ↑
     w.cagr += 3;
     w.sharpe += 2;
   }
 
-  // 2. 위험 감수도
   if (profile.riskTolerance === "conservative") {
     w.mdd += 4;
     w.volatility += 3;
@@ -66,7 +89,6 @@ export function profileToWeights(profile: InvestorProfile): ScoreWeights {
     w.volatility -= 2;
   }
 
-  // 3. 목표
   if (profile.goal === "preserve") {
     w.mdd += 3;
     w.volatility += 2;
@@ -79,7 +101,6 @@ export function profileToWeights(profile: InvestorProfile): ScoreWeights {
     w.sharpe += 2;
   }
 
-  // 4. 배당 선호
   if (profile.dividendPref === "high") {
     w.dividend += 6;
   } else if (profile.dividendPref === "medium") {
@@ -88,14 +109,24 @@ export function profileToWeights(profile: InvestorProfile): ScoreWeights {
     w.dividend = 0;
   }
 
-  // 5. 비용 민감도
   if (profile.costSensitive === "high") {
     w.cost += 4;
   } else if (profile.costSensitive === "low") {
     w.cost = Math.max(1, w.cost - 2);
   }
 
-  // 음수 방지
+  if (profile.interests && profile.interests.length > 0 && !profile.interests.includes("none")) {
+    w.interestFit += 1;
+  } else {
+    w.interestFit = 0;
+  }
+
+  if (profile.macroView === "unsure") {
+    w.macroFit = Math.max(2, w.macroFit - 2);
+  } else if (profile.macroView !== "neutral") {
+    w.macroFit += 2;
+  }
+
   for (const k of Object.keys(w) as (keyof ScoreWeights)[]) {
     if (w[k] < 0) w[k] = 0;
   }
@@ -103,9 +134,6 @@ export function profileToWeights(profile: InvestorProfile): ScoreWeights {
   return w;
 }
 
-/**
- * 시장 선호 → 후보 필터.
- */
 export function profileToMarketFilter(profile: InvestorProfile): Market[] {
   switch (profile.market) {
     case "kr":
@@ -119,15 +147,11 @@ export function profileToMarketFilter(profile: InvestorProfile): Market[] {
   }
 }
 
-/**
- * 성향에 맞는 추천 포트폴리오 비중 (방어/균형/공격형)
- * 자산군별 비중 합 = 100%
- */
 export type PortfolioMix = {
-  stocks: number;      // 주식 비중
-  bonds: number;       // 채권 비중
-  alternatives: number; // 금/원자재/리츠 등
-  cash: number;        // 현금성
+  stocks: number;
+  bonds: number;
+  alternatives: number;
+  cash: number;
 };
 
 export function profileToBaseMix(profile: InvestorProfile): {
@@ -135,21 +159,16 @@ export function profileToBaseMix(profile: InvestorProfile): {
   balanced: PortfolioMix;
   aggressive: PortfolioMix;
 } {
-  // 기본 3종 믹스 (방어/균형/공격)
   return {
     defensive: { stocks: 30, bonds: 50, alternatives: 15, cash: 5 },
     balanced: { stocks: 60, bonds: 30, alternatives: 10, cash: 0 },
-    aggressive: { stocks: 85, bonds: 5, alternatives: 10, cash: 0 },
+    aggressive: { stocks: 90, bonds: 0, alternatives: 10, cash: 0 },
   };
 }
 
-/**
- * 사용자 성향 → 베스트픽 (방어/균형/공격 중 하나)
- */
 export function profileToBestPick(
   profile: InvestorProfile,
 ): "defensive" | "balanced" | "aggressive" {
-  // 보수적이거나 단기면 방어형
   if (
     profile.riskTolerance === "conservative" ||
     profile.goal === "preserve" ||
@@ -157,13 +176,28 @@ export function profileToBestPick(
   ) {
     return "defensive";
   }
-  // 매우 공격적이거나 수익 극대화면 공격형
   if (
     profile.riskTolerance === "very_aggressive" ||
     profile.goal === "maximize"
   ) {
     return "aggressive";
   }
-  // 그 외 균형형
   return "balanced";
+}
+
+// 포트폴리오 사이즈 → 실제 ETF 개수 범위
+export function portfolioSizeToCount(size: PortfolioSize): {
+  min: number;
+  max: number;
+} {
+  switch (size) {
+    case "minimal":
+      return { min: 2, max: 2 };
+    case "simple":
+      return { min: 3, max: 3 };
+    case "balanced":
+      return { min: 4, max: 5 };
+    case "diverse":
+      return { min: 5, max: 6 };
+  }
 }

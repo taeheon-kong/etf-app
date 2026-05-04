@@ -10,6 +10,10 @@ import { loadPrices, sliceByDate } from "./loader";
 import { dailyReturns } from "./returns";
 import { calcCAGR, calcMDD, calcSharpe, calcVolatility } from "./metrics";
 import { buildEquityCurve } from "./returns";
+import type {
+  InvestorProfile,
+  InvestmentInterest,
+} from "./profileEngine";
 
 export type Market = "us" | "kr";
 
@@ -33,11 +37,15 @@ export type EtfCandidate = {
     cost: number;
     liquidity: number;
     dividend: number;
+    macroFit: number;
+    interestFit: number;
   };
   totalScore?: number;
   reasons?: string[];
   warnings?: string[];
   summary?: string;
+  macroNote?: string;
+  interestNote?: string;
 };
 
 export type ScoreWeights = {
@@ -48,6 +56,15 @@ export type ScoreWeights = {
   cost: number;
   liquidity: number;
   dividend: number;
+  macroFit: number;
+  interestFit: number;
+};
+
+export type MarketContext = {
+  asOf: string;
+  summary: string;
+  categoryScores: Record<string, number>;
+  categoryNotes: Record<string, string>;
 };
 
 function loadUsMeta(ticker: string): any | null {
@@ -72,6 +89,21 @@ function loadKrMeta(ticker: string): any | null {
   }
 }
 
+function loadLatestMarketContext(): MarketContext | null {
+  try {
+    const dir = path.join(process.cwd(), "data", "market_context");
+    if (!fs.existsSync(dir)) return null;
+    const files = fs.readdirSync(dir).filter((f) => f.endsWith(".json"));
+    if (files.length === 0) return null;
+    files.sort();
+    const latest = files[files.length - 1];
+    const raw = fs.readFileSync(path.join(dir, latest), "utf-8");
+    return JSON.parse(raw) as MarketContext;
+  } catch {
+    return null;
+  }
+}
+
 function parseKrMarketValue(s: string): number {
   if (!s) return 0;
   const cleaned = s.replace(/,/g, "");
@@ -83,13 +115,16 @@ function parseKrMarketValue(s: string): number {
   return total;
 }
 
-// 한국 totalFee가 % 단위(0.15)인지 소수(0.0015)인지 자동 판단
+// 한국 totalFee는 % 단위 (0.017 = 0.017%)
 function normalizeKrFee(rawFee: number): number {
   if (!rawFee || rawFee <= 0) return 0.005;
-  // 1보다 크면 % 단위로 들어왔다는 뜻 (예: 0.15 = 0.15%)
-  if (rawFee >= 0.01) return rawFee / 100;
-  // 1 이하면 이미 소수
-  return rawFee;
+  return rawFee / 100;
+}
+
+// 한국 dividendYieldTtm은 % 단위 (1.0 = 1.0%, 0.93 = 0.93%)
+function normalizeKrDividend(raw: number): number {
+  if (!raw || raw <= 0) return 0;
+  return raw / 100;
 }
 
 export function buildCandidates(
@@ -175,9 +210,7 @@ export function buildCandidates(
           ? parseKrMarketValue(meta.marketValue)
           : e.marCap;
 
-        // 한국 dividendYieldTtm이 % 단위인지 자동 판단
-        let divY = meta?.dividendYieldTtm ?? 0;
-        if (divY > 1) divY = divY / 100;
+        const divY = normalizeKrDividend(meta?.dividendYieldTtm ?? 0);
 
         candidates.push({
           ticker: e.ticker,
@@ -214,6 +247,14 @@ function percentileRank(value: number, allValues: number[]): number {
 function getRiskPenalty(c: EtfCandidate): number {
   const cat = c.category.toLowerCase();
 
+  // 단기금리/MMF/CD금리 ETF는 변동성이 거의 0이라 Sharpe가 비정상적으로 큼 → 보정
+  if (
+    /KOFR|머니마켓|단기금리|초단기|MMF|CD금리|콜금리|머니마켓액티브/i.test(c.name) ||
+    (c.volatility < 0.02 && c.cagr < 0.06)
+  ) {
+    return 0.65;
+  }
+
   if (/coveredcall|커버드콜|covered.?call/i.test(c.name) || cat === "coveredcall") {
     return 0.75;
   }
@@ -232,11 +273,208 @@ function getRiskPenalty(c: EtfCandidate): number {
   return 1.0;
 }
 
+function getInterestTags(c: EtfCandidate): InvestmentInterest[] {
+  const tags: InvestmentInterest[] = [];
+  const cat = c.category.toLowerCase();
+
+  if (/ai|반도체|semiconductor|semi|chip|nvda|sox/i.test(c.name) || /ai.?semi/i.test(c.category)) {
+    tags.push("ai_semi");
+  }
+  if (cat === "tech" || /tech|nasdaq|qqq|테크|빅테크|플랫폼|fang/i.test(c.name)) {
+    tags.push("tech");
+  }
+  if (/clean|esg|친환경|2차전지|battery|solar|wind|ev|전기차|태양광/i.test(c.name) || cat === "clean") {
+    tags.push("clean_energy");
+  }
+  if (/health|bio|헬스|바이오|pharma|제약/i.test(c.name) || cat === "health" || cat === "healthcare") {
+    tags.push("healthcare");
+  }
+  if (/infra|인프라|defense|방산|aero|항공/i.test(c.name) || cat === "infra") {
+    tags.push("infra");
+  }
+  if (/financ|bank|은행|금융|insur|보험/i.test(c.name) || cat === "finance") {
+    tags.push("finance");
+  }
+  if (/reit|리츠|부동산|realestate|real.?estate/i.test(c.name) || cat === "reit" || cat === "realestate") {
+    tags.push("realestate");
+  }
+  if (/btc|bitcoin|비트|eth|ether|이더|crypto/i.test(c.name) || cat === "crypto") {
+    tags.push("crypto");
+  }
+  if (/gold|silver|금|은|원자재|commod|oil|원유|구리|copper/i.test(c.name) || cat === "commodity" || cat === "gold") {
+    tags.push("commodity");
+  }
+  if (/dividend|배당|고배당|income|인컴/i.test(c.name) || cat === "dividend" || cat === "coveredcall") {
+    tags.push("dividend");
+  }
+
+  return tags;
+}
+
+function calcMacroFit(c: EtfCandidate, ctx: MarketContext | null): { score: number; note: string } {
+  if (!ctx) return { score: 50, note: "" };
+
+  const cat = c.category.toLowerCase();
+  const keyMap: Record<string, string[]> = {
+    sp500: ["us_large", "usa_stock"],
+    nasdaq: ["us_tech", "usa_stock"],
+    tech: ["us_tech"],
+    growth: ["us_large"],
+    smallcap: ["us_small"],
+    dividend: ["dividend"],
+    coveredcall: ["dividend"],
+    bond: ["bond"],
+    commodity: ["commodity"],
+    gold: ["gold"],
+    reit: ["realestate"],
+    realestate: ["realestate"],
+    sector: ["us_large"],
+    global: ["global"],
+    thematic: ["thematic"],
+    leveraged: ["us_large"],
+    crypto: ["crypto"],
+    health: ["healthcare"],
+    healthcare: ["healthcare"],
+    finance: ["finance"],
+    infra: ["infra"],
+    clean: ["clean_energy"],
+    kr_stock: ["korea_stock"],
+    kr_bond: ["bond"],
+    kr_dividend: ["dividend"],
+  };
+
+  let candidateKeys = keyMap[cat] || [cat];
+  if (c.market === "kr" && !candidateKeys.includes("korea_stock")) {
+    if (/200|kospi|코스피|코스닥/i.test(c.name)) {
+      candidateKeys = ["korea_stock", ...candidateKeys];
+    }
+  }
+
+  for (const k of candidateKeys) {
+    if (ctx.categoryScores[k] !== undefined) {
+      return {
+        score: ctx.categoryScores[k],
+        note: ctx.categoryNotes[k] || "",
+      };
+    }
+  }
+
+  return { score: 50, note: "" };
+}
+
+function calcInterestFit(
+  c: EtfCandidate,
+  interests: InvestmentInterest[] | undefined,
+): { score: number; note: string } {
+  if (!interests || interests.length === 0 || interests.includes("none")) {
+    return { score: 50, note: "" };
+  }
+
+  const tags = getInterestTags(c);
+  const matched = tags.filter((t) => interests.includes(t));
+
+  if (matched.length === 0) {
+    return { score: 30, note: "" };
+  }
+
+  const score = Math.min(100, 60 + matched.length * 10);
+  const labelMap: Record<InvestmentInterest, string> = {
+    ai_semi: "AI/반도체",
+    tech: "빅테크",
+    clean_energy: "친환경",
+    healthcare: "헬스케어",
+    infra: "인프라",
+    finance: "금융",
+    realestate: "부동산",
+    crypto: "가상자산",
+    commodity: "원자재",
+    dividend: "배당",
+    none: "",
+  };
+  const labels = matched.map((m) => labelMap[m]).filter(Boolean);
+  return {
+    score,
+    note: labels.length > 0 ? `관심 테마 일치: ${labels.join(", ")}` : "",
+  };
+}
+
+// 동일 인덱스 추종 ETF만 그룹화 (정확히 매칭되는 경우만)
+function dedupSameCategory(candidates: EtfCandidate[]): EtfCandidate[] {
+  const groups = new Map<string, EtfCandidate[]>();
+  const ungrouped: EtfCandidate[] = [];
+
+  for (const c of candidates) {
+    let groupKey: string | null = null;
+    const trimmedName = c.name.trim();
+
+    // 한국 KOSPI 200 일반형 (운용사명 + 200 정확히)
+    if (
+      c.market === "kr" &&
+      /^(KODEX|TIGER|RISE|ACE|PLUS|HANARO|ARIRANG|KOSEF|SOL|KBSTAR|KINDEX|KIWOOM|HK|FOCUS|TIMEFOLIO|WOORI)\s*200$/i.test(trimmedName)
+    ) {
+      groupKey = "kr_kospi200_basic";
+    }
+    // 한국 코스닥 150 일반형
+    else if (
+      c.market === "kr" &&
+      /^(KODEX|TIGER|RISE|ACE|PLUS|HANARO|ARIRANG|KOSEF|SOL|KBSTAR|KINDEX|KIWOOM)\s*코스닥\s*150$/i.test(trimmedName)
+    ) {
+      groupKey = "kr_kosdaq150_basic";
+    }
+    // 한국 미국S&P500 일반형
+    else if (
+      c.market === "kr" &&
+      /^(KODEX|TIGER|RISE|ACE|PLUS|HANARO|ARIRANG|KOSEF|SOL|KBSTAR|KINDEX|KIWOOM)\s*미국\s*S&P\s*500$/i.test(trimmedName)
+    ) {
+      groupKey = "kr_us_sp500_basic";
+    }
+    // 한국 미국나스닥100 일반형
+    else if (
+      c.market === "kr" &&
+      /^(KODEX|TIGER|RISE|ACE|PLUS|HANARO|ARIRANG|KOSEF|SOL|KBSTAR|KINDEX|KIWOOM)\s*미국\s*나스닥\s*100$/i.test(trimmedName)
+    ) {
+      groupKey = "kr_us_nasdaq100_basic";
+    }
+    // 미국 S&P500 일반형
+    else if (c.market === "us" && /^(VOO|IVV|SPY|SPLG)$/.test(c.ticker)) {
+      groupKey = "us_sp500_basic";
+    }
+    // 미국 나스닥100 일반형
+    else if (c.market === "us" && /^(QQQ|QQQM)$/.test(c.ticker)) {
+      groupKey = "us_nasdaq100_basic";
+    }
+
+    if (groupKey) {
+      if (!groups.has(groupKey)) groups.set(groupKey, []);
+      groups.get(groupKey)!.push(c);
+    } else {
+      // 그룹화 안 된 ETF는 그대로 통과
+      ungrouped.push(c);
+    }
+  }
+
+  // 그룹별로 1개만 선택 (운용보수 가장 싼 것)
+  const groupRepresentatives: EtfCandidate[] = [];
+  for (const [, group] of groups) {
+    if (group.length === 1) {
+      groupRepresentatives.push(group[0]);
+      continue;
+    }
+    group.sort((a, b) => a.expenseRatio - b.expenseRatio);
+    groupRepresentatives.push(group[0]);
+  }
+
+  return [...ungrouped, ...groupRepresentatives];
+}
+
 export function scoreCandidates(
   candidates: EtfCandidate[],
   weights: ScoreWeights,
+  profile?: InvestorProfile,
 ): EtfCandidate[] {
   if (candidates.length === 0) return [];
+
+  const ctx = loadLatestMarketContext();
 
   const allCagr = candidates.map((c) => c.cagr);
   const allSharpe = candidates.map((c) => c.sharpe);
@@ -247,6 +485,9 @@ export function scoreCandidates(
   const allDiv = candidates.map((c) => c.dividendYield);
 
   for (const c of candidates) {
+    const macroFit = calcMacroFit(c, ctx);
+    const interestFit = calcInterestFit(c, profile?.interests);
+
     const scores = {
       cagr: percentileRank(c.cagr, allCagr),
       sharpe: percentileRank(c.sharpe, allSharpe),
@@ -255,6 +496,8 @@ export function scoreCandidates(
       cost: percentileRank(-c.expenseRatio, allCost),
       liquidity: percentileRank(Math.log10(Math.max(c.liquidity, 1)), allLiq),
       dividend: percentileRank(c.dividendYield, allDiv),
+      macroFit: macroFit.score,
+      interestFit: interestFit.score,
     };
 
     const totalWeight =
@@ -264,7 +507,9 @@ export function scoreCandidates(
       weights.volatility +
       weights.cost +
       weights.liquidity +
-      weights.dividend;
+      weights.dividend +
+      weights.macroFit +
+      weights.interestFit;
 
     const rawTotal =
       (scores.cagr * weights.cagr +
@@ -273,7 +518,9 @@ export function scoreCandidates(
         scores.volatility * weights.volatility +
         scores.cost * weights.cost +
         scores.liquidity * weights.liquidity +
-        scores.dividend * weights.dividend) /
+        scores.dividend * weights.dividend +
+        scores.macroFit * weights.macroFit +
+        scores.interestFit * weights.interestFit) /
       Math.max(totalWeight, 0.001);
 
     const penalty = getRiskPenalty(c);
@@ -281,12 +528,16 @@ export function scoreCandidates(
 
     c.scores = scores;
     c.totalScore = total;
+    c.macroNote = macroFit.note;
+    c.interestNote = interestFit.note;
     c.reasons = generateReasons(c, scores);
     c.warnings = generateWarnings(c, scores);
     c.summary = generateSummary(c, scores);
   }
 
-  return candidates.sort((a, b) => (b.totalScore ?? 0) - (a.totalScore ?? 0));
+  candidates.sort((a, b) => (b.totalScore ?? 0) - (a.totalScore ?? 0));
+  const deduped = dedupSameCategory(candidates);
+  return deduped.sort((a, b) => (b.totalScore ?? 0) - (a.totalScore ?? 0));
 }
 
 function generateReasons(c: EtfCandidate, scores: any): string[] {
@@ -327,11 +578,19 @@ function generateReasons(c: EtfCandidate, scores: any): string[] {
     reasons.push(`유동성 풍부 — ${liqText}`);
   }
 
+  if (scores.macroFit >= 70 && c.macroNote) {
+    reasons.push(`현재 환경 부합 — ${c.macroNote}`);
+  }
+
+  if (scores.interestFit >= 70 && c.interestNote) {
+    reasons.push(c.interestNote);
+  }
+
   if (reasons.length === 0) {
     reasons.push("종합 점수 기준 추천");
   }
 
-  return reasons.slice(0, 3);
+  return reasons.slice(0, 5);
 }
 
 function generateWarnings(c: EtfCandidate, scores: any): string[] {
@@ -355,6 +614,10 @@ function generateWarnings(c: EtfCandidate, scores: any): string[] {
     warnings.push(`배당 미미 — ${(c.dividendYield * 100).toFixed(2)}%`);
   }
 
+  if (scores.macroFit <= 30 && c.macroNote) {
+    warnings.push(`현재 환경 비우호적 — ${c.macroNote}`);
+  }
+
   if (cat === "coveredcall" || /covered.?call|커버드콜/i.test(c.name)) {
     warnings.push(`커버드콜 구조 — 옵션 매도로 상승장 수익 제한, 장기 보유 시 원금 잠식 가능`);
   }
@@ -371,7 +634,7 @@ function generateWarnings(c: EtfCandidate, scores: any): string[] {
     warnings.push(`인버스 ETF — 단기 트레이딩용, 장기 보유 시 가치 침식`);
   }
 
-  return warnings.slice(0, 2);
+  return warnings.slice(0, 3);
 }
 
 function generateSummary(c: EtfCandidate, scores: any): string {

@@ -23,10 +23,13 @@ type TopPick = {
   scores: {
     cagr: number; sharpe: number; mdd: number; volatility: number;
     cost: number; liquidity: number; dividend: number;
+    macroFit: number; interestFit: number;
   };
   reasons: string[];
   warnings: string[];
   summary: string;
+  macroNote?: string;
+  interestNote?: string;
 };
 
 type Holding = {
@@ -155,7 +158,7 @@ export default function RecommendResultPage() {
       <div>
         <h1 className="text-3xl font-bold text-slate-900 tracking-tight">추천 결과</h1>
         <p className="text-sm text-slate-500 mt-1">
-          당신의 성향에 맞는 ETF와 포트폴리오를 찾았습니다
+          당신의 성향과 현재 시장 환경에 맞는 ETF와 포트폴리오를 찾았습니다
         </p>
       </div>
 
@@ -243,16 +246,26 @@ export default function RecommendResultPage() {
 
       <div className="bg-amber-50 border border-amber-200 rounded-xl px-4 py-3 text-xs text-amber-800 leading-relaxed">
         <span className="font-semibold">주의 — </span>
-        과거 5년 데이터 기반 점수입니다. 미래 수익률은 보장되지 않으며, 추천은 참고용입니다. 실제 투자 전 백테스트로 검증하시기 바랍니다.
+        과거 5년 데이터 기반 점수에 현재 시장 환경 + 관심 테마 가산점을 반영했습니다. 미래 수익률은 보장되지 않으며, 추천은 참고용입니다. 실제 투자 전 백테스트로 검증하시기 바랍니다.
       </div>
     </div>
   );
 }
 
 // ──────────────────────────────────────────
-// 상세 분석 카드 (강점/약점/종합평가)
+// 상세 분석 카드 (강점/약점/종합평가/환경 부합성)
 // ──────────────────────────────────────────
 function DetailCard({ pick, rank }: { pick: TopPick; rank: number }) {
+  const macroFitScore = pick.scores?.macroFit ?? 50;
+  const interestFitScore = pick.scores?.interestFit ?? 50;
+  const showMacroBox = pick.macroNote && pick.macroNote.length > 0;
+  const showInterestBox = pick.interestNote && pick.interestNote.length > 0;
+
+  const macroBadge =
+    macroFitScore >= 70 ? { label: "우호적", cls: "bg-emerald-100 text-emerald-700" } :
+    macroFitScore >= 50 ? { label: "중립", cls: "bg-slate-100 text-slate-600" } :
+    { label: "비우호적", cls: "bg-amber-100 text-amber-700" };
+
   return (
     <div className="bg-white border border-slate-100 rounded-2xl p-6 shadow-sm">
       <div className="flex items-start gap-3 mb-4 pb-4 border-b border-slate-100">
@@ -298,6 +311,27 @@ function DetailCard({ pick, rank }: { pick: TopPick; rank: number }) {
               </div>
             ))}
           </div>
+        </div>
+      )}
+
+      {/* 현재 환경 부합성 */}
+      {showMacroBox && (
+        <div className="mb-3 bg-blue-50 border border-blue-100 rounded-lg px-3 py-2.5">
+          <div className="flex items-center justify-between mb-1">
+            <div className="text-[10px] font-bold text-blue-700 uppercase tracking-wider">현재 환경 부합성</div>
+            <span className={`text-[10px] px-1.5 py-0.5 rounded font-bold ${macroBadge.cls}`}>
+              {macroBadge.label} · {macroFitScore.toFixed(0)}점
+            </span>
+          </div>
+          <div className="text-xs text-slate-700 leading-relaxed">{pick.macroNote}</div>
+        </div>
+      )}
+
+      {/* 관심 테마 일치 */}
+      {showInterestBox && interestFitScore >= 70 && (
+        <div className="mb-3 bg-purple-50 border border-purple-100 rounded-lg px-3 py-2.5">
+          <div className="text-[10px] font-bold text-purple-700 uppercase tracking-wider mb-1">관심 테마 일치</div>
+          <div className="text-xs text-slate-700 leading-relaxed">{pick.interestNote}</div>
         </div>
       )}
 
@@ -407,7 +441,7 @@ function PortfolioCard({
 
       <div className="flex items-center justify-between gap-2 pt-3 border-t border-slate-100">
         <div className="text-xs text-slate-500">
-          가중평균 운용보수 <span className="font-bold text-slate-700">{fmtPct(portfolio.totalCost)}</span>
+          가중평균 운용보수 <span className="font-bold text-slate-700">{portfolio.totalCost.toFixed(2)}%</span>
         </div>
         <button
           onClick={() => onBacktest(portfolio.holdings)}

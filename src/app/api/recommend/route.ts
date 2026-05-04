@@ -36,14 +36,14 @@ export async function POST(req: Request) {
 
     // 2. 점수 계산
     const weights = profileToWeights(profile);
-    const scored = scoreCandidates(candidates, weights);
+    const scored = scoreCandidates(candidates, weights, profile);
 
     // 3. Top 10 단일 ETF 추천
     const topPicks = scored.slice(0, 10).map((c) => slimCandidate(c));
 
     // 4. 포트폴리오 3종 (방어/균형/공격)
     const mixes = profileToBaseMix(profile);
-    const portfolios = buildRecommendedPortfolios(scored, mixes);
+    const portfolios = buildRecommendedPortfolios(scored, mixes, profile);
 
     // 5. 베스트픽
     const bestPickType = profileToBestPick(profile);
