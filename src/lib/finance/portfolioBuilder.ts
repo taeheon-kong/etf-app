@@ -6,6 +6,10 @@
 import type { EtfCandidate } from "./recommender";
 import type { PortfolioMix, InvestorProfile, InvestmentInterest } from "./profileEngine";
 import { portfolioSizeToCount } from "./profileEngine";
+import { loadPrices, sliceByDate } from "./loader";
+import { dailyReturns } from "./returns";
+import { calcCAGR, calcMDD, calcSharpe } from "./metrics";
+import { buildEquityCurve } from "./returns";
 
 export type PortfolioHolding = {
   ticker: string;
@@ -181,18 +185,86 @@ function calcExpected(
   totalCost: number;
 } {
   const lookup = new Map(candidates.map((c) => [c.ticker, c]));
-  let cagr = 0, mdd = 0, sharpe = 0, yld = 0, cost = 0;
+
+  // 배당·운용보수는 가중평균으로 충분 (현금흐름성 지표)
+  let yld = 0, cost = 0;
   for (const h of holdings) {
     const c = lookup.get(h.ticker);
     if (!c) continue;
     const w = h.weight / 100;
-    cagr += c.cagr * w;
-    mdd += c.mdd * w;
-    sharpe += c.sharpe * w;
     yld += c.dividendYield * w;
     cost += c.expenseRatio * w;
   }
-  return { expectedCagr: cagr, expectedMdd: mdd, expectedSharpe: sharpe, expectedYield: yld, totalCost: cost };
+
+  // CAGR·MDD·Sharpe는 실제 합성 시계열로 백테스트
+  const endDate = new Date().toISOString().slice(0, 10);
+  const startDateObj = new Date();
+  startDateObj.setFullYear(startDateObj.getFullYear() - 5);
+  const startDate = startDateObj.toISOString().slice(0, 10);
+
+  try {
+    const allRets: Array<Map<string, number>> = [];
+    for (const h of holdings) {
+      const series = sliceByDate(loadPrices(h.ticker), startDate, endDate);
+      const rets = dailyReturns(series);
+      const map = new Map<string, number>();
+      for (const r of rets) map.set(r.date, r.ret);
+      allRets.push(map);
+    }
+
+    // 모든 ETF에 데이터가 있는 공통 날짜만
+    const allDates = new Set<string>();
+    allRets.forEach((m) => m.forEach((_, d) => allDates.add(d)));
+    const commonDates = Array.from(allDates)
+      .sort()
+      .filter((d) => allRets.every((m) => m.has(d)));
+
+    if (commonDates.length < 252) {
+      // 데이터 부족 — 가중평균으로 폴백
+      let cagr = 0, mdd = 0, sharpe = 0;
+      for (const h of holdings) {
+        const c = lookup.get(h.ticker);
+        if (!c) continue;
+        const w = h.weight / 100;
+        cagr += c.cagr * w;
+        mdd += c.mdd * w;
+        sharpe += c.sharpe * w;
+      }
+      return { expectedCagr: cagr, expectedMdd: mdd, expectedSharpe: sharpe, expectedYield: yld, totalCost: cost };
+    }
+
+    // 일별 포트폴리오 수익률
+    const portRets: number[] = [];
+    for (const d of commonDates) {
+      let ret = 0;
+      for (let i = 0; i < holdings.length; i++) {
+        const r = allRets[i].get(d) ?? 0;
+        ret += r * (holdings[i].weight / 100);
+      }
+      portRets.push(ret);
+    }
+
+    const curve = buildEquityCurve(portRets, commonDates, commonDates[0]);
+    return {
+      expectedCagr: calcCAGR(curve),
+      expectedMdd: calcMDD(curve),
+      expectedSharpe: calcSharpe(portRets),
+      expectedYield: yld,
+      totalCost: cost,
+    };
+  } catch {
+    // 에러 발생 — 가중평균 폴백
+    let cagr = 0, mdd = 0, sharpe = 0;
+    for (const h of holdings) {
+      const c = lookup.get(h.ticker);
+      if (!c) continue;
+      const w = h.weight / 100;
+      cagr += c.cagr * w;
+      mdd += c.mdd * w;
+      sharpe += c.sharpe * w;
+    }
+    return { expectedCagr: cagr, expectedMdd: mdd, expectedSharpe: sharpe, expectedYield: yld, totalCost: cost };
+  }
 }
 
 // ────────────────────────────────────────────────
