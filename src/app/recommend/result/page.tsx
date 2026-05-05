@@ -118,6 +118,7 @@ type Response = {
   recommendedBacktest?: PortfolioBacktest | null;
   famousBacktests?: PortfolioBacktest[];
   comparison?: Comparison | null;
+  correlationMatrix?: { tickers: string[]; matrix: number[][] } | null;
 };
 
 const SERIES_COLORS = ["#2563eb", "#10b981", "#f59e0b", "#f43f5e", "#8b5cf6"];
@@ -332,6 +333,14 @@ export default function RecommendResultPage() {
           famous={data.famousBacktests ?? []}
           holdingDetails={data.holdingDetails ?? data.topPicks}
           bestHoldings={bestPick.holdings}
+        />
+      )}
+
+      {/* 상관계수 매트릭스 */}
+      {data.correlationMatrix && data.correlationMatrix.tickers.length >= 2 && (
+        <CorrelationMatrixSection
+          matrix={data.correlationMatrix}
+          holdings={bestPick.holdings}
         />
       )}
 
@@ -1181,6 +1190,169 @@ function EfficientFrontierSection({
               : " — 더 효율적인 대안이 차트에 존재합니다."}
           </div>
         </div>
+      </div>
+    </section>
+  );
+}
+
+function CorrelationMatrixSection({
+  matrix,
+  holdings,
+}: {
+  matrix: { tickers: string[]; matrix: number[][] };
+  holdings: Holding[];
+}) {
+  const labels = matrix.tickers.map((t) => {
+    const h = holdings.find((x) => x.ticker === t);
+    return h?.market === "kr" ? (h.name.length > 12 ? h.name.slice(0, 12) + "…" : h.name) : t;
+  });
+
+  // 상삼각만 추출 (자기 자신 제외, 중복 제외)
+  const pairs: Array<{ a: string; b: string; corr: number }> = [];
+  for (let i = 0; i < matrix.tickers.length; i++) {
+    for (let j = i + 1; j < matrix.tickers.length; j++) {
+      pairs.push({
+        a: labels[i],
+        b: labels[j],
+        corr: matrix.matrix[i][j],
+      });
+    }
+  }
+  pairs.sort((a, b) => a.corr - b.corr);
+
+  const avgCorr =
+    pairs.length > 0 ? pairs.reduce((s, p) => s + p.corr, 0) / pairs.length : 0;
+
+  // 색상: 빨강(+1) → 흰색(0) → 파랑(-1)
+  const cellColor = (v: number) => {
+    if (v >= 0) {
+      const intensity = Math.round(v * 255);
+      return `rgb(${255}, ${255 - intensity * 0.6}, ${255 - intensity * 0.6})`;
+    } else {
+      const intensity = Math.round(Math.abs(v) * 255);
+      return `rgb(${255 - intensity * 0.6}, ${255 - intensity * 0.4}, ${255})`;
+    }
+  };
+
+  const textColor = (v: number) => (Math.abs(v) > 0.5 ? "#0f172a" : "#475569");
+
+  const interpretAvg = (avg: number) => {
+    if (avg >= 0.7) return { label: "분산 효과 약함", color: "text-rose-700", desc: "구성 ETF들이 너무 비슷하게 움직입니다. 한 자산이 빠지면 다른 자산도 같이 빠질 가능성이 큽니다." };
+    if (avg >= 0.4) return { label: "분산 효과 보통", color: "text-amber-700", desc: "구성 ETF들이 어느 정도 같이 움직이지만, 일부는 따로 움직여서 부분적인 분산 효과가 있습니다." };
+    if (avg >= 0.1) return { label: "분산 효과 양호", color: "text-emerald-700", desc: "구성 ETF들이 서로 다른 방향으로 움직이는 경우가 많아서, 한쪽이 빠질 때 다른 쪽이 손실을 메워줄 가능성이 큽니다." };
+    return { label: "분산 효과 우수", color: "text-blue-700", desc: "구성 ETF들이 거의 독립적으로 움직입니다. 시장 충격에 가장 강한 구조입니다." };
+  };
+
+  const verdict = interpretAvg(avgCorr);
+
+  return (
+    <section>
+      <h2 className="text-2xl font-bold text-slate-900 mb-2 tracking-tight">
+        상관계수 매트릭스
+      </h2>
+      <p className="text-sm text-slate-500 mb-5">
+        베스트픽 구성 ETF가 서로 얼마나 같이 움직이는지 보여줍니다. 1에 가까우면 같은 방향, -1에 가까우면 반대 방향, 0에 가까우면 독립적입니다. 분산 투자가 효과를 내려면 상관계수가 낮을수록 좋습니다.
+      </p>
+
+      <div className="bg-white border border-slate-100 rounded-2xl p-6 shadow-sm overflow-x-auto">
+        <table className="border-collapse mx-auto">
+          <thead>
+            <tr>
+              <th className="p-2"></th>
+              {labels.map((l, i) => (
+                <th
+                  key={i}
+                  className="p-2 text-[10px] font-semibold text-slate-600 align-bottom"
+                  style={{ minWidth: 70 }}
+                >
+                  <div
+                    className="whitespace-nowrap"
+                    style={{
+                      writingMode: "vertical-rl",
+                      transform: "rotate(180deg)",
+                      maxHeight: 100,
+                    }}
+                  >
+                    {l}
+                  </div>
+                </th>
+              ))}
+            </tr>
+          </thead>
+          <tbody>
+            {matrix.matrix.map((row, i) => (
+              <tr key={i}>
+                <td className="p-2 text-[10px] font-semibold text-slate-600 text-right whitespace-nowrap">
+                  {labels[i]}
+                </td>
+                {row.map((v, j) => (
+                  <td
+                    key={j}
+                    className="p-0 border border-white"
+                    style={{ minWidth: 70, height: 50 }}
+                  >
+                    <div
+                      className="w-full h-full flex items-center justify-center text-xs font-bold"
+                      style={{
+                        backgroundColor: cellColor(v),
+                        color: textColor(v),
+                      }}
+                    >
+                      {v.toFixed(2)}
+                    </div>
+                  </td>
+                ))}
+              </tr>
+            ))}
+          </tbody>
+        </table>
+
+        {/* 컬러 범례 */}
+        <div className="flex items-center justify-center gap-3 mt-5 text-[11px] text-slate-600">
+          <span>완전 반대(-1)</span>
+          <div className="flex h-3 rounded overflow-hidden border border-slate-200" style={{ width: 200 }}>
+            {Array.from({ length: 21 }, (_, i) => {
+              const v = -1 + i * 0.1;
+              return <div key={i} style={{ flex: 1, backgroundColor: cellColor(v) }} />;
+            })}
+          </div>
+          <span>완전 동조(+1)</span>
+        </div>
+      </div>
+
+      {/* 해석 박스 */}
+      <div className="mt-4 grid grid-cols-1 md:grid-cols-2 gap-3">
+        <div className="bg-slate-50 border border-slate-200 rounded-lg p-4">
+          <div className="text-[10px] font-bold text-slate-600 uppercase tracking-wider mb-2">
+            📊 평균 상관계수
+          </div>
+          <div className={`text-2xl font-bold ${verdict.color} mb-1`}>
+            {avgCorr.toFixed(2)} · {verdict.label}
+          </div>
+          <div className="text-xs text-slate-600 leading-relaxed">
+            {verdict.desc}
+          </div>
+        </div>
+
+        {pairs.length > 0 && (
+          <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
+            <div className="text-[10px] font-bold text-blue-700 uppercase tracking-wider mb-2">
+              🔗 가장 독립적인 짝 / 가장 비슷한 짝
+            </div>
+            <div className="text-xs text-slate-700 leading-relaxed space-y-1">
+              <div>
+                <span className="font-semibold">가장 독립적:</span>{" "}
+                {pairs[0].a} ↔ {pairs[0].b}{" "}
+                <span className="font-bold text-blue-700">({pairs[0].corr.toFixed(2)})</span>
+              </div>
+              <div>
+                <span className="font-semibold">가장 비슷:</span>{" "}
+                {pairs[pairs.length - 1].a} ↔ {pairs[pairs.length - 1].b}{" "}
+                <span className="font-bold text-rose-700">({pairs[pairs.length - 1].corr.toFixed(2)})</span>
+              </div>
+            </div>
+          </div>
+        )}
       </div>
     </section>
   );

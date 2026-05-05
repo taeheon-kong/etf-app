@@ -22,6 +22,8 @@ import {
   backtestFamousPortfolios,
   evaluateRecommended,
 } from "@/lib/finance/portfolioComparator";
+import { loadPrices, sliceByDate } from "@/lib/finance/loader";
+import { dailyReturns } from "@/lib/finance/returns";
 
 function loadLatestMarketContext(): MarketContext | null {
   try {
@@ -97,6 +99,11 @@ export async function POST(req: Request) {
       ? evaluateRecommended(recommendedBacktest, famousBacktests)
       : null;
 
+    // 베스트픽 구성 ETF 간 상관계수 매트릭스
+    const correlationMatrix = calcCorrelationMatrix(
+      bestPick.holdings.map((h) => h.ticker)
+    );
+
     // 포트폴리오에 들어간 모든 ETF의 풀 통계 수집
     const allHoldingTickers = new Set<string>();
     [portfolios.defensive, portfolios.balanced, portfolios.aggressive].forEach((p) => {
@@ -126,6 +133,7 @@ export async function POST(req: Request) {
       recommendedBacktest,
       famousBacktests,
       comparison,
+      correlationMatrix,
       generatedAt: new Date().toISOString(),
     });
   } catch (e: any) {
@@ -201,4 +209,77 @@ function slimCandidate(c: EtfCandidate) {
     macroNote: c.macroNote,
     interestNote: c.interestNote,
   };
+}
+
+// 베스트픽 구성 ETF 간 상관계수 매트릭스 계산
+function calcCorrelationMatrix(
+  tickers: string[],
+): { tickers: string[]; matrix: number[][] } | null {
+  if (tickers.length < 2) return null;
+
+  const endDate = new Date().toISOString().slice(0, 10);
+  const startDateObj = new Date();
+  startDateObj.setFullYear(startDateObj.getFullYear() - 5);
+  const startDate = startDateObj.toISOString().slice(0, 10);
+
+  try {
+    const allRets: Array<Map<string, number>> = [];
+    for (const t of tickers) {
+      const series = sliceByDate(loadPrices(t), startDate, endDate);
+      const rets = dailyReturns(series);
+      const map = new Map<string, number>();
+      for (const r of rets) map.set(r.date, r.ret);
+      allRets.push(map);
+    }
+
+    // 공통 날짜
+    const allDates = new Set<string>();
+    allRets.forEach((m) => m.forEach((_, d) => allDates.add(d)));
+    const commonDates = Array.from(allDates)
+      .sort()
+      .filter((d) => allRets.every((m) => m.has(d)));
+
+    if (commonDates.length < 60) return null;
+
+    // ETF별 수익률 배열
+    const series: number[][] = allRets.map((m) =>
+      commonDates.map((d) => m.get(d) ?? 0)
+    );
+
+    // 평균
+    const means = series.map((s) => s.reduce((a, b) => a + b, 0) / s.length);
+
+    // 표준편차
+    const stds = series.map((s, i) => {
+      const variance = s.reduce((sum, v) => sum + Math.pow(v - means[i], 2), 0) / s.length;
+      return Math.sqrt(variance);
+    });
+
+    // 상관계수
+    const n = tickers.length;
+    const matrix: number[][] = Array.from({ length: n }, () => new Array(n).fill(0));
+    for (let i = 0; i < n; i++) {
+      for (let j = 0; j < n; j++) {
+        if (i === j) {
+          matrix[i][j] = 1;
+          continue;
+        }
+        if (i > j) {
+          matrix[i][j] = matrix[j][i];
+          continue;
+        }
+        let cov = 0;
+        for (let k = 0; k < commonDates.length; k++) {
+          cov += (series[i][k] - means[i]) * (series[j][k] - means[j]);
+        }
+        cov /= commonDates.length;
+        const corr = stds[i] && stds[j] ? cov / (stds[i] * stds[j]) : 0;
+        matrix[i][j] = Math.max(-1, Math.min(1, corr));
+      }
+    }
+
+    return { tickers, matrix };
+  } catch {
+    return null;
+  }
 }
