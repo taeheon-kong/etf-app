@@ -89,7 +89,7 @@ def clean_text(text: str) -> str:
     return text.strip()
 
 
-def fetch_feed(name: str, url: str, days: int = 30, max_items: int = 30) -> list:
+def fetch_feed(name: str, url: str, days: int = 30, max_items: int = 20) -> list:
     """RSS 피드에서 최근 N일 헤드라인 추출"""
     items = []
     try:
@@ -116,7 +116,7 @@ def fetch_feed(name: str, url: str, days: int = 30, max_items: int = 30) -> list
             if not is_relevant(title):
                 continue
 
-            summary = clean_text(entry.get("summary", ""))[:200]
+            summary = clean_text(entry.get("summary", ""))[:600]
 
             items.append({
                 "date": pub_str,

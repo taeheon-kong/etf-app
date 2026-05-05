@@ -60,6 +60,19 @@ export type ScoreWeights = {
   interestFit: number;
 };
 
+export type PortfolioNarrative = {
+  marketHeadline: string;
+  positives: string[];
+  negatives: string[];
+  logic: Array<{ asset: string; reason: string }>;
+  scenario: {
+    trigger: string;
+    marketImpact: string;
+    portfolioImpact: string;
+  };
+  target: string;
+};
+
 export type MarketContext = {
   asOf: string;
   headline?: string;
@@ -67,9 +80,9 @@ export type MarketContext = {
   categoryScores: Record<string, number>;
   categoryNotes: Record<string, string>;
   portfolioNarratives?: {
-    defensive: string;
-    balanced: string;
-    aggressive: string;
+    defensive: PortfolioNarrative;
+    balanced: PortfolioNarrative;
+    aggressive: PortfolioNarrative;
   };
   profileHints?: {
     young_aggressive: string;

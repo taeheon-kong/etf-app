@@ -40,6 +40,20 @@ type Holding = {
   category: string;
   assetClass: string;
   reasons: string[];
+  role?: string;
+};
+
+type PortfolioNarrative = {
+  marketHeadline: string;
+  positives: string[];
+  negatives: string[];
+  logic: Array<{ asset: string; reason: string }>;
+  scenario: {
+    trigger: string;
+    marketImpact: string;
+    portfolioImpact: string;
+  };
+  target: string;
 };
 
 type Portfolio = {
@@ -52,13 +66,39 @@ type Portfolio = {
   expectedSharpe: number;
   expectedYield: number;
   totalCost: number;
-  narrative?: string;
+  narrative?: PortfolioNarrative;
+};
+
+type PortfolioBacktest = {
+  id: string;
+  name: string;
+  author: string;
+  description: string;
+  philosophy: string;
+  cagr: number;
+  sharpe: number;
+  mdd: number;
+  volatility: number;
+  finalValue: number;
+  available: boolean;
+  unavailableReason?: string;
+};
+
+type Comparison = {
+  recommendedScore: number;
+  bestFamousScore: number;
+  bestFamousName: string;
+  recommendedRank: number;
+  totalCount: number;
+  verdict: "winner" | "competitive" | "loser";
+  message: string;
 };
 
 type Response = {
   profile: InvestorProfile;
   candidatesCount: number;
   topPicks: TopPick[];
+  holdingDetails?: TopPick[];
   portfolios: { defensive: Portfolio; balanced: Portfolio; aggressive: Portfolio };
   bestPickType: "defensive" | "balanced" | "aggressive";
   marketHeadline?: string | null;
@@ -66,6 +106,17 @@ type Response = {
   marketAsOf?: string | null;
   userType?: string | null;
   profileHint?: string | null;
+  marketIndicators?: {
+    sp500_year: number | null;
+    kospi_year: number | null;
+    vix: number | null;
+    usdkrw: number | null;
+    gold_year: number | null;
+    fetchedAt: string | null;
+  };
+  recommendedBacktest?: PortfolioBacktest | null;
+  famousBacktests?: PortfolioBacktest[];
+  comparison?: Comparison | null;
 };
 
 const SERIES_COLORS = ["#2563eb", "#10b981", "#f59e0b", "#f43f5e", "#8b5cf6"];
@@ -189,6 +240,49 @@ export default function RecommendResultPage() {
                 🎯 {data.marketHeadline}
               </div>
             )}
+            {data.marketIndicators && (
+              <div className="flex flex-wrap gap-x-4 gap-y-1 mb-2 pb-2 border-b border-blue-200 text-[11px]">
+                {data.marketIndicators.sp500_year !== null && (
+                  <div>
+                    <span className="text-slate-500">S&P500</span>{" "}
+                    <span className={`font-bold ${data.marketIndicators.sp500_year >= 0 ? "text-blue-600" : "text-rose-600"}`}>
+                      {data.marketIndicators.sp500_year >= 0 ? "+" : ""}{data.marketIndicators.sp500_year.toFixed(1)}%
+                    </span>
+                    <span className="text-slate-400 text-[10px]"> (1Y)</span>
+                  </div>
+                )}
+                {data.marketIndicators.kospi_year !== null && (
+                  <div>
+                    <span className="text-slate-500">코스피</span>{" "}
+                    <span className={`font-bold ${data.marketIndicators.kospi_year >= 0 ? "text-blue-600" : "text-rose-600"}`}>
+                      {data.marketIndicators.kospi_year >= 0 ? "+" : ""}{data.marketIndicators.kospi_year.toFixed(1)}%
+                    </span>
+                    <span className="text-slate-400 text-[10px]"> (1Y)</span>
+                  </div>
+                )}
+                {data.marketIndicators.vix !== null && (
+                  <div>
+                    <span className="text-slate-500">VIX</span>{" "}
+                    <span className="font-bold text-slate-700">{data.marketIndicators.vix.toFixed(1)}</span>
+                  </div>
+                )}
+                {data.marketIndicators.usdkrw !== null && (
+                  <div>
+                    <span className="text-slate-500">원/달러</span>{" "}
+                    <span className="font-bold text-slate-700">{data.marketIndicators.usdkrw.toFixed(0)}</span>
+                  </div>
+                )}
+                {data.marketIndicators.gold_year !== null && (
+                  <div>
+                    <span className="text-slate-500">금</span>{" "}
+                    <span className={`font-bold ${data.marketIndicators.gold_year >= 0 ? "text-blue-600" : "text-rose-600"}`}>
+                      {data.marketIndicators.gold_year >= 0 ? "+" : ""}{data.marketIndicators.gold_year.toFixed(1)}%
+                    </span>
+                    <span className="text-slate-400 text-[10px]"> (1Y)</span>
+                  </div>
+                )}
+              </div>
+            )}
             {data.marketSummary && (
               <p className="text-sm text-slate-700 leading-relaxed">{data.marketSummary}</p>
             )}
@@ -215,9 +309,18 @@ export default function RecommendResultPage() {
         </div>
       </section>
 
+      {/* 유명 포트폴리오 비교 */}
+      {data.comparison && data.recommendedBacktest && data.famousBacktests && (
+        <FamousComparisonSection
+          recommended={data.recommendedBacktest}
+          famous={data.famousBacktests}
+          comparison={data.comparison}
+        />
+      )}
+
       {/* 단일 ETF Top 10 표 */}
       <section>
-        <h2 className="text-2xl font-bold text-slate-900 mb-5 tracking-tight">단일 ETF Top 10</h2>
+        <h2 className="text-2xl font-bold text-slate-900 mb-5 tracking-tight">단일 ETF TOP 10</h2>
         <div className="bg-white border border-slate-100 rounded-2xl overflow-hidden">
           <div className="overflow-x-auto">
             <table className="w-full text-sm">
@@ -266,13 +369,33 @@ export default function RecommendResultPage() {
         </div>
       </section>
 
-      {/* 상세 분석 (강점/약점/종합평가) */}
+      {/* 베스트픽 구성 ETF 상세 분석 */}
       <section>
-        <h2 className="text-2xl font-bold text-slate-900 mb-5 tracking-tight">상세 분석</h2>
+        <h2 className="text-2xl font-bold text-slate-900 mb-2 tracking-tight">베스트픽 구성 ETF 상세 분석</h2>
+        <p className="text-sm text-slate-500 mb-5">
+          추천된 <span className="font-semibold text-slate-700">{bestPick.label}</span> 포트폴리오를 구성하는 각 ETF의 강점·약점·역할을 분석합니다.
+        </p>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-          {data.topPicks.slice(0, 6).map((pick, idx) => (
-            <DetailCard key={pick.ticker} pick={pick} rank={idx + 1} />
-          ))}
+          {bestPick.holdings.map((h, idx) => {
+            // 우선 holdingDetails에서 찾고, 없으면 topPicks에서 찾기
+            const matchedPick =
+              data.holdingDetails?.find((p) => p.ticker === h.ticker) ||
+              data.topPicks.find((p) => p.ticker === h.ticker);
+            if (matchedPick) {
+              return <DetailCard key={h.ticker} pick={matchedPick} rank={idx + 1} weight={h.weight} />;
+            }
+            return (
+              <DetailCardLite
+                key={h.ticker}
+                ticker={h.ticker}
+                name={h.name}
+                market={h.market}
+                weight={h.weight}
+                category={h.category}
+                rank={idx + 1}
+              />
+            );
+          })}
         </div>
       </section>
 
@@ -287,7 +410,7 @@ export default function RecommendResultPage() {
 // ──────────────────────────────────────────
 // 상세 분석 카드 (강점/약점/종합평가/환경 부합성)
 // ──────────────────────────────────────────
-function DetailCard({ pick, rank }: { pick: TopPick; rank: number }) {
+function DetailCard({ pick, rank, weight }: { pick: TopPick; rank: number; weight?: number }) {
   const macroFitScore = pick.scores?.macroFit ?? 50;
   const interestFitScore = pick.scores?.interestFit ?? 50;
   const showMacroBox = pick.macroNote && pick.macroNote.length > 0;
@@ -310,6 +433,11 @@ function DetailCard({ pick, rank }: { pick: TopPick; rank: number }) {
             <span className={`text-[10px] px-1.5 py-0.5 rounded font-semibold ${pick.market === "kr" ? "bg-rose-50 text-rose-700" : "bg-blue-50 text-blue-700"}`}>
               {pick.market === "kr" ? "KR" : "US"}
             </span>
+            {weight !== undefined && (
+              <span className="text-[10px] font-bold text-blue-600 bg-blue-50 px-1.5 py-0.5 rounded">
+                비중 {weight}%
+              </span>
+            )}
             <span className="text-[10px] font-bold text-slate-400 ml-auto">점수 {pick.totalScore.toFixed(1)}</span>
           </div>
           <div className="text-xs text-slate-500 truncate">{pick.name}</div>
@@ -423,14 +551,7 @@ function PortfolioCard({
           </div>
           <p className="text-xs text-slate-500">{portfolio.description}</p>
           {portfolio.narrative && !compact && (
-            <div className="mt-4 bg-slate-50 border border-slate-200 rounded-lg p-4">
-              <div className="text-[10px] font-bold text-slate-600 uppercase tracking-wider mb-2">
-                💡 이 포트폴리오를 추천하는 이유
-              </div>
-              <p className="text-[13px] text-slate-700 leading-relaxed whitespace-pre-line">
-                {portfolio.narrative}
-              </p>
-            </div>
+            <NarrativeCard narrative={portfolio.narrative} />
           )}
         </div>
       </div>
@@ -468,12 +589,16 @@ function PortfolioCard({
               <div className="w-3 h-3 rounded-sm shrink-0" style={{ backgroundColor: SERIES_COLORS[i % SERIES_COLORS.length] }} />
               <div className="flex-1 min-w-0">
                 <div className="flex items-center gap-1.5">
-                  <span className="font-bold text-slate-900 text-sm">{h.ticker}</span>
+                  <span className="font-bold text-slate-900 text-sm">{h.market === "kr" ? h.name : h.ticker}</span>
                   <span className={`text-[10px] px-1 py-0.5 rounded font-semibold ${h.market === "kr" ? "bg-rose-50 text-rose-700" : "bg-blue-50 text-blue-700"}`}>
                     {h.market === "kr" ? "KR" : "US"}
                   </span>
                 </div>
-                <div className="text-[10px] text-slate-500 truncate">{h.name}</div>
+                {h.role && (
+                  <div className="text-[10px] text-blue-600 font-semibold mt-0.5">
+                    {h.role}
+                  </div>
+                )}
               </div>
               <div className="text-sm font-bold text-slate-900 shrink-0">{h.weight}%</div>
             </div>
@@ -507,5 +632,331 @@ function Stat({ label, value, color }: { label: string; value: string; color: "b
       <div className="text-[10px] font-semibold text-slate-500 uppercase tracking-wider">{label}</div>
       <div className={`text-base font-bold mt-0.5 ${c}`}>{value}</div>
     </div>
+  );
+}
+
+function DetailCardLite({
+  ticker,
+  name,
+  market,
+  weight,
+  category,
+  rank,
+}: {
+  ticker: string;
+  name: string;
+  market: "us" | "kr";
+  weight: number;
+  category: string;
+  rank: number;
+}) {
+  return (
+    <div className="bg-white border border-slate-100 rounded-2xl p-6 shadow-sm">
+      <div className="flex items-start gap-3 pb-4 border-b border-slate-100">
+        <span className="w-9 h-9 rounded-lg bg-blue-50 flex items-center justify-center text-sm font-bold text-blue-600 shrink-0">
+          {rank}
+        </span>
+        <div className="min-w-0 flex-1">
+          <div className="flex items-center gap-2 flex-wrap mb-0.5">
+            <span className="font-bold text-slate-900">{ticker}</span>
+            <span className={`text-[10px] px-1.5 py-0.5 rounded font-semibold ${market === "kr" ? "bg-rose-50 text-rose-700" : "bg-blue-50 text-blue-700"}`}>
+              {market === "kr" ? "KR" : "US"}
+            </span>
+            <span className="text-[10px] font-bold text-blue-600 bg-blue-50 px-1.5 py-0.5 rounded">
+              비중 {weight}%
+            </span>
+          </div>
+          <div className="text-xs text-slate-500 truncate">{name}</div>
+        </div>
+      </div>
+      <div className="mt-4 text-xs text-slate-500">
+        카테고리: <span className="font-semibold text-slate-700">{category}</span>
+      </div>
+      <div className="mt-2 text-[11px] text-slate-400">
+        Top 10 외 ETF로 상세 통계는 백테스트에서 확인하세요.
+      </div>
+    </div>
+  );
+}
+
+function NarrativeCard({ narrative }: { narrative: PortfolioNarrative }) {
+  return (
+    <div className="mt-5 space-y-4">
+      {/* 한 줄 요약 */}
+      {narrative.marketHeadline && (
+        <div className="bg-gradient-to-r from-indigo-50 to-blue-50 border border-indigo-200 rounded-lg px-4 py-3">
+          <div className="text-[10px] font-bold text-indigo-700 uppercase tracking-wider mb-1">
+            🎯 한 줄 요약
+          </div>
+          <div className="text-base font-bold text-slate-900">
+            {narrative.marketHeadline}
+          </div>
+        </div>
+      )}
+
+      {/* 긍정/경고 신호 — 2단 그리드 */}
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+        {/* 긍정 */}
+        {narrative.positives && narrative.positives.length > 0 && (
+          <div className="bg-emerald-50 border border-emerald-200 rounded-lg p-4">
+            <div className="text-[10px] font-bold text-emerald-700 uppercase tracking-wider mb-2">
+              📈 시장의 좋은 신호
+            </div>
+            <ul className="space-y-2">
+              {narrative.positives.map((item, i) => (
+                <li key={i} className="flex items-start gap-1.5 text-[12px] text-slate-700 leading-relaxed">
+                  <span className="text-emerald-600 shrink-0 mt-0.5">•</span>
+                  <span>{item}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        )}
+
+        {/* 경고 */}
+        {narrative.negatives && narrative.negatives.length > 0 && (
+          <div className="bg-amber-50 border border-amber-200 rounded-lg p-4">
+            <div className="text-[10px] font-bold text-amber-700 uppercase tracking-wider mb-2">
+              ⚠️ 시장의 경고 신호
+            </div>
+            <ul className="space-y-2">
+              {narrative.negatives.map((item, i) => (
+                <li key={i} className="flex items-start gap-1.5 text-[12px] text-slate-700 leading-relaxed">
+                  <span className="text-amber-600 shrink-0 mt-0.5">•</span>
+                  <span>{item}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        )}
+      </div>
+
+      {/* 자산군별 비중 근거 */}
+      {narrative.logic && narrative.logic.length > 0 && (
+        <div className="bg-slate-50 border border-slate-200 rounded-lg p-4">
+          <div className="text-[10px] font-bold text-slate-600 uppercase tracking-wider mb-3">
+            💡 이 비중을 선택한 이유
+          </div>
+          <div className="space-y-2.5">
+            {narrative.logic.map((item, i) => (
+              <div key={i} className="flex items-start gap-3">
+                <div className="text-[12px] font-bold text-blue-700 bg-blue-100 px-2 py-1 rounded shrink-0 min-w-[70px] text-center">
+                  {item.asset}
+                </div>
+                <div className="text-[12px] text-slate-700 leading-relaxed pt-0.5">
+                  {item.reason}
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
+
+      {/* 시나리오 */}
+      {narrative.scenario && (
+        <div className="bg-rose-50 border border-rose-200 rounded-lg p-4">
+          <div className="text-[10px] font-bold text-rose-700 uppercase tracking-wider mb-2">
+            🎯 최악의 시나리오
+          </div>
+          <div className="space-y-1.5 text-[12px] leading-relaxed">
+            <div>
+              <span className="font-semibold text-rose-700">발현 조건: </span>
+              <span className="text-slate-700">{narrative.scenario.trigger}</span>
+            </div>
+            <div>
+              <span className="font-semibold text-rose-700">시장 영향: </span>
+              <span className="text-slate-700">{narrative.scenario.marketImpact}</span>
+            </div>
+            <div>
+              <span className="font-semibold text-rose-700">이 포트폴리오: </span>
+              <span className="text-slate-700">{narrative.scenario.portfolioImpact}</span>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* 누구에게 맞나 */}
+      {narrative.target && (
+        <div className="bg-violet-50 border border-violet-200 rounded-lg p-4">
+          <div className="text-[10px] font-bold text-violet-700 uppercase tracking-wider mb-1">
+            👤 누구에게 맞는가
+          </div>
+          <div className="text-[12px] text-slate-700 leading-relaxed">
+            {narrative.target}
+          </div>
+        </div>
+      )}
+    </div>
+  );
+}
+
+function FamousComparisonSection({
+  recommended,
+  famous,
+  comparison,
+}: {
+  recommended: PortfolioBacktest;
+  famous: PortfolioBacktest[];
+  comparison: Comparison;
+}) {
+  const allPortfolios = [recommended, ...famous].filter((p) => p.available);
+  const sorted = [...allPortfolios].sort((a, b) => {
+    // Sharpe 기준 정렬
+    return b.sharpe - a.sharpe;
+  });
+
+  const verdictStyles = {
+    winner: {
+      bg: "bg-gradient-to-br from-emerald-50 to-green-50",
+      border: "border-emerald-300",
+      label: "✅ 추천 우수",
+      labelClass: "bg-emerald-100 text-emerald-700",
+    },
+    competitive: {
+      bg: "bg-gradient-to-br from-blue-50 to-indigo-50",
+      border: "border-blue-300",
+      label: "🤝 비등한 수준",
+      labelClass: "bg-blue-100 text-blue-700",
+    },
+    loser: {
+      bg: "bg-gradient-to-br from-amber-50 to-orange-50",
+      border: "border-amber-300",
+      label: "⚠️ 유명 포트폴리오가 우세",
+      labelClass: "bg-amber-100 text-amber-700",
+    },
+  };
+
+  const style = verdictStyles[comparison.verdict];
+
+  return (
+    <section>
+      <h2 className="text-2xl font-bold text-slate-900 mb-2 tracking-tight">
+        유명 포트폴리오와 비교
+      </h2>
+      <p className="text-sm text-slate-500 mb-5">
+        Ray Dalio, Bogleheads, Warren Buffett 등 검증된 포트폴리오와 같은 5년 백테스트로 정직하게 비교합니다.
+      </p>
+
+      {/* 평가 요약 박스 */}
+      <div className={`${style.bg} ${style.border} border-2 rounded-xl p-5 mb-5`}>
+        <div className="flex items-center gap-2 mb-2 flex-wrap">
+          <span className={`text-xs font-bold ${style.labelClass} px-2 py-1 rounded`}>
+            {style.label}
+          </span>
+          <span className="text-xs text-slate-600">
+            전체 {comparison.totalCount}개 중 <span className="font-bold">{comparison.recommendedRank}위</span>
+          </span>
+        </div>
+        <p className="text-sm text-slate-800 leading-relaxed">{comparison.message}</p>
+      </div>
+
+      {/* 비교 테이블 */}
+      <div className="bg-white border border-slate-100 rounded-2xl overflow-hidden">
+        <div className="overflow-x-auto">
+          <table className="w-full text-sm">
+            <thead className="bg-slate-50 border-b border-slate-200">
+              <tr className="text-left text-xs font-semibold text-slate-500 uppercase tracking-wide">
+                <th className="py-3 px-4">순위</th>
+                <th className="py-3 px-4">포트폴리오</th>
+                <th className="py-3 px-4 text-right">CAGR</th>
+                <th className="py-3 px-4 text-right">Sharpe</th>
+                <th className="py-3 px-4 text-right">MDD</th>
+                <th className="py-3 px-4 text-right">변동성</th>
+                <th className="py-3 px-4 text-right">100만원→</th>
+              </tr>
+            </thead>
+            <tbody>
+              {sorted.map((p, idx) => {
+                const isRecommended = p.id === "recommended";
+                return (
+                  <tr
+                    key={p.id}
+                    className={`border-b border-slate-100 last:border-0 transition-colors ${
+                      isRecommended ? "bg-blue-50" : "hover:bg-slate-50"
+                    }`}
+                  >
+                    <td className="py-3 px-4">
+                      <span
+                        className={`inline-flex w-7 h-7 items-center justify-center rounded font-bold text-sm ${
+                          idx === 0
+                            ? "bg-yellow-100 text-yellow-700"
+                            : idx === 1
+                            ? "bg-slate-200 text-slate-700"
+                            : idx === 2
+                            ? "bg-orange-100 text-orange-700"
+                            : "text-slate-400"
+                        }`}
+                      >
+                        {idx + 1}
+                      </span>
+                    </td>
+                    <td className="py-3 px-4">
+                      <div className="flex items-center gap-2 mb-0.5">
+                        <span className={`font-bold ${isRecommended ? "text-blue-700" : "text-slate-900"}`}>
+                          {p.name}
+                        </span>
+                        {isRecommended && (
+                          <span className="text-[10px] font-bold text-blue-700 bg-blue-100 px-1.5 py-0.5 rounded">
+                            내 추천
+                          </span>
+                        )}
+                      </div>
+                      <div className="text-[11px] text-slate-500">{p.author}</div>
+                    </td>
+                    <td className={`py-3 px-4 text-right font-semibold ${p.cagr >= 0 ? "text-blue-600" : "text-rose-600"}`}>
+                      {p.cagr >= 0 ? "+" : ""}{(p.cagr * 100).toFixed(2)}%
+                    </td>
+                    <td className="py-3 px-4 text-right font-medium text-slate-700">
+                      {p.sharpe.toFixed(2)}
+                    </td>
+                    <td className="py-3 px-4 text-right font-medium text-rose-600">
+                      {(p.mdd * 100).toFixed(2)}%
+                    </td>
+                    <td className="py-3 px-4 text-right font-medium text-slate-700">
+                      {(p.volatility * 100).toFixed(2)}%
+                    </td>
+                    <td className={`py-3 px-4 text-right font-bold ${p.finalValue >= 1000000 ? "text-blue-600" : "text-rose-600"}`}>
+                      {p.finalValue >= 100000000
+                        ? `${(p.finalValue / 100000000).toFixed(2)}억원`
+                        : `${(p.finalValue / 10000).toFixed(0)}만원`}
+                    </td>
+                  </tr>
+                );
+              })}
+              {famous
+                .filter((p) => !p.available)
+                .map((p) => (
+                  <tr key={p.id} className="border-b border-slate-100 last:border-0 opacity-50">
+                    <td className="py-3 px-4 text-slate-400">—</td>
+                    <td className="py-3 px-4">
+                      <div className="font-bold text-slate-500">{p.name}</div>
+                      <div className="text-[11px] text-slate-400">{p.author}</div>
+                    </td>
+                    <td colSpan={5} className="py-3 px-4 text-center text-xs text-slate-400">
+                      {p.unavailableReason ?? "데이터 없음"}
+                    </td>
+                  </tr>
+                ))}
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      {/* 유명 포트폴리오 철학 카드 */}
+      <div className="mt-5 grid grid-cols-1 md:grid-cols-2 gap-3">
+        {sorted.slice(0, 4).filter(p => p.id !== "recommended").map((p) => (
+          <div key={p.id} className="bg-white border border-slate-100 rounded-xl p-4 shadow-sm">
+            <div className="flex items-center gap-2 mb-1">
+              <span className="font-bold text-slate-900 text-sm">{p.name}</span>
+              <span className="text-[10px] text-slate-500">— {p.author}</span>
+            </div>
+            <div className="text-[12px] text-slate-600 mb-2 leading-relaxed">{p.description}</div>
+            <div className="text-[11px] text-slate-500 italic leading-relaxed border-l-2 border-slate-200 pl-2">
+              "{p.philosophy}"
+            </div>
+          </div>
+        ))}
+      </div>
+    </section>
   );
 }

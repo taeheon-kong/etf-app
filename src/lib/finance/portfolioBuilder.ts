@@ -27,7 +27,7 @@ export type RecommendedPortfolio = {
   expectedSharpe: number;
   expectedYield: number;
   totalCost: number;
-  narrative?: string;
+  narrative?: any;
 };
 
 type AssetClass = "stocks" | "bonds" | "alternatives" | "cash" | "theme";
