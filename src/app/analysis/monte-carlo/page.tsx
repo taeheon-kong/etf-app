@@ -48,6 +48,7 @@ export default function MonteCarloPage() {
   }, [router]);
 
   const runSimulation = async () => {
+    if (holdings.length === 0) return;
     setLoading(true);
     setError(null);
     try {
@@ -228,8 +229,8 @@ export default function MonteCarloPage() {
 
           <button
             onClick={runSimulation}
-            disabled={loading}
-            className="w-full py-3 bg-blue-600 hover:bg-blue-700 text-white rounded-xl font-semibold disabled:opacity-50 transition-colors shadow-sm shadow-blue-600/20"
+            disabled={loading || holdings.length === 0}
+            className="w-full py-3 bg-blue-600 hover:bg-blue-700 text-white rounded-xl font-semibold disabled:opacity-50 disabled:cursor-not-allowed transition-colors shadow-sm shadow-blue-600/20"
           >
             {loading ? "시뮬레이션 중..." : "시뮬레이션 실행"}
           </button>

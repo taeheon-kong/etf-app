@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import {
   PieChart, Pie, Cell, ResponsiveContainer, Tooltip,
+  ScatterChart, Scatter, XAxis, YAxis, CartesianGrid, ZAxis, Label,
 } from "recharts";
 import type { InvestorProfile } from "@/lib/finance/profileEngine";
 
@@ -170,6 +171,12 @@ export default function RecommendResultPage() {
     router.push("/backtest/result");
   };
 
+  const goMonteCarlo = (holdings: Holding[]) => {
+    const mcInput = holdings.map((h) => ({ ticker: h.ticker, weight: h.weight }));
+    sessionStorage.setItem("etf_analysis_holdings", JSON.stringify(mcInput));
+    router.push("/analysis/monte-carlo");
+  };
+
   if (loading) {
     return (
       <div className="px-6 lg:px-8 py-20 max-w-[1400px] flex items-center justify-center">
@@ -318,6 +325,16 @@ export default function RecommendResultPage() {
         />
       )}
 
+      {/* 효율적 투자선 */}
+      {data.recommendedBacktest && (
+        <EfficientFrontierSection
+          recommended={data.recommendedBacktest}
+          famous={data.famousBacktests ?? []}
+          holdingDetails={data.holdingDetails ?? data.topPicks}
+          bestHoldings={bestPick.holdings}
+        />
+      )}
+
       {/* 단일 ETF Top 10 표 */}
       <section>
         <h2 className="text-2xl font-bold text-slate-900 mb-5 tracking-tight">단일 ETF TOP 10</h2>
@@ -396,6 +413,42 @@ export default function RecommendResultPage() {
               />
             );
           })}
+        </div>
+      </section>
+
+      {/* 심화 분석 도구 */}
+      <section>
+        <h2 className="text-2xl font-bold text-slate-900 mb-2 tracking-tight">심화 분석</h2>
+        <p className="text-sm text-slate-500 mb-5">
+          베스트픽 <span className="font-semibold text-slate-700">{bestPick.label}</span> 포트폴리오로 추가 시나리오를 돌려볼 수 있습니다.
+        </p>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <button
+            onClick={() => goMonteCarlo(bestPick.holdings)}
+            className="bg-white border border-slate-100 rounded-2xl p-5 text-left hover:border-blue-300 hover:shadow-md transition-all group"
+          >
+            <div className="flex items-center gap-2 mb-2">
+              <span className="text-lg">🎲</span>
+              <span className="font-bold text-slate-900">몬테카를로 시뮬레이션</span>
+              <span className="ml-auto text-blue-600 group-hover:translate-x-1 transition-transform">→</span>
+            </div>
+            <p className="text-xs text-slate-600 leading-relaxed">
+              5,000회 시나리오로 미래 잔고 분포를 추정합니다. 적립·인출·인플레이션 반영.
+            </p>
+          </button>
+          <button
+            onClick={() => goBacktest(bestPick.holdings)}
+            className="bg-white border border-slate-100 rounded-2xl p-5 text-left hover:border-blue-300 hover:shadow-md transition-all group"
+          >
+            <div className="flex items-center gap-2 mb-2">
+              <span className="text-lg">📊</span>
+              <span className="font-bold text-slate-900">상세 백테스트</span>
+              <span className="ml-auto text-blue-600 group-hover:translate-x-1 transition-transform">→</span>
+            </div>
+            <p className="text-xs text-slate-600 leading-relaxed">
+              구간별 수익률·드로다운·세금·리밸런싱 효과를 종합 분석합니다.
+            </p>
+          </button>
         </div>
       </section>
 
@@ -956,6 +1009,178 @@ function FamousComparisonSection({
             </div>
           </div>
         ))}
+      </div>
+    </section>
+  );
+}
+
+function EfficientFrontierSection({
+  recommended,
+  famous,
+  holdingDetails,
+  bestHoldings,
+}: {
+  recommended: PortfolioBacktest;
+  famous: PortfolioBacktest[];
+  holdingDetails: TopPick[];
+  bestHoldings: Holding[];
+}) {
+  // 베스트픽 구성 ETF만 필터
+  const bestTickers = new Set(bestHoldings.map((h) => h.ticker));
+  const bestPickEtfs = holdingDetails
+    .filter((p) => bestTickers.has(p.ticker))
+    .map((p) => ({
+      name: p.ticker,
+      x: p.volatility * 100,
+      y: p.cagr * 100,
+      sharpe: p.sharpe,
+      type: "etf" as const,
+    }));
+
+  // 베스트픽 포트폴리오
+  const recommendedPoint = {
+    name: recommended.name,
+    x: recommended.volatility * 100,
+    y: recommended.cagr * 100,
+    sharpe: recommended.sharpe,
+    type: "recommended" as const,
+  };
+
+  // 유명 포트폴리오
+  const famousPoints = famous
+    .filter((p) => p.available)
+    .map((p) => ({
+      name: p.name,
+      x: p.volatility * 100,
+      y: p.cagr * 100,
+      sharpe: p.sharpe,
+      type: "famous" as const,
+    }));
+
+  const allPoints = [...bestPickEtfs, ...famousPoints, recommendedPoint];
+  const xMax = Math.ceil(Math.max(...allPoints.map((p) => p.x)) * 1.1);
+  const yMin = Math.floor(Math.min(...allPoints.map((p) => p.y)) - 2);
+  const yMax = Math.ceil(Math.max(...allPoints.map((p) => p.y)) + 2);
+
+  // Sharpe 최고점 (좌상단 = 효율적)
+  const bestSharpe = allPoints.reduce((best, p) =>
+    p.sharpe > best.sharpe ? p : best
+  , allPoints[0]);
+
+  return (
+    <section>
+      <h2 className="text-2xl font-bold text-slate-900 mb-2 tracking-tight">
+        효율적 투자선 (변동성 vs 수익률)
+      </h2>
+      <p className="text-sm text-slate-500 mb-5">
+        왼쪽 위로 갈수록 효율적입니다 (낮은 변동성 + 높은 수익률). Sharpe가 가장 높은 점이 위험 대비 보상이 가장 큰 자산입니다.
+      </p>
+
+      <div className="bg-white border border-slate-100 rounded-2xl p-6 shadow-sm">
+        <ResponsiveContainer width="100%" height={420}>
+          <ScatterChart margin={{ top: 20, right: 30, bottom: 50, left: 50 }}>
+            <CartesianGrid strokeDasharray="3 3" stroke="#e2e8f0" />
+            <XAxis
+              type="number"
+              dataKey="x"
+              name="변동성"
+              domain={[0, xMax]}
+              tick={{ fontSize: 11, fill: "#64748b" }}
+              tickFormatter={(v) => `${v.toFixed(0)}%`}
+            >
+              <Label value="변동성 (연환산)" offset={-30} position="insideBottom" style={{ fontSize: 12, fill: "#475569", fontWeight: 600 }} />
+            </XAxis>
+            <YAxis
+              type="number"
+              dataKey="y"
+              name="CAGR"
+              domain={[yMin, yMax]}
+              tick={{ fontSize: 11, fill: "#64748b" }}
+              tickFormatter={(v) => `${v.toFixed(0)}%`}
+            >
+              <Label value="연평균 수익률 (CAGR)" angle={-90} offset={-35} position="insideLeft" style={{ fontSize: 12, fill: "#475569", fontWeight: 600, textAnchor: "middle" }} />
+            </YAxis>
+            <ZAxis range={[140, 140]} />
+            <Tooltip
+              cursor={{ strokeDasharray: "3 3" }}
+              content={({ active, payload }) => {
+                if (!active || !payload || !payload.length) return null;
+                const p: any = payload[0].payload;
+                return (
+                  <div className="bg-white border border-slate-200 rounded-lg px-3 py-2 shadow-md text-xs">
+                    <div className="font-bold text-slate-900 mb-1">{p.name}</div>
+                    <div className="text-slate-600">변동성 <span className="font-semibold text-slate-900">{p.x.toFixed(2)}%</span></div>
+                    <div className="text-slate-600">CAGR <span className="font-semibold text-blue-600">{p.y >= 0 ? "+" : ""}{p.y.toFixed(2)}%</span></div>
+                    <div className="text-slate-600">Sharpe <span className="font-semibold text-slate-900">{p.sharpe.toFixed(2)}</span></div>
+                  </div>
+                );
+              }}
+            />
+            {/* 베스트픽 구성 ETF */}
+            <Scatter
+              name="베스트픽 구성 ETF"
+              data={bestPickEtfs}
+              fill="#10b981"
+              shape="circle"
+            />
+            {/* 유명 포트폴리오 */}
+            <Scatter
+              name="유명 포트폴리오"
+              data={famousPoints}
+              fill="#94a3b8"
+              shape="diamond"
+            />
+            {/* 베스트픽 포트폴리오 (별표 강조) */}
+            <Scatter
+              name="내 베스트픽"
+              data={[recommendedPoint]}
+              fill="#2563eb"
+              shape="star"
+            />
+          </ScatterChart>
+        </ResponsiveContainer>
+
+        {/* 범례 */}
+        <div className="flex items-center justify-center gap-5 mt-3 flex-wrap text-xs">
+          <div className="flex items-center gap-1.5">
+            <span className="text-blue-600 text-base">★</span>
+            <span className="text-slate-600">내 베스트픽</span>
+          </div>
+          <div className="flex items-center gap-1.5">
+            <span className="w-3 h-3 rounded-full bg-emerald-500" />
+            <span className="text-slate-600">베스트픽 구성 ETF</span>
+          </div>
+          <div className="flex items-center gap-1.5">
+            <span className="text-slate-400 text-base">◆</span>
+            <span className="text-slate-600">유명 포트폴리오</span>
+          </div>
+        </div>
+      </div>
+
+      {/* 해석 박스 */}
+      <div className="mt-4 grid grid-cols-1 md:grid-cols-2 gap-3">
+        <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
+          <div className="text-[10px] font-bold text-blue-700 uppercase tracking-wider mb-2">
+            🎯 위험 대비 최고 효율
+          </div>
+          <div className="text-sm font-bold text-slate-900 mb-1">{bestSharpe.name}</div>
+          <div className="text-xs text-slate-600">
+            Sharpe {bestSharpe.sharpe.toFixed(2)} · 변동성 {bestSharpe.x.toFixed(1)}% · CAGR {bestSharpe.y >= 0 ? "+" : ""}{bestSharpe.y.toFixed(1)}%
+          </div>
+        </div>
+        <div className="bg-slate-50 border border-slate-200 rounded-lg p-4">
+          <div className="text-[10px] font-bold text-slate-600 uppercase tracking-wider mb-2">
+            📍 내 베스트픽 위치
+          </div>
+          <div className="text-xs text-slate-700 leading-relaxed">
+            변동성 <span className="font-bold">{recommendedPoint.x.toFixed(1)}%</span> · CAGR <span className="font-bold text-blue-600">{recommendedPoint.y >= 0 ? "+" : ""}{recommendedPoint.y.toFixed(1)}%</span> · Sharpe <span className="font-bold">{recommendedPoint.sharpe.toFixed(2)}</span>
+            {recommendedPoint.sharpe >= bestSharpe.sharpe - 0.05
+              ? " — 최상위 효율 구간에 위치합니다."
+              : recommendedPoint.sharpe >= bestSharpe.sharpe - 0.2
+              ? " — 효율적 투자선에 근접해 있습니다."
+              : " — 더 효율적인 대안이 차트에 존재합니다."}
+          </div>
+        </div>
       </div>
     </section>
   );
