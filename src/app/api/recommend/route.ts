@@ -211,10 +211,17 @@ function slimCandidate(c: EtfCandidate) {
   };
 }
 
-// 베스트픽 구성 ETF 간 상관계수 매트릭스 계산
+// 베스트픽 구성 ETF 간 상관계수 매트릭스 + 자산별 통계
 function calcCorrelationMatrix(
   tickers: string[],
-): { tickers: string[]; matrix: number[][] } | null {
+): {
+  tickers: string[];
+  matrix: number[][];
+  stats: Array<{ ticker: string; cagr: number; volatility: number }>;
+  startDate: string;
+  endDate: string;
+  tradingDays: number;
+} | null {
   if (tickers.length < 2) return null;
 
   const endDate = new Date().toISOString().slice(0, 10);
@@ -278,7 +285,24 @@ function calcCorrelationMatrix(
       }
     }
 
-    return { tickers, matrix };
+    // 자산별 통계 (CAGR, 연환산 변동성)
+    const tradingDaysPerYear = 252;
+    const stats = tickers.map((ticker, i) => {
+      const totalReturn = series[i].reduce((acc, r) => acc * (1 + r), 1);
+      const years = commonDates.length / tradingDaysPerYear;
+      const cagr = years > 0 ? Math.pow(totalReturn, 1 / years) - 1 : 0;
+      const volatility = stds[i] * Math.sqrt(tradingDaysPerYear);
+      return { ticker, cagr, volatility };
+    });
+
+    return {
+      tickers,
+      matrix,
+      stats,
+      startDate: commonDates[0],
+      endDate: commonDates[commonDates.length - 1],
+      tradingDays: commonDates.length,
+    };
   } catch {
     return null;
   }

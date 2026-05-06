@@ -118,7 +118,14 @@ type Response = {
   recommendedBacktest?: PortfolioBacktest | null;
   famousBacktests?: PortfolioBacktest[];
   comparison?: Comparison | null;
-  correlationMatrix?: { tickers: string[]; matrix: number[][] } | null;
+  correlationMatrix?: {
+    tickers: string[];
+    matrix: number[][];
+    stats: Array<{ ticker: string; cagr: number; volatility: number }>;
+    startDate: string;
+    endDate: string;
+    tradingDays: number;
+  } | null;
 };
 
 const SERIES_COLORS = ["#2563eb", "#10b981", "#f59e0b", "#f43f5e", "#8b5cf6"];
@@ -336,10 +343,10 @@ export default function RecommendResultPage() {
         />
       )}
 
-      {/* 상관계수 매트릭스 */}
+      {/* 상관관계 분석 */}
       {data.correlationMatrix && data.correlationMatrix.tickers.length >= 2 && (
         <CorrelationMatrixSection
-          matrix={data.correlationMatrix}
+          data={data.correlationMatrix}
           holdings={bestPick.holdings}
         />
       )}
@@ -1196,13 +1203,154 @@ function EfficientFrontierSection({
 }
 
 function CorrelationMatrixSection({
-  matrix,
+  data,
   holdings,
 }: {
-  matrix: { tickers: string[]; matrix: number[][] };
+  data: {
+    tickers: string[];
+    matrix: number[][];
+    stats: Array<{ ticker: string; cagr: number; volatility: number }>;
+    startDate: string;
+    endDate: string;
+    tradingDays: number;
+  };
   holdings: Holding[];
 }) {
-  const labels = matrix.tickers.map((t) => {
+  // 추가분석 페이지와 동일한 색상 로직
+  const getCellColorClass = (val: number) => {
+    if (val >= 0.95) return "bg-blue-700 text-white";
+    if (val >= 0.8) return "bg-blue-600 text-white";
+    if (val >= 0.5) return "bg-blue-400 text-white";
+    if (val >= 0.2) return "bg-blue-100 text-blue-900";
+    if (val >= 0) return "bg-slate-100 text-slate-700";
+    if (val >= -0.5) return "bg-rose-100 text-rose-800";
+    if (val >= -0.8) return "bg-rose-400 text-white";
+    return "bg-rose-600 text-white";
+  };
+
+  const fmtPct = (v: number, sign = false) => {
+    const s = sign && v > 0 ? "+" : "";
+    return `${s}${(v * 100).toFixed(1)}%`;
+  };
+
+  // 평균 상관계수 (자기 자신 제외, 상삼각만)
+  const pairs: number[] = [];
+  for (let i = 0; i < data.tickers.length; i++) {
+    for (let j = i + 1; j < data.tickers.length; j++) {
+      pairs.push(data.matrix[i][j]);
+    }
+  }
+  const avgCorr = pairs.length > 0 ? pairs.reduce((s, p) => s + p, 0) / pairs.length : 0;
+
+  return (
+    <section>
+      <h2 className="text-2xl font-bold text-slate-900 mb-2 tracking-tight">
+        상관관계 분석
+      </h2>
+      <p className="text-sm text-slate-500 mb-5">
+        추천 포트폴리오를 구성하는 ETF들이 서로 얼마나 같이 움직이는지 보여줍니다. 1에 가까울수록 같이 움직이고, -1에 가까울수록 반대로 움직입니다. 분산 효과는 상관계수가 낮을수록 큽니다.
+      </p>
+
+      <div className="space-y-5">
+        <div className="grid grid-cols-1 lg:grid-cols-5 gap-5">
+          {/* 상관행렬 (3/5) */}
+          <div className="lg:col-span-3 bg-white border border-slate-100 rounded-2xl p-6 shadow-sm">
+            <h3 className="text-lg font-bold text-slate-900 mb-4">상관행렬</h3>
+            <div className="overflow-x-auto pb-2">
+              <div
+                className="inline-grid gap-1"
+                style={{
+                  gridTemplateColumns: `auto repeat(${data.tickers.length}, minmax(70px, 1fr))`,
+                }}
+              >
+                <div />
+                {data.tickers.map((t) => (
+                  <div
+                    key={`col-${t}`}
+                    className="text-center text-xs font-bold text-slate-500 mb-1"
+                  >
+                    {t}
+                  </div>
+                ))}
+
+                {data.tickers.map((rowTicker, i) => (
+                  <div key={`row-${rowTicker}`} className="contents">
+                    <div className="flex items-center justify-end pr-3 text-xs font-bold text-slate-500">
+                      {rowTicker}
+                    </div>
+                    {data.tickers.map((_, j) => {
+                      const val = data.matrix[i][j];
+                      return (
+                        <div
+                          key={`cell-${i}-${j}`}
+                          className={`aspect-square flex items-center justify-center font-bold text-sm rounded-lg ${getCellColorClass(val)}`}
+                        >
+                          {val.toFixed(2)}
+                        </div>
+                      );
+                    })}
+                  </div>
+                ))}
+              </div>
+            </div>
+            <p className="text-xs text-slate-500 mt-4">
+              평균 상관계수{" "}
+              <span className={`font-bold ${avgCorr >= 0.7 ? "text-rose-700" : avgCorr >= 0.4 ? "text-amber-700" : avgCorr >= 0.1 ? "text-emerald-700" : "text-blue-700"}`}>
+                {avgCorr.toFixed(2)}
+              </span>
+              {" — "}
+              {avgCorr >= 0.7 ? "분산 효과 약함" : avgCorr >= 0.4 ? "분산 효과 보통" : avgCorr >= 0.1 ? "분산 효과 양호" : "분산 효과 우수"}
+            </p>
+          </div>
+
+          {/* 자산별 통계 (2/5) */}
+          <div className="lg:col-span-2 bg-white border border-slate-100 rounded-2xl p-6 shadow-sm">
+            <h3 className="text-lg font-bold text-slate-900 mb-4">
+              자산별 통계{" "}
+              <span className="text-sm font-normal text-slate-500">(공통 기간)</span>
+            </h3>
+            <div className="overflow-x-auto">
+              <table className="w-full text-sm">
+                <thead>
+                  <tr className="text-left text-xs font-semibold text-slate-500 uppercase tracking-wide border-b border-slate-200">
+                    <th className="py-2 pr-3">심볼</th>
+                    <th className="py-2 pr-3 text-right">CAGR</th>
+                    <th className="py-2 text-right">변동성</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {data.stats.map((s) => (
+                    <tr key={s.ticker} className="border-b border-slate-100 last:border-0">
+                      <td className="py-2.5 pr-3 font-bold text-slate-800">{s.ticker}</td>
+                      <td
+                        className={`py-2.5 pr-3 text-right font-semibold ${
+                          s.cagr >= 0 ? "text-blue-600" : "text-rose-600"
+                        }`}
+                      >
+                        {fmtPct(s.cagr, true)}
+                      </td>
+                      <td className="py-2.5 text-right text-slate-700 font-medium">
+                        {fmtPct(s.volatility)}
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+            <p className="text-xs text-slate-400 mt-3">
+              {data.startDate.slice(0, 7)} ~ {data.endDate.slice(0, 7)} ({Math.floor(data.tradingDays / 21)}개월)
+            </p>
+          </div>
+        </div>
+
+        <div className="bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 text-xs text-slate-600 leading-relaxed">
+          <span className="font-semibold">해석 — </span>
+          상관계수는 일별 로그수익률 기준입니다. 0.7 이상이면 거의 같이 움직이므로 분산 효과가 제한적이고, 0 근처거나 음수면 포트폴리오 변동성을 줄이는 데 기여합니다.
+        </div>
+      </div>
+    </section>
+  );
+}
     const h = holdings.find((x) => x.ticker === t);
     return h?.market === "kr" ? (h.name.length > 12 ? h.name.slice(0, 12) + "…" : h.name) : t;
   });
