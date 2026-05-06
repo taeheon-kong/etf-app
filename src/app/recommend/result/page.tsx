@@ -118,14 +118,7 @@ type Response = {
   recommendedBacktest?: PortfolioBacktest | null;
   famousBacktests?: PortfolioBacktest[];
   comparison?: Comparison | null;
-  correlationMatrix?: {
-    tickers: string[];
-    matrix: number[][];
-    stats: Array<{ ticker: string; cagr: number; volatility: number }>;
-    startDate: string;
-    endDate: string;
-    tradingDays: number;
-  } | null;
+  correlationMatrix?: { tickers: string[]; matrix: number[][] } | null;
 };
 
 const SERIES_COLORS = ["#2563eb", "#10b981", "#f59e0b", "#f43f5e", "#8b5cf6"];
@@ -135,6 +128,17 @@ const fmtPct = (v: number, sign = false) => {
   return `${s}${(v * 100).toFixed(2)}%`;
 };
 const fmtNum = (v: number, d = 2) => v.toFixed(d);
+
+function getCellColorClass(val: number) {
+  if (val >= 0.95) return "bg-blue-700 text-white";
+  if (val >= 0.8) return "bg-blue-600 text-white";
+  if (val >= 0.5) return "bg-blue-400 text-white";
+  if (val >= 0.2) return "bg-blue-100 text-blue-900";
+  if (val >= 0) return "bg-slate-100 text-slate-700";
+  if (val >= -0.5) return "bg-rose-100 text-rose-800";
+  if (val >= -0.8) return "bg-rose-400 text-white";
+  return "bg-rose-600 text-white";
+}
 
 export default function RecommendResultPage() {
   const router = useRouter();
@@ -343,11 +347,13 @@ export default function RecommendResultPage() {
         />
       )}
 
-      {/* 상관관계 분석 */}
+      {/* 상관계수 매트릭스 */}
       {data.correlationMatrix && data.correlationMatrix.tickers.length >= 2 && (
         <CorrelationMatrixSection
-          data={data.correlationMatrix}
+          matrix={data.correlationMatrix}
           holdings={bestPick.holdings}
+          holdingDetails={data.holdingDetails}
+          topPicks={data.topPicks}
         />
       )}
 
@@ -1203,304 +1209,138 @@ function EfficientFrontierSection({
 }
 
 function CorrelationMatrixSection({
-  data,
+  matrix,
   holdings,
+  holdingDetails,
+  topPicks,
 }: {
-  data: {
-    tickers: string[];
-    matrix: number[][];
-    stats: Array<{ ticker: string; cagr: number; volatility: number }>;
-    startDate: string;
-    endDate: string;
-    tradingDays: number;
-  };
+  matrix: { tickers: string[]; matrix: number[][] };
   holdings: Holding[];
+  holdingDetails?: TopPick[];
+  topPicks: TopPick[];
 }) {
-  // 추가분석 페이지와 동일한 색상 로직
-  const getCellColorClass = (val: number) => {
-    if (val >= 0.95) return "bg-blue-700 text-white";
-    if (val >= 0.8) return "bg-blue-600 text-white";
-    if (val >= 0.5) return "bg-blue-400 text-white";
-    if (val >= 0.2) return "bg-blue-100 text-blue-900";
-    if (val >= 0) return "bg-slate-100 text-slate-700";
-    if (val >= -0.5) return "bg-rose-100 text-rose-800";
-    if (val >= -0.8) return "bg-rose-400 text-white";
-    return "bg-rose-600 text-white";
-  };
-
-  const fmtPct = (v: number, sign = false) => {
-    const s = sign && v > 0 ? "+" : "";
-    return `${s}${(v * 100).toFixed(1)}%`;
-  };
-
-  // 평균 상관계수 (자기 자신 제외, 상삼각만)
-  const pairs: number[] = [];
-  for (let i = 0; i < data.tickers.length; i++) {
-    for (let j = i + 1; j < data.tickers.length; j++) {
-      pairs.push(data.matrix[i][j]);
+  // 1. 긴 이름 줄임표 처리 (최대 8글자로 더 짧게)
+  const labels = matrix.tickers.map((t) => {
+    const h = holdings.find((x) => x.ticker === t);
+    if (!h) return t;
+    if (h.market === "kr") {
+      return h.name.length > 8 ? h.name.slice(0, 8) + "…" : h.name;
     }
-  }
-  const avgCorr = pairs.length > 0 ? pairs.reduce((s, p) => s + p, 0) / pairs.length : 0;
+    return t;
+  });
 
   return (
     <section>
-      <h2 className="text-2xl font-bold text-slate-900 mb-2 tracking-tight">
-        상관관계 분석
-      </h2>
-      <p className="text-sm text-slate-500 mb-5">
-        추천 포트폴리오를 구성하는 ETF들이 서로 얼마나 같이 움직이는지 보여줍니다. 1에 가까울수록 같이 움직이고, -1에 가까울수록 반대로 움직입니다. 분산 효과는 상관계수가 낮을수록 큽니다.
-      </p>
+      <div className="mb-6">
+        <h2 className="text-3xl font-bold text-slate-900 tracking-tight">상관관계 분석</h2>
+        <p className="text-sm text-slate-500 mt-1">
+          일별 로그수익률 기반 N×N 상관행렬. 1에 가까울수록 같이 움직이고, -1에 가까울수록 반대로 움직입니다.
+        </p>
+      </div>
 
       <div className="space-y-5">
         <div className="grid grid-cols-1 lg:grid-cols-5 gap-5">
-          {/* 상관행렬 (3/5) */}
-          <div className="lg:col-span-3 bg-white border border-slate-100 rounded-2xl p-6 shadow-sm">
-            <h3 className="text-lg font-bold text-slate-900 mb-4">상관행렬</h3>
+          {/* 좌측: 상관행렬 */}
+          <div className="lg:col-span-3 bg-white border border-slate-100 rounded-2xl p-6 shadow-sm overflow-hidden">
+            <h2 className="text-lg font-bold text-slate-900 mb-4">상관행렬</h2>
             <div className="overflow-x-auto pb-2">
               <div
-                className="inline-grid gap-1"
+                className="inline-grid gap-1.5"
                 style={{
-                  gridTemplateColumns: `auto repeat(${data.tickers.length}, minmax(70px, 1fr))`,
+                  // 셀의 최소/최대 너비 제한 (너무 커지지 않게)
+                  gridTemplateColumns: `minmax(80px, auto) repeat(${matrix.tickers.length}, minmax(50px, 70px))`,
                 }}
               >
                 <div />
-                {data.tickers.map((t) => (
+                {/* 상단 라벨 */}
+                {labels.map((l, i) => (
                   <div
-                    key={`col-${t}`}
-                    className="text-center text-xs font-bold text-slate-500 mb-1"
+                    key={`col-${i}`}
+                    className="text-center text-[11px] font-bold text-slate-500 mb-1 truncate px-1"
+                    title={holdings.find(h => h.ticker === matrix.tickers[i])?.name || l}
                   >
-                    {t}
+                    {l}
                   </div>
                 ))}
 
-                {data.tickers.map((rowTicker, i) => (
-                  <div key={`row-${rowTicker}`} className="contents">
-                    <div className="flex items-center justify-end pr-3 text-xs font-bold text-slate-500">
-                      {rowTicker}
+                {/* 좌측 라벨 + 데이터 셀 */}
+                {labels.map((rowLabel, i) => (
+                  <div key={`row-${i}`} className="contents">
+                    <div 
+                      className="flex items-center justify-end pr-3 text-[11px] font-bold text-slate-500 truncate"
+                      title={holdings.find(h => h.ticker === matrix.tickers[i])?.name || rowLabel}
+                    >
+                      {rowLabel}
                     </div>
-                    {data.tickers.map((_, j) => {
-                      const val = data.matrix[i][j];
-                      return (
-                        <div
-                          key={`cell-${i}-${j}`}
-                          className={`aspect-square flex items-center justify-center font-bold text-sm rounded-lg ${getCellColorClass(val)}`}
-                        >
-                          {val.toFixed(2)}
-                        </div>
-                      );
-                    })}
+                    {matrix.matrix[i].map((val, j) => (
+                      <div
+                        key={`cell-${i}-${j}`}
+                        // aspect-square 제거, 고정 높이 할당
+                        className={`h-[50px] flex items-center justify-center font-bold text-[13px] rounded-lg ${getCellColorClass(
+                          val
+                        )}`}
+                      >
+                        {val.toFixed(2)}
+                      </div>
+                    ))}
                   </div>
                 ))}
               </div>
             </div>
-            <p className="text-xs text-slate-500 mt-4">
-              평균 상관계수{" "}
-              <span className={`font-bold ${avgCorr >= 0.7 ? "text-rose-700" : avgCorr >= 0.4 ? "text-amber-700" : avgCorr >= 0.1 ? "text-emerald-700" : "text-blue-700"}`}>
-                {avgCorr.toFixed(2)}
-              </span>
-              {" — "}
-              {avgCorr >= 0.7 ? "분산 효과 약함" : avgCorr >= 0.4 ? "분산 효과 보통" : avgCorr >= 0.1 ? "분산 효과 양호" : "분산 효과 우수"}
-            </p>
           </div>
 
-          {/* 자산별 통계 (2/5) */}
-          <div className="lg:col-span-2 bg-white border border-slate-100 rounded-2xl p-6 shadow-sm">
-            <h3 className="text-lg font-bold text-slate-900 mb-4">
-              자산별 통계{" "}
-              <span className="text-sm font-normal text-slate-500">(공통 기간)</span>
-            </h3>
-            <div className="overflow-x-auto">
-              <table className="w-full text-sm">
+          {/* 우측: 자산별 통계 */}
+          <div className="lg:col-span-2 bg-white border border-slate-100 rounded-2xl p-6 shadow-sm flex flex-col">
+            <h2 className="text-lg font-bold text-slate-900 mb-4">
+              자산별 통계 <span className="text-sm font-normal text-slate-500">(최근 5년)</span>
+            </h2>
+            <div className="overflow-x-auto flex-1">
+              <table className="w-full h-full">
                 <thead>
-                  <tr className="text-left text-xs font-semibold text-slate-500 uppercase tracking-wide border-b border-slate-200">
-                    <th className="py-2 pr-3">심볼</th>
-                    <th className="py-2 pr-3 text-right">CAGR</th>
-                    <th className="py-2 text-right">변동성</th>
+                  <tr className="text-left text-sm font-semibold text-slate-500 border-b border-slate-200">
+                    <th className="pb-3 pr-3">심볼</th>
+                    <th className="pb-3 pr-3 text-right">CAGR</th>
+                    <th className="pb-3 text-right">변동성</th>
                   </tr>
                 </thead>
-                <tbody>
-                  {data.stats.map((s) => (
-                    <tr key={s.ticker} className="border-b border-slate-100 last:border-0">
-                      <td className="py-2.5 pr-3 font-bold text-slate-800">{s.ticker}</td>
-                      <td
-                        className={`py-2.5 pr-3 text-right font-semibold ${
-                          s.cagr >= 0 ? "text-blue-600" : "text-rose-600"
-                        }`}
-                      >
-                        {fmtPct(s.cagr, true)}
-                      </td>
-                      <td className="py-2.5 text-right text-slate-700 font-medium">
-                        {fmtPct(s.volatility)}
-                      </td>
-                    </tr>
-                  ))}
+                <tbody className="text-base"> {/* 전체 폰트 사이즈 키움 */}
+                  {matrix.tickers.map((t) => {
+                    const h = holdings.find((x) => x.ticker === t);
+                    const displayName = h?.market === "kr" ? t : t; // 우측 표 심볼은 티커로 통일
+                    
+                    const stat =
+                      holdingDetails?.find((p) => p.ticker === t) ||
+                      topPicks.find((p) => p.ticker === t);
+
+                    return (
+                      <tr key={t} className="border-b border-slate-100 last:border-0">
+                        <td className="py-4 pr-3 font-bold text-slate-800"> {/* 상하 여백(py-4) 증가 */}
+                          {displayName}
+                        </td>
+                        <td
+                          className={`py-4 pr-3 text-right font-bold ${
+                            stat && stat.cagr >= 0 ? "text-blue-600" : "text-rose-600"
+                          }`}
+                        >
+                          {stat ? fmtPct(stat.cagr, true) : "-"}
+                        </td>
+                        <td className="py-4 text-right text-slate-700 font-semibold">
+                          {stat ? fmtPct(stat.volatility) : "-"}
+                        </td>
+                      </tr>
+                    );
+                  })}
                 </tbody>
               </table>
             </div>
-            <p className="text-xs text-slate-400 mt-3">
-              {data.startDate.slice(0, 7)} ~ {data.endDate.slice(0, 7)} ({Math.floor(data.tradingDays / 21)}개월)
-            </p>
           </div>
         </div>
 
+        {/* 하단: 해석 박스 */}
         <div className="bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 text-xs text-slate-600 leading-relaxed">
           <span className="font-semibold">해석 — </span>
           상관계수는 일별 로그수익률 기준입니다. 0.7 이상이면 거의 같이 움직이므로 분산 효과가 제한적이고, 0 근처거나 음수면 포트폴리오 변동성을 줄이는 데 기여합니다.
         </div>
-      </div>
-    </section>
-  );
-}
-    const h = holdings.find((x) => x.ticker === t);
-    return h?.market === "kr" ? (h.name.length > 12 ? h.name.slice(0, 12) + "…" : h.name) : t;
-  });
-
-  // 상삼각만 추출 (자기 자신 제외, 중복 제외)
-  const pairs: Array<{ a: string; b: string; corr: number }> = [];
-  for (let i = 0; i < matrix.tickers.length; i++) {
-    for (let j = i + 1; j < matrix.tickers.length; j++) {
-      pairs.push({
-        a: labels[i],
-        b: labels[j],
-        corr: matrix.matrix[i][j],
-      });
-    }
-  }
-  pairs.sort((a, b) => a.corr - b.corr);
-
-  const avgCorr =
-    pairs.length > 0 ? pairs.reduce((s, p) => s + p.corr, 0) / pairs.length : 0;
-
-  // 색상: 빨강(+1) → 흰색(0) → 파랑(-1)
-  const cellColor = (v: number) => {
-    if (v >= 0) {
-      const intensity = Math.round(v * 255);
-      return `rgb(${255}, ${255 - intensity * 0.6}, ${255 - intensity * 0.6})`;
-    } else {
-      const intensity = Math.round(Math.abs(v) * 255);
-      return `rgb(${255 - intensity * 0.6}, ${255 - intensity * 0.4}, ${255})`;
-    }
-  };
-
-  const textColor = (v: number) => (Math.abs(v) > 0.5 ? "#0f172a" : "#475569");
-
-  const interpretAvg = (avg: number) => {
-    if (avg >= 0.7) return { label: "분산 효과 약함", color: "text-rose-700", desc: "구성 ETF들이 너무 비슷하게 움직입니다. 한 자산이 빠지면 다른 자산도 같이 빠질 가능성이 큽니다." };
-    if (avg >= 0.4) return { label: "분산 효과 보통", color: "text-amber-700", desc: "구성 ETF들이 어느 정도 같이 움직이지만, 일부는 따로 움직여서 부분적인 분산 효과가 있습니다." };
-    if (avg >= 0.1) return { label: "분산 효과 양호", color: "text-emerald-700", desc: "구성 ETF들이 서로 다른 방향으로 움직이는 경우가 많아서, 한쪽이 빠질 때 다른 쪽이 손실을 메워줄 가능성이 큽니다." };
-    return { label: "분산 효과 우수", color: "text-blue-700", desc: "구성 ETF들이 거의 독립적으로 움직입니다. 시장 충격에 가장 강한 구조입니다." };
-  };
-
-  const verdict = interpretAvg(avgCorr);
-
-  return (
-    <section>
-      <h2 className="text-2xl font-bold text-slate-900 mb-2 tracking-tight">
-        상관계수 매트릭스
-      </h2>
-      <p className="text-sm text-slate-500 mb-5">
-        베스트픽 구성 ETF가 서로 얼마나 같이 움직이는지 보여줍니다. 1에 가까우면 같은 방향, -1에 가까우면 반대 방향, 0에 가까우면 독립적입니다. 분산 투자가 효과를 내려면 상관계수가 낮을수록 좋습니다.
-      </p>
-
-      <div className="bg-white border border-slate-100 rounded-2xl p-6 shadow-sm overflow-x-auto">
-        <table className="border-collapse mx-auto">
-          <thead>
-            <tr>
-              <th className="p-2"></th>
-              {labels.map((l, i) => (
-                <th
-                  key={i}
-                  className="p-2 text-[10px] font-semibold text-slate-600 align-bottom"
-                  style={{ minWidth: 70 }}
-                >
-                  <div
-                    className="whitespace-nowrap"
-                    style={{
-                      writingMode: "vertical-rl",
-                      transform: "rotate(180deg)",
-                      maxHeight: 100,
-                    }}
-                  >
-                    {l}
-                  </div>
-                </th>
-              ))}
-            </tr>
-          </thead>
-          <tbody>
-            {matrix.matrix.map((row, i) => (
-              <tr key={i}>
-                <td className="p-2 text-[10px] font-semibold text-slate-600 text-right whitespace-nowrap">
-                  {labels[i]}
-                </td>
-                {row.map((v, j) => (
-                  <td
-                    key={j}
-                    className="p-0 border border-white"
-                    style={{ minWidth: 70, height: 50 }}
-                  >
-                    <div
-                      className="w-full h-full flex items-center justify-center text-xs font-bold"
-                      style={{
-                        backgroundColor: cellColor(v),
-                        color: textColor(v),
-                      }}
-                    >
-                      {v.toFixed(2)}
-                    </div>
-                  </td>
-                ))}
-              </tr>
-            ))}
-          </tbody>
-        </table>
-
-        {/* 컬러 범례 */}
-        <div className="flex items-center justify-center gap-3 mt-5 text-[11px] text-slate-600">
-          <span>완전 반대(-1)</span>
-          <div className="flex h-3 rounded overflow-hidden border border-slate-200" style={{ width: 200 }}>
-            {Array.from({ length: 21 }, (_, i) => {
-              const v = -1 + i * 0.1;
-              return <div key={i} style={{ flex: 1, backgroundColor: cellColor(v) }} />;
-            })}
-          </div>
-          <span>완전 동조(+1)</span>
-        </div>
-      </div>
-
-      {/* 해석 박스 */}
-      <div className="mt-4 grid grid-cols-1 md:grid-cols-2 gap-3">
-        <div className="bg-slate-50 border border-slate-200 rounded-lg p-4">
-          <div className="text-[10px] font-bold text-slate-600 uppercase tracking-wider mb-2">
-            📊 평균 상관계수
-          </div>
-          <div className={`text-2xl font-bold ${verdict.color} mb-1`}>
-            {avgCorr.toFixed(2)} · {verdict.label}
-          </div>
-          <div className="text-xs text-slate-600 leading-relaxed">
-            {verdict.desc}
-          </div>
-        </div>
-
-        {pairs.length > 0 && (
-          <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
-            <div className="text-[10px] font-bold text-blue-700 uppercase tracking-wider mb-2">
-              🔗 가장 독립적인 짝 / 가장 비슷한 짝
-            </div>
-            <div className="text-xs text-slate-700 leading-relaxed space-y-1">
-              <div>
-                <span className="font-semibold">가장 독립적:</span>{" "}
-                {pairs[0].a} ↔ {pairs[0].b}{" "}
-                <span className="font-bold text-blue-700">({pairs[0].corr.toFixed(2)})</span>
-              </div>
-              <div>
-                <span className="font-semibold">가장 비슷:</span>{" "}
-                {pairs[pairs.length - 1].a} ↔ {pairs[pairs.length - 1].b}{" "}
-                <span className="font-bold text-rose-700">({pairs[pairs.length - 1].corr.toFixed(2)})</span>
-              </div>
-            </div>
-          </div>
-        )}
       </div>
     </section>
   );
