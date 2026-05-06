@@ -72,7 +72,7 @@ function getCellColorClass(val: number) {
 
 export default function RecommendResultPage() {
   const router = useRouter();
-  const [data, setData] = useState(null);
+  const [data, setData] = useState<Response | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
