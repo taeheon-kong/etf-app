@@ -94,7 +94,7 @@ export async function POST(req: Request) {
     const recommendedBacktest = backtestRecommended(
       bestPick.holdings.map((h) => ({ ticker: h.ticker, weight: h.weight })),
     );
-    const famousBacktests = backtestFamousPortfolios();
+    const famousBacktests = backtestFamousPortfolios(bestPickType, profile);
     const comparison = recommendedBacktest
       ? evaluateRecommended(recommendedBacktest, famousBacktests)
       : null;

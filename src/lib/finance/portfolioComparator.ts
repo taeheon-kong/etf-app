@@ -2,7 +2,8 @@
  * 추천 포트폴리오 vs 유명 포트폴리오 비교 백테스트.
  */
 
-import { FAMOUS_PORTFOLIOS, type FamousPortfolioDef } from "./famousPortfolios";
+import { FAMOUS_PORTFOLIOS, type FamousPortfolio } from "./portfolios";
+import type { InvestorProfile } from "./profileEngine";
 import { loadPrices, sliceByDate } from "./loader";
 import { dailyReturns } from "./returns";
 import { calcCAGR, calcMDD, calcSharpe, calcVolatility } from "./metrics";
@@ -102,24 +103,81 @@ export function backtestRecommended(
   };
 }
 
-// 유명 포트폴리오 전체 백테스트
-export function backtestFamousPortfolios(): PortfolioBacktestResult[] {
+// 사용자 성향 + 추천 포트폴리오 타입에 맞춰 비교 대상 6~7개 선정
+function selectFamousPortfolios(
+  bestPickType: "defensive" | "balanced" | "aggressive",
+  profile: InvestorProfile,
+): FamousPortfolio[] {
+  const all = FAMOUS_PORTFOLIOS;
+  const byCategory = (cat: string) => all.filter((p) => p.category === cat);
+  const byId = (id: string) => all.find((p) => p.id === id);
+
+  const picked: FamousPortfolio[] = [];
+  const add = (p: FamousPortfolio | undefined) => {
+    if (p && !picked.find((x) => x.id === p.id)) picked.push(p);
+  };
+
+  if (bestPickType === "defensive") {
+    // 방어형 사용자 → 방어·균형 4개 + 60/40 + 70/30 + 인컴·배당 1개
+    add(byId("d1")); // 올웨더
+    add(byId("d2")); // 영구
+    add(byId("d3")); // 황금나비
+    add(byId("d5")); // 리스크 패리티
+    add(byId("eb4")); // 60/40
+    add(byId("eb3")); // 70/30
+    add(byId("i3")); // 배당 귀족
+  } else if (bestPickType === "balanced") {
+    // 균형형 사용자 → 60/40, 70/30, 보글헤즈, 80/20 + 글로벌 1개 + 올웨더 + 한국형
+    add(byId("eb4")); // 60/40
+    add(byId("eb3")); // 70/30
+    add(byId("eb5")); // 보글헤즈 3펀드
+    add(byId("eb2")); // 80/20
+    add(byId("g1")); // 글로벌 주식
+    add(byId("d1")); // 올웨더
+    add(byId("kr1")); // 한국형 3펀드
+  } else {
+    // 공격형 사용자 → 주식 단일 + 버핏 90/10 + 80/20 + 글로벌 1개 + 한국형
+    add(byId("s2")); // S&P 500
+    add(byId("s3")); // 나스닥 100
+    add(byId("s4")); // 성장주 100
+    add(byId("eb1")); // 버핏 90/10
+    add(byId("eb2")); // 80/20
+    add(byId("g1")); // 글로벌 주식
+    add(byId("kr1")); // 한국형 3펀드
+  }
+
+  // 관심 테마 가산 — 배당 관심 있으면 인컴·배당 1개 추가, 글로벌 분산 관심 있으면 글로벌 1개 추가
+  if (profile.interests?.includes("dividend")) {
+    if (bestPickType !== "defensive") add(byId("i1")); // 배당 성장
+  }
+  // 한국 비중 가산 — 이미 모든 그룹에 한국형 들어가 있어서 별도 처리 안 함
+
+  // 최대 7개로 제한 (이미 7개 이하지만 안전)
+  return picked.slice(0, 7);
+}
+
+// 유명 포트폴리오 백테스트 (사용자 성향에 맞춰 필터링된 5~7개만)
+export function backtestFamousPortfolios(
+  bestPickType: "defensive" | "balanced" | "aggressive",
+  profile: InvestorProfile,
+): PortfolioBacktestResult[] {
   const endDate = new Date().toISOString().slice(0, 10);
   const startDateObj = new Date();
   startDateObj.setFullYear(startDateObj.getFullYear() - 5);
   const startDate = startDateObj.toISOString().slice(0, 10);
 
+  const selected = selectFamousPortfolios(bestPickType, profile);
   const results: PortfolioBacktestResult[] = [];
 
-  for (const def of FAMOUS_PORTFOLIOS) {
+  for (const def of selected) {
     const result = backtestOne(def.holdings, startDate, endDate);
     if (!result) {
       results.push({
         id: def.id,
         name: def.name,
-        author: def.author,
-        description: def.description,
-        philosophy: def.philosophy,
+        author: def.author ?? def.category,
+        description: def.desc,
+        philosophy: def.philosophy ?? "",
         cagr: 0,
         sharpe: 0,
         mdd: 0,
@@ -134,9 +192,9 @@ export function backtestFamousPortfolios(): PortfolioBacktestResult[] {
     results.push({
       id: def.id,
       name: def.name,
-      author: def.author,
-      description: def.description,
-      philosophy: def.philosophy,
+      author: def.author ?? def.category,
+      description: def.desc,
+      philosophy: def.philosophy ?? "",
       available: true,
       ...result,
     });
@@ -186,12 +244,13 @@ export function evaluateRecommended(
 
   const diff = recScore - bestFamousScore;
 
+  const totalForMsg = scored.length;
   if (diff >= 5) {
     verdict = "winner";
-    message = `추천 포트폴리오가 유명 포트폴리오 7개 중 ${recRank}위로 가장 우수합니다. ${bestFamousName} 대비 종합 점수 ${diff.toFixed(1)}점 우위로, 현재 시장 환경에서는 이 추천을 따르는 것이 합리적입니다.`;
+    message = `당신 성향에 맞는 유명 포트폴리오 ${totalForMsg - 1}개와 비교했을 때, 추천 포트폴리오가 ${recRank}위로 가장 우수합니다. ${bestFamousName} 대비 종합 점수 ${diff.toFixed(1)}점 우위라, 현재 시장 환경에서는 이 추천이 합리적인 선택입니다.`;
   } else if (diff >= -5) {
     verdict = "competitive";
-    message = `추천 포트폴리오가 유명 포트폴리오와 비등한 수준(${recRank}위)입니다. ${bestFamousName}과 종합 점수 차이 ${Math.abs(diff).toFixed(1)}점으로, 둘 중 어느 것을 선택해도 큰 차이 없습니다. 본인 선호에 따라 결정하세요.`;
+    message = `당신 성향에 맞는 유명 포트폴리오들과 비등한 수준(${recRank}위)입니다. ${bestFamousName}과 종합 점수 차이는 ${Math.abs(diff).toFixed(1)}점이라, 둘 중 어느 것을 선택해도 큰 차이는 없습니다. 본인이 더 직관적으로 이해되는 쪽을 고르면 됩니다.`;
   } else {
     verdict = "loser";
     message = `솔직히 말하면 — 이번 시장 환경에서는 ${bestFamousName}이(가) 추천 포트폴리오보다 ${Math.abs(diff).toFixed(1)}점 더 우수합니다. 추천을 그대로 따르기보다 ${bestFamousName} 구조를 참고하시는 것을 권합니다.`;
