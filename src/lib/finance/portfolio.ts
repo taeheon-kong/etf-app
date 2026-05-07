@@ -46,10 +46,11 @@ export function simulatePortfolio(
     }
 
     // 2. 리밸런싱 체크
+    const mm = month.slice(5);
     let doRebalance = false;
     if (rebalance === "annual" && year !== prevYear) doRebalance = true;
-    if (rebalance === "semiannual" && month !== prevMonth && (month.endsWith("01") || month.endsWith("07"))) doRebalance = true;
-    if (rebalance === "quarterly" && month !== prevMonth && ["01", "04", "07", "10"].some(m => month.endsWith(m))) doRebalance = true;
+    if (rebalance === "semiannual" && month !== prevMonth && (mm === "01" || mm === "07")) doRebalance = true;
+    if (rebalance === "quarterly" && month !== prevMonth && ["01", "04", "07", "10"].includes(mm)) doRebalance = true;
     if (rebalance === "monthly" && month !== prevMonth) doRebalance = true;
 
     // 3. 리밸런싱 실행

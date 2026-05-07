@@ -70,10 +70,11 @@ function calcAssetDrift(matrix: number[][], dates: string[], initialWeights: num
     const year = date.slice(0, 4);
     const month = date.slice(0, 7);
 
+    const mm = month.slice(5);
     let doRebalance = false;
     if (rebalance === "annual" && year !== prevYear) doRebalance = true;
-    if (rebalance === "semiannual" && month !== prevMonth && (month.endsWith("01") || month.endsWith("07"))) doRebalance = true;
-    if (rebalance === "quarterly" && month !== prevMonth && ["01", "04", "07", "10"].some((m) => month.endsWith(m))) doRebalance = true;
+    if (rebalance === "semiannual" && month !== prevMonth && (mm === "01" || mm === "07")) doRebalance = true;
+    if (rebalance === "quarterly" && month !== prevMonth && ["01", "04", "07", "10"].includes(mm)) doRebalance = true;
     if (rebalance === "monthly" && month !== prevMonth) doRebalance = true;
 
     let portValue = 0;

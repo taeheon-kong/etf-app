@@ -381,7 +381,7 @@ export function calcSortino(dailyRets: number[], rfDaily: number | number[] = 0)
   // (target = 0 of excess return = 무위험 미달분)
   const downside = excess.filter((x) => x < 0);
   if (downside.length < 2) return 0;
-  const downsideVar = downside.reduce((s, x) => s + x * x, 0) / (downside.length - 1);
+  const downsideVar = excess.reduce((s, x) => s + (x < 0 ? x * x : 0), 0) / (excess.length - 1);
   const downsideDev = Math.sqrt(downsideVar);
 
   if (downsideDev === 0) return 0;

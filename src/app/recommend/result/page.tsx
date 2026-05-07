@@ -39,7 +39,7 @@ type Comparison = {
 };
 type Response = {
   profile: InvestorProfile; candidatesCount: number;
-  topPicks: TopPick[]; holdingDetails?: TopPick[];
+  topPicks: TopPick[]; sectorTopPicks?: Record<string, TopPick[]>; holdingDetails?: TopPick[];
   portfolios: { defensive: Portfolio; balanced: Portfolio; aggressive: Portfolio };
   bestPickType: "defensive" | "balanced" | "aggressive";
   marketHeadline?: string | null; marketSummary?: string | null; marketAsOf?: string | null;
@@ -207,6 +207,24 @@ export default function RecommendResultPage() {
         <PortfolioCard portfolio={bestPick} highlighted onBacktest={goBacktest} />
       </section>
 
+      {/* 베스트픽 구성 ETF */}
+      <section className="mb-12">
+        <SectionTitle eyebrow="구성 ETF 상세" title={`${bestPick.label} 분석`} desc="포트폴리오를 구성하는 각 ETF의 강점·약점·역할" />
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          {bestPick.holdings.map((h, idx) => {
+            const matchedPick =
+              data.holdingDetails?.find((p) => p.ticker === h.ticker) ||
+              data.topPicks.find((p) => p.ticker === h.ticker);
+            if (matchedPick) {
+              return <DetailCard key={h.ticker} pick={matchedPick} rank={idx + 1} weight={h.weight} />;
+            }
+            return (
+              <DetailCardLite key={h.ticker} ticker={h.ticker} name={h.name} market={h.market} weight={h.weight} category={h.category} rank={idx + 1} />
+            );
+          })}
+        </div>
+      </section>
+
       {/* 포트폴리오 3종 */}
       <section className="mb-12">
         <SectionTitle eyebrow="비교" title="포트폴리오 3종" />
@@ -229,68 +247,66 @@ export default function RecommendResultPage() {
         <CorrelationMatrixSection matrix={data.correlationMatrix} holdings={bestPick.holdings} holdingDetails={data.holdingDetails} topPicks={data.topPicks} />
       )}
 
-      {/* 단일 ETF Top 10 */}
-      <section className="mb-12">
-        <SectionTitle eyebrow="단일 ETF" title="TOP 10" />
-        <div className="border hairline rounded-lg overflow-hidden bg-paper">
-          <div className="overflow-x-auto">
-            <table className="w-full text-[13px]">
-              <thead className="border-b hairline">
-                <tr className="text-left text-[10px] font-medium text-ink-500 uppercase tracking-[0.08em]">
-                  <th className="py-2.5 px-4">#</th>
-                  <th className="py-2.5 px-4">ETF</th>
-                  <th className="py-2.5 px-4 text-right">점수</th>
-                  <th className="py-2.5 px-4 text-right">CAGR</th>
-                  <th className="py-2.5 px-4 text-right">Sharpe</th>
-                  <th className="py-2.5 px-4 text-right">MDD</th>
-                  <th className="py-2.5 px-4 text-right">변동성</th>
-                  <th className="py-2.5 px-4 text-right">보수</th>
-                  <th className="py-2.5 px-4 text-right">배당</th>
-                </tr>
-              </thead>
-              <tbody>
-                {data.topPicks.map((pick, idx) => (
-                  <tr key={pick.ticker} className="border-b hairline last:border-0 hover:bg-ink-50">
-                    <td className="py-3 px-4 num text-ink-400">{String(idx + 1).padStart(2, "0")}</td>
-                    <td className="py-3 px-4">
-                      <div className="flex items-center gap-2">
-                        <span className="font-semibold text-ink-900 num">{pick.ticker}</span>
-                        <span className="text-[9px] num text-ink-500">{pick.market === "kr" ? "KR" : "US"}</span>
-                      </div>
-                      <div className="text-[11px] text-ink-500 truncate max-w-xs mt-0.5">{pick.name}</div>
-                    </td>
-                    <td className="py-3 px-4 text-right num font-semibold text-ink-900">{fmtNum(pick.totalScore, 1)}</td>
-                    <td className={`py-3 px-4 text-right num ${pick.cagr >= 0 ? "text-up" : "text-down"}`}>{fmtPct(pick.cagr, true)}</td>
-                    <td className="py-3 px-4 text-right num text-ink-700">{fmtNum(pick.sharpe)}</td>
-                    <td className="py-3 px-4 text-right num text-down">{fmtPct(pick.mdd)}</td>
-                    <td className="py-3 px-4 text-right num text-ink-700">{fmtPct(pick.volatility)}</td>
-                    <td className="py-3 px-4 text-right num text-ink-700">{fmtPct(pick.expenseRatio)}</td>
-                    <td className="py-3 px-4 text-right num text-pos">{fmtPct(pick.dividendYield)}</td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
+      {/* 섹터별 ETF TOP 3 */}
+      {data.sectorTopPicks && Object.keys(data.sectorTopPicks).length > 0 && (
+        <section className="mb-12">
+          <SectionTitle eyebrow="섹터별 ETF" title="섹터별 TOP 3" desc="각 자산군에서 점수 상위 3개 ETF" />
+          <div className="space-y-4">
+            {Object.entries(data.sectorTopPicks).map(([sector, picks]) => {
+              const hasDividend = picks.some(p => p.dividendYield != null && p.dividendYield > 0);
+              return (
+                <div key={sector} className="border hairline rounded-lg overflow-hidden bg-paper">
+                  <div className="px-4 py-2.5 border-b hairline bg-ink-50">
+                    <span className="text-[11px] font-semibold text-ink-700 uppercase tracking-[0.06em]">{sector}</span>
+                  </div>
+                  <div className="overflow-x-auto">
+                    <table className="w-full text-[13px]">
+                      <thead className="border-b hairline">
+                        <tr className="text-left text-[10px] font-medium text-ink-500 uppercase tracking-[0.08em]">
+                          <th className="py-2 px-4">#</th>
+                          <th className="py-2 px-4 w-[240px]">ETF</th>
+                          <th className="py-2 px-4 text-right">점수</th>
+                          <th className="py-2 px-4 text-right">CAGR</th>
+                          <th className="py-2 px-4 text-right">Sharpe</th>
+                          <th className="py-2 px-4 text-right">MDD</th>
+                          <th className="py-2 px-4 text-right">변동성</th>
+                          <th className="py-2 px-4 text-right">보수</th>
+                          {hasDividend && (
+                            <th className="py-2 px-4 text-right">배당</th>
+                          )}
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {picks.map((pick, idx) => (
+                          <tr key={pick.ticker} className="border-b hairline last:border-0 hover:bg-ink-50">
+                            <td className="py-2.5 px-4 num text-ink-400">{String(idx + 1).padStart(2, "0")}</td>
+                            <td className="py-2.5 px-4 w-[240px]">
+                              <div className="flex items-center gap-2">
+                                <span className="font-semibold text-ink-900 num">{pick.ticker}</span>
+                                <span className="text-[9px] num text-ink-500">{pick.market === "kr" ? "KR" : "US"}</span>
+                              </div>
+                              <div className="text-[11px] text-ink-500 truncate max-w-[160px] mt-0.5">{pick.name}</div>
+                            </td>
+                            <td className="py-2.5 px-4 text-right num font-semibold text-ink-900">{fmtNum(pick.totalScore, 1)}</td>
+                            <td className={`py-2.5 px-4 text-right num ${pick.cagr >= 0 ? "text-up" : "text-down"}`}>{fmtPct(pick.cagr, true)}</td>
+                            <td className="py-2.5 px-4 text-right num text-ink-700">{fmtNum(pick.sharpe)}</td>
+                            <td className="py-2.5 px-4 text-right num text-down">{fmtPct(pick.mdd)}</td>
+                            <td className="py-2.5 px-4 text-right num text-ink-700">{fmtPct(pick.volatility)}</td>
+                            <td className="py-2.5 px-4 text-right num text-ink-700">{fmtPct(pick.expenseRatio)}</td>
+                            {hasDividend && (
+                              <td className="py-2.5 px-4 text-right num text-pos">{fmtPct(pick.dividendYield)}</td>
+                            )}
+                          </tr>
+                        ))}
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              );
+            })}
           </div>
-        </div>
-      </section>
-
-      {/* 베스트픽 구성 ETF */}
-      <section className="mb-12">
-        <SectionTitle eyebrow="구성 ETF 상세" title={`${bestPick.label} 분석`} desc="포트폴리오를 구성하는 각 ETF의 강점·약점·역할" />
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-          {bestPick.holdings.map((h, idx) => {
-            const matchedPick =
-              data.holdingDetails?.find((p) => p.ticker === h.ticker) ||
-              data.topPicks.find((p) => p.ticker === h.ticker);
-            if (matchedPick) {
-              return <DetailCard key={h.ticker} pick={matchedPick} rank={idx + 1} weight={h.weight} />;
-            }
-            return (
-              <DetailCardLite key={h.ticker} ticker={h.ticker} name={h.name} market={h.market} weight={h.weight} category={h.category} rank={idx + 1} />
-            );
-          })}
-        </div>
-      </section>
+        </section>
+      )}
 
       {/* 심화 분석 */}
       <section className="mb-12">
@@ -743,16 +759,26 @@ function EfficientFrontierSection({ recommended, famous, holdingDetails, bestHol
                 </div>
               );
             }} />
-            <Scatter name="베스트픽 구성 ETF" data={bestPickEtfs} fill="#737373" shape="circle" />
-            <Scatter name="유명 포트폴리오" data={famousPoints} fill="#a3a3a3" shape="diamond" />
-            <Scatter name="내 베스트픽" data={[recommendedPoint]} fill="#c2532a" shape="star" />
+            <Scatter name="베스트픽 구성 ETF" data={bestPickEtfs} fill="#737373" shape={(props: any) => {
+              const { cx, cy } = props;
+              return <circle cx={cx} cy={cy} r={5} fill="#737373" />;
+            }} />
+            <Scatter name="유명 포트폴리오" data={famousPoints} fill="#a3a3a3" shape={(props: any) => {
+              const { cx, cy } = props;
+              return <polygon points={`${cx},${cy - 6} ${cx + 5},${cy + 4} ${cx - 5},${cy + 4}`} fill="#a3a3a3" />;
+            }} />
+            <Scatter name="내 베스트픽" data={[recommendedPoint]} fill="#c2532a" shape={(props: any) => {
+              const { cx, cy } = props;
+              const star = `${cx},${cy - 7} ${cx + 2},${cy - 2} ${cx + 7},${cy - 2} ${cx + 3},${cy + 2} ${cx + 5},${cy + 7} ${cx},${cy + 4} ${cx - 5},${cy + 7} ${cx - 3},${cy + 2} ${cx - 7},${cy - 2} ${cx - 2},${cy - 2}`;
+              return <polygon points={star} fill="#c2532a" />;
+            }} />
           </ScatterChart>
         </ResponsiveContainer>
 
         <div className="flex items-center justify-center gap-5 mt-3 flex-wrap text-[11px]">
           <div className="flex items-center gap-1.5"><span className="text-accent text-base leading-none">★</span><span className="text-ink-600">내 베스트픽</span></div>
           <div className="flex items-center gap-1.5"><span className="w-2.5 h-2.5 rounded-full bg-ink-500" /><span className="text-ink-600">구성 ETF</span></div>
-          <div className="flex items-center gap-1.5"><span className="text-ink-400 text-base leading-none">◆</span><span className="text-ink-600">유명 포트폴리오</span></div>
+          <div className="flex items-center gap-1.5"><span className="text-ink-400 text-base leading-none">▲</span><span className="text-ink-600">유명 포트폴리오</span></div>
         </div>
       </div>
 

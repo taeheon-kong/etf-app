@@ -438,7 +438,7 @@ export default function BacktestResultPage() {
       {/* ─── 8. 적립식 결과 ─── */}
       {result.dca && (
         <section>
-          <h2 className="text-2xl font-bold text-slate-900 mb-5 tracking-tight">적립식 결과</h2>
+          <h2 className="text-2xl font-bold text-slate-900 mb-5 tracking-tight">적립식 결과 (세전)</h2>
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-3">
             <SummaryCard label="최종 잔액" value={`${fmtKrw(result.dca.finalBalance)}원`} accent="blue" />
             <SummaryCard label="총 납입" value={`${fmtKrw(result.dca.totalDeposit)}원`} accent="slate" />
@@ -453,9 +453,9 @@ export default function BacktestResultPage() {
       {/* ─── 9. 절세 결과 ─── */}
       {result.merged && (
         <section>
-          <h2 className="text-2xl font-bold text-slate-900 mb-5 tracking-tight">절세 시뮬레이션</h2>
+          <h2 className="text-2xl font-bold text-slate-900 mb-5 tracking-tight">절세 시뮬레이션 (세후)</h2>
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 mb-4">
-            <SummaryCard label="절세 후 잔액" value={`${fmtKrw(result.merged.totalFinalBalance)}원`} accent="emerald" />
+            <SummaryCard label="절세계좌 시" subLabel="(세금 차감 기준)" value={`${fmtKrw(result.merged.totalFinalBalance)}원`} accent="emerald" />
             <SummaryCard label="일반계좌 시" value={`${fmtKrw(result.merged.generalCaseBalance)}원`} accent="slate" />
             <SummaryCard label="절감액" value={`${result.merged.totalSavings >= 0 ? "+" : ""}${fmtKrw(result.merged.totalSavings)}원`}
               accent={result.merged.totalSavings >= 0 ? "emerald" : "rose"} />

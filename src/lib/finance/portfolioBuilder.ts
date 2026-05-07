@@ -4,6 +4,7 @@
  */
 
 import type { EtfCandidate } from "./recommender";
+import { getInterestTags } from "./recommender";
 import type { PortfolioMix, InvestorProfile, InvestmentInterest } from "./profileEngine";
 import { portfolioSizeToCount } from "./profileEngine";
 import { loadPrices, sliceByDate } from "./loader";
@@ -70,43 +71,6 @@ function classifyAsset(category: string, name: string): Exclude<AssetClass, "the
     return "alternatives";
   }
   return "stocks";
-}
-
-function getInterestTags(c: EtfCandidate): InvestmentInterest[] {
-  const tags: InvestmentInterest[] = [];
-  const cat = c.category.toLowerCase();
-
-  if (/ai|반도체|semiconductor|semi|chip|nvda|sox/i.test(c.name) || /ai.?semi/i.test(c.category)) {
-    tags.push("ai_semi");
-  }
-  if (cat === "tech" || /tech|nasdaq|qqq|테크|빅테크|플랫폼|fang/i.test(c.name)) {
-    tags.push("tech");
-  }
-  if (/clean|esg|친환경|2차전지|battery|solar|wind|ev|전기차|태양광/i.test(c.name) || cat === "clean") {
-    tags.push("clean_energy");
-  }
-  if (/health|bio|헬스|바이오|pharma|제약/i.test(c.name) || cat === "health" || cat === "healthcare") {
-    tags.push("healthcare");
-  }
-  if (/infra|인프라|defense|방산|aero|항공/i.test(c.name) || cat === "infra") {
-    tags.push("infra");
-  }
-  if (/financ|bank|은행|금융|insur|보험/i.test(c.name) || cat === "finance") {
-    tags.push("finance");
-  }
-  if (/reit|리츠|부동산|realestate|real.?estate/i.test(c.name) || cat === "reit" || cat === "realestate") {
-    tags.push("realestate");
-  }
-  if (/btc|bitcoin|비트|eth|ether|이더|crypto/i.test(c.name) || cat === "crypto") {
-    tags.push("crypto");
-  }
-  if (/gold|silver|금|은|원자재|commod|oil|원유|구리|copper/i.test(c.name) || cat === "commodity" || cat === "gold") {
-    tags.push("commodity");
-  }
-  if (/dividend|배당|고배당|income|인컴/i.test(c.name) || cat === "dividend" || cat === "coveredcall") {
-    tags.push("dividend");
-  }
-  return tags;
 }
 
 function groupByAssetClass(candidates: EtfCandidate[]): Record<Exclude<AssetClass, "theme">, EtfCandidate[]> {

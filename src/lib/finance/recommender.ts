@@ -114,7 +114,7 @@ function loadKrMeta(ticker: string): any | null {
   }
 }
 
-function loadLatestMarketContext(): MarketContext | null {
+export function loadLatestMarketContext(): MarketContext | null {
   try {
     const dir = path.join(process.cwd(), "data", "market_context");
     if (!fs.existsSync(dir)) return null;
@@ -183,7 +183,8 @@ export function buildCandidates(
 
         const cagr = calcCAGR(curve);
         const mdd = calcMDD(curve);
-        const sharpe = calcSharpe(rets.map((r) => r.ret));
+        const rfDaily = Math.pow(1 + 0.035, 1 / 252) - 1;
+        const sharpe = calcSharpe(rets.map((r) => r.ret), rfDaily);
         const vol = calcVolatility(rets.map((r) => r.ret));
 
         const meta = loadUsMeta(e.ticker);
@@ -259,14 +260,13 @@ export function buildCandidates(
   return candidates;
 }
 
-function percentileRank(value: number, allValues: number[]): number {
-  if (allValues.length === 0) return 50;
-  const sorted = [...allValues].sort((a, b) => a - b);
+function percentileRank(value: number, sortedValues: number[]): number {
+  if (sortedValues.length === 0) return 50;
   let count = 0;
-  for (const v of sorted) {
+  for (const v of sortedValues) {
     if (v <= value) count++;
   }
-  return (count / sorted.length) * 100;
+  return (count / sortedValues.length) * 100;
 }
 
 function getRiskPenalty(c: EtfCandidate): number {
@@ -298,7 +298,7 @@ function getRiskPenalty(c: EtfCandidate): number {
   return 1.0;
 }
 
-function getInterestTags(c: EtfCandidate): InvestmentInterest[] {
+export function getInterestTags(c: EtfCandidate): InvestmentInterest[] {
   const tags: InvestmentInterest[] = [];
   const cat = c.category.toLowerCase();
 
@@ -501,13 +501,13 @@ export function scoreCandidates(
 
   const ctx = loadLatestMarketContext();
 
-  const allCagr = candidates.map((c) => c.cagr);
-  const allSharpe = candidates.map((c) => c.sharpe);
-  const allMdd = candidates.map((c) => -c.mdd);
-  const allVol = candidates.map((c) => -c.volatility);
-  const allCost = candidates.map((c) => -c.expenseRatio);
-  const allLiq = candidates.map((c) => Math.log10(Math.max(c.liquidity, 1)));
-  const allDiv = candidates.map((c) => c.dividendYield);
+  const allCagr = [...candidates.map((c) => c.cagr)].sort((a, b) => a - b);
+  const allSharpe = [...candidates.map((c) => c.sharpe)].sort((a, b) => a - b);
+  const allMdd = [...candidates.map((c) => -c.mdd)].sort((a, b) => a - b);
+  const allVol = [...candidates.map((c) => -c.volatility)].sort((a, b) => a - b);
+  const allCost = [...candidates.map((c) => -c.expenseRatio)].sort((a, b) => a - b);
+  const allLiq = [...candidates.map((c) => Math.log10(Math.max(c.liquidity, 1)))].sort((a, b) => a - b);
+  const allDiv = [...candidates.map((c) => c.dividendYield)].sort((a, b) => a - b);
 
   for (const c of candidates) {
     const macroFit = calcMacroFit(c, ctx);

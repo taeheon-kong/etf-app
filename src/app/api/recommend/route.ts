@@ -4,6 +4,7 @@ import path from "path";
 import {
   buildCandidates,
   scoreCandidates,
+  loadLatestMarketContext,
   type EtfCandidate,
   type MarketContext,
 } from "@/lib/finance/recommender";
@@ -24,21 +25,6 @@ import {
 } from "@/lib/finance/portfolioComparator";
 import { loadPrices, sliceByDate } from "@/lib/finance/loader";
 import { dailyReturns } from "@/lib/finance/returns";
-
-function loadLatestMarketContext(): MarketContext | null {
-  try {
-    const dir = path.join(process.cwd(), "data", "market_context");
-    if (!fs.existsSync(dir)) return null;
-    const files = fs.readdirSync(dir).filter((f) => f.endsWith(".json"));
-    if (files.length === 0) return null;
-    files.sort();
-    const latest = files[files.length - 1];
-    const raw = fs.readFileSync(path.join(dir, latest), "utf-8");
-    return JSON.parse(raw) as MarketContext;
-  } catch {
-    return null;
-  }
-}
 
 export async function POST(req: Request) {
   try {
@@ -61,6 +47,7 @@ export async function POST(req: Request) {
     const scored = scoreCandidates(candidates, weights, profile);
 
     const topPicks = scored.slice(0, 10).map((c) => slimCandidate(c));
+    const sectorTopPicks = buildSectorTopPicks(scored, 3);
 
     // 모든 추천 ETF의 통계도 함께 (포트폴리오 holdings 상세 분석용)
     const scoredByTicker = new Map(scored.map((c) => [c.ticker, c]));
@@ -121,6 +108,7 @@ export async function POST(req: Request) {
       weights,
       candidatesCount: scored.length,
       topPicks,
+      sectorTopPicks,
       holdingDetails,
       portfolios,
       bestPickType,
@@ -209,6 +197,31 @@ function slimCandidate(c: EtfCandidate) {
     macroNote: c.macroNote,
     interestNote: c.interestNote,
   };
+}
+
+function buildSectorTopPicks(
+  scored: EtfCandidate[],
+  topN: number = 3,
+): Record<string, ReturnType<typeof slimCandidate>[]> {
+  const sectorMap: Record<string, string[]> = {
+    "주식": ["sp500", "nasdaq", "tech", "growth", "smallcap", "global", "sector", "thematic", "kr_stock"],
+    "채권": ["bond", "kr_bond"],
+    "배당": ["dividend", "coveredcall", "kr_dividend"],
+    "대체자산": ["commodity", "gold", "reit", "realestate", "crypto"],
+    "현금성": ["cash"],
+  };
+
+  const result: Record<string, ReturnType<typeof slimCandidate>[]> = {};
+
+  for (const [sectorLabel, categories] of Object.entries(sectorMap)) {
+    const inSector = scored.filter((c) =>
+      categories.includes(c.category.toLowerCase())
+    );
+    if (inSector.length === 0) continue;
+    result[sectorLabel] = inSector.slice(0, topN).map((c) => slimCandidate(c));
+  }
+
+  return result;
 }
 
 // 베스트픽 구성 ETF 간 상관계수 매트릭스 + 자산별 통계

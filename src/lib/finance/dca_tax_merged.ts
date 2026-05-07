@@ -92,6 +92,7 @@ export function simulateDcaWithTax(input: MergedSimInput): MergedSimResult {
   const { prices, tickers, weights, dates, holdingNames, dcaOptions, taxOptions } = input;
 
   const priceMap = new Map<string, Map<string, number>>();
+  const priceDates = new Map<string, string[]>();
   const divMap = new Map<string, Map<string, number>>();
   for (const ps of prices) {
     const pm = new Map<string, number>();
@@ -101,6 +102,7 @@ export function simulateDcaWithTax(input: MergedSimInput): MergedSimResult {
       if (r.dividends > 0) dm.set(r.date, r.dividends);
     }
     priceMap.set(ps.ticker, pm);
+    priceDates.set(ps.ticker, Array.from(pm.keys()).sort());
     divMap.set(ps.ticker, dm);
   }
 
@@ -125,9 +127,9 @@ export function simulateDcaWithTax(input: MergedSimInput): MergedSimResult {
   function getPrice(ticker: string, date: string): number {
     const m = priceMap.get(ticker);
     if (!m) return 0;
-    let px = m.get(date);
+    const px = m.get(date);
     if (px !== undefined && px > 0) return px;
-    const allDates = Array.from(m.keys()).sort();
+    const allDates = priceDates.get(ticker) ?? [];
     for (let j = allDates.length - 1; j >= 0; j--) {
       if (allDates[j] <= date) {
         const c = m.get(allDates[j]);
@@ -587,6 +589,7 @@ export function simulateGeneralOnly(input: MergedSimInput): {
   const { prices, tickers, weights, dates, holdingNames, dcaOptions } = input;
 
   const priceMap = new Map<string, Map<string, number>>();
+  const priceDates = new Map<string, string[]>();
   const divMap = new Map<string, Map<string, number>>();
   for (const ps of prices) {
     const pm = new Map<string, number>();
@@ -596,6 +599,7 @@ export function simulateGeneralOnly(input: MergedSimInput): {
       if (r.dividends > 0) dm.set(r.date, r.dividends);
     }
     priceMap.set(ps.ticker, pm);
+    priceDates.set(ps.ticker, Array.from(pm.keys()).sort());
     divMap.set(ps.ticker, dm);
   }
 
@@ -618,9 +622,9 @@ export function simulateGeneralOnly(input: MergedSimInput): {
   function getPrice(ticker: string, date: string): number {
     const m = priceMap.get(ticker);
     if (!m) return 0;
-    let px = m.get(date);
+    const px = m.get(date);
     if (px !== undefined && px > 0) return px;
-    const allDates = Array.from(m.keys()).sort();
+    const allDates = priceDates.get(ticker) ?? [];
     for (let j = allDates.length - 1; j >= 0; j--) {
       if (allDates[j] <= date) {
         const c = m.get(allDates[j]);
