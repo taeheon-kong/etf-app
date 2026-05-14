@@ -9,6 +9,7 @@ type NavItem = {
   label: string;
   icon: ReactNode;
   group: string;
+  badge?: string;
 };
 
 // ── 미니멀 라인 아이콘 (1.6 stroke) ──
@@ -40,9 +41,9 @@ const IconHome = Ic(<>
 </>);
 
 const NAV: NavItem[] = [
-  { href: "/recommend", label: "추천",        icon: IconSparkles,  group: "분석" },
   { href: "/backtest",  label: "백테스트",     icon: IconChart,     group: "분석" },
   { href: "/analysis",  label: "추가 분석",    icon: IconAnalysis,  group: "분석" },
+  { href: "/recommend", label: "추천",        icon: IconSparkles,  group: "분석", badge: "준비중" },
   { href: "/etfs/us",   label: "해외 ETF",    icon: IconGlobe,     group: "탐색" },
   { href: "/etfs/kr",   label: "국내 ETF",    icon: IconHome,      group: "탐색" },
 ];
@@ -86,7 +87,12 @@ export default function Sidebar() {
                   >
                     <span className={active ? "text-ink-900" : "text-ink-500"}>{n.icon}</span>
                     <span className="flex-1">{n.label}</span>
-                    {active && (
+                    {n.badge && (
+                      <span className="text-[9px] font-semibold px-1.5 py-0.5 rounded bg-ink-100 text-ink-500 uppercase tracking-wide">
+                        {n.badge}
+                      </span>
+                    )}
+                    {active && !n.badge && (
                       <span className="w-1.5 h-1.5 rounded-full bg-accent" />
                     )}
                   </Link>
