@@ -92,19 +92,11 @@ function groupByAssetClass(candidates: EtfCandidate[]): Record<Exclude<AssetClas
 
 function filterStocksByType(
   stocks: EtfCandidate[],
-  type: "defensive" | "balanced" | "aggressive",
+  _type: "defensive" | "balanced" | "aggressive",
 ): EtfCandidate[] {
-  if (type === "defensive") {
-    const sorted = [...stocks].sort((a, b) => a.volatility - b.volatility);
-    const lowVol = sorted.slice(0, Math.ceil(sorted.length * 0.6));
-    return lowVol.sort((a, b) => (b.totalScore ?? 0) - (a.totalScore ?? 0));
-  }
-  if (type === "aggressive") {
-    const sorted = [...stocks].sort((a, b) => b.cagr - a.cagr);
-    const highCagr = sorted.slice(0, Math.ceil(sorted.length * 0.6));
-    return highCagr.sort((a, b) => (b.totalScore ?? 0) - (a.totalScore ?? 0));
-  }
-  return stocks;
+  // 점수 산식(recommender.ts)에서 이미 성향별 가중치(MDD, Volatility 등)가 반영됨.
+  // 여기서 추가로 변동성/CAGR 필터를 걸면 점수 의도가 왜곡되므로 점수순 정렬만 한다.
+  return [...stocks].sort((a, b) => (b.totalScore ?? 0) - (a.totalScore ?? 0));
 }
 
 // 관심 테마와 일치하는 ETF 추출 (점수 순)
@@ -313,11 +305,9 @@ function buildStandard(
   const holdings: PortfolioHolding[] = [];
   const usedTickers = new Set<string>();
 
-  // 1. 주식 (시장 분산)
+  // 1. 주식 (점수 우선, 점수 차 임계값 이하일 때만 시장 지수 가산)
   if (mix.stocks > 0 && groups.stocks.length > 0) {
     const filteredStocks = filterStocksByType(groups.stocks, type);
-    const usStocks = filteredStocks.filter((c) => c.market === "us");
-    const krStocks = filteredStocks.filter((c) => c.market === "kr");
 
     // 테마 포함 시 주식 비중에서 일부 떼어옴
     const themeReserve = withTheme && interests.length > 0 && !interests.includes("none")
@@ -325,15 +315,59 @@ function buildStandard(
       : 0;
     const stockBudget = Math.max(0, mix.stocks - themeReserve);
 
-    if (usStocks.length > 0 && krStocks.length > 0) {
-      const usWeight = Math.round(stockBudget * 0.6);
-      holdings.push(toHolding(usStocks[0], usWeight, "stocks"));
-      usedTickers.add(usStocks[0].ticker);
-      holdings.push(toHolding(krStocks[0], stockBudget - usWeight, "stocks"));
-      usedTickers.add(krStocks[0].ticker);
-    } else if (filteredStocks.length > 0) {
-      holdings.push(toHolding(filteredStocks[0], stockBudget, "stocks"));
-      usedTickers.add(filteredStocks[0].ticker);
+    // 시장 대표 지수 판별 (S&P500, KOSPI200 등)
+    const isMarketIndex = (c: EtfCandidate) =>
+      /s&p.?500|voo|spy|ivv|splg|코스피.?200|kospi|total.?market|vti/i.test(c.name) ||
+      ["sp500", "global"].includes(c.category.toLowerCase());
+
+    // 성향별 임계값: 방어형은 시장 지수에 관대, 공격형은 엄격
+    const threshold =
+      type === "defensive" ? 10 :
+      type === "aggressive" ? 3 :
+      5;
+
+    const available = filteredStocks.filter((c) => !usedTickers.has(c.ticker));
+    if (available.length > 0) {
+      const top = available[0]; // 점수 1위
+      const topScore = top.totalScore ?? 0;
+
+      // 코어 결정
+      let core: EtfCandidate;
+      if (isMarketIndex(top)) {
+        // 점수 1위가 이미 시장 지수면 그대로
+        core = top;
+      } else {
+        // 시장 지수 후보 찾기
+        const indexCandidate = available.find((c) => isMarketIndex(c));
+        if (indexCandidate) {
+          const indexScore = indexCandidate.totalScore ?? 0;
+          const diff = topScore - indexScore;
+          // 점수 차 ≤ 임계값 → 시장 지수가 코어 (안정성 가산)
+          // 점수 차 > 임계값 → 점수 1위가 코어 (알파 추구)
+          core = diff <= threshold ? indexCandidate : top;
+        } else {
+          core = top;
+        }
+      }
+      usedTickers.add(core.ticker);
+
+      // 위성: 코어와 다른 시장 (지역 분산), 그것도 없으면 점수 다음
+      const remaining = available.filter((c) => c.ticker !== core.ticker);
+      let satellite: EtfCandidate | undefined;
+      if (remaining.length > 0) {
+        const wantKr = core.market === "us";
+        satellite = remaining.find((c) => (wantKr ? c.market === "kr" : c.market === "us")) || remaining[0];
+      }
+
+      // 비중 할당
+      if (satellite) {
+        usedTickers.add(satellite.ticker);
+        const coreWeight = Math.round(stockBudget * 0.6);
+        holdings.push(toHolding(core, coreWeight, "stocks"));
+        holdings.push(toHolding(satellite, stockBudget - coreWeight, "stocks"));
+      } else {
+        holdings.push(toHolding(core, stockBudget, "stocks"));
+      }
     }
   }
 
