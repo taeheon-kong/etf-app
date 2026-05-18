@@ -217,10 +217,12 @@ export default function BacktestResultPage() {
                 formatter={(v: any) => (typeof v === "number" ? v.toFixed(2) : String(v))} />
               <Legend
                 wrapperStyle={{ fontSize: 12 }}
-                payload={[
-                  { value: "포트폴리오", type: "line", id: "p", color: "#3b6cd8" },
-                  { value: benchLabel, type: "line", id: "b", color: CHART_NEUTRAL },
-                ]}
+                content={() => (
+                  <div className="flex items-center justify-center gap-4 text-[12px] mt-2">
+                    <div className="flex items-center gap-1.5"><span className="w-3 h-0.5 bg-[#3b6cd8]" /><span className="text-ink-700">포트폴리오</span></div>
+                    <div className="flex items-center gap-1.5"><span className="w-3 h-0.5 bg-[#a3a3a3]" /><span className="text-ink-700">{benchLabel}</span></div>
+                  </div>
+                )}
               />
               <ReferenceLine y={100} stroke={CHART_NEUTRAL} strokeDasharray="2 2" />
               <Line type="monotone" dataKey="portfolio" stroke="#3b6cd8" name="포트폴리오" dot={false} strokeWidth={2.2} />
@@ -264,10 +266,12 @@ export default function BacktestResultPage() {
                   formatter={(v: any) => `${typeof v === "number" ? v.toFixed(2) : v}%`} />
                 <Legend
                   wrapperStyle={{ fontSize: 12 }}
-                  payload={[
-                    { value: "포트폴리오", type: "rect", id: "p", color: "#3b6cd8" },
-                    { value: benchLabel, type: "rect", id: "b", color: CHART_NEUTRAL },
-                  ]}
+                  content={() => (
+                    <div className="flex items-center justify-center gap-4 text-[12px] mt-2">
+                      <div className="flex items-center gap-1.5"><span className="w-2.5 h-2.5 rounded-sm bg-[#3b6cd8]" /><span className="text-ink-700">포트폴리오</span></div>
+                      <div className="flex items-center gap-1.5"><span className="w-2.5 h-2.5 rounded-sm bg-[#a3a3a3]" /><span className="text-ink-700">{benchLabel}</span></div>
+                    </div>
+                  )}
                 />
                 <ReferenceLine y={0} stroke={CHART_NEUTRAL} />
                 <Bar dataKey="포트폴리오" fill="#3b6cd8" radius={[2, 2, 0, 0]} />
