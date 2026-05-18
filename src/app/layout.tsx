@@ -12,7 +12,7 @@ export default function RootLayout({
 }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="ko">
-      <body className="bg-paper text-ink-900 antialiased">
+      <body className="bg-canvas text-ink-900 antialiased">
         <div className="flex min-h-screen">
           <Sidebar />
           <main className="flex-1 min-w-0">{children}</main>

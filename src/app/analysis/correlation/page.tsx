@@ -15,17 +15,18 @@ type CorrelationResponse = {
   stats: Stat[];
 };
 
-const SERIES_COLORS = ["#2563eb", "#10b981", "#f59e0b", "#f43f5e", "#8b5cf6"];
+const SERIES_COLORS = ["#3b6cd8", "#10a37f", "#e8814a", "#a855e0", "#737373"];
 
 function getCellColorClass(val: number) {
-  if (val >= 0.95) return "bg-blue-700 text-white";
-  if (val >= 0.8) return "bg-blue-600 text-white";
-  if (val >= 0.5) return "bg-blue-400 text-white";
-  if (val >= 0.2) return "bg-blue-100 text-blue-900";
-  if (val >= 0) return "bg-slate-100 text-slate-700";
-  if (val >= -0.5) return "bg-rose-100 text-rose-800";
-  if (val >= -0.8) return "bg-rose-400 text-white";
-  return "bg-rose-600 text-white";
+  // 따뜻한 오렌지 → 차가운 블루 다이버징 그라데이션
+  if (val >= 0.95) return "bg-[#c2532a] text-white";       // 진한 오렌지
+  if (val >= 0.8)  return "bg-[#e8814a] text-white";       // 오렌지
+  if (val >= 0.5)  return "bg-[#f4b08a] text-ink-900";     // 살구
+  if (val >= 0.2)  return "bg-[#fae0cc] text-ink-900";     // 연 살구
+  if (val >= 0)    return "bg-[#fcf2e7] text-ink-700";     // 크림
+  if (val >= -0.5) return "bg-[#e8f0f8] text-ink-700";     // 연 하늘
+  if (val >= -0.8) return "bg-[#7eb5d6] text-white";       // 하늘
+  return "bg-[#3b6cd8] text-white";                         // 진한 블루
 }
 
 const fmtPct = (v: number, sign = false) => {
@@ -82,10 +83,10 @@ export default function CorrelationPage() {
 
   if (loading && !data) {
     return (
-      <div className="px-6 lg:px-8 py-20 max-w-[1280px] flex items-center justify-center">
+      <div className="px-10 py-20 max-w-[1280px] mx-auto flex items-center justify-center">
         <div className="text-center">
-          <div className="inline-block w-10 h-10 border-4 border-blue-200 border-t-blue-600 rounded-full animate-spin mb-4"></div>
-          <p className="text-slate-600 font-medium">상관관계 계산 중...</p>
+          <div className="inline-block w-8 h-8 border-2 border-ink-200 border-t-ink-900 rounded-full animate-spin mb-4"></div>
+          <p className="text-ink-700 text-[14px] font-medium">상관관계 계산 중</p>
         </div>
       </div>
     );
@@ -93,13 +94,13 @@ export default function CorrelationPage() {
 
   if (error || !data) {
     return (
-      <div className="px-6 lg:px-8 py-20 max-w-[1280px]">
-        <div className="bg-rose-50 border border-rose-200 rounded-xl p-6 text-center">
-          <p className="text-rose-700 font-semibold mb-2">분석 실패</p>
-          <p className="text-rose-600 text-sm mb-4">{error ?? "데이터를 불러오지 못했습니다."}</p>
+      <div className="px-10 py-20 max-w-[1280px] mx-auto">
+        <div className="border hairline bg-down-soft rounded-lg p-6 text-center">
+          <p className="text-down font-semibold mb-2 text-[14px]">분석 실패</p>
+          <p className="text-ink-600 text-[13px] mb-4">{error ?? "데이터를 불러오지 못했습니다."}</p>
           <button
             onClick={() => router.push("/analysis")}
-            className="px-4 py-2 bg-rose-600 text-white rounded-lg text-sm font-semibold hover:bg-rose-700"
+            className="px-4 py-2 bg-ink-900 text-paper rounded-md text-[13px] font-medium hover:bg-ink-800"
           >
             돌아가기
           </button>
@@ -113,33 +114,34 @@ export default function CorrelationPage() {
   );
 
   return (
-    <div className="px-6 lg:px-8 py-8 pb-20 max-w-[1280px]">
-      <div className="flex items-center justify-between flex-wrap gap-3 mb-6">
+    <div className="px-10 py-10 pb-20 max-w-[1280px] mx-auto">
+      <div className="flex items-center justify-between flex-wrap gap-3 mb-2">
         <button
           onClick={() => router.push("/analysis")}
-          className="px-3.5 py-2 text-xs font-semibold text-slate-600 hover:text-slate-900 hover:bg-slate-100 rounded-lg transition-colors"
+          className="flex items-center gap-1.5 text-[12px] text-ink-600 hover:text-ink-900 hover:bg-ink-50 px-2.5 py-1.5 rounded-md transition-colors"
         >
           ← 분석 도구로
         </button>
       </div>
 
-      <div className="mb-6">
-        <h1 className="text-3xl font-bold text-slate-900 tracking-tight">상관관계 분석</h1>
-        <p className="text-sm text-slate-500 mt-1">
+      <div className="mb-10">
+        <div className="text-[11px] font-medium text-ink-500 uppercase tracking-[0.08em] mb-2">분석 · 상관관계</div>
+        <h1 className="text-[28px] font-semibold tracking-tight text-ink-900 leading-none">상관관계 분석</h1>
+        <p className="text-[13.5px] text-ink-600 mt-2">
           일별 로그수익률 기반 N×N 상관행렬. 1에 가까울수록 같이 움직이고, -1에 가까울수록 반대로 움직입니다.
         </p>
       </div>
 
       <div className="space-y-5">
         {/* 종목 + 기간 선택 */}
-        <div className="bg-white border border-slate-200 rounded-xl p-6 shadow-sm space-y-5">
+        <div className="bg-paper border hairline rounded-lg p-5 space-y-5">
           <div>
-            <label className="text-sm font-semibold text-slate-700 mb-2 block">분석 종목</label>
+            <div className="text-[10px] font-medium text-ink-500 uppercase tracking-[0.08em] mb-2">분석 종목</div>
             <div className="flex gap-1.5 flex-wrap">
               {holdings.map((h, i) => (
                 <span
                   key={h.ticker}
-                  className="text-xs font-semibold px-2.5 py-1 rounded-md border"
+                  className="text-[12px] font-semibold px-2.5 py-1 rounded-md border num"
                   style={{
                     color: SERIES_COLORS[i % SERIES_COLORS.length],
                     borderColor: SERIES_COLORS[i % SERIES_COLORS.length] + "40",
@@ -153,17 +155,17 @@ export default function CorrelationPage() {
           </div>
 
           <div>
-            <label className="text-sm font-semibold text-slate-700 mb-2 block">분석 기간</label>
+            <div className="text-[10px] font-medium text-ink-500 uppercase tracking-[0.08em] mb-2">분석 기간</div>
             <div className="flex gap-1.5 flex-wrap">
               {periodOptions.map((p) => (
                 <button
                   key={p}
                   onClick={() => handlePeriodChange(p)}
                   disabled={loading}
-                  className={`px-4 py-2 rounded-lg text-sm font-semibold transition-colors disabled:opacity-50 ${
+                  className={`px-4 py-1.5 rounded-md text-[12.5px] font-medium transition-colors disabled:opacity-50 border ${
                     period === p
-                      ? "bg-blue-600 text-white"
-                      : "bg-slate-100 text-slate-700 hover:bg-slate-200"
+                      ? "bg-action text-white border-action"
+                      : "bg-paper text-ink-700 hairline hover:bg-ink-50"
                   }`}
                 >
                   {p === "max" ? `최대 (${data.maxYears}년)` : `${p}년`}
@@ -172,32 +174,32 @@ export default function CorrelationPage() {
             </div>
           </div>
 
-          <p className="text-xs text-slate-500">
-            분석 기간:{" "}
-            <span className="font-semibold text-slate-700">
+          <p className="text-[11.5px] text-ink-500">
+            분석 기간{" "}
+            <span className="font-semibold text-ink-800 num">
               {data.startDate.slice(0, 7)} ~ {data.endDate.slice(0, 7)}
             </span>{" "}
-            ({Math.floor(data.tradingDays / 21)}개월)
+            <span className="text-ink-300 mx-1">·</span>
+            <span className="num">{Math.floor(data.tradingDays / 21)}</span>개월
           </p>
         </div>
 
-        {/* 상관행렬 + 자산별 통계 (같은 라인) */}
-        <div className="grid grid-cols-1 lg:grid-cols-5 gap-5">
-          {/* 상관행렬 (3/5) */}
-          <div className="lg:col-span-3 bg-white border border-slate-100 rounded-2xl p-6 shadow-sm">
-            <h2 className="text-lg font-bold text-slate-900 mb-4">상관행렬</h2>
+        {/* 상관행렬 + 자산별 통계 */}
+        <div className="grid grid-cols-1 lg:grid-cols-5 gap-4">
+          <div className="lg:col-span-3 bg-paper border hairline rounded-lg p-5">
+            <h2 className="text-[14px] font-semibold text-ink-900 mb-4">상관행렬</h2>
             <div className="overflow-x-auto pb-2">
               <div
                 className="inline-grid gap-1"
                 style={{
-                  gridTemplateColumns: `auto repeat(${data.tickers.length}, minmax(70px, 1fr))`,
+                  gridTemplateColumns: `auto repeat(${data.tickers.length}, minmax(64px, 1fr))`,
                 }}
               >
                 <div />
                 {data.tickers.map((t) => (
                   <div
                     key={`col-${t}`}
-                    className="text-center text-xs font-bold text-slate-500 mb-1"
+                    className="text-center text-[10px] font-medium text-ink-500 mb-1 num uppercase tracking-[0.06em]"
                   >
                     {t}
                   </div>
@@ -205,7 +207,7 @@ export default function CorrelationPage() {
 
                 {data.tickers.map((rowTicker, i) => (
                   <div key={`row-${rowTicker}`} className="contents">
-                    <div className="flex items-center justify-end pr-3 text-xs font-bold text-slate-500">
+                    <div className="flex items-center justify-end pr-3 text-[10px] font-medium text-ink-500 num uppercase tracking-[0.06em]">
                       {rowTicker}
                     </div>
                     {data.tickers.map((_, j) => {
@@ -213,7 +215,7 @@ export default function CorrelationPage() {
                       return (
                         <div
                           key={`cell-${i}-${j}`}
-                          className={`aspect-square flex items-center justify-center font-bold text-sm rounded-lg ${getCellColorClass(val)}`}
+                          className={`aspect-square flex items-center justify-center font-semibold text-[12.5px] rounded num ${getCellColorClass(val)}`}
                         >
                           {val.toFixed(2)}
                         </div>
@@ -225,16 +227,13 @@ export default function CorrelationPage() {
             </div>
           </div>
 
-          {/* 자산별 통계 (2/5) */}
-          <div className="lg:col-span-2 bg-white border border-slate-100 rounded-2xl p-6 shadow-sm">
-            <h2 className="text-lg font-bold text-slate-900 mb-4">
-              자산별 통계{" "}
-              <span className="text-sm font-normal text-slate-500">(공통 기간)</span>
-            </h2>
+          <div className="lg:col-span-2 bg-paper border hairline rounded-lg p-5">
+            <h2 className="text-[14px] font-semibold text-ink-900 mb-1">자산별 통계</h2>
+            <div className="text-[10.5px] text-ink-500 mb-3">공통 기간</div>
             <div className="overflow-x-auto">
-              <table className="w-full text-sm">
+              <table className="w-full text-[13px]">
                 <thead>
-                  <tr className="text-left text-xs font-semibold text-slate-500 uppercase tracking-wide border-b border-slate-200">
+                  <tr className="text-left text-[10px] font-medium text-ink-500 border-b hairline uppercase tracking-[0.08em]">
                     <th className="py-2 pr-3">심볼</th>
                     <th className="py-2 pr-3 text-right">CAGR</th>
                     <th className="py-2 text-right">변동성</th>
@@ -242,16 +241,16 @@ export default function CorrelationPage() {
                 </thead>
                 <tbody>
                   {data.stats.map((s) => (
-                    <tr key={s.ticker} className="border-b border-slate-100 last:border-0">
-                      <td className="py-2.5 pr-3 font-bold text-slate-800">{s.ticker}</td>
+                    <tr key={s.ticker} className="border-b hairline last:border-0">
+                      <td className="py-3 pr-3 num font-semibold text-ink-900">{s.ticker}</td>
                       <td
-                        className={`py-2.5 pr-3 text-right font-semibold ${
-                          s.cagr >= 0 ? "text-blue-600" : "text-rose-600"
+                        className={`py-3 pr-3 text-right num font-medium ${
+                          s.cagr >= 0 ? "text-up" : "text-down"
                         }`}
                       >
                         {fmtPct(s.cagr, true)}
                       </td>
-                      <td className="py-2.5 text-right text-slate-700 font-medium">
+                      <td className="py-3 text-right num text-ink-700">
                         {fmtPct(s.volatility)}
                       </td>
                     </tr>
@@ -262,9 +261,9 @@ export default function CorrelationPage() {
           </div>
         </div>
 
-        <div className="bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 text-xs text-slate-600 leading-relaxed">
-          <span className="font-semibold">해석 — </span>
-          상관계수는 일별 로그수익률 기준입니다. 0.7 이상이면 거의 같이 움직이므로 분산 효과가 제한적이고, 0 근처거나 음수면 포트폴리오 변동성을 줄이는 데 기여합니다.
+        <div className="border hairline rounded-md px-4 py-3 text-[11.5px] text-ink-600 leading-relaxed bg-ink-50">
+          <span className="font-medium text-ink-800">해석 — </span>
+          상관계수는 일별 로그수익률 기준. 0.7 이상이면 거의 같이 움직여 분산 효과가 제한적, 0 근처거나 음수면 포트폴리오 변동성을 줄이는 데 기여합니다.
         </div>
       </div>
     </div>

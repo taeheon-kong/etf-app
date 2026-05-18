@@ -17,22 +17,27 @@
   --color-ink-800: oklch(28% 0.005 60);
   --color-ink-900: oklch(18% 0.005 60);
 
-  --color-paper: oklch(99.2% 0.003 80);
+  --color-paper: #ffffff;
+  --color-canvas: oklch(98% 0.003 60);
 
   --color-accent: oklch(62% 0.16 45);
   --color-accent-soft: oklch(95% 0.04 60);
   --color-accent-ink: oklch(38% 0.13 45);
 
-  --color-up: oklch(55% 0.12 245);
-  --color-up-soft: oklch(95% 0.03 245);
-  --color-down: oklch(58% 0.16 25);
-  --color-down-soft: oklch(95% 0.04 25);
+  --color-action: oklch(52% 0.18 250);
+  --color-action-soft: oklch(94% 0.04 250);
+  --color-action-ink: oklch(38% 0.16 250);
+
+  --color-up: oklch(50% 0.16 245);
+  --color-up-soft: oklch(94% 0.04 245);
+  --color-down: oklch(55% 0.20 25);
+  --color-down-soft: oklch(94% 0.05 25);
   --color-pos: oklch(56% 0.12 155);
   --color-pos-soft: oklch(95% 0.04 155);
 }
 
 body {
-  background: var(--color-paper);
+  background: var(--color-canvas);
   color: var(--color-ink-900);
   font-family: var(--font-sans);
   -webkit-font-smoothing: antialiased;
@@ -45,5 +50,44 @@ body {
 }
 
 .hairline {
-  border-color: oklch(91% 0.005 60);
+  border-color: oklch(88% 0.005 60);
+}
+
+/* 날짜 input 스타일 */
+input[type="date"] {
+  font-family: var(--font-mono);
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.02em;
+  color: var(--color-ink-900);
+  cursor: pointer;
+}
+input[type="date"]::-webkit-calendar-picker-indicator {
+  cursor: pointer;
+  opacity: 0.5;
+  filter: invert(0.3);
+}
+input[type="date"]::-webkit-calendar-picker-indicator:hover {
+  opacity: 1;
+}
+
+/* select 드롭다운 스타일 */
+select {
+  background-image: url("data:image/svg+xml,%3Csvg width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%23737373' stroke-width='2' stroke-linecap='round'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 4px center;
+  padding-right: 22px !important;
+  cursor: pointer;
+}
+select option {
+  background: white;
+  color: var(--color-ink-900);
+  font-size: 13px;
+  padding: 8px;
+}
+
+/* 보더 색깔 강제 통일 */
+.hairline,
+.divide-x > *,
+.divide-y > * {
+  border-color: oklch(88% 0.005 60) !important;
 }

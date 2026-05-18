@@ -10,6 +10,7 @@ type NavItem = {
   icon: ReactNode;
   group: string;
   badge?: string;
+  subItem?: { href: string; label: string; storageKey: string };
 };
 
 // ── 미니멀 라인 아이콘 (1.6 stroke) ──
@@ -41,11 +42,17 @@ const IconHome = Ic(<>
 </>);
 
 const NAV: NavItem[] = [
-  { href: "/backtest",  label: "백테스트",     icon: IconChart,     group: "분석" },
-  { href: "/analysis",  label: "추가 분석",    icon: IconAnalysis,  group: "분석" },
-  { href: "/recommend", label: "추천",        icon: IconSparkles,  group: "분석", badge: "준비중" },
-  { href: "/etfs/us",   label: "해외 ETF",    icon: IconGlobe,     group: "탐색" },
-  { href: "/etfs/kr",   label: "국내 ETF",    icon: IconHome,      group: "탐색" },
+  {
+    href: "/backtest",
+    label: "백테스트",
+    icon: IconChart,
+    group: "분석",
+    subItem: { href: "/backtest/result", label: "백테스트 결과", storageKey: "etf_backtest_input" },
+  },
+  { href: "/analysis",  label: "추가 분석",   icon: IconAnalysis,  group: "분석" },
+  { href: "/recommend", label: "추천",       icon: IconSparkles,  group: "분석", badge: "준비중" },
+  { href: "/etfs/us",   label: "해외 ETF",   icon: IconGlobe,     group: "탐색" },
+  { href: "/etfs/kr",   label: "국내 ETF",   icon: IconHome,      group: "탐색" },
 ];
 
 export default function Sidebar() {
@@ -74,28 +81,49 @@ export default function Sidebar() {
             </div>
             <div className="space-y-0.5">
               {NAV.filter((n) => n.group === g).map((n) => {
-                const active = pathname === n.href || pathname.startsWith(n.href + "/");
+                const active = pathname === n.href;
+                const inSection = pathname.startsWith(n.href);
+                const showSubItem = n.subItem && inSection;
+
                 return (
-                  <Link
-                    key={n.href}
-                    href={n.href}
-                    className={`flex items-center gap-2.5 px-2.5 py-1.5 rounded-md text-[13px] transition-colors ${
-                      active
-                        ? "bg-ink-100 text-ink-900 font-medium"
-                        : "text-ink-700 hover:bg-ink-50"
-                    }`}
-                  >
-                    <span className={active ? "text-ink-900" : "text-ink-500"}>{n.icon}</span>
-                    <span className="flex-1">{n.label}</span>
-                    {n.badge && (
-                      <span className="text-[9px] font-semibold px-1.5 py-0.5 rounded bg-ink-100 text-ink-500 uppercase tracking-wide">
-                        {n.badge}
-                      </span>
+                  <div key={n.href}>
+                    <Link
+                      href={n.href}
+                      className={`flex items-center gap-2.5 px-2.5 py-1.5 rounded-md text-[13px] transition-colors ${
+                        active
+                          ? "bg-ink-100 text-ink-900 font-medium"
+                          : "text-ink-700 hover:bg-ink-50"
+                      }`}
+                    >
+                      <span className={active ? "text-ink-900" : "text-ink-500"}>{n.icon}</span>
+                      <span className="flex-1">{n.label}</span>
+                      {n.badge && (
+                        <span className="text-[9px] font-semibold px-1.5 py-0.5 rounded bg-ink-100 text-ink-500 uppercase tracking-wide">
+                          {n.badge}
+                        </span>
+                      )}
+                      {active && !n.badge && (
+                        <span className="w-1.5 h-1.5 rounded-full bg-accent" />
+                      )}
+                    </Link>
+
+                    {showSubItem && n.subItem && (
+                      <Link
+                        href={n.subItem.href}
+                        className={`flex items-center gap-2 pl-9 pr-2.5 py-1.5 mt-0.5 rounded-md text-[12.5px] transition-colors relative ${
+                          pathname === n.subItem.href
+                            ? "bg-ink-100 text-ink-900 font-medium"
+                            : "text-ink-600 hover:bg-ink-50"
+                        }`}
+                      >
+                        <span className="absolute left-5 top-0 bottom-0 w-px bg-ink-200" />
+                        <span className="flex-1">{n.subItem.label}</span>
+                        {pathname === n.subItem.href && (
+                          <span className="w-1.5 h-1.5 rounded-full bg-accent" />
+                        )}
+                      </Link>
                     )}
-                    {active && !n.badge && (
-                      <span className="w-1.5 h-1.5 rounded-full bg-accent" />
-                    )}
-                  </Link>
+                  </div>
                 );
               })}
             </div>

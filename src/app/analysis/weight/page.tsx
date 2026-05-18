@@ -56,35 +56,31 @@ export default function WeightAnalysisPage() {
   };
 
   return (
-    <div className="px-6 lg:px-8 py-8 pb-20 max-w-[1280px]">
-      <div className="flex items-center justify-between flex-wrap gap-3 mb-6">
+    <div className="px-10 py-10 pb-20 max-w-[1280px] mx-auto">
+      <div className="flex items-center justify-between flex-wrap gap-3 mb-2">
         <button
           onClick={() => router.push("/analysis")}
-          className="px-3.5 py-2 text-xs font-semibold text-slate-600 hover:text-slate-900 hover:bg-slate-100 rounded-lg transition-colors"
+          className="flex items-center gap-1.5 text-[12px] text-ink-600 hover:text-ink-900 hover:bg-ink-50 px-2.5 py-1.5 rounded-md transition-colors"
         >
           ← 분석 도구로
         </button>
       </div>
 
-      <div className="mb-6">
-        <h1 className="text-3xl font-bold text-slate-900 tracking-tight">비중 분석</h1>
-        <p className="text-sm text-slate-500 mt-1">
+      <div className="mb-10">
+        <div className="text-[11px] font-medium text-ink-500 uppercase tracking-[0.08em] mb-2">분석 · 비중</div>
+        <h1 className="text-[28px] font-semibold tracking-tight text-ink-900 leading-none">비중 분석</h1>
+        <p className="text-[13.5px] text-ink-600 mt-2">
           종목 심볼로 어떤 ETF에 편입되어 있는지, 그 안에서 비중이 얼마인지 확인합니다.
         </p>
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-5 gap-5">
-        {/* 왼쪽: 검색 (2/5) */}
-        <div className="lg:col-span-2 bg-white border border-slate-200 rounded-xl p-6 shadow-sm space-y-5">
-          <div className="flex items-center gap-2">
-            <IconSearch />
-            <h2 className="font-bold text-slate-900">종목 검색</h2>
-          </div>
+      <div className="grid grid-cols-1 lg:grid-cols-5 gap-4">
+        {/* 왼쪽 검색 */}
+        <div className="lg:col-span-2 bg-paper border hairline rounded-lg p-5 space-y-5 h-fit">
+          <div className="text-[10px] font-medium text-ink-500 uppercase tracking-[0.08em]">종목 검색</div>
 
           <div>
-            <label className="text-sm font-semibold text-slate-700 mb-2 block">
-              종목 심볼
-            </label>
+            <div className="text-[10px] font-medium text-ink-500 uppercase tracking-[0.08em] mb-1.5">종목 심볼</div>
             <div className="relative">
               <input
                 type="text"
@@ -92,14 +88,16 @@ export default function WeightAnalysisPage() {
                 value={query}
                 onChange={(e) => setQuery(e.target.value.toUpperCase())}
                 onKeyDown={handleKeyDown}
-                className="w-full border border-slate-300 rounded-lg px-3 py-2.5 pr-10 text-sm font-semibold focus:outline-none focus:ring-2 focus:ring-blue-500 uppercase"
+                className="w-full border hairline rounded-md px-3 py-2.5 pr-10 text-[14px] font-semibold num uppercase focus:outline-none focus:border-ink-400"
               />
               {query && (
                 <button
                   onClick={handleClear}
-                  className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600"
+                  className="absolute right-2.5 top-1/2 -translate-y-1/2 text-ink-400 hover:text-ink-900 p-1 rounded hover:bg-ink-50"
                 >
-                  <IconX />
+                  <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round">
+                    <path d="M18 6L6 18M6 6l12 12" />
+                  </svg>
                 </button>
               )}
             </div>
@@ -108,84 +106,87 @@ export default function WeightAnalysisPage() {
           <button
             onClick={handleSearch}
             disabled={!query.trim() || loading}
-            className="w-full py-3 bg-blue-600 hover:bg-blue-700 text-white rounded-xl font-semibold disabled:opacity-50 transition-colors shadow-sm shadow-blue-600/20"
+            className="w-full py-2.5 bg-action hover:bg-action-ink text-white rounded-md text-[14px] font-medium disabled:opacity-50 transition-colors"
           >
             {loading ? "검색 중..." : "검색"}
           </button>
 
           {error && (
-            <div className="text-sm text-rose-700 bg-rose-50 border border-rose-200 px-4 py-2 rounded-lg">
+            <div className="text-[12px] text-down bg-down-soft border hairline px-3 py-2 rounded-md">
               {error}
             </div>
           )}
 
-          <div className="text-[11px] text-slate-500 leading-relaxed bg-slate-50 px-3 py-2.5 rounded-lg border border-slate-100">
-            <span className="font-semibold text-slate-700">예시</span> — NVDA 검색 시 SOXX, SMH, QQQ 등 NVDA를 보유한 ETF와 그 안에서의 비중을 보여줍니다.
+          <div className="text-[11.5px] text-ink-600 leading-relaxed bg-ink-50 border hairline px-3 py-2.5 rounded-md">
+            <span className="font-medium text-ink-800">예시 — </span>
+            NVDA 검색 시 SOXX, SMH, QQQ 등 NVDA를 보유한 ETF와 그 안에서의 비중을 보여줍니다.
           </div>
 
-          <div className="text-[11px] text-slate-400 leading-relaxed">
-            ※ 미국 ETF의 Top 10 보유종목 데이터를 기반으로 합니다. ETF별 11위 이하의 종목은 검색되지 않을 수 있습니다.
+          <div className="text-[10.5px] text-ink-500 leading-relaxed">
+            ※ 미국 ETF의 Top 10 보유종목 데이터 기반. 11위 이하 종목은 검색되지 않을 수 있습니다.
           </div>
         </div>
 
-        {/* 오른쪽: 결과 (3/5) */}
+        {/* 오른쪽 결과 */}
         <div className="lg:col-span-3">
           {!data ? (
-            <div className="bg-white border border-slate-100 rounded-2xl p-12 text-center shadow-sm">
+            <div className="bg-paper border hairline rounded-lg p-12 text-center">
               <div className="flex flex-col items-center max-w-md mx-auto">
-                <div className="w-16 h-16 rounded-2xl bg-slate-50 border border-slate-100 flex items-center justify-center text-slate-400 mb-4">
-                  <IconSearchLarge />
+                <div className="w-14 h-14 rounded-md bg-ink-50 border hairline flex items-center justify-center text-ink-400 mb-3">
+                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
+                    <circle cx="11" cy="11" r="8" />
+                    <path d="M21 21l-4.35-4.35" />
+                  </svg>
                 </div>
-                <p className="text-sm text-slate-500">
+                <p className="text-[13px] text-ink-500">
                   왼쪽에서 종목 심볼을 입력하고 검색하세요.
                 </p>
               </div>
             </div>
           ) : !data.found ? (
-            <div className="bg-white border border-slate-100 rounded-2xl p-12 text-center shadow-sm">
+            <div className="bg-paper border hairline rounded-lg p-12 text-center">
               <div className="flex flex-col items-center max-w-md mx-auto">
-                <div className="w-16 h-16 rounded-2xl bg-amber-50 border border-amber-100 flex items-center justify-center text-amber-600 mb-4">
-                  <IconAlert />
+                <div className="w-14 h-14 rounded-md bg-accent-soft border hairline flex items-center justify-center text-accent mb-3">
+                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
+                    <circle cx="12" cy="12" r="10" />
+                    <path d="M12 8v4M12 16h.01" />
+                  </svg>
                 </div>
-                <h3 className="text-lg font-bold text-slate-900 mb-2">
+                <h3 className="text-[16px] font-semibold text-ink-900 mb-2">
                   검색 결과가 없습니다
                 </h3>
-                <p className="text-sm text-slate-500 leading-relaxed">
-                  <span className="font-semibold text-slate-700">{data.symbol}</span>는 우리가 가진 ETF 중 어느 ETF의 Top 10 보유종목에도 포함되어 있지 않습니다.
+                <p className="text-[12.5px] text-ink-600 leading-relaxed">
+                  <span className="font-semibold text-ink-900 num">{data.symbol}</span>는 우리가 가진 ETF 중 어느 ETF의 Top 10 보유종목에도 포함되어 있지 않습니다.
                 </p>
               </div>
             </div>
           ) : (
-            <div className="space-y-5">
-              {/* 헤더 카드 */}
-              <div className="bg-white border border-slate-100 rounded-2xl p-6 shadow-sm">
-                <div className="flex items-baseline justify-between flex-wrap gap-2 mb-2">
+            <div className="space-y-4">
+              {/* 헤더 */}
+              <div className="bg-paper border hairline rounded-lg p-5">
+                <div className="flex items-baseline justify-between flex-wrap gap-3">
                   <div>
-                    <div className="text-xs font-semibold text-slate-500 uppercase tracking-wider mb-1">
-                      검색 종목
-                    </div>
-                    <h2 className="text-2xl font-bold text-slate-900">{data.symbol}</h2>
-                    <p className="text-sm text-slate-500 mt-1">{data.name}</p>
+                    <div className="text-[10px] font-medium text-ink-500 uppercase tracking-[0.08em] mb-1">검색 종목</div>
+                    <h2 className="text-[24px] font-semibold text-ink-900 num tracking-tight leading-none">{data.symbol}</h2>
+                    <p className="text-[13px] text-ink-600 mt-1.5">{data.name}</p>
                   </div>
                   <div className="text-right">
-                    <div className="text-xs font-semibold text-slate-500 uppercase tracking-wider mb-1">
-                      편입 ETF
-                    </div>
-                    <div className="text-2xl font-bold text-blue-600">{data.count}개</div>
+                    <div className="text-[10px] font-medium text-ink-500 uppercase tracking-[0.08em] mb-1">편입 ETF</div>
+                    <div className="text-[24px] font-semibold text-action num tracking-tight leading-none">{data.count}<span className="text-[14px] text-ink-500 ml-0.5">개</span></div>
                   </div>
                 </div>
               </div>
 
               {/* ETF 리스트 */}
-              <div className="space-y-2.5">
+              <div className="space-y-2">
                 {data.etfs!.map((e, i) => (
                   <EtfRow key={e.etf} entry={e} index={i} />
                 ))}
               </div>
 
-              <div className="bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 text-xs text-slate-600 leading-relaxed">
-                <span className="font-semibold">해석 — </span>
-                비중이 높을수록 해당 ETF에서 {data.symbol}의 영향력이 큽니다. 보유 순위가 1~3위라면 ETF 성과가 {data.symbol}의 주가에 크게 좌우됩니다.
+              <div className="border hairline rounded-md px-4 py-3 text-[11.5px] text-ink-600 leading-relaxed bg-ink-50">
+                <span className="font-medium text-ink-800">해석 — </span>
+                비중이 높을수록 해당 ETF에서 <span className="font-semibold num text-ink-900">{data.symbol}</span>의 영향력이 큽니다. 보유 순위가 1~3위라면 ETF 성과가 이 종목의 주가에 크게 좌우됩니다.
               </div>
             </div>
           )}
@@ -200,74 +201,38 @@ function EtfRow({ entry, index }: { entry: EtfEntry; index: number }) {
   const isTop = entry.rank <= 3;
 
   return (
-    <div className="bg-white border border-slate-100 rounded-2xl p-5 shadow-sm hover:border-slate-200 transition-colors">
+    <div className="bg-paper border hairline rounded-md p-4 hover:border-ink-400 transition-colors">
       <div className="flex items-center justify-between mb-3">
         <div className="flex items-center gap-3 min-w-0">
-          <div className="w-8 h-8 rounded-lg bg-blue-50 border border-blue-100 flex items-center justify-center text-xs font-bold text-blue-600 shrink-0">
-            {index + 1}
+          <div className="w-7 h-7 rounded-md bg-ink-50 border hairline flex items-center justify-center text-[11px] font-semibold text-ink-700 shrink-0 num">
+            {String(index + 1).padStart(2, "0")}
           </div>
           <div className="min-w-0">
-            <div className="font-bold text-slate-900 text-sm flex items-center gap-2">
+            <div className="font-semibold text-ink-900 text-[13.5px] flex items-center gap-2 num">
               {entry.etf}
               {isTop && (
-                <span className="text-[10px] font-bold px-1.5 py-0.5 bg-amber-50 text-amber-700 rounded border border-amber-200">
+                <span className="text-[9px] font-medium px-1.5 py-0.5 bg-accent-soft text-accent-ink rounded border hairline uppercase tracking-[0.06em]">
                   TOP {entry.rank}
                 </span>
               )}
             </div>
-            <div className="text-xs text-slate-500 truncate">{entry.etfName}</div>
+            <div className="text-[11.5px] text-ink-500 truncate">{entry.etfName}</div>
           </div>
         </div>
         <div className="text-right shrink-0 ml-3">
-          <div className="text-lg font-bold text-blue-600">{weightPct.toFixed(2)}%</div>
-          <div className="text-[10px] font-semibold text-slate-500">
+          <div className="text-[16px] font-semibold text-action num tracking-tight leading-none">{weightPct.toFixed(2)}%</div>
+          <div className="text-[10px] text-ink-500 num mt-1">
             보유 순위 {entry.rank}위
           </div>
         </div>
       </div>
 
-      {/* 비중 프로그레스 바 */}
-      <div className="h-1.5 w-full bg-slate-100 rounded-full overflow-hidden">
+      <div className="h-1 w-full bg-ink-100 rounded-sm overflow-hidden">
         <div
-          className="h-full bg-blue-600 rounded-full transition-all duration-500"
+          className="h-full bg-action rounded-sm transition-all duration-500"
           style={{ width: `${Math.min(100, weightPct)}%` }}
         />
       </div>
     </div>
-  );
-}
-
-function IconSearch() {
-  return (
-    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-      <circle cx="11" cy="11" r="8" />
-      <path d="M21 21l-4.35-4.35" />
-    </svg>
-  );
-}
-
-function IconSearchLarge() {
-  return (
-    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-      <circle cx="11" cy="11" r="8" />
-      <path d="M21 21l-4.35-4.35" />
-    </svg>
-  );
-}
-
-function IconAlert() {
-  return (
-    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-      <circle cx="12" cy="12" r="10" />
-      <path d="M12 8v4M12 16h.01" />
-    </svg>
-  );
-}
-
-function IconX() {
-  return (
-    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-      <path d="M18 6L6 18M6 6l12 12" />
-    </svg>
   );
 }
