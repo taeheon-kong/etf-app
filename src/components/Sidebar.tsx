@@ -82,8 +82,7 @@ export default function Sidebar() {
             <div className="space-y-0.5">
               {NAV.filter((n) => n.group === g).map((n) => {
                 const active = pathname === n.href;
-                const inSection = pathname.startsWith(n.href);
-                const showSubItem = n.subItem && inSection;
+                const showSubItem = n.subItem && pathname === n.subItem.href;
 
                 return (
                   <div key={n.href}>
